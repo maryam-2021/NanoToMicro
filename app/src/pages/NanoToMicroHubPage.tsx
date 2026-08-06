@@ -443,16 +443,32 @@ export default function NanoToMicroHubPage() {
           <div className="mb-10 text-center">
             <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">Nano-to-Micro Conversion Formula</h2>
             <p className="mx-auto mt-3 max-w-2xl text-muted-foreground">
-              Understanding the mathematical foundation connecting nano (10⁻⁹) and micro (10⁻⁶).
+              Understanding the simple mathematical foundation connecting nano (10⁻⁹) and micro (10⁻⁶).
             </p>
+          </div>
+
+          {/* Key Relationship Badges */}
+          <div className="mb-8 grid gap-4 sm:grid-cols-2">
+            <div className="rounded-xl border border-primary/30 bg-primary/10 p-4 text-center">
+              <span className="block text-xs font-bold uppercase tracking-wider text-primary">Fundamental Equality</span>
+              <span className="numeric mt-1 block text-lg font-black text-primary sm:text-xl">
+                1 micro-unit = 1,000 nano-units
+              </span>
+            </div>
+            <div className="rounded-xl border border-border bg-secondary/60 p-4 text-center">
+              <span className="block text-xs font-bold uppercase tracking-wider text-muted-foreground">Unit Conversion Factor</span>
+              <span className="numeric mt-1 block text-lg font-bold text-foreground sm:text-xl">
+                1 nano-unit = 0.001 micro-units
+              </span>
+            </div>
           </div>
 
           <div className="grid gap-8 lg:grid-cols-2">
             {/* Core Formula Breakdown */}
             <div className="rounded-2xl border border-border bg-card p-6 sm:p-8">
               <h3 className="text-lg font-bold text-foreground">The Universal Math Rule</h3>
-              <p className="mt-3 leading-relaxed text-muted-foreground">
-                To convert any nano-unit into the corresponding micro-unit, <strong>divide the nano value by 1,000</strong>.
+              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+                To convert any nano-unit into the corresponding micro-unit, <strong>divide the nano value by 1,000</strong>. To perform the reverse conversion from micro to nano, <strong>multiply the micro value by 1,000</strong>.
               </p>
 
               {/* Formulas Display */}
@@ -471,50 +487,56 @@ export default function NanoToMicroHubPage() {
                 </div>
               </div>
 
-              {/* Scientific Ratio Explanation */}
-              <div className="mt-6 border-t border-border/60 pt-4 text-sm leading-relaxed text-muted-foreground">
-                <p>
-                  <strong>Why 1,000?</strong> In exponent notation:
+              {/* Brief Exponent Explanation */}
+              <div className="mt-6 rounded-xl border border-border bg-secondary/30 p-4">
+                <span className="block text-xs font-bold uppercase tracking-wider text-primary">Exponent Math Breakdown</span>
+                <p className="numeric mt-2 font-mono text-sm font-bold text-foreground">
+                  10⁻⁹ ÷ 10⁻⁶ = 10⁻³ = 0.001
                 </p>
-                <p className="numeric mt-2 font-mono text-xs text-foreground">
-                  10⁻⁹ (nano) ÷ 10⁻⁶ (micro) = 10⁻³ = 0.001 = 1 / 1,000
-                </p>
-                <p className="mt-2">
-                  Therefore, 1 nano-unit equals exactly 0.001 micro-units.
+                <p className="mt-1 text-xs text-muted-foreground">
+                  Dividing 10⁻⁹ by 10⁻⁶ yields 10⁻³, which equals exactly 0.001 (or 1 / 1,000).
                 </p>
               </div>
             </div>
 
-            {/* Worked Example Card & Decimal Shortcut */}
+            {/* Why This Works & Worked Example */}
             <div className="flex flex-col justify-between rounded-2xl border border-border bg-card p-6 sm:p-8">
               <div>
-                <h3 className="text-lg font-bold text-foreground">Worked Conversion Example</h3>
-                <div className="mt-4 rounded-xl border border-border/80 bg-secondary/50 p-5">
-                  <span className="text-xs font-bold uppercase text-primary">Example Problem</span>
-                  <p className="mt-1 text-sm font-semibold text-foreground">
-                    Convert 5,000 nano-units into micro-units.
-                  </p>
+                <h3 className="text-lg font-bold text-foreground">Why This Formula Works</h3>
+                <ol className="mt-3 space-y-2 text-xs sm:text-sm text-muted-foreground">
+                  <li className="flex items-start gap-2">
+                    <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-primary/20 text-xs font-bold text-primary">1</span>
+                    <span><strong>Nano means 10⁻⁹</strong> (one-billionth of a base unit).</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-primary/20 text-xs font-bold text-primary">2</span>
+                    <span><strong>Micro means 10⁻⁶</strong> (one-millionth of a base unit).</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-primary/20 text-xs font-bold text-primary">3</span>
+                    <span><strong>The difference between the exponents is three</strong> (|-9 - (-6)| = 3).</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-primary/20 text-xs font-bold text-primary">4</span>
+                    <span>A difference of three powers of ten equals a factor of <strong>10³, or 1,000</strong>.</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-primary/20 text-xs font-bold text-primary">5</span>
+                    <span>Therefore, <strong>one micro-unit contains 1,000 corresponding nano-units</strong>.</span>
+                  </li>
+                </ol>
 
-                  <div className="mt-4 space-y-2 text-xs sm:text-sm">
-                    <div className="flex justify-between border-b border-border/60 pb-2">
-                      <span className="text-muted-foreground">1. Identify Formula:</span>
-                      <span className="font-mono font-bold">Micro = Nano ÷ 1,000</span>
-                    </div>
-                    <div className="flex justify-between border-b border-border/60 pb-2">
-                      <span className="text-muted-foreground">2. Substitute Value:</span>
-                      <span className="font-mono font-bold">5,000 ÷ 1,000</span>
-                    </div>
-                    <div className="flex justify-between pt-1 text-base font-bold text-primary">
-                      <span>3. Result:</span>
-                      <span>5 micro-units (5 µ)</span>
-                    </div>
-                  </div>
+                <div className="mt-5 rounded-xl border border-border/80 bg-secondary/50 p-4">
+                  <span className="text-xs font-bold uppercase text-primary">Example Calculation</span>
+                  <p className="mt-1 text-xs font-semibold text-foreground">
+                    5,000 nano-units ÷ 1,000 = <strong>5 micro-units</strong>
+                  </p>
                 </div>
               </div>
 
               {/* Decimal Point Shortcut Tip */}
               <div className="mt-6 rounded-xl border border-amber-500/30 bg-amber-500/10 p-4 text-xs leading-relaxed text-amber-200">
-                <span className="font-bold">💡 Mental Math Trick:</span> Move the decimal point <strong>3 places to the left</strong> to go from nano to micro (e.g., 5,000.0 → 5.0). To go from micro to nano, move the decimal point <strong>3 places to the right</strong> (e.g., 2.5 → 2,500.0).
+                <span className="font-bold">💡 Quick Rule:</span> Move the decimal point <strong>3 places to the left</strong> to convert nano to micro (5,000 → 5). To convert micro to nano, move the decimal point <strong>3 places to the right</strong> (5 → 5,000).
               </div>
             </div>
           </div>
