@@ -27,6 +27,7 @@ for (const match of articleText.matchAll(/slug: '([^']+)'/g)) {
 
 const urls = [
   { loc: `${BASE}/`, priority: '1.0', changefreq: 'weekly' },
+  { loc: `${BASE}/nano-to-micro-conversion/`, priority: '1.0', changefreq: 'weekly' },
   { loc: `${BASE}/si-prefix-converter`, priority: '0.8', changefreq: 'monthly' },
   { loc: `${BASE}/conversion-charts`, priority: '0.7', changefreq: 'monthly' },
   { loc: `${BASE}/guides`, priority: '0.7', changefreq: 'weekly' },

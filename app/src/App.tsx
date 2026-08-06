@@ -12,6 +12,7 @@ import NmToUmGuide from '@/pages/articles/NmToUmGuide';
 import CapacitorCodes from '@/pages/articles/CapacitorCodes';
 import McgVsUgVsMg from '@/pages/articles/McgVsUgVsMg';
 import LatencyChart from '@/pages/articles/LatencyChart';
+import NanoToMicroHubPage from '@/pages/NanoToMicroHubPage';
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -27,6 +28,8 @@ export default function App() {
       <ScrollToTop />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/nano-to-micro-conversion" element={<NanoToMicroHubPage />} />
+        <Route path="/nano-to-micro-conversion/" element={<NanoToMicroHubPage />} />
         <Route path="/si-prefix-converter" element={<PrefixConverterPage />} />
         <Route path="/conversion-charts" element={<ChartsPage />} />
         <Route path="/guides" element={<GuidesIndexPage />} />

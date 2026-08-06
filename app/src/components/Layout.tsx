@@ -61,6 +61,11 @@ export function Layout({ children }: { children: React.ReactNode }) {
               </DropdownMenuContent>
             </DropdownMenu>
             <Button variant="ghost" asChild className="gap-1.5 text-sm font-medium">
+              <NavLink to="/nano-to-micro-conversion/">
+                <Atom className="h-4 w-4 opacity-60" /> Conversion Hub
+              </NavLink>
+            </Button>
+            <Button variant="ghost" asChild className="gap-1.5 text-sm font-medium">
               <NavLink to="/si-prefix-converter">
                 <ArrowRightLeft className="h-4 w-4 opacity-60" /> SI Prefix Converter
               </NavLink>
@@ -177,6 +182,11 @@ export function Layout({ children }: { children: React.ReactNode }) {
               <div>
                 <p className="mb-3 text-xs font-semibold uppercase tracking-wider text-muted-foreground">Tools</p>
                 <ul className="space-y-2">
+                  <li>
+                    <Link to="/nano-to-micro-conversion/" className="text-sm text-foreground/80 hover:text-primary font-medium">
+                      Conversion Hub (10⁻⁹ to 10⁻⁶)
+                    </Link>
+                  </li>
                   <li>
                     <Link to="/si-prefix-converter" className="text-sm text-foreground/80 hover:text-primary">
                       SI Prefix Converter

@@ -71,18 +71,3 @@ export default defineConfig([
   },
 ])
 ```
-
-## Cloudflare Pages Deployment
-
-This repository is configured for automatic deployment to Cloudflare Pages.
-
-### Configuration Settings
-- **Framework Preset**: None (or React / Vite)
-- **Build command**: `npm run build`
-- **Build output directory**: `dist`
-- **Root directory**: `app`
-- **Production branch**: `main`
-
-### Deployment Workflow
-The deployment works through Cloudflare Pages' native Git integration. Any push to the `main` branch will automatically trigger a new build and deployment. No API token or Wrangler deployment is required.
-
