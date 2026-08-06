@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState, useId } from 'react';
 import { Link } from 'react-router';
 import {
   Atom,
@@ -16,31 +16,33 @@ import {
   Layers,
   BookOpen,
   ArrowLeftRight,
+  RotateCcw,
+  AlertCircle,
 } from 'lucide-react';
 import { useSEO } from '@/components/SEO';
 import { FaqSection } from '@/components/Faq';
 import { CATEGORIES, getConverter } from '@/data/converters';
 
-interface UnitOption {
+interface UnitCategoryOption {
   id: string;
-  name: string;
+  label: string;
   category: string;
   fromSymbol: string;
   toSymbol: string;
   slug?: string;
 }
 
-const UNIT_OPTIONS: UnitOption[] = [
-  { id: 'generic', name: 'Generic / Any Unit', category: 'General', fromSymbol: 'nano-units', toSymbol: 'micro-units' },
-  { id: 'nm-um', name: 'Length (Nanometers to Micrometers)', category: 'Length', fromSymbol: 'nm', toSymbol: 'µm', slug: 'nanometers-to-micrometers' },
-  { id: 'ng-ug', name: 'Mass (Nanograms to Micrograms)', category: 'Mass', fromSymbol: 'ng', toSymbol: 'µg', slug: 'nanograms-to-micrograms' },
-  { id: 'ns-us', name: 'Time (Nanoseconds to Microseconds)', category: 'Time', fromSymbol: 'ns', toSymbol: 'µs', slug: 'nanoseconds-to-microseconds' },
-  { id: 'nmolar-umolar', name: 'Concentration (Nanomolar to Micromolar)', category: 'Concentration', fromSymbol: 'nM', toSymbol: 'µM', slug: 'nanomolar-to-micromolar' },
-  { id: 'nf-uf', name: 'Capacitance (Nanofarads to Microfarads)', category: 'Capacitance', fromSymbol: 'nF', toSymbol: 'µF', slug: 'nanofarads-to-microfarads' },
-  { id: 'nl-ul', name: 'Volume (Nanoliters to Microliters)', category: 'Volume', fromSymbol: 'nL', toSymbol: 'µL', slug: 'nanoliter-to-microliter' },
-  { id: 'na-ua', name: 'Current (Nanoamps to Microamps)', category: 'Electric Current', fromSymbol: 'nA', toSymbol: 'µA', slug: 'nanoamps-to-microamps' },
-  { id: 'nc-uc', name: 'Charge (Nanocoulombs to Microcoulombs)', category: 'Electric Charge', fromSymbol: 'nC', toSymbol: 'µC', slug: 'nanocoulomb-to-microcoulomb' },
-  { id: 'nsv-usv', name: 'Dose (Nanosieverts to Microsieverts)', category: 'Radiation', fromSymbol: 'nSv', toSymbol: 'µSv', slug: 'nanosieverts-to-microsieverts' },
+const UNIT_CATEGORIES: UnitCategoryOption[] = [
+  { id: 'generic', label: 'Generic nano to micro', category: 'General', fromSymbol: 'nano-units', toSymbol: 'micro-units' },
+  { id: 'nanometers', label: 'Nanometers to micrometers', category: 'Length', fromSymbol: 'nm', toSymbol: 'µm', slug: 'nanometers-to-micrometers' },
+  { id: 'nanoseconds', label: 'Nanoseconds to microseconds', category: 'Time', fromSymbol: 'ns', toSymbol: 'µs', slug: 'nanoseconds-to-microseconds' },
+  { id: 'nanograms', label: 'Nanograms to micrograms', category: 'Mass', fromSymbol: 'ng', toSymbol: 'µg', slug: 'nanograms-to-micrograms' },
+  { id: 'nanosieverts', label: 'Nanosieverts to microsieverts', category: 'Radiation', fromSymbol: 'nSv', toSymbol: 'µSv', slug: 'nanosieverts-to-microsieverts' },
+  { id: 'nanoliters', label: 'Nanoliters to microliters', category: 'Volume', fromSymbol: 'nL', toSymbol: 'µL', slug: 'nanoliter-to-microliter' },
+  { id: 'nanowatts', label: 'Nanowatts to microwatts', category: 'Power', fromSymbol: 'nW', toSymbol: 'µW', slug: 'nanowatts-to-microwatts' },
+  { id: 'nanoamps', label: 'Nanoamps to microamps', category: 'Electric Current', fromSymbol: 'nA', toSymbol: 'µA', slug: 'nanoamps-to-microamps' },
+  { id: 'nanofarads', label: 'Nanofarads to microfarads', category: 'Capacitance', fromSymbol: 'nF', toSymbol: 'µF', slug: 'nanofarads-to-microfarads' },
+  { id: 'nanomoles', label: 'Nanomoles to micromoles', category: 'Amount of Substance', fromSymbol: 'nmol', toSymbol: 'µmol', slug: 'nanomoles-to-micromoles' },
 ];
 
 const HUB_FAQS = [
@@ -84,9 +86,246 @@ const ICONS: Record<string, React.ComponentType<{ className?: string }>> = {
   'flask-conical': FlaskConical,
   zap: Zap,
   timer: Timer,
-  droplets: Droplets,
   activity: Activity,
 };
+
+/** Formats numbers clearly without excessive trailing zeros or broken scientific notation */
+function formatNumber(val: number): string {
+  if (isNaN(val) || !isFinite(val)) return '';
+  if (Math.abs(val) >= 1e9 || (Math.abs(val) > 0 && Math.abs(val) < 1e-6)) {
+    return val.toExponential(4).replace(/\.0+e/, 'e');
+  }
+  return val.toLocaleString('en-US', { maximumFractionDigits: 9 });
+}
+
+function UniversalCalculator() {
+  const nanoInputId = useId();
+  const unitSelectId = useId();
+
+  const [nanoInput, setNanoInput] = useState<string>('5000');
+  const [selectedCategoryId, setSelectedCategoryId] = useState<string>('generic');
+  const [copied, setCopied] = useState<boolean>(false);
+  const [validationError, setValidationError] = useState<string | null>(null);
+
+  const selectedUnit = UNIT_CATEGORIES.find((u) => u.id === selectedCategoryId) || UNIT_CATEGORIES[0];
+
+  // Evaluate input
+  const trimmed = nanoInput.trim();
+  let numericVal: number | null = null;
+  let microVal: number | null = null;
+
+  if (trimmed !== '') {
+    const parsed = Number(trimmed);
+    if (!isNaN(parsed) && isFinite(parsed)) {
+      numericVal = parsed;
+      microVal = parsed / 1000;
+    }
+  }
+
+  const handleConvert = (e?: React.FormEvent) => {
+    if (e) e.preventDefault();
+    if (trimmed === '') {
+      setValidationError('Please enter a nano value to convert.');
+      return;
+    }
+    const parsed = Number(trimmed);
+    if (isNaN(parsed) || !isFinite(parsed)) {
+      setValidationError('Invalid input. Please enter a valid number (e.g. 5000, 750, -50, or 2.5e6).');
+      return;
+    }
+    setValidationError(null);
+  };
+
+  const handleReset = () => {
+    setNanoInput('');
+    setSelectedCategoryId('generic');
+    setValidationError(null);
+    setCopied(false);
+  };
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const val = e.target.value;
+    setNanoInput(val);
+    if (validationError) {
+      setValidationError(null);
+    }
+  };
+
+  const handlePreset = (val: number | string) => {
+    setNanoInput(val.toString());
+    setValidationError(null);
+  };
+
+  const handleCopy = () => {
+    if (microVal === null || numericVal === null) return;
+    const formattedNano = formatNumber(numericVal);
+    const formattedMicro = formatNumber(microVal);
+    const textToCopy = `${formattedNano} ${selectedUnit.fromSymbol} = ${formattedMicro} ${selectedUnit.toSymbol}`;
+    navigator.clipboard.writeText(textToCopy);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
+  return (
+    <div id="calculator-section" className="mx-auto max-w-3xl rounded-2xl border border-primary/40 bg-card p-6 shadow-xl sm:p-8">
+      {/* Calculator Header */}
+      <div className="mb-6 border-b border-border/60 pb-4">
+        <h2 className="text-xl font-bold tracking-tight text-foreground sm:text-2xl">
+          Universal Nano-to-Micro Calculator
+        </h2>
+        <p className="mt-1 text-xs text-muted-foreground sm:text-sm">
+          Convert any compatible nano-to-micro value using the universal ÷1,000 formula.
+        </p>
+      </div>
+
+      <form onSubmit={handleConvert} className="space-y-6">
+        {/* Controls Grid */}
+        <div className="grid gap-5 sm:grid-cols-2">
+          {/* Unit Category Selector */}
+          <div>
+            <label htmlFor={unitSelectId} className="mb-2 block text-xs font-bold uppercase tracking-wider text-muted-foreground">
+              Unit Category
+            </label>
+            <div className="relative">
+              <select
+                id={unitSelectId}
+                value={selectedCategoryId}
+                onChange={(e) => setSelectedCategoryId(e.target.value)}
+                className="w-full appearance-none rounded-xl border border-border bg-secondary/80 py-3 pl-3.5 pr-9 text-xs font-semibold text-foreground transition-colors focus:border-primary focus:outline-none sm:text-sm"
+              >
+                {UNIT_CATEGORIES.map((u) => (
+                  <option key={u.id} value={u.id}>
+                    {u.label}
+                  </option>
+                ))}
+              </select>
+              <ChevronDown className="pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+            </div>
+          </div>
+
+          {/* Nano Value Numeric Input */}
+          <div>
+            <label htmlFor={nanoInputId} className="mb-2 block text-xs font-bold uppercase tracking-wider text-primary">
+              Nano Value ({selectedUnit.fromSymbol})
+            </label>
+            <div className="relative">
+              <input
+                id={nanoInputId}
+                type="text"
+                inputMode="decimal"
+                value={nanoInput}
+                onChange={handleInputChange}
+                placeholder="e.g. 5000, 750, 2.5e6"
+                className={`numeric w-full rounded-xl border bg-card px-3.5 py-2.5 text-base font-bold text-foreground transition-colors focus:outline-none ${
+                  validationError ? 'border-destructive focus:border-destructive' : 'border-border focus:border-primary'
+                }`}
+              />
+              <span className="absolute right-3.5 top-1/2 -translate-y-1/2 text-xs font-bold text-muted-foreground">
+                {selectedUnit.fromSymbol}
+              </span>
+            </div>
+          </div>
+        </div>
+
+        {/* Validation Error Message */}
+        {validationError && (
+          <div className="flex items-center gap-2 rounded-lg border border-destructive/40 bg-destructive/10 p-3 text-xs font-semibold text-destructive">
+            <AlertCircle className="h-4 w-4 shrink-0" />
+            <span>{validationError}</span>
+          </div>
+        )}
+
+        {/* Convert & Reset Action Buttons */}
+        <div className="flex flex-wrap items-center gap-3">
+          <button
+            type="submit"
+            className="inline-flex items-center justify-center gap-2 rounded-xl bg-primary px-6 py-2.5 text-sm font-bold text-primary-foreground transition-transform hover:scale-[1.02] active:scale-[0.98]"
+          >
+            <Calculator className="h-4 w-4" /> Convert
+          </button>
+          <button
+            type="button"
+            onClick={handleReset}
+            className="inline-flex items-center justify-center gap-2 rounded-xl border border-border bg-secondary/60 px-4 py-2.5 text-sm font-semibold text-muted-foreground transition-colors hover:border-border hover:bg-secondary hover:text-foreground"
+          >
+            <RotateCcw className="h-4 w-4" /> Reset
+          </button>
+        </div>
+
+        {/* Preset Value Buttons */}
+        <div className="flex flex-wrap items-center gap-1.5 pt-1">
+          <span className="mr-1 text-xs font-semibold text-muted-foreground">Quick Presets:</span>
+          {[1, 10, 100, 750, 1000, 5000, 10000, '2.5e6'].map((val) => (
+            <button
+              key={val.toString()}
+              type="button"
+              onClick={() => handlePreset(val)}
+              className="numeric rounded-lg border border-border/80 bg-secondary/40 px-2.5 py-1 text-xs font-medium text-foreground transition-colors hover:border-primary/50 hover:bg-primary/10 hover:text-primary"
+            >
+              {val} {selectedUnit.fromSymbol}
+            </button>
+          ))}
+        </div>
+
+        {/* Result Area with aria-live="polite" */}
+        <div
+          aria-live="polite"
+          aria-atomic="true"
+          className="min-h-[140px] rounded-xl border border-primary/30 bg-primary/10 p-5 transition-all"
+        >
+          {numericVal !== null && microVal !== null ? (
+            <div>
+              <div className="flex flex-wrap items-center justify-between gap-2 border-b border-primary/20 pb-3">
+                <span className="text-xs font-bold uppercase tracking-wider text-primary">Conversion Result</span>
+                <button
+                  type="button"
+                  onClick={handleCopy}
+                  className="inline-flex items-center gap-1.5 rounded-lg border border-primary/30 bg-card px-3 py-1 text-xs font-bold text-primary transition-colors hover:bg-primary hover:text-primary-foreground"
+                >
+                  {copied ? <Check className="h-3.5 w-3.5 text-green-400" /> : <Copy className="h-3.5 w-3.5" />}
+                  {copied ? 'Copied!' : 'Copy Result'}
+                </button>
+              </div>
+
+              {/* Main Result Display */}
+              <div className="mt-3">
+                <div className="numeric text-2xl font-black text-foreground sm:text-3xl">
+                  {formatNumber(numericVal)} <span className="text-base font-semibold text-muted-foreground">{selectedUnit.fromSymbol}</span> ={' '}
+                  <span className="text-primary">{formatNumber(microVal)}</span>{' '}
+                  <span className="text-base font-bold text-primary">{selectedUnit.toSymbol}</span>
+                </div>
+              </div>
+
+              {/* Formula Explanation */}
+              <div className="mt-3 flex items-center gap-2 text-xs font-semibold text-muted-foreground sm:text-sm">
+                <span>Formula explanation:</span>
+                <span className="numeric font-mono font-bold text-foreground">
+                  {formatNumber(numericVal)} ÷ 1,000 = {formatNumber(microVal)}
+                </span>
+              </div>
+            </div>
+          ) : (
+            <div className="flex h-full min-h-[100px] flex-col items-center justify-center text-center text-muted-foreground">
+              <Calculator className="mb-2 h-6 w-6 opacity-40" />
+              <p className="text-xs sm:text-sm font-medium">Enter a nano value above to see the instant micro conversion.</p>
+            </div>
+          )}
+        </div>
+
+        {selectedUnit.slug && (
+          <div className="text-right">
+            <Link
+              to={`/${selectedUnit.slug}`}
+              className="inline-flex items-center gap-1.5 text-xs font-bold text-primary hover:underline"
+            >
+              Open dedicated {selectedUnit.label} page <ArrowRight className="h-3.5 w-3.5" />
+            </Link>
+          </div>
+        )}
+      </form>
+    </div>
+  );
+}
 
 export default function NanoToMicroHubPage() {
   useSEO({
@@ -128,46 +367,6 @@ export default function NanoToMicroHubPage() {
     ],
   });
 
-  const [selectedUnitId, setSelectedUnitId] = useState<string>('generic');
-  const [nanoVal, setNanoVal] = useState<string>('5000');
-  const [microVal, setMicroVal] = useState<string>('5');
-  const [copied, setCopied] = useState<boolean>(false);
-
-  const selectedUnit = UNIT_OPTIONS.find((u) => u.id === selectedUnitId) || UNIT_OPTIONS[0];
-
-  const handleNanoChange = (val: string) => {
-    setNanoVal(val);
-    const num = parseFloat(val);
-    if (!isNaN(num)) {
-      setMicroVal((num / 1000).toString());
-    } else {
-      setMicroVal('');
-    }
-  };
-
-  const handleMicroChange = (val: string) => {
-    setMicroVal(val);
-    const num = parseFloat(val);
-    if (!isNaN(num)) {
-      setNanoVal((num * 1000).toString());
-    } else {
-      setNanoVal('');
-    }
-  };
-
-  const handlePreset = (n: number) => {
-    setNanoVal(n.toString());
-    setMicroVal((n / 1000).toString());
-  };
-
-  const handleCopy = () => {
-    if (!microVal) return;
-    const text = `${nanoVal} ${selectedUnit.fromSymbol} = ${microVal} ${selectedUnit.toSymbol}`;
-    navigator.clipboard.writeText(text);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
-  };
-
   const scrollToSection = (id: string) => {
     const el = document.getElementById(id);
     if (el) {
@@ -177,7 +376,7 @@ export default function NanoToMicroHubPage() {
 
   return (
     <>
-      {/* ── 4. HERO SECTION ── */}
+      {/* ── HERO SECTION ── */}
       <section className="relative overflow-hidden border-b border-border/60 bg-grid">
         <div className="pointer-events-none absolute -top-40 left-1/2 h-96 w-[42rem] -translate-x-1/2 rounded-full bg-primary/10 blur-3xl" />
         <div className="relative mx-auto w-full max-w-5xl px-4 pb-14 pt-12 sm:px-6 sm:pt-16">
@@ -215,12 +414,14 @@ export default function NanoToMicroHubPage() {
             {/* Action Buttons */}
             <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
               <button
+                type="button"
                 onClick={() => scrollToSection('calculator-section')}
                 className="inline-flex items-center gap-2 rounded-xl bg-primary px-6 py-3 text-sm font-bold text-primary-foreground transition-transform hover:scale-[1.02]"
               >
                 <Calculator className="h-4 w-4" /> Use the Calculator
               </button>
               <button
+                type="button"
                 onClick={() => scrollToSection('explore-converters')}
                 className="inline-flex items-center gap-2 rounded-xl border border-border bg-card px-6 py-3 text-sm font-bold text-foreground transition-colors hover:border-primary/50 hover:text-primary"
               >
@@ -229,134 +430,14 @@ export default function NanoToMicroHubPage() {
             </div>
           </div>
 
-          {/* ── H2: Universal Nano-to-Micro Calculator (Directly in Hero) ── */}
-          <div id="calculator-section" className="mt-12">
-            <div className="mx-auto max-w-3xl rounded-2xl border border-primary/30 bg-card p-6 shadow-xl sm:p-8">
-              <div className="mb-6 flex flex-wrap items-center justify-between gap-4 border-b border-border/60 pb-4">
-                <div>
-                  <h2 className="text-xl font-bold tracking-tight text-foreground sm:text-2xl">
-                    Universal Nano-to-Micro Calculator
-                  </h2>
-                  <p className="mt-1 text-xs text-muted-foreground sm:text-sm">
-                    Convert any scientific or engineering measurement between nano (10⁻⁹) and micro (10⁻⁶).
-                  </p>
-                </div>
-
-                {/* Unit Type Selector */}
-                <div className="relative">
-                  <label htmlFor="unit-select" className="sr-only">Select Measurement Unit</label>
-                  <select
-                    id="unit-select"
-                    value={selectedUnitId}
-                    onChange={(e) => setSelectedUnitId(e.target.value)}
-                    className="w-full appearance-none rounded-xl border border-border bg-secondary/80 py-2.5 pl-3.5 pr-9 text-xs font-semibold text-foreground transition-colors focus:border-primary focus:outline-none sm:text-sm"
-                  >
-                    {UNIT_OPTIONS.map((u) => (
-                      <option key={u.id} value={u.id}>
-                        {u.name}
-                      </option>
-                    ))}
-                  </select>
-                  <ChevronDown className="pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-                </div>
-              </div>
-
-              {/* Calculator Inputs Grid */}
-              <div className="grid gap-6 sm:grid-cols-2">
-                {/* Nano Input */}
-                <div className="rounded-xl border border-border bg-secondary/30 p-4">
-                  <div className="mb-2 flex items-center justify-between">
-                    <label htmlFor="nano-input" className="text-xs font-bold uppercase tracking-wider text-muted-foreground">
-                      Nano Value ({selectedUnit.fromSymbol})
-                    </label>
-                    <span className="rounded bg-primary/20 px-2 py-0.5 text-[10px] font-bold text-primary">10⁻⁹</span>
-                  </div>
-                  <div className="relative">
-                    <input
-                      id="nano-input"
-                      type="number"
-                      value={nanoVal}
-                      onChange={(e) => handleNanoChange(e.target.value)}
-                      placeholder="Enter nano amount"
-                      className="numeric w-full rounded-lg border border-border bg-card px-3.5 py-3 text-lg font-bold text-foreground transition-colors focus:border-primary focus:outline-none"
-                    />
-                    <span className="absolute right-3.5 top-1/2 -translate-y-1/2 text-xs font-semibold text-muted-foreground">
-                      {selectedUnit.fromSymbol}
-                    </span>
-                  </div>
-                </div>
-
-                {/* Micro Input */}
-                <div className="rounded-xl border border-primary/40 bg-primary/10 p-4">
-                  <div className="mb-2 flex items-center justify-between">
-                    <label htmlFor="micro-input" className="text-xs font-bold uppercase tracking-wider text-primary">
-                      Micro Value ({selectedUnit.toSymbol})
-                    </label>
-                    <span className="rounded bg-primary/30 px-2 py-0.5 text-[10px] font-bold text-primary">10⁻⁶</span>
-                  </div>
-                  <div className="relative">
-                    <input
-                      id="micro-input"
-                      type="number"
-                      value={microVal}
-                      onChange={(e) => handleMicroChange(e.target.value)}
-                      placeholder="Result in micro"
-                      className="numeric w-full rounded-lg border border-primary/50 bg-card px-3.5 py-3 text-lg font-bold text-primary transition-colors focus:border-primary focus:outline-none"
-                    />
-                    <span className="absolute right-3.5 top-1/2 -translate-y-1/2 text-xs font-bold text-primary">
-                      {selectedUnit.toSymbol}
-                    </span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Quick Presets & Live Formula Result */}
-              <div className="mt-6 flex flex-wrap items-center justify-between gap-3 rounded-xl border border-border/80 bg-secondary/50 p-4 text-xs sm:text-sm">
-                <div>
-                  <span className="font-medium text-muted-foreground">Calculation: </span>
-                  <span className="numeric font-bold text-foreground">
-                    {nanoVal || '0'} {selectedUnit.fromSymbol} ÷ 1,000 = {microVal || '0'} {selectedUnit.toSymbol}
-                  </span>
-                </div>
-                <button
-                  onClick={handleCopy}
-                  className="inline-flex items-center gap-1.5 rounded-lg border border-border bg-card px-3 py-1.5 font-semibold transition-colors hover:border-primary/50 hover:text-primary"
-                >
-                  {copied ? <Check className="h-3.5 w-3.5 text-green-400" /> : <Copy className="h-3.5 w-3.5" />}
-                  {copied ? 'Copied!' : 'Copy Result'}
-                </button>
-              </div>
-
-              {/* Preset Value Buttons */}
-              <div className="mt-4 flex flex-wrap items-center gap-2">
-                <span className="text-xs font-semibold text-muted-foreground">Quick Examples:</span>
-                {[1, 10, 100, 1000, 5000, 10000, 50000].map((n) => (
-                  <button
-                    key={n}
-                    onClick={() => handlePreset(n)}
-                    className="numeric rounded-lg border border-border bg-card px-2.5 py-1 text-xs font-medium transition-colors hover:border-primary/50 hover:text-primary"
-                  >
-                    {n.toLocaleString()} {selectedUnit.fromSymbol}
-                  </button>
-                ))}
-              </div>
-
-              {selectedUnit.slug && (
-                <div className="mt-6 text-right">
-                  <Link
-                    to={`/${selectedUnit.slug}`}
-                    className="inline-flex items-center gap-1.5 text-xs font-bold text-primary hover:underline"
-                  >
-                    Open dedicated {selectedUnit.name} converter page <ArrowRight className="h-3.5 w-3.5" />
-                  </Link>
-                </div>
-              )}
-            </div>
+          {/* ── H2: Universal Nano-to-Micro Calculator ── */}
+          <div className="mt-12">
+            <UniversalCalculator />
           </div>
         </div>
       </section>
 
-      {/* ── 5. H2: NANO-TO-MICRO CONVERSION FORMULA ── */}
+      {/* ── H2: NANO-TO-MICRO CONVERSION FORMULA ── */}
       <section className="border-b border-border/60 bg-card/30 py-16">
         <div className="mx-auto w-full max-w-5xl px-4 sm:px-6">
           <div className="mb-10 text-center">
@@ -440,7 +521,7 @@ export default function NanoToMicroHubPage() {
         </div>
       </section>
 
-      {/* ── 6. H2: UNDERSTANDING THE METRIC PREFIX SCALE ── */}
+      {/* ── H2: UNDERSTANDING THE METRIC PREFIX SCALE ── */}
       <section className="py-16">
         <div className="mx-auto w-full max-w-5xl px-4 sm:px-6">
           <div className="mb-10 text-center">
@@ -522,7 +603,7 @@ export default function NanoToMicroHubPage() {
         </div>
       </section>
 
-      {/* ── 7. H2: NANO VS MICRO: WHAT IS THE DIFFERENCE? ── */}
+      {/* ── H2: NANO VS MICRO: WHAT IS THE DIFFERENCE? ── */}
       <section className="border-y border-border/60 bg-card/30 py-16">
         <div className="mx-auto w-full max-w-5xl px-4 sm:px-6">
           <div className="mb-10 text-center">
@@ -580,7 +661,7 @@ export default function NanoToMicroHubPage() {
         </div>
       </section>
 
-      {/* ── 8. H2: EXPLORE SPECIFIC NANO-TO-MICRO CONVERSIONS ── */}
+      {/* ── H2: EXPLORE SPECIFIC NANO-TO-MICRO CONVERSIONS ── */}
       <section id="explore-converters" className="py-16">
         <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
           <div className="mb-10 text-center">
@@ -624,7 +705,7 @@ export default function NanoToMicroHubPage() {
         </div>
       </section>
 
-      {/* ── 9. H2: NANO-TO-MICRO CONVERSION EXAMPLES ── */}
+      {/* ── H2: NANO-TO-MICRO CONVERSION EXAMPLES ── */}
       <section className="border-y border-border/60 bg-card/30 py-16">
         <div className="mx-auto w-full max-w-5xl px-4 sm:px-6">
           <div className="mb-10 text-center">
@@ -710,7 +791,7 @@ export default function NanoToMicroHubPage() {
         </div>
       </section>
 
-      {/* ── 10. H2: COMMON APPLICATIONS OF NANO AND MICRO MEASUREMENTS ── */}
+      {/* ── H2: COMMON APPLICATIONS OF NANO AND MICRO MEASUREMENTS ── */}
       <section className="py-16">
         <div className="mx-auto w-full max-w-5xl px-4 sm:px-6">
           <div className="mb-10 text-center">
@@ -760,7 +841,7 @@ export default function NanoToMicroHubPage() {
         </div>
       </section>
 
-      {/* ── 11. H2: FREQUENTLY ASKED QUESTIONS ── */}
+      {/* ── H2: FREQUENTLY ASKED QUESTIONS ── */}
       <FaqSection faqs={HUB_FAQS} heading="Frequently Asked Questions" />
     </>
   );
