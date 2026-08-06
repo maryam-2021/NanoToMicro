@@ -561,56 +561,97 @@ export default function NanoToMicroHubPage() {
               <em>electric charge</em> (coulombs), or <em>radiation dose</em> (sieverts)—remains completely identical regardless of the prefix used.
             </p>
 
-            {/* Interactive SI Scale Table */}
+            {/* Responsive Comparison Table */}
             <div className="mt-8 overflow-x-auto rounded-xl border border-border">
               <table className="w-full text-left text-xs sm:text-sm">
                 <thead>
                   <tr className="bg-secondary/70 text-foreground">
                     <th className="px-4 py-3 font-bold">Prefix</th>
                     <th className="px-4 py-3 font-bold">Symbol</th>
-                    <th className="px-4 py-3 font-bold">Multiplier (Power of 10)</th>
-                    <th className="px-4 py-3 font-bold">Decimal Equivalent</th>
-                    <th className="px-4 py-3 font-bold">Scale relative to Micro</th>
+                    <th className="px-4 py-3 font-bold">Power of Ten</th>
+                    <th className="px-4 py-3 font-bold">Decimal Value</th>
+                    <th className="px-4 py-3 font-bold">Relationship</th>
                   </tr>
                 </thead>
                 <tbody className="numeric divide-y divide-border/60">
                   <tr className="bg-card">
-                    <td className="px-4 py-3 font-semibold">Milli</td>
-                    <td className="px-4 py-3 font-bold">m</td>
-                    <td className="px-4 py-3">10⁻³</td>
-                    <td className="px-4 py-3">0.001</td>
-                    <td className="px-4 py-3 text-muted-foreground">1,000× larger than Micro</td>
-                  </tr>
-                  <tr className="bg-primary/15 text-primary">
-                    <td className="px-4 py-3 font-bold">Micro</td>
-                    <td className="px-4 py-3 font-extrabold">µ</td>
-                    <td className="px-4 py-3 font-bold">10⁻⁶</td>
-                    <td className="px-4 py-3 font-bold">0.000 001</td>
-                    <td className="px-4 py-3 font-bold">Reference (1×)</td>
+                    <td className="px-4 py-3 font-semibold text-foreground">Pico</td>
+                    <td className="px-4 py-3 font-bold text-foreground">p</td>
+                    <td className="px-4 py-3 font-mono">10⁻¹²</td>
+                    <td className="px-4 py-3 font-mono text-muted-foreground">0.000000000001</td>
+                    <td className="px-4 py-3 text-muted-foreground">1,000 times smaller than nano</td>
                   </tr>
                   <tr className="bg-primary/20 text-primary">
                     <td className="px-4 py-3 font-bold">Nano</td>
                     <td className="px-4 py-3 font-extrabold">n</td>
-                    <td className="px-4 py-3 font-bold">10⁻⁹</td>
-                    <td className="px-4 py-3 font-bold">0.000 000 001</td>
-                    <td className="px-4 py-3 font-bold">1,000× smaller than Micro</td>
+                    <td className="px-4 py-3 font-mono font-bold">10⁻⁹</td>
+                    <td className="px-4 py-3 font-mono font-bold">0.000000001</td>
+                    <td className="px-4 py-3 font-bold">1,000 times smaller than micro</td>
+                  </tr>
+                  <tr className="bg-primary/15 text-primary">
+                    <td className="px-4 py-3 font-bold">Micro</td>
+                    <td className="px-4 py-3 font-extrabold">µ</td>
+                    <td className="px-4 py-3 font-mono font-bold">10⁻⁶</td>
+                    <td className="px-4 py-3 font-mono font-bold">0.000001</td>
+                    <td className="px-4 py-3 font-bold">1,000 times larger than nano</td>
                   </tr>
                   <tr className="bg-card">
-                    <td className="px-4 py-3 font-semibold">Pico</td>
-                    <td className="px-4 py-3 font-bold">p</td>
-                    <td className="px-4 py-3">10⁻¹²</td>
-                    <td className="px-4 py-3">0.000 000 000 001</td>
-                    <td className="px-4 py-3 text-muted-foreground">1,000,000× smaller than Micro</td>
-                  </tr>
-                  <tr className="bg-card">
-                    <td className="px-4 py-3 font-semibold">Femto</td>
-                    <td className="px-4 py-3 font-bold">f</td>
-                    <td className="px-4 py-3">10⁻¹⁵</td>
-                    <td className="px-4 py-3">0.000 000 000 000 001</td>
-                    <td className="px-4 py-3 text-muted-foreground">1,000,000,000× smaller than Micro</td>
+                    <td className="px-4 py-3 font-semibold text-foreground">Milli</td>
+                    <td className="px-4 py-3 font-bold text-foreground">m</td>
+                    <td className="px-4 py-3 font-mono">10⁻³</td>
+                    <td className="px-4 py-3 font-mono text-muted-foreground">0.001</td>
+                    <td className="px-4 py-3 text-muted-foreground">1,000 times larger than micro</td>
                   </tr>
                 </tbody>
               </table>
+            </div>
+
+            {/* Visual Prefix Sequence directly beneath the table */}
+            <div className="mt-6 rounded-xl border border-primary/30 bg-primary/10 p-4 text-center">
+              <span className="block text-xs font-bold uppercase tracking-wider text-primary">Visual Prefix Sequence</span>
+              <div className="numeric mt-2 flex flex-wrap items-center justify-center gap-2 text-sm font-extrabold text-foreground sm:text-base">
+                <span className="rounded-lg bg-card px-3 py-1.5 border border-border">Pico 10⁻¹²</span>
+                <span className="text-primary font-bold">→</span>
+                <span className="rounded-lg bg-primary/30 px-3 py-1.5 border border-primary/50 text-primary font-black">Nano 10⁻⁹</span>
+                <span className="text-primary font-bold">→</span>
+                <span className="rounded-lg bg-primary/30 px-3 py-1.5 border border-primary/50 text-primary font-black">Micro 10⁻⁶</span>
+                <span className="text-primary font-bold">→</span>
+                <span className="rounded-lg bg-card px-3 py-1.5 border border-border">Milli 10⁻³</span>
+              </div>
+              <p className="mt-3 text-xs sm:text-sm font-semibold text-muted-foreground">
+                “Each step in this sequence represents a change of three powers of ten, or a factor of 1,000.”
+              </p>
+            </div>
+
+            {/* Direction Movement Explanations & Worked Example */}
+            <div className="mt-6 grid gap-6 md:grid-cols-2">
+              <div className="rounded-xl border border-border bg-secondary/40 p-4 text-xs sm:text-sm">
+                <span className="font-bold text-foreground uppercase tracking-wider text-xs block mb-2">Direction Movement Rules</span>
+                <ul className="space-y-2 text-muted-foreground">
+                  <li className="flex items-center gap-2">
+                    <span className="h-1.5 w-1.5 rounded-full bg-primary" />
+                    <span><strong>Moving from nano to micro:</strong> divide by 1,000.</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <span className="h-1.5 w-1.5 rounded-full bg-primary" />
+                    <span><strong>Moving from micro to nano:</strong> multiply by 1,000.</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <span className="h-1.5 w-1.5 rounded-full bg-primary" />
+                    <span><strong>Moving the decimal from nano to micro:</strong> shift it three places to the left.</span>
+                  </li>
+                </ul>
+              </div>
+
+              <div className="rounded-xl border border-border bg-secondary/40 p-4 text-xs sm:text-sm">
+                <span className="font-bold text-primary uppercase tracking-wider text-xs block mb-2">Shift Example</span>
+                <div className="numeric rounded-lg border border-border/80 bg-card p-3 font-mono text-sm font-bold text-foreground">
+                  12,500 nano-units → 12.5 micro-units
+                </div>
+                <p className="mt-2 text-xs text-muted-foreground">
+                  Shifting the decimal point 3 places left in 12,500.0 yields 12.5 (12,500 ÷ 1,000 = 12.5).
+                </p>
+              </div>
             </div>
 
             <div className="mt-6 flex justify-center">
