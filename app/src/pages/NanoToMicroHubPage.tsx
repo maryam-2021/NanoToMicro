@@ -425,12 +425,20 @@ export default function NanoToMicroHubPage() {
         <div className="relative mx-auto w-full max-w-5xl px-4 pb-14 pt-12 sm:px-6 sm:pt-16">
           
           {/* Breadcrumb Navigation */}
-          <nav aria-label="Breadcrumb" className="mb-6 flex items-center justify-center gap-2 text-xs text-muted-foreground sm:text-sm">
-            <Link to="/" className="transition-colors hover:text-primary">Home</Link>
-            <span>/</span>
-            <Link to="/guides/" className="transition-colors hover:text-primary">Conversion Guides</Link>
-            <span>/</span>
-            <span className="font-medium text-foreground">Nano to Micro Conversion</span>
+          <nav aria-label="Breadcrumb" className="mb-6 flex items-center justify-center">
+            <ol className="flex items-center gap-2 text-xs text-muted-foreground sm:text-sm">
+              <li>
+                <Link to="/" className="transition-colors hover:text-primary">Home</Link>
+              </li>
+              <li aria-hidden="true" className="text-muted-foreground/60">&gt;</li>
+              <li>
+                <Link to="/guides" className="transition-colors hover:text-primary">Conversion Guides</Link>
+              </li>
+              <li aria-hidden="true" className="text-muted-foreground/60">&gt;</li>
+              <li>
+                <span aria-current="page" className="font-semibold text-foreground">Nano to Micro Conversion</span>
+              </li>
+            </ol>
           </nav>
 
           <div className="mx-auto max-w-3xl text-center">
