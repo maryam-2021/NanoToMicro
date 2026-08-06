@@ -47,36 +47,44 @@ const UNIT_CATEGORIES: UnitCategoryOption[] = [
 
 const HUB_FAQS = [
   {
-    q: 'How do you convert nano to micro?',
-    a: 'To convert any nano-unit to the corresponding micro-unit, divide the nano value by 1,000. Formula: Micro = Nano ÷ 1,000. For example, 5,000 nanometers ÷ 1,000 = 5 micrometers (5 µm).',
+    q: 'What is the formula for converting nano to micro?',
+    a: 'Divide the nano value by 1,000. Formula: Micro = Nano ÷ 1,000.',
   },
   {
-    q: 'How many nano are in 1 micro?',
-    a: 'There are exactly 1,000 nano units in 1 micro unit. Because the metric prefix nano represents 10⁻⁹ (one-billionth) and micro represents 10⁻⁶ (one-millionth), micro is 1,000 times larger than nano.',
+    q: 'How many nano-units are in one micro-unit?',
+    a: 'There are 1,000 corresponding nano-units in one micro-unit.',
   },
   {
-    q: 'Is nano smaller or larger than micro?',
-    a: 'Nano is smaller than micro. Specifically, nano (10⁻⁹) is three orders of magnitude (1,000 times) smaller than micro (10⁻⁶).',
-  },
-  {
-    q: 'Why are nano and micro 1,000 units apart?',
-    a: 'In the International System of Units (SI), submultiple prefixes are arranged in steps of 1,000 (three powers of ten). Micro is 10⁻⁶ (0.000001) and nano is 10⁻⁹ (0.000000001). The ratio 10⁻⁶ / 10⁻⁹ equals 1,000.',
-  },
-  {
-    q: 'Are nano and micro standalone units of measurement?',
-    a: 'No. Nano and micro are metric prefixes that modify base SI units. They indicate scale factor rather than physical dimension. The physical quantity (such as length, time, mass, or radiation dose) remains identical regardless of the prefix applied.',
-  },
-  {
-    q: 'What are the symbols for nano and micro?',
-    a: 'The symbol for nano is lowercase "n". The symbol for micro is the Greek letter mu "µ" (or lowercase "u" in standard ASCII/ASCII-only environments).',
+    q: 'Is nano smaller than micro?',
+    a: 'Yes. A nano-unit is 1,000 times smaller than the corresponding micro-unit.',
   },
   {
     q: 'How do I convert micro back to nano?',
-    a: 'To convert micro to nano, multiply the micro value by 1,000. Formula: Nano = Micro × 1,000. For example, 2.5 µm × 1,000 = 2,500 nm.',
+    a: 'Multiply the micro value by 1,000. Formula: Nano = Micro × 1,000.',
   },
   {
-    q: 'Where are nano-to-micro conversions used in industry?',
-    a: 'Nano and micro conversions are vital in semiconductor fabrication (chip nodes nm vs microchip features µm), pharmacology & drug formulation (ng vs µg dosing), photonics & laser optics (visible light nm vs infrared optics µm), and computer architecture (ns memory latency vs µs system tasks).',
+    q: 'How many micrometers are in one nanometer?',
+    a: 'One nanometer equals 0.001 micrometers. Equation: 1 nm = 0.001 µm.',
+  },
+  {
+    q: 'Is the nano-to-micro formula the same for every unit?',
+    a: 'The scale factor is the same when both units measure the same physical quantity. For example, nanometers can convert to micrometers, and nanoseconds can convert to microseconds.',
+  },
+  {
+    q: 'Why do I divide by 1,000?',
+    a: 'Nano represents 10⁻⁹, while micro represents 10⁻⁶. The difference is three powers of ten, which equals a factor of 1,000.',
+  },
+  {
+    q: 'Can I convert nano to micro by moving the decimal?',
+    a: 'Yes. Move the decimal point three places to the left. Example: 8,500 nano-units = 8.5 micro-units.',
+  },
+  {
+    q: 'What is the symbol for micro?',
+    a: 'The official SI symbol for micro is the Greek letter µ.',
+  },
+  {
+    q: 'Are µ and u the same?',
+    a: 'The letter u is sometimes used as a keyboard-friendly substitute, but µ is the official SI prefix symbol.',
   },
 ];
 
