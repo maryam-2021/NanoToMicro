@@ -440,20 +440,23 @@ export default function NanoToMicroHubPage() {
             </h1>
 
             {/* Supporting Introduction */}
-            <p className="mt-5 text-base leading-relaxed text-muted-foreground sm:text-lg">
-              Nano and micro are metric prefixes used to describe extremely small quantities. Nano represents one-billionth,
-              while micro represents one-millionth. Because the two prefixes are three powers of ten apart, converting from
-              nano to micro always requires dividing the value by 1,000. Try our dedicated{' '}
-              <Link to="/nanometers-to-micrometers/" className="font-semibold text-primary underline underline-offset-2 hover:text-primary/80">
-                nanometers to micrometers calculator
-              </Link>,{' '}
-              <Link to="/nanoseconds-to-microseconds/" className="font-semibold text-primary underline underline-offset-2 hover:text-primary/80">
-                convert nanoseconds into microseconds
-              </Link>, or explore our complete{' '}
-              <Link to="/si-prefix-converter/" className="font-semibold text-primary underline underline-offset-2 hover:text-primary/80">
-                metric prefix scale guide
-              </Link>.
-            </p>
+            <div className="mt-5 space-y-4 text-base leading-relaxed text-muted-foreground sm:text-lg">
+              <p>
+                Nano and micro are adjacent metric-prefix scales separated by three powers of ten. Nano represents 10<sup>−9</sup> of a base unit, while micro represents 10<sup>−6</sup>. This means one micro-unit is equal to 1,000 corresponding nano-units.
+              </p>
+              <p>
+                To convert from nano to micro, divide the nano value by 1,000. The same scale relationship applies to compatible units of length, time, mass, electrical measurement, radiation dose and other scientific quantities. Try our dedicated{' '}
+                <Link to="/nanometers-to-micrometers/" className="font-semibold text-primary underline underline-offset-2 hover:text-primary/80">
+                  nanometers to micrometers calculator
+                </Link>,{' '}
+                <Link to="/nanoseconds-to-microseconds/" className="font-semibold text-primary underline underline-offset-2 hover:text-primary/80">
+                  convert nanoseconds into microseconds
+                </Link>, or explore our complete{' '}
+                <Link to="/si-prefix-converter/" className="font-semibold text-primary underline underline-offset-2 hover:text-primary/80">
+                  metric prefix scale guide
+                </Link>.
+              </p>
+            </div>
 
             {/* Formula Badges */}
             <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
