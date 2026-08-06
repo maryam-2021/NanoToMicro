@@ -321,9 +321,9 @@ export default function NsvToUsvSpokePage() {
             <table className="w-full text-left text-xs sm:text-sm">
               <thead>
                 <tr className="bg-secondary/80 text-foreground border-b border-border">
-                  <th className="px-5 py-3.5 font-bold">Unit</th>
-                  <th className="px-5 py-3.5 font-bold text-primary">Symbol</th>
-                  <th className="px-5 py-3.5 font-bold text-foreground">Relationship</th>
+                  <th scope="col" className="px-5 py-3.5 font-bold">Unit</th>
+                  <th scope="col" className="px-5 py-3.5 font-bold text-primary">Symbol</th>
+                  <th scope="col" className="px-5 py-3.5 font-bold text-foreground">Relationship</th>
                 </tr>
               </thead>
               <tbody className="numeric divide-y divide-border/60">
@@ -476,8 +476,8 @@ export default function NsvToUsvSpokePage() {
             <table className="w-full text-left text-xs sm:text-sm">
               <thead>
                 <tr className="bg-secondary/80 text-foreground border-b border-border">
-                  <th className="px-5 py-3.5 font-bold">Nanosieverts</th>
-                  <th className="px-5 py-3.5 font-bold text-primary">Microsieverts</th>
+                  <th scope="col" className="px-5 py-3.5 font-bold">Nanosieverts</th>
+                  <th scope="col" className="px-5 py-3.5 font-bold text-primary">Microsieverts</th>
                 </tr>
               </thead>
               <tbody className="numeric divide-y divide-border/60">
@@ -553,9 +553,9 @@ export default function NsvToUsvSpokePage() {
             <table className="w-full text-left text-xs sm:text-sm">
               <thead>
                 <tr className="bg-secondary/80 text-foreground border-b border-border">
-                  <th className="px-5 py-3.5 font-bold">Quantity</th>
-                  <th className="px-5 py-3.5 font-bold text-primary">Example Unit</th>
-                  <th className="px-5 py-3.5 font-bold text-foreground">Meaning</th>
+                  <th scope="col" className="px-5 py-3.5 font-bold">Quantity</th>
+                  <th scope="col" className="px-5 py-3.5 font-bold text-primary">Example Unit</th>
+                  <th scope="col" className="px-5 py-3.5 font-bold text-foreground">Meaning</th>
                 </tr>
               </thead>
               <tbody className="numeric divide-y divide-border/60">

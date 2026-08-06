@@ -310,9 +310,9 @@ export default function NsToUsSpokePage() {
             <table className="w-full text-left text-xs sm:text-sm">
               <thead>
                 <tr className="bg-secondary/80 text-foreground border-b border-border">
-                  <th className="px-5 py-3.5 font-bold">Feature</th>
-                  <th className="px-5 py-3.5 font-bold text-primary">Nanosecond</th>
-                  <th className="px-5 py-3.5 font-bold text-foreground">Microsecond</th>
+                  <th scope="col" className="px-5 py-3.5 font-bold">Feature</th>
+                  <th scope="col" className="px-5 py-3.5 font-bold text-primary">Nanosecond</th>
+                  <th scope="col" className="px-5 py-3.5 font-bold text-foreground">Microsecond</th>
                 </tr>
               </thead>
               <tbody className="numeric divide-y divide-border/60">
@@ -451,8 +451,8 @@ export default function NsToUsSpokePage() {
             <table className="w-full text-left text-xs sm:text-sm">
               <thead>
                 <tr className="bg-secondary/80 text-foreground border-b border-border">
-                  <th className="px-5 py-3.5 font-bold">Frequency</th>
-                  <th className="px-5 py-3.5 font-bold text-primary">Approximate Clock Period</th>
+                  <th scope="col" className="px-5 py-3.5 font-bold">Frequency</th>
+                  <th scope="col" className="px-5 py-3.5 font-bold text-primary">Approximate Clock Period</th>
                 </tr>
               </thead>
               <tbody className="numeric divide-y divide-border/60">
@@ -486,8 +486,8 @@ export default function NsToUsSpokePage() {
             <table className="w-full text-left text-xs sm:text-sm">
               <thead>
                 <tr className="bg-secondary/80 text-foreground border-b border-border">
-                  <th className="px-5 py-3.5 font-bold">Nanoseconds</th>
-                  <th className="px-5 py-3.5 font-bold text-primary">Microseconds</th>
+                  <th scope="col" className="px-5 py-3.5 font-bold">Nanoseconds</th>
+                  <th scope="col" className="px-5 py-3.5 font-bold text-primary">Microseconds</th>
                 </tr>
               </thead>
               <tbody className="numeric divide-y divide-border/60">
