@@ -13,6 +13,9 @@ import CapacitorCodes from '@/pages/articles/CapacitorCodes';
 import McgVsUgVsMg from '@/pages/articles/McgVsUgVsMg';
 import LatencyChart from '@/pages/articles/LatencyChart';
 import NanoToMicroHubPage from '@/pages/NanoToMicroHubPage';
+import NmToUmSpokePage from '@/pages/length/NmToUmSpokePage';
+import NsToUsSpokePage from '@/pages/time/NsToUsSpokePage';
+import NsvToUsvSpokePage from '@/pages/radiation/NsvToUsvSpokePage';
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -30,6 +33,12 @@ export default function App() {
         <Route path="/" element={<Home />} />
         <Route path="/nano-to-micro-conversion" element={<NanoToMicroHubPage />} />
         <Route path="/nano-to-micro-conversion/" element={<NanoToMicroHubPage />} />
+        <Route path="/length/nm-to-um" element={<NmToUmSpokePage />} />
+        <Route path="/length/nm-to-um/" element={<NmToUmSpokePage />} />
+        <Route path="/time/ns-to-us" element={<NsToUsSpokePage />} />
+        <Route path="/time/ns-to-us/" element={<NsToUsSpokePage />} />
+        <Route path="/radiation/nsv-to-usv" element={<NsvToUsvSpokePage />} />
+        <Route path="/radiation/nsv-to-usv/" element={<NsvToUsvSpokePage />} />
         <Route path="/si-prefix-converter" element={<PrefixConverterPage />} />
         <Route path="/conversion-charts" element={<ChartsPage />} />
         <Route path="/guides" element={<GuidesIndexPage />} />

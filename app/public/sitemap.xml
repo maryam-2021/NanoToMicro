@@ -13,6 +13,24 @@
     <priority>1.0</priority>
   </url>
   <url>
+    <loc>https://www.nanotomicro.com/length/nm-to-um/</loc>
+    <lastmod>2026-08-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.nanotomicro.com/time/ns-to-us/</loc>
+    <lastmod>2026-08-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.nanotomicro.com/radiation/nsv-to-usv/</loc>
+    <lastmod>2026-08-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
     <loc>https://www.nanotomicro.com/si-prefix-converter</loc>
     <lastmod>2026-08-06</lastmod>
     <changefreq>monthly</changefreq>

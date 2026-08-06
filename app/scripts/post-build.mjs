@@ -7,6 +7,9 @@ const dist = join(root, 'dist');
 
 const routes = [
   'nano-to-micro-conversion',
+  'length/nm-to-um',
+  'time/ns-to-us',
+  'radiation/nsv-to-usv',
   'si-prefix-converter',
   'conversion-charts',
   'guides',
