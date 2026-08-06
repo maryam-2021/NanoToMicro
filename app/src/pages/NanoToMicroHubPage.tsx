@@ -991,80 +991,118 @@ export default function NanoToMicroHubPage() {
           <div className="mb-10 text-center">
             <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">Nano-to-Micro Conversion Examples</h2>
             <p className="mx-auto mt-3 max-w-2xl text-muted-foreground">
-              Real-world calculation examples demonstrating step-by-step conversion across different fields.
+              Reference conversion table and step-by-step worked calculation examples.
             </p>
           </div>
 
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {/* Example 1 */}
-            <div className="rounded-xl border border-border bg-card p-5">
-              <span className="text-xs font-bold text-primary uppercase">Semiconductors (Length)</span>
-              <h3 className="mt-1 text-base font-bold text-foreground">14 nm Gate to µm</h3>
-              <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
-                Convert a 14 nanometer transistor gate length into micrometers:
-              </p>
-              <div className="numeric mt-3 rounded-lg border border-border bg-secondary/50 p-2.5 text-xs font-mono font-bold text-foreground">
-                14 nm ÷ 1,000 = <span className="text-primary">0.014 µm</span>
+          {/* Reference Calculation Table */}
+          <div className="overflow-x-auto rounded-2xl border border-border bg-card shadow-sm">
+            <table className="w-full text-left text-xs sm:text-sm">
+              <thead>
+                <tr className="bg-secondary/80 text-foreground border-b border-border">
+                  <th className="px-5 py-4 font-bold">Nano Value</th>
+                  <th className="px-5 py-4 font-bold text-muted-foreground">Calculation</th>
+                  <th className="px-5 py-4 font-bold text-primary">Micro Value</th>
+                </tr>
+              </thead>
+              <tbody className="numeric divide-y divide-border/60">
+                <tr className="bg-card">
+                  <td className="px-5 py-3 font-semibold text-foreground">1</td>
+                  <td className="px-5 py-3 font-mono text-muted-foreground">1 ÷ 1,000</td>
+                  <td className="px-5 py-3 font-bold text-primary">0.001</td>
+                </tr>
+                <tr className="bg-secondary/20">
+                  <td className="px-5 py-3 font-semibold text-foreground">10</td>
+                  <td className="px-5 py-3 font-mono text-muted-foreground">10 ÷ 1,000</td>
+                  <td className="px-5 py-3 font-bold text-primary">0.01</td>
+                </tr>
+                <tr className="bg-card">
+                  <td className="px-5 py-3 font-semibold text-foreground">100</td>
+                  <td className="px-5 py-3 font-mono text-muted-foreground">100 ÷ 1,000</td>
+                  <td className="px-5 py-3 font-bold text-primary">0.1</td>
+                </tr>
+                <tr className="bg-secondary/20">
+                  <td className="px-5 py-3 font-semibold text-foreground">500</td>
+                  <td className="px-5 py-3 font-mono text-muted-foreground">500 ÷ 1,000</td>
+                  <td className="px-5 py-3 font-bold text-primary">0.5</td>
+                </tr>
+                <tr className="bg-card">
+                  <td className="px-5 py-3 font-semibold text-foreground">1,000</td>
+                  <td className="px-5 py-3 font-mono text-muted-foreground">1,000 ÷ 1,000</td>
+                  <td className="px-5 py-3 font-bold text-primary">1</td>
+                </tr>
+                <tr className="bg-secondary/20">
+                  <td className="px-5 py-3 font-semibold text-foreground">5,000</td>
+                  <td className="px-5 py-3 font-mono text-muted-foreground">5,000 ÷ 1,000</td>
+                  <td className="px-5 py-3 font-bold text-primary">5</td>
+                </tr>
+                <tr className="bg-card">
+                  <td className="px-5 py-3 font-semibold text-foreground">25,000</td>
+                  <td className="px-5 py-3 font-mono text-muted-foreground">25,000 ÷ 1,000</td>
+                  <td className="px-5 py-3 font-bold text-primary">25</td>
+                </tr>
+                <tr className="bg-secondary/20">
+                  <td className="px-5 py-3 font-semibold text-foreground">1,000,000</td>
+                  <td className="px-5 py-3 font-mono text-muted-foreground">1,000,000 ÷ 1,000</td>
+                  <td className="px-5 py-3 font-bold text-primary">1,000</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          {/* Two Worked Examples */}
+          <div className="mt-8 grid gap-6 md:grid-cols-2">
+            <div className="rounded-2xl border border-border bg-card p-6">
+              <span className="text-xs font-bold uppercase tracking-wider text-primary">Example 1</span>
+              <h3 className="mt-1 text-base font-bold text-foreground">Convert 4,500 nanometers to micrometers</h3>
+              <div className="numeric mt-3 space-y-2 rounded-xl border border-border/80 bg-secondary/40 p-4 text-xs sm:text-sm">
+                <div className="flex justify-between border-b border-border/60 pb-2">
+                  <span className="text-muted-foreground">Calculation:</span>
+                  <span className="font-mono font-bold">4,500 ÷ 1,000 = 4.5</span>
+                </div>
+                <div className="flex justify-between pt-1 text-sm font-extrabold text-primary">
+                  <span>Therefore:</span>
+                  <span>4,500 nm = 4.5 µm</span>
+                </div>
               </div>
             </div>
 
-            {/* Example 2 */}
-            <div className="rounded-xl border border-border bg-card p-5">
-              <span className="text-xs font-bold text-primary uppercase">Computing (Time)</span>
-              <h3 className="mt-1 text-base font-bold text-foreground">60 ns RAM Latency to µs</h3>
-              <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
-                Convert a 60 nanosecond memory fetch time into microseconds:
-              </p>
-              <div className="numeric mt-3 rounded-lg border border-border bg-secondary/50 p-2.5 text-xs font-mono font-bold text-foreground">
-                60 ns ÷ 1,000 = <span className="text-primary">0.06 µs</span>
+            <div className="rounded-2xl border border-border bg-card p-6">
+              <span className="text-xs font-bold uppercase tracking-wider text-primary">Example 2</span>
+              <h3 className="mt-1 text-base font-bold text-foreground">Convert 250 nanoseconds to microseconds</h3>
+              <div className="numeric mt-3 space-y-2 rounded-xl border border-border/80 bg-secondary/40 p-4 text-xs sm:text-sm">
+                <div className="flex justify-between border-b border-border/60 pb-2">
+                  <span className="text-muted-foreground">Calculation:</span>
+                  <span className="font-mono font-bold">250 ÷ 1,000 = 0.25</span>
+                </div>
+                <div className="flex justify-between pt-1 text-sm font-extrabold text-primary">
+                  <span>Therefore:</span>
+                  <span>250 ns = 0.25 µs</span>
+                </div>
               </div>
             </div>
+          </div>
 
-            {/* Example 3 */}
-            <div className="rounded-xl border border-border bg-card p-5">
-              <span className="text-xs font-bold text-primary uppercase">Microfluidics (Volume)</span>
-              <h3 className="mt-1 text-base font-bold text-foreground">2,500 nL Reagent to µL</h3>
-              <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
-                Convert 2,500 nanoliters of lab liquid into microliters:
-              </p>
-              <div className="numeric mt-3 rounded-lg border border-border bg-secondary/50 p-2.5 text-xs font-mono font-bold text-foreground">
-                2,500 nL ÷ 1,000 = <span className="text-primary">2.5 µL</span>
+          {/* Physical Dimension Compatibility Rule & Warning */}
+          <div className="mt-8 rounded-2xl border border-border bg-card p-6">
+            <h3 className="text-base font-bold text-foreground flex items-center gap-2">
+              <Layers className="h-5 w-5 text-primary" /> Physical Quantity Compatibility Rule
+            </h3>
+            <p className="mt-2 text-xs sm:text-sm leading-relaxed text-muted-foreground">
+              The conversion formula is identical across all compatible quantities, but users must <strong>never convert between unrelated physical dimensions</strong>.
+            </p>
+            <div className="mt-4 grid gap-3 text-xs sm:text-sm md:grid-cols-3">
+              <div className="rounded-xl border border-green-500/30 bg-green-500/10 p-3.5 text-green-200">
+                <span className="font-bold text-green-100 block mb-1">✓ Length Compatibility</span>
+                <span>Nanometers can convert to micrometers because both measure <em>length</em>.</span>
               </div>
-            </div>
-
-            {/* Example 4 */}
-            <div className="rounded-xl border border-border bg-card p-5">
-              <span className="text-xs font-bold text-primary uppercase">Pharmacology (Mass)</span>
-              <h3 className="mt-1 text-base font-bold text-foreground">500 ng Drug Mass to µg</h3>
-              <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
-                Convert a 500 nanogram dosage into micrograms:
-              </p>
-              <div className="numeric mt-3 rounded-lg border border-border bg-secondary/50 p-2.5 text-xs font-mono font-bold text-foreground">
-                500 ng ÷ 1,000 = <span className="text-primary">0.5 µg</span>
+              <div className="rounded-xl border border-green-500/30 bg-green-500/10 p-3.5 text-green-200">
+                <span className="font-bold text-green-100 block mb-1">✓ Mass Compatibility</span>
+                <span>Nanograms can convert to micrograms because both measure <em>mass</em>.</span>
               </div>
-            </div>
-
-            {/* Example 5 */}
-            <div className="rounded-xl border border-border bg-card p-5">
-              <span className="text-xs font-bold text-primary uppercase">Electronics (Capacitance)</span>
-              <h3 className="mt-1 text-base font-bold text-foreground">100 nF Capacitor to µF</h3>
-              <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
-                Convert a 100 nanofarad capacitor rating to microfarads:
-              </p>
-              <div className="numeric mt-3 rounded-lg border border-border bg-secondary/50 p-2.5 text-xs font-mono font-bold text-foreground">
-                100 nF ÷ 1,000 = <span className="text-primary">0.1 µF</span>
-              </div>
-            </div>
-
-            {/* Example 6 */}
-            <div className="rounded-xl border border-border bg-card p-5">
-              <span className="text-xs font-bold text-primary uppercase">Radiation Dose</span>
-              <h3 className="mt-1 text-base font-bold text-foreground">8,500 nSv Exposure to µSv</h3>
-              <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
-                Convert 8,500 nanosieverts of environmental dose to microsieverts:
-              </p>
-              <div className="numeric mt-3 rounded-lg border border-border bg-secondary/50 p-2.5 text-xs font-mono font-bold text-foreground">
-                8,500 nSv ÷ 1,000 = <span className="text-primary">8.5 µSv</span>
+              <div className="rounded-xl border border-destructive/40 bg-destructive/10 p-3.5 text-destructive-foreground">
+                <span className="font-bold text-destructive-foreground block mb-1">✗ Dimension Mismatch</span>
+                <span>Nanometers cannot be converted directly to microseconds because length and time are different physical quantities.</span>
               </div>
             </div>
           </div>
@@ -1077,46 +1115,67 @@ export default function NanoToMicroHubPage() {
           <div className="mb-10 text-center">
             <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">Common Applications of Nano and Micro Measurements</h2>
             <p className="mx-auto mt-3 max-w-2xl text-muted-foreground">
-              How scientists, engineers, and healthcare professionals utilize nano-to-micro scale conversions.
+              Overview of key scientific, medical, and engineering fields utilizing nano and micro scale units.
             </p>
           </div>
 
-          <div className="grid gap-6 md:grid-cols-2">
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {/* Domain 1: Nanotechnology */}
             <div className="rounded-2xl border border-border bg-card p-6">
               <div className="mb-3 inline-flex items-center gap-2 text-sm font-bold text-primary">
-                <Zap className="h-4 w-4" /> Semiconductor & Hardware Engineering
+                <Atom className="h-4 w-4" /> Nanotechnology
               </div>
               <p className="text-xs sm:text-sm leading-relaxed text-muted-foreground">
-                Modern microchips feature transistor gates measured in nanometers (e.g., 3 nm process nodes), while chip dies and circuit interconnect tracks are measured in micrometers. Fast CPU cache access latency is measured in nanoseconds (ns), whereas DRAM cycle times span microseconds (µs).
+                Nanometers are commonly used to describe nanoparticles, semiconductor process features, molecular structures and optical wavelengths.
               </p>
             </div>
 
+            {/* Domain 2: Biology and Medicine */}
             <div className="rounded-2xl border border-border bg-card p-6">
               <div className="mb-3 inline-flex items-center gap-2 text-sm font-bold text-primary">
-                <FlaskConical className="h-4 w-4" /> Molecular Biology & Pharmacology
+                <FlaskConical className="h-4 w-4" /> Biology and Medicine
               </div>
               <p className="text-xs sm:text-sm leading-relaxed text-muted-foreground">
-                Biochemists measure enzyme binding affinity in nanomolar (nM) concentrations, while cellular drug uptake is measured in micromolar (µM). Active pharmaceutical ingredients are weighed in nanograms (ng) or micrograms (µg) depending on dosage potency.
+                Micrometers are often used for biological cells and microorganisms, while nanometers may be used for proteins, viruses and molecular structures. Note that biological structures span variable size ranges rather than a single fixed dimension.
               </p>
             </div>
 
+            {/* Domain 3: Electronics */}
             <div className="rounded-2xl border border-border bg-card p-6">
               <div className="mb-3 inline-flex items-center gap-2 text-sm font-bold text-primary">
-                <Ruler className="h-4 w-4" /> Photonics, Optics & Laser Physics
+                <Zap className="h-4 w-4" /> Electronics
               </div>
               <p className="text-xs sm:text-sm leading-relaxed text-muted-foreground">
-                Visible light spectrum wavelengths are specified in nanometers (400–700 nm), while infrared laser optical fiber cores and lens coatings are specified in micrometers (0.8–10.6 µm).
+                Nanoseconds and microseconds are used to describe transistor switching speeds, signal delays, processor clock timings and digital communication systems.
               </p>
             </div>
 
+            {/* Domain 4: Pharmaceuticals and Laboratory Science */}
             <div className="rounded-2xl border border-border bg-card p-6">
               <div className="mb-3 inline-flex items-center gap-2 text-sm font-bold text-primary">
-                <Activity className="h-4 w-4" /> Electrical Circuit Design
+                <Scale className="h-4 w-4" /> Pharmaceuticals & Lab Science
               </div>
               <p className="text-xs sm:text-sm leading-relaxed text-muted-foreground">
-                Capacitor component markings use nanofarads (nF) and microfarads (µF) interchanged depending on regional standard datasheets. Converting between nF and µF prevents costly PCB layout mistakes.
+                Nanograms and micrograms are used for small masses, biochemical solution concentrations and active ingredient dosage-related measurements.
               </p>
             </div>
+
+            {/* Domain 5: Radiation Measurement */}
+            <div className="rounded-2xl border border-border bg-card p-6 md:col-span-2 lg:col-span-2">
+              <div className="mb-3 inline-flex items-center gap-2 text-sm font-bold text-primary">
+                <Activity className="h-4 w-4" /> Radiation Measurement
+              </div>
+              <p className="text-xs sm:text-sm leading-relaxed text-muted-foreground">
+                Nanosieverts and microsieverts describe small quantities of equivalent or effective radiation dose. These measurements reflect mathematical values only and do not provide medical diagnosis or exposure-safety conclusions.
+              </p>
+            </div>
+          </div>
+
+          {/* Mandatory Safety Note */}
+          <div className="mt-8 rounded-2xl border border-amber-500/40 bg-amber-500/10 p-6 text-center text-amber-200">
+            <p className="text-xs sm:text-sm font-bold leading-relaxed">
+              “Medical doses and radiation measurements should always be interpreted by a qualified professional. This calculator performs mathematical unit conversions only.”
+            </p>
           </div>
         </div>
       </section>
