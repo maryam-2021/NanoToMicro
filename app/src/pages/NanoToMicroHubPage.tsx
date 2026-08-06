@@ -935,7 +935,7 @@ export default function NanoToMicroHubPage() {
               </div>
               <div className="mt-6 pt-4 border-t border-border/60">
                 <Link
-                  to="/nanometers-to-micrometers/"
+                  to="/length/nm-to-um/"
                   className="inline-flex items-center gap-1.5 text-xs font-bold text-primary hover:underline"
                 >
                   Convert nanometers to micrometers <ArrowRight className="h-3.5 w-3.5" />
@@ -960,7 +960,7 @@ export default function NanoToMicroHubPage() {
               </div>
               <div className="mt-6 pt-4 border-t border-border/60">
                 <Link
-                  to="/nanoseconds-to-microseconds/"
+                  to="/time/ns-to-us/"
                   className="inline-flex items-center gap-1.5 text-xs font-bold text-primary hover:underline"
                 >
                   Convert nanoseconds to microseconds <ArrowRight className="h-3.5 w-3.5" />
@@ -985,7 +985,7 @@ export default function NanoToMicroHubPage() {
               </div>
               <div className="mt-6 pt-4 border-t border-border/60">
                 <Link
-                  to="/nanosieverts-to-microsieverts/"
+                  to="/radiation/nsv-to-usv/"
                   className="inline-flex items-center gap-1.5 text-xs font-bold text-primary hover:underline"
                 >
                   Convert nanosieverts to microsieverts <ArrowRight className="h-3.5 w-3.5" />
