@@ -35,9 +35,10 @@ for (const route of routes) {
   const dir = join(dist, route);
   mkdirSync(dir, { recursive: true });
   copyFileSync(indexHtml, join(dir, 'index.html'));
-  if (!route.includes('/')) {
-    copyFileSync(indexHtml, join(dist, `${route}.html`));
-  }
+  
+  const parentDir = dirname(join(dist, `${route}.html`));
+  mkdirSync(parentDir, { recursive: true });
+  copyFileSync(indexHtml, join(dist, `${route}.html`));
 }
 
 console.log(`Successfully generated static index.html fallbacks for ${routes.length} routes.`);
