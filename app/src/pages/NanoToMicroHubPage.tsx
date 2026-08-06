@@ -344,6 +344,46 @@ export default function NanoToMicroHubPage() {
     jsonLd: [
       {
         '@context': 'https://schema.org',
+        '@type': 'WebPage',
+        name: 'Nano to Micro Conversion: Formula, Guide & Calculators',
+        description:
+          'Convert nano units to micro units using the universal ÷1,000 formula. Explore calculators for nanometers, nanoseconds, nanograms, nanosieverts and more.',
+        url: 'https://www.nanotomicro.com/nano-to-micro-conversion/',
+        isPartOf: {
+          '@type': 'WebSite',
+          name: 'NanoToMicro',
+          url: 'https://www.nanotomicro.com/',
+        },
+        breadcrumb: {
+          '@type': 'BreadcrumbList',
+          itemListElement: [
+            { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.nanotomicro.com/' },
+            { '@type': 'ListItem', position: 2, name: 'Conversion Guides', item: 'https://www.nanotomicro.com/guides/' },
+            {
+              '@type': 'ListItem',
+              position: 3,
+              name: 'Nano to Micro Conversion',
+              item: 'https://www.nanotomicro.com/nano-to-micro-conversion/',
+            },
+          ],
+        },
+      },
+      {
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.nanotomicro.com/' },
+          { '@type': 'ListItem', position: 2, name: 'Conversion Guides', item: 'https://www.nanotomicro.com/guides/' },
+          {
+            '@type': 'ListItem',
+            position: 3,
+            name: 'Nano to Micro Conversion',
+            item: 'https://www.nanotomicro.com/nano-to-micro-conversion/',
+          },
+        ],
+      },
+      {
+        '@context': 'https://schema.org',
         '@type': 'FAQPage',
         mainEntity: HUB_FAQS.map((f) => ({
           '@type': 'Question',
@@ -353,24 +393,19 @@ export default function NanoToMicroHubPage() {
       },
       {
         '@context': 'https://schema.org',
-        '@type': 'WebPage',
-        name: 'The Nano-to-Micro Conversion Hub: Bridging the 10⁻⁹ to 10⁻⁶ Scale',
-        url: 'https://www.nanotomicro.com/nano-to-micro-conversion/',
+        '@type': 'WebApplication',
+        name: 'Universal Nano to Micro Calculator',
         description:
-          'Universal hub for converting metric prefixes nano (10⁻⁹) to micro (10⁻⁶) across length, mass, time, volume, concentration, capacitance and dose.',
-      },
-      {
-        '@context': 'https://schema.org',
-        '@type': 'BreadcrumbList',
-        itemListElement: [
-          { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.nanotomicro.com/' },
-          {
-            '@type': 'ListItem',
-            position: 2,
-            name: 'Nano to Micro Conversion Hub',
-            item: 'https://www.nanotomicro.com/nano-to-micro-conversion/',
-          },
-        ],
+          'Interactive conversion tool for converting nano-units (10⁻⁹) to micro-units (10⁻⁶) across length, mass, time, volume, and radiation.',
+        url: 'https://www.nanotomicro.com/nano-to-micro-conversion/',
+        applicationCategory: 'EducationalApplication',
+        operatingSystem: 'Any',
+        browserRequirements: 'Requires JavaScript. Requires HTML5.',
+        offers: {
+          '@type': 'Offer',
+          price: '0',
+          priceCurrency: 'USD',
+        },
       },
     ],
   });
@@ -390,10 +425,12 @@ export default function NanoToMicroHubPage() {
         <div className="relative mx-auto w-full max-w-5xl px-4 pb-14 pt-12 sm:px-6 sm:pt-16">
           
           {/* Breadcrumb Navigation */}
-          <nav className="mb-6 flex items-center justify-center gap-2 text-xs text-muted-foreground sm:text-sm">
+          <nav aria-label="Breadcrumb" className="mb-6 flex items-center justify-center gap-2 text-xs text-muted-foreground sm:text-sm">
             <Link to="/" className="transition-colors hover:text-primary">Home</Link>
             <span>/</span>
-            <span className="font-medium text-foreground">Nano-to-Micro Conversion Hub</span>
+            <Link to="/guides/" className="transition-colors hover:text-primary">Conversion Guides</Link>
+            <span>/</span>
+            <span className="font-medium text-foreground">Nano to Micro Conversion</span>
           </nav>
 
           <div className="mx-auto max-w-3xl text-center">
@@ -406,7 +443,16 @@ export default function NanoToMicroHubPage() {
             <p className="mt-5 text-base leading-relaxed text-muted-foreground sm:text-lg">
               Nano and micro are metric prefixes used to describe extremely small quantities. Nano represents one-billionth,
               while micro represents one-millionth. Because the two prefixes are three powers of ten apart, converting from
-              nano to micro always requires dividing the value by 1,000.
+              nano to micro always requires dividing the value by 1,000. Try our dedicated{' '}
+              <Link to="/nanometers-to-micrometers/" className="font-semibold text-primary underline underline-offset-2 hover:text-primary/80">
+                nanometers to micrometers calculator
+              </Link>,{' '}
+              <Link to="/nanoseconds-to-microseconds/" className="font-semibold text-primary underline underline-offset-2 hover:text-primary/80">
+                convert nanoseconds into microseconds
+              </Link>, or explore our complete{' '}
+              <Link to="/si-prefix-converter/" className="font-semibold text-primary underline underline-offset-2 hover:text-primary/80">
+                metric prefix scale guide
+              </Link>.
             </p>
 
             {/* Formula Badges */}
@@ -1134,7 +1180,10 @@ export default function NanoToMicroHubPage() {
                 <Atom className="h-4 w-4" /> Nanotechnology
               </div>
               <p className="text-xs sm:text-sm leading-relaxed text-muted-foreground">
-                Nanometers are commonly used to describe nanoparticles, semiconductor process features, molecular structures and optical wavelengths.
+                Nanometers are commonly used to describe nanoparticles, semiconductor process features, molecular structures and optical wavelengths. Try our dedicated{' '}
+                <Link to="/nanometers-to-micrometers/" className="font-semibold text-primary underline underline-offset-2 hover:text-primary/80">
+                  nanometers-to-micrometers calculator
+                </Link>.
               </p>
             </div>
 
@@ -1154,7 +1203,10 @@ export default function NanoToMicroHubPage() {
                 <Zap className="h-4 w-4" /> Electronics
               </div>
               <p className="text-xs sm:text-sm leading-relaxed text-muted-foreground">
-                Nanoseconds and microseconds are used to describe transistor switching speeds, signal delays, processor clock timings and digital communication systems.
+                Nanoseconds and microseconds are used to describe transistor switching speeds, signal delays, processor clock timings and digital communication systems. Learn how to{' '}
+                <Link to="/nanoseconds-to-microseconds/" className="font-semibold text-primary underline underline-offset-2 hover:text-primary/80">
+                  convert nanoseconds into microseconds
+                </Link>.
               </p>
             </div>
 
@@ -1164,7 +1216,10 @@ export default function NanoToMicroHubPage() {
                 <Scale className="h-4 w-4" /> Pharmaceuticals & Lab Science
               </div>
               <p className="text-xs sm:text-sm leading-relaxed text-muted-foreground">
-                Nanograms and micrograms are used for small masses, biochemical solution concentrations and active ingredient dosage-related measurements.
+                Nanograms and micrograms are used for small masses, biochemical solution concentrations and active ingredient dosage-related measurements. Perform accurate{' '}
+                <Link to="/nanograms-to-micrograms/" className="font-semibold text-primary underline underline-offset-2 hover:text-primary/80">
+                  nanogram and microgram conversion
+                </Link>.
               </p>
             </div>
 
@@ -1174,7 +1229,11 @@ export default function NanoToMicroHubPage() {
                 <Activity className="h-4 w-4" /> Radiation Measurement
               </div>
               <p className="text-xs sm:text-sm leading-relaxed text-muted-foreground">
-                Nanosieverts and microsieverts describe small quantities of equivalent or effective radiation dose. These measurements reflect mathematical values only and do not provide medical diagnosis or exposure-safety conclusions.
+                Nanosieverts and microsieverts describe small quantities of equivalent or effective radiation dose. Use our dedicated{' '}
+                <Link to="/nanosieverts-to-microsieverts/" className="font-semibold text-primary underline underline-offset-2 hover:text-primary/80">
+                  nanosievert-to-microsievert tool
+                </Link>{' '}
+                to convert dose values. These measurements reflect mathematical values only and do not provide medical diagnosis or exposure-safety conclusions.
               </p>
             </div>
           </div>
@@ -1184,6 +1243,35 @@ export default function NanoToMicroHubPage() {
             <p className="text-xs sm:text-sm font-bold leading-relaxed">
               “Medical doses and radiation measurements should always be interpreted by a qualified professional. This calculator performs mathematical unit conversions only.”
             </p>
+          </div>
+        </div>
+      </section>
+
+      {/* ── REVERSE CONVERSIONS & QUICK LINKS ── */}
+      <section className="border-t border-border/60 bg-card/20 py-12">
+        <div className="mx-auto w-full max-w-5xl px-4 sm:px-6">
+          <div className="rounded-2xl border border-border bg-card p-6 sm:p-8">
+            <h3 className="text-lg font-bold text-foreground">Reverse Conversions & Related Tools</h3>
+            <p className="mt-1 text-xs text-muted-foreground sm:text-sm">
+              Convert micro units back to nano units or navigate our main SI prefix conversion guides:
+            </p>
+            <div className="mt-4 flex flex-wrap items-center gap-3 text-xs font-bold">
+              <Link to="/micrometers-to-nanometers/" className="rounded-lg border border-border bg-secondary/50 px-3 py-2 text-foreground transition-colors hover:border-primary/50 hover:text-primary">
+                Convert Micrometers to Nanometers (µm → nm)
+              </Link>
+              <Link to="/microseconds-to-nanoseconds/" className="rounded-lg border border-border bg-secondary/50 px-3 py-2 text-foreground transition-colors hover:border-primary/50 hover:text-primary">
+                Convert Microseconds to Nanoseconds (µs → ns)
+              </Link>
+              <Link to="/micrograms-to-nanograms/" className="rounded-lg border border-border bg-secondary/50 px-3 py-2 text-foreground transition-colors hover:border-primary/50 hover:text-primary">
+                Convert Micrograms to Nanograms (µg → ng)
+              </Link>
+              <Link to="/si-prefix-converter/" className="rounded-lg border border-primary/40 bg-primary/10 px-3 py-2 text-primary transition-colors hover:bg-primary hover:text-primary-foreground">
+                Main SI Prefix Conversion Directory
+              </Link>
+              <Link to="/guides/" className="rounded-lg border border-border bg-secondary/50 px-3 py-2 text-foreground transition-colors hover:border-primary/50 hover:text-primary">
+                All Metric Conversion Guides
+              </Link>
+            </div>
           </div>
         </div>
       </section>
