@@ -18,6 +18,8 @@ function upsertMeta(attr: 'name' | 'property', key: string, content: string) {
 }
 
 export function useSEO({ title, description, canonical, jsonLd }: SeoOptions) {
+  const jsonLdStr = jsonLd ? JSON.stringify(jsonLd) : '';
+
   useEffect(() => {
     document.title = title;
     upsertMeta('name', 'description', description);
@@ -44,5 +46,5 @@ export function useSEO({ title, description, canonical, jsonLd }: SeoOptions) {
         document.head.appendChild(script);
       }
     }
-  }, [title, description, canonical, jsonLd]);
+  }, [title, description, canonical, jsonLdStr]);
 }
