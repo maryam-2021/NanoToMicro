@@ -672,51 +672,73 @@ export default function NanoToMicroHubPage() {
           <div className="mb-10 text-center">
             <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">Nano vs Micro: What Is the Difference?</h2>
             <p className="mx-auto mt-3 max-w-2xl text-muted-foreground">
-              A side-by-side comparison of the two micro-scale metric prefixes.
+              A comprehensive side-by-side comparison of the nano (10⁻⁹) and micro (10⁻⁶) metric scale factors.
             </p>
           </div>
 
-          <div className="grid gap-6 md:grid-cols-2">
-            {/* Nano Card */}
-            <div className="rounded-2xl border border-primary/30 bg-card p-6 shadow-sm">
-              <div className="mb-4 inline-flex items-center gap-2 rounded-lg bg-primary/15 px-3 py-1 text-sm font-bold text-primary">
-                <Atom className="h-4 w-4" /> Nano (n) — 10⁻⁹
-              </div>
-              <h3 className="text-lg font-bold text-foreground">One-Billionth Scale</h3>
-              <ul className="mt-4 space-y-3.5 text-xs text-muted-foreground sm:text-sm">
-                <li className="flex items-start gap-2">
-                  <span className="font-bold text-foreground">Definition:</span> One-billionth of a base unit (1 / 1,000,000,000).
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="font-bold text-foreground">Scientific Notation:</span> 10<sup>−9</sup>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="font-bold text-foreground">Symbol:</span> Lowercase "n".
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="font-bold text-foreground">Domain:</span> Atomic structures, DNA width (2 nm), transistor gates (3–14 nm), light wavelengths (400–700 nm).
-                </li>
-              </ul>
+          {/* Comparison Table */}
+          <div className="overflow-x-auto rounded-2xl border border-border bg-card shadow-sm">
+            <table className="w-full text-left text-xs sm:text-sm">
+              <thead>
+                <tr className="bg-secondary/80 text-foreground border-b border-border">
+                  <th className="px-5 py-4 font-bold">Feature</th>
+                  <th className="px-5 py-4 font-bold text-primary">Nano</th>
+                  <th className="px-5 py-4 font-bold text-primary">Micro</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-border/60">
+                <tr className="bg-card">
+                  <td className="px-5 py-3.5 font-bold text-foreground">Symbol</td>
+                  <td className="px-5 py-3.5 font-bold text-primary font-mono text-base">n</td>
+                  <td className="px-5 py-3.5 font-bold text-primary font-mono text-base">µ</td>
+                </tr>
+                <tr className="bg-secondary/20">
+                  <td className="px-5 py-3.5 font-bold text-foreground">Scientific notation</td>
+                  <td className="px-5 py-3.5 font-mono font-bold">10⁻⁹</td>
+                  <td className="px-5 py-3.5 font-mono font-bold">10⁻⁶</td>
+                </tr>
+                <tr className="bg-card">
+                  <td className="px-5 py-3.5 font-bold text-foreground">Fraction of base unit</td>
+                  <td className="px-5 py-3.5 text-muted-foreground">One-billionth</td>
+                  <td className="px-5 py-3.5 text-muted-foreground">One-millionth</td>
+                </tr>
+                <tr className="bg-secondary/20">
+                  <td className="px-5 py-3.5 font-bold text-foreground">Relative size</td>
+                  <td className="px-5 py-3.5 font-semibold text-muted-foreground">Smaller</td>
+                  <td className="px-5 py-3.5 font-semibold text-primary">1,000 times larger than nano</td>
+                </tr>
+                <tr className="bg-card">
+                  <td className="px-5 py-3.5 font-bold text-foreground">Common examples</td>
+                  <td className="px-5 py-3.5 text-muted-foreground">Nanometers, nanoseconds, nanograms</td>
+                  <td className="px-5 py-3.5 text-muted-foreground">Micrometers, microseconds, micrograms</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          {/* Symbol & SI Notation Clarifications */}
+          <div className="mt-8 grid gap-6 md:grid-cols-2">
+            <div className="rounded-2xl border border-border bg-card p-6">
+              <h3 className="text-base font-bold text-foreground">The Greek Symbol µ</h3>
+              <p className="mt-2 text-xs sm:text-sm leading-relaxed text-muted-foreground">
+                Clarifying symbol usage: The Greek letter <strong>µ</strong> (mu) is the official, scientifically correct SI symbol for micro.
+                Where users cannot easily type <strong>µ</strong> on standard keyboards, they may sometimes use <strong>u</strong> informally (e.g. <code>um</code> or <code>ug</code>), but this website uses the scientifically correct symbol <strong>µ</strong> whenever possible.
+              </p>
             </div>
 
-            {/* Micro Card */}
-            <div className="rounded-2xl border border-border bg-card p-6 shadow-sm">
-              <div className="mb-4 inline-flex items-center gap-2 rounded-lg bg-secondary px-3 py-1 text-sm font-bold text-foreground">
-                <Layers className="h-4 w-4 text-primary" /> Micro (µ) — 10⁻⁶
-              </div>
-              <h3 className="text-lg font-bold text-foreground">One-Millionth Scale</h3>
-              <ul className="mt-4 space-y-3.5 text-xs text-muted-foreground sm:text-sm">
+            <div className="rounded-2xl border border-amber-500/30 bg-amber-500/10 p-6 text-amber-200">
+              <h3 className="text-base font-bold text-amber-100 flex items-center gap-2">
+                <span>⚠️</span> Do Not Confuse Symbols
+              </h3>
+              <ul className="mt-3 space-y-2 text-xs sm:text-sm">
                 <li className="flex items-start gap-2">
-                  <span className="font-bold text-foreground">Definition:</span> One-millionth of a base unit (1 / 1,000,000).
+                  <span className="font-bold text-amber-100 font-mono">Lowercase m:</span> Represents <strong>milli</strong> (10⁻³ = 0.001).
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="font-bold text-foreground">Scientific Notation:</span> 10<sup>−6</sup>
+                  <span className="font-bold text-amber-100 font-mono">Uppercase M:</span> Represents <strong>mega</strong> (10⁶ = 1,000,000).
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="font-bold text-foreground">Symbol:</span> Greek mu "µ".
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="font-bold text-foreground">Domain:</span> Biological cells (7–10 µm), bacteria (1–5 µm), hair diameter (50–70 µm), cell biology dosing (µg, µM).
+                  <span className="font-bold text-amber-100 font-mono">Greek letter µ:</span> Represents <strong>micro</strong> (10⁻⁶ = 0.000001).
                 </li>
               </ul>
             </div>
@@ -730,40 +752,235 @@ export default function NanoToMicroHubPage() {
           <div className="mb-10 text-center">
             <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">Explore Specific Nano-to-Micro Conversions</h2>
             <p className="mx-auto mt-3 max-w-2xl text-muted-foreground">
-              Select your specific physical quantity to access dedicated bi-directional calculators with full conversion tables and formulas.
+              Access individual conversion calculators with formulas, worked examples, and reference tables for each physical dimension.
             </p>
           </div>
 
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {CATEGORIES.map((cat) => {
-              const Icon = ICONS[cat.icon] ?? Atom;
-              const pairs = cat.slugs.map((s) => getConverter(s)!).filter(Boolean);
-              return (
-                <div
-                  key={cat.name}
-                  className="rounded-2xl border border-border bg-card p-5 transition-all hover:border-primary/40 hover:shadow-lg"
-                >
-                  <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-primary/15 text-primary">
-                    <Icon className="h-5 w-5" />
-                  </div>
-                  <h3 className="font-bold text-foreground">{cat.name}</h3>
-                  <p className="mt-1 text-xs text-muted-foreground">{pairs.length} conversion tools</p>
-
-                  <div className="mt-4 space-y-2">
-                    {pairs.map((c) => (
-                      <Link
-                        key={c.slug}
-                        to={`/${c.slug}`}
-                        className="flex items-center justify-between rounded-lg border border-border/80 bg-secondary/30 px-3 py-2 text-xs font-semibold transition-colors hover:border-primary/50 hover:bg-primary/10 hover:text-primary"
-                      >
-                        <span>{c.fromSymbol} → {c.toSymbol}</span>
-                        <ArrowRight className="h-3 w-3 text-muted-foreground" />
-                      </Link>
-                    ))}
-                  </div>
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {/* Required Card 1: Spatial Dimensions */}
+            <div className="flex flex-col justify-between rounded-2xl border border-border bg-card p-6 shadow-sm transition-all hover:border-primary/50 hover:shadow-md">
+              <div>
+                <div className="mb-3 flex items-center justify-between">
+                  <span className="rounded-md bg-primary/15 px-2.5 py-1 text-xs font-bold text-primary">Spatial Dimensions</span>
+                  <Ruler className="h-5 w-5 text-primary" />
                 </div>
-              );
-            })}
+                <h3 className="text-lg font-bold text-foreground">Nanometers to Micrometers</h3>
+                <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
+                  Convert nanoscale lengths from nanometers, nm, into micrometers, µm, using the universal divide-by-1,000 formula.
+                </p>
+                <div className="numeric mt-3 text-xs font-mono font-semibold text-muted-foreground">
+                  Symbols: <span className="text-foreground">nm → µm</span>
+                </div>
+              </div>
+              <div className="mt-6 pt-4 border-t border-border/60">
+                <Link
+                  to="/nanometers-to-micrometers/"
+                  className="inline-flex items-center gap-1.5 text-xs font-bold text-primary hover:underline"
+                >
+                  Convert nanometers to micrometers <ArrowRight className="h-3.5 w-3.5" />
+                </Link>
+              </div>
+            </div>
+
+            {/* Required Card 2: Temporal Dimensions */}
+            <div className="flex flex-col justify-between rounded-2xl border border-border bg-card p-6 shadow-sm transition-all hover:border-primary/50 hover:shadow-md">
+              <div>
+                <div className="mb-3 flex items-center justify-between">
+                  <span className="rounded-md bg-primary/15 px-2.5 py-1 text-xs font-bold text-primary">Temporal Dimensions</span>
+                  <Timer className="h-5 w-5 text-primary" />
+                </div>
+                <h3 className="text-lg font-bold text-foreground">Nanoseconds to Microseconds</h3>
+                <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
+                  Convert extremely short time intervals from nanoseconds, ns, into microseconds, µs.
+                </p>
+                <div className="numeric mt-3 text-xs font-mono font-semibold text-muted-foreground">
+                  Symbols: <span className="text-foreground">ns → µs</span>
+                </div>
+              </div>
+              <div className="mt-6 pt-4 border-t border-border/60">
+                <Link
+                  to="/nanoseconds-to-microseconds/"
+                  className="inline-flex items-center gap-1.5 text-xs font-bold text-primary hover:underline"
+                >
+                  Convert nanoseconds to microseconds <ArrowRight className="h-3.5 w-3.5" />
+                </Link>
+              </div>
+            </div>
+
+            {/* Required Card 3: Medical and Radiation Dosimetry */}
+            <div className="flex flex-col justify-between rounded-2xl border border-border bg-card p-6 shadow-sm transition-all hover:border-primary/50 hover:shadow-md">
+              <div>
+                <div className="mb-3 flex items-center justify-between">
+                  <span className="rounded-md bg-primary/15 px-2.5 py-1 text-xs font-bold text-primary">Medical & Radiation Dosimetry</span>
+                  <Activity className="h-5 w-5 text-primary" />
+                </div>
+                <h3 className="text-lg font-bold text-foreground">Nanosieverts to Microsieverts</h3>
+                <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
+                  Convert radiation dose-equivalent measurements from nanosieverts, nSv, into microsieverts, µSv.
+                </p>
+                <div className="numeric mt-3 text-xs font-mono font-semibold text-muted-foreground">
+                  Symbols: <span className="text-foreground">nSv → µSv</span>
+                </div>
+              </div>
+              <div className="mt-6 pt-4 border-t border-border/60">
+                <Link
+                  to="/nanosieverts-to-microsieverts/"
+                  className="inline-flex items-center gap-1.5 text-xs font-bold text-primary hover:underline"
+                >
+                  Convert nanosieverts to microsieverts <ArrowRight className="h-3.5 w-3.5" />
+                </Link>
+              </div>
+            </div>
+
+            {/* Required Card 4: Gravimetric Measurement */}
+            <div className="flex flex-col justify-between rounded-2xl border border-border bg-card p-6 shadow-sm transition-all hover:border-primary/50 hover:shadow-md">
+              <div>
+                <div className="mb-3 flex items-center justify-between">
+                  <span className="rounded-md bg-primary/15 px-2.5 py-1 text-xs font-bold text-primary">Gravimetric Measurement</span>
+                  <Scale className="h-5 w-5 text-primary" />
+                </div>
+                <h3 className="text-lg font-bold text-foreground">Nanograms to Micrograms</h3>
+                <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
+                  Convert very small mass measurements from nanograms, ng, into micrograms, µg.
+                </p>
+                <div className="numeric mt-3 text-xs font-mono font-semibold text-muted-foreground">
+                  Symbols: <span className="text-foreground">ng → µg</span>
+                </div>
+              </div>
+              <div className="mt-6 pt-4 border-t border-border/60">
+                <Link
+                  to="/nanograms-to-micrograms/"
+                  className="inline-flex items-center gap-1.5 text-xs font-bold text-primary hover:underline"
+                >
+                  Convert nanograms to micrograms <ArrowRight className="h-3.5 w-3.5" />
+                </Link>
+              </div>
+            </div>
+
+            {/* Additional Card 5: Fluidics & Volume */}
+            <div className="flex flex-col justify-between rounded-2xl border border-border bg-card p-6 shadow-sm transition-all hover:border-primary/50 hover:shadow-md">
+              <div>
+                <div className="mb-3 flex items-center justify-between">
+                  <span className="rounded-md bg-primary/15 px-2.5 py-1 text-xs font-bold text-primary">Fluidics & Volume</span>
+                  <FlaskConical className="h-5 w-5 text-primary" />
+                </div>
+                <h3 className="text-lg font-bold text-foreground">Nanoliters to Microliters</h3>
+                <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
+                  Convert liquid volumes from nanoliters, nL, into microliters, µL.
+                </p>
+                <div className="numeric mt-3 text-xs font-mono font-semibold text-muted-foreground">
+                  Symbols: <span className="text-foreground">nL → µL</span>
+                </div>
+              </div>
+              <div className="mt-6 pt-4 border-t border-border/60">
+                <Link
+                  to="/nanoliters-to-microliters/"
+                  className="inline-flex items-center gap-1.5 text-xs font-bold text-primary hover:underline"
+                >
+                  Convert nanoliters to microliters <ArrowRight className="h-3.5 w-3.5" />
+                </Link>
+              </div>
+            </div>
+
+            {/* Additional Card 6: Chemical Concentration */}
+            <div className="flex flex-col justify-between rounded-2xl border border-border bg-card p-6 shadow-sm transition-all hover:border-primary/50 hover:shadow-md">
+              <div>
+                <div className="mb-3 flex items-center justify-between">
+                  <span className="rounded-md bg-primary/15 px-2.5 py-1 text-xs font-bold text-primary">Chemical Concentration</span>
+                  <Atom className="h-5 w-5 text-primary" />
+                </div>
+                <h3 className="text-lg font-bold text-foreground">Nanomolar to Micromolar</h3>
+                <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
+                  Convert biochemical solution concentrations from nanomolar, nM, into micromolar, µM.
+                </p>
+                <div className="numeric mt-3 text-xs font-mono font-semibold text-muted-foreground">
+                  Symbols: <span className="text-foreground">nM → µM</span>
+                </div>
+              </div>
+              <div className="mt-6 pt-4 border-t border-border/60">
+                <Link
+                  to="/nanomolar-to-micromolar/"
+                  className="inline-flex items-center gap-1.5 text-xs font-bold text-primary hover:underline"
+                >
+                  Convert nanomolar to micromolar <ArrowRight className="h-3.5 w-3.5" />
+                </Link>
+              </div>
+            </div>
+
+            {/* Additional Card 7: Electrical Capacitance */}
+            <div className="flex flex-col justify-between rounded-2xl border border-border bg-card p-6 shadow-sm transition-all hover:border-primary/50 hover:shadow-md">
+              <div>
+                <div className="mb-3 flex items-center justify-between">
+                  <span className="rounded-md bg-primary/15 px-2.5 py-1 text-xs font-bold text-primary">Electrical Capacitance</span>
+                  <Zap className="h-5 w-5 text-primary" />
+                </div>
+                <h3 className="text-lg font-bold text-foreground">Nanofarads to Microfarads</h3>
+                <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
+                  Convert circuit capacitance values from nanofarads, nF, into microfarads, µF.
+                </p>
+                <div className="numeric mt-3 text-xs font-mono font-semibold text-muted-foreground">
+                  Symbols: <span className="text-foreground">nF → µF</span>
+                </div>
+              </div>
+              <div className="mt-6 pt-4 border-t border-border/60">
+                <Link
+                  to="/nanofarads-to-microfarads/"
+                  className="inline-flex items-center gap-1.5 text-xs font-bold text-primary hover:underline"
+                >
+                  Convert nanofarads to microfarads <ArrowRight className="h-3.5 w-3.5" />
+                </Link>
+              </div>
+            </div>
+
+            {/* Additional Card 8: Electric Current */}
+            <div className="flex flex-col justify-between rounded-2xl border border-border bg-card p-6 shadow-sm transition-all hover:border-primary/50 hover:shadow-md">
+              <div>
+                <div className="mb-3 flex items-center justify-between">
+                  <span className="rounded-md bg-primary/15 px-2.5 py-1 text-xs font-bold text-primary">Electric Current</span>
+                  <Zap className="h-5 w-5 text-primary" />
+                </div>
+                <h3 className="text-lg font-bold text-foreground">Nanoamps to Microamps</h3>
+                <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
+                  Convert tiny electrical currents from nanoamps, nA, into microamps, µA.
+                </p>
+                <div className="numeric mt-3 text-xs font-mono font-semibold text-muted-foreground">
+                  Symbols: <span className="text-foreground">nA → µA</span>
+                </div>
+              </div>
+              <div className="mt-6 pt-4 border-t border-border/60">
+                <Link
+                  to="/nanoamps-to-microamps/"
+                  className="inline-flex items-center gap-1.5 text-xs font-bold text-primary hover:underline"
+                >
+                  Convert nanoamps to microamps <ArrowRight className="h-3.5 w-3.5" />
+                </Link>
+              </div>
+            </div>
+
+            {/* Additional Card 9: Electric Charge */}
+            <div className="flex flex-col justify-between rounded-2xl border border-border bg-card p-6 shadow-sm transition-all hover:border-primary/50 hover:shadow-md">
+              <div>
+                <div className="mb-3 flex items-center justify-between">
+                  <span className="rounded-md bg-primary/15 px-2.5 py-1 text-xs font-bold text-primary">Electric Charge</span>
+                  <Zap className="h-5 w-5 text-primary" />
+                </div>
+                <h3 className="text-lg font-bold text-foreground">Nanocoulombs to Microcoulombs</h3>
+                <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
+                  Convert electrostatic charge values from nanocoulombs, nC, into microcoulombs, µC.
+                </p>
+                <div className="numeric mt-3 text-xs font-mono font-semibold text-muted-foreground">
+                  Symbols: <span className="text-foreground">nC → µC</span>
+                </div>
+              </div>
+              <div className="mt-6 pt-4 border-t border-border/60">
+                <Link
+                  to="/nanocoulombs-to-microcoulombs/"
+                  className="inline-flex items-center gap-1.5 text-xs font-bold text-primary hover:underline"
+                >
+                  Convert nanocoulombs to microcoulombs <ArrowRight className="h-3.5 w-3.5" />
+                </Link>
+              </div>
+            </div>
           </div>
         </div>
       </section>
