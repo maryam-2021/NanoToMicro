@@ -468,6 +468,39 @@ export default function NanoToMicroHubPage() {
               </div>
             </div>
 
+            {/* Nano-to-Micro Summary Box */}
+            <div className="mt-8 rounded-2xl border border-primary/30 bg-card/90 p-5 shadow-sm text-left backdrop-blur sm:p-6">
+              <h3 className="flex items-center gap-2 border-b border-border/60 pb-2.5 text-xs font-bold uppercase tracking-wider text-primary sm:text-sm">
+                <BookOpen className="h-4 w-4 text-primary" /> Nano-to-Micro Summary
+              </h3>
+              <div className="numeric mt-3.5 grid gap-2.5 text-xs sm:text-sm font-medium text-foreground sm:grid-cols-2 lg:grid-cols-3">
+                <div className="flex items-center gap-2 rounded-lg border border-border/60 bg-secondary/40 px-3 py-2">
+                  <span className="font-semibold text-muted-foreground">Nano prefix:</span>
+                  <span className="font-mono font-bold text-primary">10⁻⁹</span>
+                </div>
+                <div className="flex items-center gap-2 rounded-lg border border-border/60 bg-secondary/40 px-3 py-2">
+                  <span className="font-semibold text-muted-foreground">Micro prefix:</span>
+                  <span className="font-mono font-bold text-primary">10⁻⁶</span>
+                </div>
+                <div className="flex items-center gap-2 rounded-lg border border-border/60 bg-secondary/40 px-3 py-2">
+                  <span className="font-semibold text-muted-foreground">One micro-unit:</span>
+                  <span className="font-mono font-bold text-foreground">1,000 nano-units</span>
+                </div>
+                <div className="flex items-center gap-2 rounded-lg border border-border/60 bg-secondary/40 px-3 py-2">
+                  <span className="font-semibold text-muted-foreground">Nano to micro:</span>
+                  <span className="font-mono font-bold text-primary">divide by 1,000</span>
+                </div>
+                <div className="flex items-center gap-2 rounded-lg border border-border/60 bg-secondary/40 px-3 py-2">
+                  <span className="font-semibold text-muted-foreground">Micro to nano:</span>
+                  <span className="font-mono font-bold text-foreground">multiply by 1,000</span>
+                </div>
+                <div className="flex items-center gap-2 rounded-lg border border-border/60 bg-secondary/40 px-3 py-2">
+                  <span className="font-semibold text-muted-foreground">Decimal movement:</span>
+                  <span className="font-mono font-bold text-foreground">three places left</span>
+                </div>
+              </div>
+            </div>
+
             {/* Action Buttons */}
             <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
               <button
