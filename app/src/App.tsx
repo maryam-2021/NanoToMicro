@@ -35,10 +35,16 @@ export default function App() {
         <Route path="/nano-to-micro-conversion/" element={<NanoToMicroHubPage />} />
         <Route path="/length/nm-to-um" element={<NmToUmSpokePage />} />
         <Route path="/length/nm-to-um/" element={<NmToUmSpokePage />} />
+        <Route path="/nanometers-to-micrometers" element={<NmToUmSpokePage />} />
+        <Route path="/nanometers-to-micrometers/" element={<NmToUmSpokePage />} />
         <Route path="/time/ns-to-us" element={<NsToUsSpokePage />} />
         <Route path="/time/ns-to-us/" element={<NsToUsSpokePage />} />
+        <Route path="/nanoseconds-to-microseconds" element={<NsToUsSpokePage />} />
+        <Route path="/nanoseconds-to-microseconds/" element={<NsToUsSpokePage />} />
         <Route path="/radiation/nsv-to-usv" element={<NsvToUsvSpokePage />} />
         <Route path="/radiation/nsv-to-usv/" element={<NsvToUsvSpokePage />} />
+        <Route path="/nanosieverts-to-microsieverts" element={<NsvToUsvSpokePage />} />
+        <Route path="/nanosieverts-to-microsieverts/" element={<NsvToUsvSpokePage />} />
         <Route path="/si-prefix-converter" element={<PrefixConverterPage />} />
         <Route path="/conversion-charts" element={<ChartsPage />} />
         <Route path="/guides" element={<GuidesIndexPage />} />
