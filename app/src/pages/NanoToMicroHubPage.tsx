@@ -1320,6 +1320,62 @@ export default function NanoToMicroHubPage() {
         </div>
       </section>
 
+      {/* ── H2: CHOOSE A NANO-TO-MICRO CONVERTER (FINAL CTA) ── */}
+      <section className="border-t border-border/60 bg-gradient-to-b from-card/40 to-background py-16 text-center">
+        <div className="mx-auto w-full max-w-4xl px-4 sm:px-6">
+          <div className="rounded-3xl border border-primary/30 bg-card p-8 shadow-xl sm:p-10">
+            <h2 className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
+              Choose a Nano-to-Micro Converter
+            </h2>
+            <p className="mx-auto mt-3 max-w-xl text-xs sm:text-sm text-muted-foreground">
+              Select the physical quantity you are working with to open a dedicated converter with the correct units, examples and reference table.
+            </p>
+            <div className="mt-8 grid gap-4 sm:grid-cols-2">
+              <Link
+                to="/nanometers-to-micrometers/"
+                className="flex items-center justify-between rounded-xl border border-border bg-secondary/40 p-4 text-xs font-bold text-foreground transition-all hover:border-primary/50 hover:bg-primary/10 hover:text-primary sm:text-sm"
+              >
+                <div className="flex items-center gap-3">
+                  <Ruler className="h-5 w-5 text-primary" />
+                  <span>Nanometers to micrometers</span>
+                </div>
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+              <Link
+                to="/nanoseconds-to-microseconds/"
+                className="flex items-center justify-between rounded-xl border border-border bg-secondary/40 p-4 text-xs font-bold text-foreground transition-all hover:border-primary/50 hover:bg-primary/10 hover:text-primary sm:text-sm"
+              >
+                <div className="flex items-center gap-3">
+                  <Timer className="h-5 w-5 text-primary" />
+                  <span>Nanoseconds to microseconds</span>
+                </div>
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+              <Link
+                to="/nanograms-to-micrograms/"
+                className="flex items-center justify-between rounded-xl border border-border bg-secondary/40 p-4 text-xs font-bold text-foreground transition-all hover:border-primary/50 hover:bg-primary/10 hover:text-primary sm:text-sm"
+              >
+                <div className="flex items-center gap-3">
+                  <Scale className="h-5 w-5 text-primary" />
+                  <span>Nanograms to micrograms</span>
+                </div>
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+              <Link
+                to="/nanosieverts-to-microsieverts/"
+                className="flex items-center justify-between rounded-xl border border-border bg-secondary/40 p-4 text-xs font-bold text-foreground transition-all hover:border-primary/50 hover:bg-primary/10 hover:text-primary sm:text-sm"
+              >
+                <div className="flex items-center gap-3">
+                  <Activity className="h-5 w-5 text-primary" />
+                  <span>Nanosieverts to microsieverts</span>
+                </div>
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* ── H2: FREQUENTLY ASKED QUESTIONS ── */}
       <FaqSection faqs={HUB_FAQS} heading="Frequently Asked Questions" />
     </>
