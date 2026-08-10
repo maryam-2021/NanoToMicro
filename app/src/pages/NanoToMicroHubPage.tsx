@@ -21,7 +21,6 @@ import {
 } from 'lucide-react';
 import { useSEO } from '@/components/SEO';
 import { FaqSection } from '@/components/Faq';
-import { CATEGORIES, getConverter } from '@/data/converters';
 import { converterPath, canonicalConverterUrl } from '@/lib/routes';
 
 interface UnitCategoryOption {
@@ -88,15 +87,6 @@ const HUB_FAQS = [
     a: 'The letter u is sometimes used as a keyboard-friendly substitute, but µ is the official SI prefix symbol.',
   },
 ];
-
-const ICONS: Record<string, React.ComponentType<{ className?: string }>> = {
-  ruler: Ruler,
-  scale: Scale,
-  'flask-conical': FlaskConical,
-  zap: Zap,
-  timer: Timer,
-  activity: Activity,
-};
 
 /** Formats numbers clearly without excessive trailing zeros or broken scientific notation */
 function formatNumber(val: number): string {
