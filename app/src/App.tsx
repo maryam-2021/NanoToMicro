@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { Routes, Route, Navigate, useLocation } from 'react-router';
 import { Layout } from '@/components/Layout';
 import Home from '@/pages/Home';
-import ConverterPage from '@/pages/ConverterPage';
+import ConverterRoute from '@/pages/ConverterRoute';
 import PrefixConverterPage from '@/pages/PrefixConverterPage';
 import ChartsPage from '@/pages/ChartsPage';
 import GuidesIndexPage from '@/pages/GuidesIndexPage';
@@ -60,7 +60,7 @@ export default function App() {
         <Route path="/guides/capacitor-codes-explained" element={<CapacitorCodes />} />
         <Route path="/guides/mcg-vs-ug-vs-mg" element={<McgVsUgVsMg />} />
         <Route path="/guides/ns-vs-us-ms-latency-chart" element={<LatencyChart />} />
-        <Route path="/:slug" element={<ConverterPage />} />
+        <Route path="/:slug" element={<ConverterRoute />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </Layout>
