@@ -61,7 +61,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
             </DropdownMenu>
 
             <Button variant="ghost" asChild className="gap-1.5 text-sm font-medium"><NavLink to="/nano-to-micro-conversion/"><Atom className="h-4 w-4 opacity-60" /> Conversion Hub</NavLink></Button>
-            <Button variant="ghost" asChild className="gap-1.5 text-sm font-medium"><NavLink to="/si-prefix-converter/"><ArrowLeftRight className="h-4 w-4 opacity-60" /> SI Prefix</NavLink></Button>
+            <Button variant="ghost" asChild className="gap-1.5 text-sm font-medium"><NavLink to="/si-prefix-converter/"><ArrowRightLeft className="h-4 w-4 opacity-60" /> SI Prefix</NavLink></Button>
             <Button variant="ghost" asChild className="gap-1.5 text-sm font-medium"><NavLink to="/conversion-charts/"><TableProperties className="h-4 w-4 opacity-60" /> Charts</NavLink></Button>
             <Button variant="ghost" asChild className="gap-1.5 text-sm font-medium"><NavLink to="/guides/"><BookOpen className="h-4 w-4 opacity-60" /> Guides</NavLink></Button>
 
