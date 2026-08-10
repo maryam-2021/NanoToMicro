@@ -6,7 +6,7 @@ import ConverterRoute from '@/pages/ConverterRoute';
 import PrefixConverterPage from '@/pages/PrefixConverterPage';
 import ChartsPage from '@/pages/ChartsPage';
 import GuidesIndexPage from '@/pages/GuidesIndexPage';
-import NotFoundPage from '@/pages/NotFoundPage';
+import CanonicalFallbackRoute from '@/pages/CanonicalFallbackRoute';
 import AboutPage from '@/pages/AboutPage';
 import ContactPage from '@/pages/ContactPage';
 import PrivacyPage from '@/pages/PrivacyPage';
@@ -136,7 +136,7 @@ export default function App() {
         ))}
 
         <Route path="/:slug/" element={<ConverterRoute />} />
-        <Route path="*" element={<NotFoundPage />} />
+        <Route path="*" element={<CanonicalFallbackRoute />} />
       </Routes>
     </Layout>
   );
