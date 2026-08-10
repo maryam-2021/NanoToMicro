@@ -62,6 +62,42 @@ export const ARTICLES: ArticleMeta[] = [
     date: '2026-07-19',
     readTime: '8 min read',
   },
+  {
+    slug: 'sievert-gray-becquerel-difference',
+    title: 'Becquerel vs Gray vs Sievert: Radiation Units Explained',
+    description:
+      'Becquerel, gray and sievert explained without mixing quantities: activity (Bq), absorbed dose (Gy), radiation-protection dose quantities (Sv), plus when prefix conversion is valid.',
+    category: 'Radiation',
+    date: '2026-08-10',
+    readTime: '7 min read',
+  },
+  {
+    slug: 'visible-light-wavelength-nm-to-um',
+    title: 'Visible Light Wavelengths: Nanometers to Micrometers (nm to µm)',
+    description:
+      'Convert the visible-light range from nanometers to micrometers. See 380–700 nm as 0.38–0.70 µm, wavelength examples, formulas and why optics switches units.',
+    category: 'Optics',
+    date: '2026-08-10',
+    readTime: '6 min read',
+  },
+  {
+    slug: 'semiconductor-process-nodes-explained',
+    title: 'Semiconductor Process Nodes Explained: What “3 nm” Really Means',
+    description:
+      'Understand modern semiconductor node names, why a “3 nm” process is a technology generation rather than one universal physical dimension, and when nm-to-µm conversion is valid.',
+    category: 'Semiconductors',
+    date: '2026-08-10',
+    readTime: '7 min read',
+  },
+  {
+    slug: 'cell-size-in-micrometers',
+    title: 'Cell and Particle Size in Micrometers: A Nano-to-Micro Scale Guide',
+    description:
+      'A practical nm-to-µm size guide using DNA and particle references, with conversion examples and an explanation of why biological structures should be described with ranges.',
+    category: 'Biology & Scale',
+    date: '2026-08-10',
+    readTime: '6 min read',
+  },
 ];
 
 export function getArticle(slug: string): ArticleMeta | undefined {
