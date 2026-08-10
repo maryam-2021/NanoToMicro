@@ -53,14 +53,13 @@ const routes = [
 const uniqueRoutes = [...new Set(routes)];
 const indexHtml = join(dist, 'index.html');
 
+// Generate one static fallback per canonical route only.
+// Do not also create `${route}.html`: those duplicate files create a second URL shape
+// for identical content and are unnecessary on Cloudflare Pages.
 for (const route of uniqueRoutes) {
   const dir = join(dist, route);
   mkdirSync(dir, { recursive: true });
   copyFileSync(indexHtml, join(dir, 'index.html'));
-
-  const parentDir = dirname(join(dist, `${route}.html`));
-  mkdirSync(parentDir, { recursive: true });
-  copyFileSync(indexHtml, join(dist, `${route}.html`));
 }
 
 // Build the deployed sitemap from canonical URLs only.
@@ -88,5 +87,5 @@ const sitemapXml = [
 
 writeFileSync(join(dist, 'sitemap.xml'), sitemapXml, 'utf8');
 
-console.log(`Successfully generated static index.html fallbacks for ${uniqueRoutes.length} canonical routes.`);
+console.log(`Successfully generated one static index.html fallback for each of ${uniqueRoutes.length} canonical routes.`);
 console.log(`Successfully generated a canonical-only sitemap with ${uniqueSitemapPaths.length} URLs.`);
