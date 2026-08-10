@@ -19,7 +19,5 @@
 /nanosieverts-to-microsieverts /radiation/nsv-to-usv/ 301
 /nanosieverts-to-microsieverts/ /radiation/nsv-to-usv/ 301
 
-# Catch any other previously generated .html URL before the SPA fallback.
+# Catch any previously generated .html URL and consolidate it to the extensionless path.
 /*.html /:splat 301
-
-/* /index.html 200
