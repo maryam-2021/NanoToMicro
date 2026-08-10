@@ -1,0 +1,223 @@
+export interface LocalizedHub {
+  code: string;
+  language: string;
+  dir?: 'rtl';
+  seoTitle: string;
+  seoDescription: string;
+  h1: string;
+  intro: string;
+  inputLabel: string;
+  resultLabel: string;
+  formulaHeading: string;
+  formulaText: string;
+  howHeading: string;
+  howText: string;
+  examplesHeading: string;
+  toolsHeading: string;
+  englishNote: string;
+}
+
+export const LOCALIZED_HUBS: LocalizedHub[] = [
+  {
+    code: 'es', language: 'Español',
+    seoTitle: 'Convertidor Nano a Micro — Fórmula y Calculadora | NanoToMicro',
+    seoDescription: 'Convierte nano a micro al instante. Divide el valor nano entre 1.000. Calculadora, fórmula, ejemplos y enlaces para nm a µm, ns a µs y más.',
+    h1: 'Convertidor de nano a micro',
+    intro: 'Nano representa 10⁻⁹ y micro representa 10⁻⁶. Por eso una unidad micro contiene exactamente 1.000 unidades nano equivalentes.',
+    inputLabel: 'Valor nano', resultLabel: 'Resultado micro', formulaHeading: 'Fórmula exacta',
+    formulaText: 'Micro = Nano ÷ 1.000', howHeading: 'Cómo convertir nano a micro',
+    howText: 'Divide el valor nano entre 1.000 o mueve el punto decimal tres posiciones a la izquierda. La regla es válida cuando ambas unidades miden la misma magnitud física.',
+    examplesHeading: 'Ejemplos rápidos', toolsHeading: 'Calculadoras específicas', englishNote: 'Las calculadoras especializadas se abren actualmente en inglés.',
+  },
+  {
+    code: 'fr', language: 'Français',
+    seoTitle: 'Convertisseur Nano en Micro — Formule et Calculatrice | NanoToMicro',
+    seoDescription: 'Convertissez nano en micro instantanément. Divisez la valeur nano par 1 000. Calculatrice, formule, exemples et liens nm vers µm, ns vers µs et plus.',
+    h1: 'Convertisseur nano en micro',
+    intro: 'Nano représente 10⁻⁹ et micro représente 10⁻⁶. Une unité micro contient donc exactement 1 000 unités nano correspondantes.',
+    inputLabel: 'Valeur nano', resultLabel: 'Résultat micro', formulaHeading: 'Formule exacte',
+    formulaText: 'Micro = Nano ÷ 1 000', howHeading: 'Comment convertir nano en micro',
+    howText: 'Divisez la valeur nano par 1 000 ou déplacez la virgule de trois positions vers la gauche. Cette règle s’applique lorsque les deux unités mesurent la même grandeur physique.',
+    examplesHeading: 'Exemples rapides', toolsHeading: 'Convertisseurs spécifiques', englishNote: 'Les convertisseurs spécialisés s’ouvrent actuellement en anglais.',
+  },
+  {
+    code: 'de', language: 'Deutsch',
+    seoTitle: 'Nano-zu-Mikro-Umrechner — Formel und Rechner | NanoToMicro',
+    seoDescription: 'Nano sofort in Mikro umrechnen. Nano-Wert durch 1.000 teilen. Rechner, Formel, Beispiele und Links für nm zu µm, ns zu µs und mehr.',
+    h1: 'Nano-zu-Mikro-Umrechner',
+    intro: 'Nano steht für 10⁻⁹ und Mikro für 10⁻⁶. Daher enthält eine Mikro-Einheit exakt 1.000 entsprechende Nano-Einheiten.',
+    inputLabel: 'Nano-Wert', resultLabel: 'Mikro-Ergebnis', formulaHeading: 'Exakte Formel',
+    formulaText: 'Mikro = Nano ÷ 1.000', howHeading: 'Nano in Mikro umrechnen',
+    howText: 'Teile den Nano-Wert durch 1.000 oder verschiebe das Dezimalzeichen drei Stellen nach links. Die Regel gilt, wenn beide Einheiten dieselbe physikalische Größe messen.',
+    examplesHeading: 'Schnelle Beispiele', toolsHeading: 'Spezifische Rechner', englishNote: 'Die spezialisierten Rechner sind derzeit auf Englisch verfügbar.',
+  },
+  {
+    code: 'it', language: 'Italiano',
+    seoTitle: 'Convertitore Nano in Micro — Formula e Calcolatore | NanoToMicro',
+    seoDescription: 'Converti nano in micro istantaneamente. Dividi il valore nano per 1.000. Calcolatore, formula, esempi e collegamenti nm→µm, ns→µs e altro.',
+    h1: 'Convertitore da nano a micro',
+    intro: 'Nano rappresenta 10⁻⁹ e micro rappresenta 10⁻⁶. Quindi un’unità micro contiene esattamente 1.000 unità nano corrispondenti.',
+    inputLabel: 'Valore nano', resultLabel: 'Risultato micro', formulaHeading: 'Formula esatta',
+    formulaText: 'Micro = Nano ÷ 1.000', howHeading: 'Come convertire nano in micro',
+    howText: 'Dividi il valore nano per 1.000 oppure sposta la virgola di tre posizioni a sinistra. La regola vale quando entrambe le unità misurano la stessa grandezza fisica.',
+    examplesHeading: 'Esempi rapidi', toolsHeading: 'Convertitori specifici', englishNote: 'I convertitori specializzati sono attualmente disponibili in inglese.',
+  },
+  {
+    code: 'pt', language: 'Português',
+    seoTitle: 'Conversor Nano para Micro — Fórmula e Calculadora | NanoToMicro',
+    seoDescription: 'Converta nano para micro instantaneamente. Divida o valor nano por 1.000. Calculadora, fórmula, exemplos e links de nm para µm, ns para µs e mais.',
+    h1: 'Conversor de nano para micro',
+    intro: 'Nano representa 10⁻⁹ e micro representa 10⁻⁶. Portanto, uma unidade micro contém exatamente 1.000 unidades nano correspondentes.',
+    inputLabel: 'Valor nano', resultLabel: 'Resultado micro', formulaHeading: 'Fórmula exata',
+    formulaText: 'Micro = Nano ÷ 1.000', howHeading: 'Como converter nano para micro',
+    howText: 'Divida o valor nano por 1.000 ou mova a vírgula três casas para a esquerda. A regra é válida quando as duas unidades medem a mesma grandeza física.',
+    examplesHeading: 'Exemplos rápidos', toolsHeading: 'Conversores específicos', englishNote: 'Os conversores especializados estão atualmente disponíveis em inglês.',
+  },
+  {
+    code: 'nl', language: 'Nederlands',
+    seoTitle: 'Nano naar Micro Omrekenen — Formule en Calculator | NanoToMicro',
+    seoDescription: 'Reken nano direct om naar micro. Deel de nanowaarde door 1.000. Calculator, formule, voorbeelden en links voor nm naar µm, ns naar µs en meer.',
+    h1: 'Nano naar micro omrekenen',
+    intro: 'Nano staat voor 10⁻⁹ en micro voor 10⁻⁶. Eén micro-eenheid bevat daarom exact 1.000 overeenkomstige nano-eenheden.',
+    inputLabel: 'Nanowaarde', resultLabel: 'Microresultaat', formulaHeading: 'Exacte formule',
+    formulaText: 'Micro = Nano ÷ 1.000', howHeading: 'Nano naar micro converteren',
+    howText: 'Deel de nanowaarde door 1.000 of verplaats de komma drie plaatsen naar links. Deze regel geldt wanneer beide eenheden dezelfde fysieke grootheid meten.',
+    examplesHeading: 'Snelle voorbeelden', toolsHeading: 'Specifieke converters', englishNote: 'De gespecialiseerde converters zijn momenteel in het Engels.',
+  },
+  {
+    code: 'pl', language: 'Polski',
+    seoTitle: 'Przelicznik Nano na Mikro — Wzór i Kalkulator | NanoToMicro',
+    seoDescription: 'Przelicz nano na mikro natychmiast. Podziel wartość nano przez 1000. Kalkulator, wzór, przykłady oraz linki nm→µm, ns→µs i więcej.',
+    h1: 'Przelicznik nano na mikro',
+    intro: 'Nano oznacza 10⁻⁹, a mikro 10⁻⁶. Jedna jednostka mikro zawiera więc dokładnie 1000 odpowiadających jednostek nano.',
+    inputLabel: 'Wartość nano', resultLabel: 'Wynik mikro', formulaHeading: 'Dokładny wzór',
+    formulaText: 'Mikro = Nano ÷ 1000', howHeading: 'Jak przeliczyć nano na mikro',
+    howText: 'Podziel wartość nano przez 1000 lub przesuń przecinek o trzy miejsca w lewo. Zasada działa, gdy obie jednostki opisują tę samą wielkość fizyczną.',
+    examplesHeading: 'Szybkie przykłady', toolsHeading: 'Konkretne przeliczniki', englishNote: 'Specjalistyczne kalkulatory są obecnie dostępne w języku angielskim.',
+  },
+  {
+    code: 'ru', language: 'Русский',
+    seoTitle: 'Конвертер Нано в Микро — Формула и Калькулятор | NanoToMicro',
+    seoDescription: 'Мгновенно переводите нано в микро. Разделите значение нано на 1000. Калькулятор, формула, примеры и ссылки nm→µm, ns→µs и другие.',
+    h1: 'Конвертер нано в микро',
+    intro: 'Нано означает 10⁻⁹, а микро — 10⁻⁶. Поэтому одна микро-единица содержит ровно 1000 соответствующих нано-единиц.',
+    inputLabel: 'Значение нано', resultLabel: 'Результат микро', formulaHeading: 'Точная формула',
+    formulaText: 'Микро = Нано ÷ 1000', howHeading: 'Как перевести нано в микро',
+    howText: 'Разделите значение нано на 1000 или перенесите десятичную точку на три позиции влево. Правило применимо, когда обе единицы измеряют одну физическую величину.',
+    examplesHeading: 'Быстрые примеры', toolsHeading: 'Специальные конвертеры', englishNote: 'Специализированные конвертеры пока доступны на английском языке.',
+  },
+  {
+    code: 'tr', language: 'Türkçe',
+    seoTitle: 'Nano Mikro Dönüştürücü — Formül ve Hesaplayıcı | NanoToMicro',
+    seoDescription: 'Nano değerini anında mikroya çevirin. Nano değerini 1.000’e bölün. Hesaplayıcı, formül, örnekler ve nm→µm, ns→µs bağlantıları.',
+    h1: 'Nano mikro dönüştürücü',
+    intro: 'Nano 10⁻⁹, mikro ise 10⁻⁶ anlamına gelir. Bu nedenle bir mikro birim tam olarak 1.000 karşılık gelen nano birim içerir.',
+    inputLabel: 'Nano değeri', resultLabel: 'Mikro sonucu', formulaHeading: 'Kesin formül',
+    formulaText: 'Mikro = Nano ÷ 1.000', howHeading: 'Nano mikroya nasıl çevrilir?',
+    howText: 'Nano değerini 1.000’e bölün veya ondalık işaretini üç basamak sola kaydırın. Kural, iki birim aynı fiziksel büyüklüğü ölçtüğünde geçerlidir.',
+    examplesHeading: 'Hızlı örnekler', toolsHeading: 'Özel dönüştürücüler', englishNote: 'Özel dönüştürücü sayfaları şu anda İngilizcedir.',
+  },
+  {
+    code: 'ar', language: 'العربية', dir: 'rtl',
+    seoTitle: 'محول نانو إلى ميكرو — الصيغة والحاسبة | NanoToMicro',
+    seoDescription: 'حوّل من نانو إلى ميكرو فورًا بقسمة قيمة النانو على 1000. حاسبة وصيغة وأمثلة وروابط لتحويل nm إلى µm وns إلى µs والمزيد.',
+    h1: 'محول نانو إلى ميكرو',
+    intro: 'البادئة نانو تعني 10⁻⁹، والبادئة ميكرو تعني 10⁻⁶. لذلك تحتوي وحدة ميكرو واحدة على 1000 وحدة نانو من النوع نفسه.',
+    inputLabel: 'قيمة النانو', resultLabel: 'نتيجة الميكرو', formulaHeading: 'الصيغة الدقيقة',
+    formulaText: 'ميكرو = نانو ÷ 1000', howHeading: 'كيفية التحويل من نانو إلى ميكرو',
+    howText: 'اقسم قيمة النانو على 1000 أو حرّك الفاصلة العشرية ثلاث خانات إلى اليسار. تنطبق القاعدة عندما تقيس الوحدتان الكمية الفيزيائية نفسها.',
+    examplesHeading: 'أمثلة سريعة', toolsHeading: 'محولات متخصصة', englishNote: 'صفحات المحولات المتخصصة متاحة حاليًا باللغة الإنجليزية.',
+  },
+  {
+    code: 'ur', language: 'اردو', dir: 'rtl',
+    seoTitle: 'نینو سے مائیکرو کنورٹر — فارمولا اور کیلکولیٹر | NanoToMicro',
+    seoDescription: 'نینو کو فوری طور پر مائیکرو میں تبدیل کریں۔ نینو ویلیو کو 1000 سے تقسیم کریں۔ کیلکولیٹر، فارمولا، مثالیں اور nm سے µm، ns سے µs کے لنکس۔',
+    h1: 'نینو سے مائیکرو کنورٹر',
+    intro: 'نینو 10⁻⁹ اور مائیکرو 10⁻⁶ کو ظاہر کرتا ہے۔ اس لیے ایک مائیکرو یونٹ میں اسی نوعیت کے بالکل 1000 نینو یونٹس ہوتے ہیں۔',
+    inputLabel: 'نینو ویلیو', resultLabel: 'مائیکرو نتیجہ', formulaHeading: 'درست فارمولا',
+    formulaText: 'مائیکرو = نینو ÷ 1000', howHeading: 'نینو کو مائیکرو میں کیسے تبدیل کریں',
+    howText: 'نینو ویلیو کو 1000 سے تقسیم کریں یا اعشاریہ کو تین جگہ بائیں منتقل کریں۔ یہ اصول تب لاگو ہوتا ہے جب دونوں یونٹس ایک ہی طبعی مقدار کو ناپتے ہوں۔',
+    examplesHeading: 'فوری مثالیں', toolsHeading: 'خصوصی کنورٹرز', englishNote: 'خصوصی کنورٹر صفحات فی الحال انگریزی میں دستیاب ہیں۔',
+  },
+  {
+    code: 'hi', language: 'हिन्दी',
+    seoTitle: 'नैनो से माइक्रो कन्वर्टर — फ़ॉर्मूला और कैलकुलेटर | NanoToMicro',
+    seoDescription: 'नैनो को तुरंत माइक्रो में बदलें। नैनो मान को 1000 से भाग दें। कैलकुलेटर, फ़ॉर्मूला, उदाहरण और nm→µm, ns→µs लिंक।',
+    h1: 'नैनो से माइक्रो कन्वर्टर',
+    intro: 'नैनो 10⁻⁹ और माइक्रो 10⁻⁶ को दर्शाता है। इसलिए एक माइक्रो इकाई में ठीक 1000 समान नैनो इकाइयाँ होती हैं।',
+    inputLabel: 'नैनो मान', resultLabel: 'माइक्रो परिणाम', formulaHeading: 'सटीक फ़ॉर्मूला',
+    formulaText: 'माइक्रो = नैनो ÷ 1000', howHeading: 'नैनो को माइक्रो में कैसे बदलें',
+    howText: 'नैनो मान को 1000 से भाग दें या दशमलव को तीन स्थान बाईं ओर खिसकाएँ। यह नियम तभी लागू होता है जब दोनों इकाइयाँ एक ही भौतिक मात्रा को मापती हों।',
+    examplesHeading: 'त्वरित उदाहरण', toolsHeading: 'विशिष्ट कन्वर्टर', englishNote: 'विशेष कन्वर्टर पृष्ठ फिलहाल अंग्रेज़ी में उपलब्ध हैं।',
+  },
+  {
+    code: 'bn', language: 'বাংলা',
+    seoTitle: 'ন্যানো থেকে মাইক্রো কনভার্টার — সূত্র ও ক্যালকুলেটর | NanoToMicro',
+    seoDescription: 'ন্যানোকে দ্রুত মাইক্রোতে রূপান্তর করুন। ন্যানো মানকে 1000 দিয়ে ভাগ করুন। ক্যালকুলেটর, সূত্র, উদাহরণ ও nm→µm, ns→µs লিংক।',
+    h1: 'ন্যানো থেকে মাইক্রো কনভার্টার',
+    intro: 'ন্যানো 10⁻⁹ এবং মাইক্রো 10⁻⁶ নির্দেশ করে। তাই একটি মাইক্রো এককে ঠিক 1000টি সমজাতীয় ন্যানো একক থাকে।',
+    inputLabel: 'ন্যানো মান', resultLabel: 'মাইক্রো ফলাফল', formulaHeading: 'সঠিক সূত্র',
+    formulaText: 'মাইক্রো = ন্যানো ÷ 1000', howHeading: 'ন্যানো থেকে মাইক্রো কীভাবে রূপান্তর করবেন',
+    howText: 'ন্যানো মানকে 1000 দিয়ে ভাগ করুন অথবা দশমিক চিহ্ন তিন ঘর বামে সরান। উভয় একক একই ভৌত রাশি মাপলে এই নিয়ম প্রযোজ্য।',
+    examplesHeading: 'দ্রুত উদাহরণ', toolsHeading: 'নির্দিষ্ট কনভার্টার', englishNote: 'বিশেষায়িত কনভার্টার পৃষ্ঠাগুলো বর্তমানে ইংরেজিতে রয়েছে।',
+  },
+  {
+    code: 'id', language: 'Bahasa Indonesia',
+    seoTitle: 'Konverter Nano ke Mikro — Rumus dan Kalkulator | NanoToMicro',
+    seoDescription: 'Ubah nano ke mikro secara instan. Bagi nilai nano dengan 1.000. Kalkulator, rumus, contoh, serta tautan nm→µm, ns→µs dan lainnya.',
+    h1: 'Konverter nano ke mikro',
+    intro: 'Nano berarti 10⁻⁹ dan mikro berarti 10⁻⁶. Jadi satu unit mikro berisi tepat 1.000 unit nano yang setara.',
+    inputLabel: 'Nilai nano', resultLabel: 'Hasil mikro', formulaHeading: 'Rumus tepat',
+    formulaText: 'Mikro = Nano ÷ 1.000', howHeading: 'Cara mengubah nano ke mikro',
+    howText: 'Bagi nilai nano dengan 1.000 atau geser tanda desimal tiga tempat ke kiri. Aturan ini berlaku jika kedua unit mengukur besaran fisik yang sama.',
+    examplesHeading: 'Contoh cepat', toolsHeading: 'Konverter khusus', englishNote: 'Halaman konverter khusus saat ini tersedia dalam bahasa Inggris.',
+  },
+  {
+    code: 'vi', language: 'Tiếng Việt',
+    seoTitle: 'Bộ chuyển đổi Nano sang Micro — Công thức và Máy tính | NanoToMicro',
+    seoDescription: 'Đổi nano sang micro ngay lập tức bằng cách chia giá trị nano cho 1.000. Máy tính, công thức, ví dụ và liên kết nm→µm, ns→µs.',
+    h1: 'Bộ chuyển đổi nano sang micro',
+    intro: 'Nano biểu thị 10⁻⁹ và micro biểu thị 10⁻⁶. Vì vậy một đơn vị micro chứa chính xác 1.000 đơn vị nano tương ứng.',
+    inputLabel: 'Giá trị nano', resultLabel: 'Kết quả micro', formulaHeading: 'Công thức chính xác',
+    formulaText: 'Micro = Nano ÷ 1.000', howHeading: 'Cách đổi nano sang micro',
+    howText: 'Chia giá trị nano cho 1.000 hoặc dịch dấu thập phân ba vị trí sang trái. Quy tắc áp dụng khi hai đơn vị đo cùng một đại lượng vật lý.',
+    examplesHeading: 'Ví dụ nhanh', toolsHeading: 'Bộ chuyển đổi chuyên biệt', englishNote: 'Các trang chuyển đổi chuyên biệt hiện có bằng tiếng Anh.',
+  },
+  {
+    code: 'ja', language: '日本語',
+    seoTitle: 'ナノからマイクロ変換 — 公式と計算機 | NanoToMicro',
+    seoDescription: 'ナノをマイクロへ即時変換。ナノ値を1,000で割ります。計算機、公式、例、nm→µm、ns→µsなどのリンクを掲載。',
+    h1: 'ナノからマイクロ変換',
+    intro: 'ナノは10⁻⁹、マイクロは10⁻⁶を表します。そのため、1マイクロ単位は同じ物理量の1,000ナノ単位に相当します。',
+    inputLabel: 'ナノ値', resultLabel: 'マイクロ結果', formulaHeading: '正確な公式',
+    formulaText: 'マイクロ = ナノ ÷ 1,000', howHeading: 'ナノをマイクロに変換する方法',
+    howText: 'ナノ値を1,000で割るか、小数点を3桁左へ移動します。両方の単位が同じ物理量を表す場合にこの規則を使えます。',
+    examplesHeading: '簡単な例', toolsHeading: '専用コンバーター', englishNote: '専用コンバーターページは現在英語で提供されています。',
+  },
+  {
+    code: 'ko', language: '한국어',
+    seoTitle: '나노에서 마이크로 변환기 — 공식 및 계산기 | NanoToMicro',
+    seoDescription: '나노를 마이크로로 즉시 변환하세요. 나노 값을 1,000으로 나눕니다. 계산기, 공식, 예시와 nm→µm, ns→µs 링크를 제공합니다.',
+    h1: '나노에서 마이크로 변환기',
+    intro: '나노는 10⁻⁹, 마이크로는 10⁻⁶을 뜻합니다. 따라서 1 마이크로 단위는 같은 물리량의 정확히 1,000 나노 단위와 같습니다.',
+    inputLabel: '나노 값', resultLabel: '마이크로 결과', formulaHeading: '정확한 공식',
+    formulaText: '마이크로 = 나노 ÷ 1,000', howHeading: '나노를 마이크로로 변환하는 방법',
+    howText: '나노 값을 1,000으로 나누거나 소수점을 세 자리 왼쪽으로 이동하세요. 두 단위가 같은 물리량을 측정할 때 이 규칙을 적용할 수 있습니다.',
+    examplesHeading: '빠른 예시', toolsHeading: '전용 변환기', englishNote: '전용 변환기 페이지는 현재 영어로 제공됩니다.',
+  },
+  {
+    code: 'zh', language: '中文',
+    seoTitle: '纳米级到微米级转换器 — 公式与计算器 | NanoToMicro',
+    seoDescription: '立即将 nano 前缀数值转换为 micro 前缀数值。将 nano 数值除以 1000。提供计算器、公式、示例以及 nm→µm、ns→µs 等链接。',
+    h1: 'Nano 到 Micro 转换器',
+    intro: 'nano 表示 10⁻⁹，micro 表示 10⁻⁶。因此，一个 micro 单位正好等于 1,000 个对应的 nano 单位。',
+    inputLabel: 'Nano 数值', resultLabel: 'Micro 结果', formulaHeading: '精确公式',
+    formulaText: 'Micro = Nano ÷ 1,000', howHeading: '如何将 Nano 转换为 Micro',
+    howText: '将 nano 数值除以 1,000，或把小数点向左移动三位。只有在两个单位表示同一种物理量时，才能使用这一规则。',
+    examplesHeading: '快速示例', toolsHeading: '专用转换器', englishNote: '专用转换器页面目前以英文提供。',
+  },
+];
+
+export function getLocalizedHub(code: string): LocalizedHub | undefined {
+  return LOCALIZED_HUBS.find((locale) => locale.code === code);
+}
