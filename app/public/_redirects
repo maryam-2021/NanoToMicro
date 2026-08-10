@@ -19,5 +19,5 @@
 /nanosieverts-to-microsieverts /radiation/nsv-to-usv/ 301
 /nanosieverts-to-microsieverts/ /radiation/nsv-to-usv/ 301
 
-# Catch any previously generated .html URL and consolidate it to the extensionless path.
-/*.html /:splat 301
+# Consolidate any previously generated .html URL directly to the site's trailing-slash canonical form.
+/*.html /:splat/ 301
