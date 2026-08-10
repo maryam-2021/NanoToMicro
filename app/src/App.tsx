@@ -6,6 +6,7 @@ import ConverterPage from '@/pages/ConverterPage';
 import PrefixConverterPage from '@/pages/PrefixConverterPage';
 import ChartsPage from '@/pages/ChartsPage';
 import GuidesIndexPage from '@/pages/GuidesIndexPage';
+import NotFoundPage from '@/pages/NotFoundPage';
 import NanoVsMicro from '@/pages/articles/NanoVsMicro';
 import SiPrefixesExplained from '@/pages/articles/SiPrefixesExplained';
 import NmToUmGuide from '@/pages/articles/NmToUmGuide';
@@ -60,6 +61,7 @@ export default function App() {
         <Route path="/guides/mcg-vs-ug-vs-mg" element={<McgVsUgVsMg />} />
         <Route path="/guides/ns-vs-us-ms-latency-chart" element={<LatencyChart />} />
         <Route path="/:slug" element={<ConverterPage />} />
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </Layout>
   );
