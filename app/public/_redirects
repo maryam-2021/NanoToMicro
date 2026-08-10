@@ -6,6 +6,8 @@
 /nanometers-to-micrometers.html /length/nm-to-um/ 301
 /nanoseconds-to-microseconds.html /time/ns-to-us/ 301
 /nanosieverts-to-microsieverts.html /radiation/nsv-to-usv/ 301
+/nanowatts-to-microwatts.html /power/nw-to-uw/ 301
+/nanomoles-to-micromoles.html /amount/nmol-to-umol/ 301
 
 /nano-to-micro-conversion /nano-to-micro-conversion/ 301
 /length/nm-to-um /length/nm-to-um/ 301
@@ -18,6 +20,10 @@
 /nanoseconds-to-microseconds/ /time/ns-to-us/ 301
 /nanosieverts-to-microsieverts /radiation/nsv-to-usv/ 301
 /nanosieverts-to-microsieverts/ /radiation/nsv-to-usv/ 301
+/nanowatts-to-microwatts /power/nw-to-uw/ 301
+/nanowatts-to-microwatts/ /power/nw-to-uw/ 301
+/nanomoles-to-micromoles /amount/nmol-to-umol/ 301
+/nanomoles-to-micromoles/ /amount/nmol-to-umol/ 301
 
 # Consolidate any previously generated .html URL directly to the site's trailing-slash canonical form.
 /*.html /:splat/ 301
