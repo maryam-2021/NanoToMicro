@@ -5,6 +5,7 @@ import { ConverterTool } from '@/components/ConverterTool';
 import { FaqSection } from '@/components/Faq';
 import { useSEO } from '@/components/SEO';
 import { formatResult, groupThousands } from '@/lib/num';
+import { canonicalConverterUrl, converterPath } from '@/lib/routes';
 
 export default function ConverterPage() {
   const { slug } = useParams<{ slug: string }>();
@@ -22,7 +23,7 @@ export default function ConverterPage() {
   useSEO({
     title: conv ? conv.title : 'Converter Not Found | NanoToMicro',
     description: conv ? conv.description : 'The requested converter could not be found.',
-    canonical: conv ? `https://www.nanotomicro.com/${conv.slug}` : undefined,
+    canonical: conv ? canonicalConverterUrl(conv.slug) : undefined,
     jsonLd: conv
       ? [
           {
@@ -30,7 +31,7 @@ export default function ConverterPage() {
             '@type': 'BreadcrumbList',
             itemListElement: [
               { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.nanotomicro.com/' },
-              { '@type': 'ListItem', position: 2, name: conv.category, item: `https://www.nanotomicro.com/${conv.slug}` },
+              { '@type': 'ListItem', position: 2, name: conv.category, item: canonicalConverterUrl(conv.slug) },
               { '@type': 'ListItem', position: 3, name: conv.h1 },
             ],
           },
@@ -108,7 +109,7 @@ export default function ConverterPage() {
           toName={conv.toName}
           toSymbol={conv.toSymbol}
           factor={conv.factor}
-          reversePath={`/${conv.reverseSlug}`}
+          reversePath={converterPath(conv.reverseSlug)}
           reverseLabel={`${reverse.fromSymbol} to ${reverse.toSymbol} converter`}
           defaultValue={String(conv.exampleInput)}
         />
@@ -251,7 +252,7 @@ export default function ConverterPage() {
             {related.map((c) => (
               <Link
                 key={c.slug}
-                to={`/${c.slug}`}
+                to={converterPath(c.slug)}
                 className="rounded-full border border-primary/40 bg-primary/10 px-4 py-1.5 text-sm font-medium text-primary hover:bg-primary/20"
               >
                 {c.fromSymbol} → {c.toSymbol}
@@ -260,7 +261,7 @@ export default function ConverterPage() {
             {others.map((c) => (
               <Link
                 key={c.slug}
-                to={`/${c.slug}`}
+                to={converterPath(c.slug)}
                 className="rounded-full border border-border px-4 py-1.5 text-sm text-muted-foreground hover:border-primary/50 hover:text-primary"
               >
                 {c.fromSymbol} → {c.toSymbol}
