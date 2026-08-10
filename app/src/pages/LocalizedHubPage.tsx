@@ -35,13 +35,11 @@ export default function LocalizedHubPage({ code }: Props) {
   });
 
   useEffect(() => {
-    const previousLang = document.documentElement.lang;
-    const previousDir = document.documentElement.dir;
     document.documentElement.lang = locale.code === 'zh' ? 'zh-Hans' : locale.code;
     document.documentElement.dir = locale.dir ?? 'ltr';
     return () => {
-      document.documentElement.lang = previousLang || 'en';
-      document.documentElement.dir = previousDir;
+      document.documentElement.lang = 'en';
+      document.documentElement.dir = 'ltr';
     };
   }, [locale]);
 
@@ -71,14 +69,8 @@ export default function LocalizedHubPage({ code }: Props) {
         </div>
 
         <div className="mt-8 grid gap-6 md:grid-cols-2">
-          <section className="rounded-2xl border border-border bg-card p-6">
-            <h2 className="text-xl font-bold">{locale.formulaHeading}</h2>
-            <div className="numeric mt-4 rounded-xl bg-primary/10 p-4 text-center text-lg font-black text-primary">{locale.formulaText}</div>
-          </section>
-          <section className="rounded-2xl border border-border bg-card p-6">
-            <h2 className="text-xl font-bold">{locale.howHeading}</h2>
-            <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{locale.howText}</p>
-          </section>
+          <section className="rounded-2xl border border-border bg-card p-6"><h2 className="text-xl font-bold">{locale.formulaHeading}</h2><div className="numeric mt-4 rounded-xl bg-primary/10 p-4 text-center text-lg font-black text-primary">{locale.formulaText}</div></section>
+          <section className="rounded-2xl border border-border bg-card p-6"><h2 className="text-xl font-bold">{locale.howHeading}</h2><p className="mt-3 text-sm leading-relaxed text-muted-foreground">{locale.howText}</p></section>
         </div>
 
         <section className="mt-8 rounded-2xl border border-border bg-card p-6">
@@ -95,7 +87,7 @@ export default function LocalizedHubPage({ code }: Props) {
             {[
               ['/length/nm-to-um/', 'nm → µm'],
               ['/time/ns-to-us/', 'ns → µs'],
-              ['/nanograms-to-micrograms', 'ng → µg'],
+              ['/nanograms-to-micrograms/', 'ng → µg'],
               ['/radiation/nsv-to-usv/', 'nSv → µSv'],
             ].map(([href, label]) => <a key={href} href={href} className="flex items-center justify-between rounded-xl border border-border bg-card px-4 py-3 font-bold hover:border-primary/40 hover:text-primary"><span>{label}</span><ArrowRight className="h-4 w-4" /></a>)}
           </div>
