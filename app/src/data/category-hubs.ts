@@ -98,5 +98,5 @@ export function getCategoryHub(slug: string): CategoryHubDef | undefined {
 
 export function categoryHubPath(categoryName: string): string | undefined {
   const hub = CATEGORY_HUBS.find((item) => item.categoryNames.includes(categoryName));
-  return hub ? `/units/${hub.slug}` : undefined;
+  return hub ? `/units/${hub.slug}/` : undefined;
 }
