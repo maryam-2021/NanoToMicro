@@ -15,22 +15,22 @@ const RADIATION_LINKS = [
   {
     title: 'Gray vs Sievert',
     description: 'Understand absorbed dose (Gy) versus radiation-protection dose quantities expressed in Sv.',
-    path: '/radiation/gray-vs-sievert',
+    path: '/radiation/gray-vs-sievert/',
   },
   {
     title: 'Microsievert vs Microsievert per Hour',
     description: 'Distinguish accumulated dose quantity from dose rate and avoid mixing µSv with µSv/h.',
-    path: '/radiation/usv-vs-usv-per-hour',
+    path: '/radiation/usv-vs-usv-per-hour/',
   },
   {
     title: 'Microsieverts to Millisieverts',
     description: 'Convert µSv to mSv using the exact divide-by-1,000 SI prefix relationship.',
-    path: '/radiation/usv-to-msv',
+    path: '/radiation/usv-to-msv/',
   },
   {
     title: 'Becquerel, Gray and Sievert Explained',
     description: 'A practical guide to activity, absorbed dose and radiation-protection dose quantities.',
-    path: '/guides/sievert-gray-becquerel-difference',
+    path: '/guides/sievert-gray-becquerel-difference/',
   },
 ];
 
@@ -41,7 +41,7 @@ export default function CategoryHubPage() {
     ? CONVERTERS.filter((converter) => hub.categoryNames.includes(converter.category))
     : [];
 
-  const canonical = hub ? `https://www.nanotomicro.com/units/${hub.slug}` : undefined;
+  const canonical = hub ? `https://www.nanotomicro.com/units/${hub.slug}/` : undefined;
   const itemUrls = hub?.slug === 'radiation'
     ? RADIATION_LINKS.map((item) => `https://www.nanotomicro.com${item.path}`)
     : converters.map((converter) => canonicalConverterUrl(converter.slug));
@@ -112,9 +112,7 @@ export default function CategoryHubPage() {
           <h2 className="text-xl font-bold">What this hub covers</h2>
           <div className="mt-4 flex flex-wrap gap-2">
             {hub.examples.map((example) => (
-              <span key={example} className="rounded-full border border-primary/25 bg-primary/10 px-3 py-1.5 text-sm font-semibold text-primary">
-                {example}
-              </span>
+              <span key={example} className="rounded-full border border-primary/25 bg-primary/10 px-3 py-1.5 text-sm font-semibold text-primary">{example}</span>
             ))}
           </div>
           <p className="mt-5 text-sm leading-relaxed text-muted-foreground">{hub.description}</p>
@@ -125,10 +123,7 @@ export default function CategoryHubPage() {
             ? RADIATION_LINKS.map((item) => (
                 <Link key={item.path} to={item.path} className="group rounded-2xl border border-border bg-card p-6 transition-all hover:border-primary/45">
                   <div className="flex items-start justify-between gap-4">
-                    <div>
-                      <h2 className="font-bold group-hover:text-primary">{item.title}</h2>
-                      <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{item.description}</p>
-                    </div>
+                    <div><h2 className="font-bold group-hover:text-primary">{item.title}</h2><p className="mt-2 text-sm leading-relaxed text-muted-foreground">{item.description}</p></div>
                     <ArrowRight className="mt-1 h-4 w-4 shrink-0 text-primary" />
                   </div>
                 </Link>
@@ -137,9 +132,7 @@ export default function CategoryHubPage() {
                 <Link key={converter.slug} to={converterPath(converter.slug)} className="group rounded-2xl border border-border bg-card p-6 transition-all hover:border-primary/45">
                   <div className="flex items-start justify-between gap-4">
                     <div>
-                      <div className="mb-2 flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-primary">
-                        <Calculator className="h-3.5 w-3.5" /> {converter.fromSymbol} → {converter.toSymbol}
-                      </div>
+                      <div className="mb-2 flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-primary"><Calculator className="h-3.5 w-3.5" /> {converter.fromSymbol} → {converter.toSymbol}</div>
                       <h2 className="font-bold group-hover:text-primary">{converter.h1}</h2>
                       <p className="mt-2 line-clamp-3 text-sm leading-relaxed text-muted-foreground">{converter.description}</p>
                     </div>
@@ -152,9 +145,7 @@ export default function CategoryHubPage() {
         <div className="mt-12 rounded-2xl border border-primary/30 bg-primary/5 p-6 text-center">
           <h2 className="text-lg font-bold">Need a different prefix pair?</h2>
           <p className="mt-2 text-sm text-muted-foreground">Use the universal SI Prefix Converter for any of the 24 official SI prefixes.</p>
-          <Link to="/si-prefix-converter" className="mt-4 inline-flex items-center gap-2 rounded-xl bg-primary px-5 py-2.5 text-sm font-bold text-primary-foreground">
-            Open SI Prefix Converter <ArrowRight className="h-4 w-4" />
-          </Link>
+          <Link to="/si-prefix-converter/" className="mt-4 inline-flex items-center gap-2 rounded-xl bg-primary px-5 py-2.5 text-sm font-bold text-primary-foreground">Open SI Prefix Converter <ArrowRight className="h-4 w-4" /></Link>
         </div>
       </section>
     </>
