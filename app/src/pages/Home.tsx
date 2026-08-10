@@ -6,6 +6,7 @@ import { ConverterTool } from '@/components/ConverterTool';
 import { FaqSection } from '@/components/Faq';
 import { useSEO } from '@/components/SEO';
 import { CATEGORIES, CONVERTERS, getConverter, SI_PREFIXES } from '@/data/converters';
+import { converterPath } from '@/lib/routes';
 
 const ICONS: Record<string, React.ComponentType<{ className?: string }>> = {
   ruler: Ruler,
@@ -143,7 +144,7 @@ export default function Home() {
                   {pairs.map((c) => (
                     <Link
                       key={c.slug}
-                      to={`/${c.slug}`}
+                      to={converterPath(c.slug)}
                       className="flex items-center justify-center rounded-lg border border-border px-2 py-2 text-xs font-medium transition-colors hover:border-primary/50 hover:text-primary sm:text-sm"
                     >
                       {c.fromSymbol} → {c.toSymbol}
