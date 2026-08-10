@@ -3,6 +3,7 @@ import { ArrowRight } from 'lucide-react';
 import { useSEO } from '@/components/SEO';
 import { CONVERTERS } from '@/data/converters';
 import { formatResult, groupThousands } from '@/lib/num';
+import { converterPath } from '@/lib/routes';
 
 const CHART_VALUES = [1, 2, 5, 10, 20, 50, 100, 500, 1000];
 
@@ -11,7 +12,7 @@ export default function ChartsPage() {
     title: 'Nano to Micro Conversion Charts — Quick Reference Tables | NanoToMicro',
     description:
       'Quick-reference nano to micro conversion charts: nm to µm, ng to µg, nM to µM, nF to µF, ns to µs, nL to µL, nA to µA and nC to µC. Exact values, printable tables.',
-    canonical: 'https://www.nanotomicro.com/conversion-charts',
+    canonical: 'https://www.nanotomicro.com/conversion-charts/',
   });
 
   const forwardConverters = CONVERTERS.filter((c) => c.factor < 1);
@@ -36,40 +37,25 @@ export default function ChartsPage() {
             <div className="mb-4 flex items-baseline justify-between gap-3">
               <h2 className="font-bold">
                 {conv.fromNamePlural} to {conv.toNamePlural}
-                <span className="ml-2 text-sm font-semibold text-primary">
-                  {conv.fromSymbol} → {conv.toSymbol}
-                </span>
+                <span className="ml-2 text-sm font-semibold text-primary">{conv.fromSymbol} → {conv.toSymbol}</span>
               </h2>
-              <Link
-                to={`/${conv.slug}`}
-                className="flex shrink-0 items-center gap-1 text-sm font-medium text-primary hover:underline"
-              >
+              <Link to={converterPath(conv.slug)} className="flex shrink-0 items-center gap-1 text-sm font-medium text-primary hover:underline">
                 Calculator <ArrowRight className="h-3.5 w-3.5" />
               </Link>
             </div>
             <div className="overflow-hidden rounded-xl border border-border">
               <table className="numeric w-full text-sm">
-                <thead>
-                  <tr className="bg-secondary/70 text-left">
-                    <th className="px-4 py-2.5 font-semibold">{conv.fromSymbol}</th>
-                    <th className="px-4 py-2.5 font-semibold">{conv.toSymbol}</th>
-                  </tr>
-                </thead>
+                <thead><tr className="bg-secondary/70 text-left"><th className="px-4 py-2.5 font-semibold">{conv.fromSymbol}</th><th className="px-4 py-2.5 font-semibold">{conv.toSymbol}</th></tr></thead>
                 <tbody>
                   {CHART_VALUES.map((v) => (
-                    <tr key={v} className="border-t border-border/60">
-                      <td className="px-4 py-2">{groupThousands(String(v))}</td>
-                      <td className="px-4 py-2 font-medium text-primary">{formatResult(v * conv.factor)}</td>
-                    </tr>
+                    <tr key={v} className="border-t border-border/60"><td className="px-4 py-2">{groupThousands(String(v))}</td><td className="px-4 py-2 font-medium text-primary">{formatResult(v * conv.factor)}</td></tr>
                   ))}
                 </tbody>
               </table>
             </div>
             <p className="mt-3 text-xs text-muted-foreground">
               Reverse:{' '}
-              <Link to={`/${conv.reverseSlug}`} className="text-primary hover:underline">
-                {conv.toSymbol} → {conv.fromSymbol} chart & calculator
-              </Link>
+              <Link to={converterPath(conv.reverseSlug)} className="text-primary hover:underline">{conv.toSymbol} → {conv.fromSymbol} chart & calculator</Link>
             </p>
           </div>
         ))}
