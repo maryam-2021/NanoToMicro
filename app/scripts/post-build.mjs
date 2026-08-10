@@ -53,6 +53,16 @@ const staticMetadata = new Map([
     description: 'Convert microsieverts to millisieverts instantly. 1,000 µSv = 1 mSv. Exact µSv-to-mSv calculator, formula, examples and radiation-unit cautions.',
     canonical: `${SITE}/radiation/usv-to-msv/`, lang: 'en',
   }],
+  ['power/nw-to-uw', {
+    title: 'Nanowatts to Microwatts Converter (nW to µW) | NanoToMicro',
+    description: 'Convert nanowatts to microwatts instantly. 1,000 nW = 1 µW. Exact nW-to-µW calculator, formula and examples for low-power electronics and sensors.',
+    canonical: `${SITE}/power/nw-to-uw/`, lang: 'en',
+  }],
+  ['amount/nmol-to-umol', {
+    title: 'Nanomoles to Micromoles Converter (nmol to µmol) | NanoToMicro',
+    description: 'Convert nanomoles to micromoles instantly. 1,000 nmol = 1 µmol. Exact nmol-to-µmol calculator, formula and examples for chemistry and laboratory work.',
+    canonical: `${SITE}/amount/nmol-to-umol/`, lang: 'en',
+  }],
   ['si-prefix-converter', {
     title: 'SI Prefix Converter — Nano, Micro, Milli, Pico & All 24 Prefixes | NanoToMicro',
     description: 'Convert between all 24 SI prefixes instantly: nano to micro, pico to nano, micro to milli and more. Exact powers-of-ten calculator with the full prefix table.',
@@ -166,7 +176,13 @@ for (const match of localeText.matchAll(localePattern)) {
 }
 
 const authorityRoutes = ['nano-to-micro-conversion', 'length/nm-to-um', 'time/ns-to-us', 'radiation/nsv-to-usv'];
-const specialtyRoutes = ['radiation/gray-vs-sievert', 'radiation/usv-vs-usv-per-hour', 'radiation/usv-to-msv'];
+const specialtyRoutes = [
+  'radiation/gray-vs-sievert',
+  'radiation/usv-vs-usv-per-hour',
+  'radiation/usv-to-msv',
+  'power/nw-to-uw',
+  'amount/nmol-to-umol',
+];
 const utilityRoutes = ['si-prefix-converter', 'conversion-charts', 'guides', 'about', 'contact', 'privacy', 'terms'];
 const routes = [...authorityRoutes, ...specialtyRoutes, ...utilityRoutes, ...categoryRoutes, ...converterRoutes, ...guideRoutes, ...localeRoutes];
 const uniqueRoutes = [...new Set(routes)];
