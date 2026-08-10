@@ -1,1 +1,13 @@
+/nano-to-micro-conversion /nano-to-micro-conversion/ 301
+/length/nm-to-um /length/nm-to-um/ 301
+/time/ns-to-us /time/ns-to-us/ 301
+/radiation/nsv-to-usv /radiation/nsv-to-usv/ 301
+
+/nanometers-to-micrometers /length/nm-to-um/ 301
+/nanometers-to-micrometers/ /length/nm-to-um/ 301
+/nanoseconds-to-microseconds /time/ns-to-us/ 301
+/nanoseconds-to-microseconds/ /time/ns-to-us/ 301
+/nanosieverts-to-microsieverts /radiation/nsv-to-usv/ 301
+/nanosieverts-to-microsieverts/ /radiation/nsv-to-usv/ 301
+
 /* /index.html 200
