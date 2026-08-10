@@ -4,6 +4,7 @@ interface SeoOptions {
   title: string;
   description: string;
   canonical?: string;
+  robots?: string;
   jsonLd?: Record<string, unknown>[];
 }
 
@@ -17,14 +18,22 @@ function upsertMeta(attr: 'name' | 'property', key: string, content: string) {
   el.setAttribute('content', content);
 }
 
-export function useSEO({ title, description, canonical, jsonLd }: SeoOptions) {
+export function useSEO({
+  title,
+  description,
+  canonical,
+  robots = 'index, follow, max-image-preview:large',
+  jsonLd,
+}: SeoOptions) {
   const jsonLdStr = jsonLd ? JSON.stringify(jsonLd) : '';
 
   useEffect(() => {
     document.title = title;
     upsertMeta('name', 'description', description);
+    upsertMeta('name', 'robots', robots);
     upsertMeta('property', 'og:title', title);
     upsertMeta('property', 'og:description', description);
+
     if (canonical) {
       upsertMeta('property', 'og:url', canonical);
       let link = document.head.querySelector<HTMLLinkElement>('link[rel="canonical"]');
@@ -34,6 +43,9 @@ export function useSEO({ title, description, canonical, jsonLd }: SeoOptions) {
         document.head.appendChild(link);
       }
       link.setAttribute('href', canonical);
+    } else {
+      document.head.querySelector('link[rel="canonical"]')?.remove();
+      document.head.querySelector('meta[property="og:url"]')?.remove();
     }
 
     document.head.querySelectorAll('script[data-seo-jsonld]').forEach((n) => n.remove());
@@ -46,5 +58,5 @@ export function useSEO({ title, description, canonical, jsonLd }: SeoOptions) {
         document.head.appendChild(script);
       }
     }
-  }, [title, description, canonical, jsonLdStr]);
+  }, [title, description, canonical, robots, jsonLdStr]);
 }
