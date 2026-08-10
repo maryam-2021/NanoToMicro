@@ -24,18 +24,14 @@ export function Layout({ children }: { children: React.ReactNode }) {
       <header className="sticky top-0 z-50 border-b border-border/70 bg-background/85 backdrop-blur-md">
         <div className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between px-4 sm:px-6">
           <Link to="/" className="flex items-center gap-2.5 font-extrabold tracking-tight">
-            <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary/15 text-primary">
-              <Atom className="h-5 w-5" />
-            </span>
+            <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary/15 text-primary"><Atom className="h-5 w-5" /></span>
             <span className="text-lg">Nano<span className="text-gradient-gold">To</span>Micro</span>
           </Link>
 
           <nav className="hidden items-center gap-1 md:flex">
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="ghost" className="gap-1.5 text-sm font-medium">
-                  Converters <ChevronDown className="h-4 w-4 opacity-60" />
-                </Button>
+                <Button variant="ghost" className="gap-1.5 text-sm font-medium">Converters <ChevronDown className="h-4 w-4 opacity-60" /></Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="start" className="max-h-[70vh] w-72 overflow-y-auto">
                 {CATEGORIES.map((cat) => {
@@ -60,44 +56,29 @@ export function Layout({ children }: { children: React.ReactNode }) {
                     </div>
                   );
                 })}
-                <DropdownMenuItem asChild>
-                  <Link to="/units/radiation/" className="cursor-pointer font-semibold text-primary">Radiation unit hub</Link>
-                </DropdownMenuItem>
+                <DropdownMenuItem asChild><Link to="/units/radiation/" className="cursor-pointer font-semibold text-primary">Radiation unit hub</Link></DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
 
-            <Button variant="ghost" asChild className="gap-1.5 text-sm font-medium">
-              <NavLink to="/nano-to-micro-conversion/"><Atom className="h-4 w-4 opacity-60" /> Conversion Hub</NavLink>
-            </Button>
-            <Button variant="ghost" asChild className="gap-1.5 text-sm font-medium">
-              <NavLink to="/si-prefix-converter/"><ArrowRightLeft className="h-4 w-4 opacity-60" /> SI Prefix</NavLink>
-            </Button>
-            <Button variant="ghost" asChild className="gap-1.5 text-sm font-medium">
-              <NavLink to="/guides/"><BookOpen className="h-4 w-4 opacity-60" /> Guides</NavLink>
-            </Button>
+            <Button variant="ghost" asChild className="gap-1.5 text-sm font-medium"><NavLink to="/nano-to-micro-conversion/"><Atom className="h-4 w-4 opacity-60" /> Conversion Hub</NavLink></Button>
+            <Button variant="ghost" asChild className="gap-1.5 text-sm font-medium"><NavLink to="/si-prefix-converter/"><ArrowRightLeft className="h-4 w-4 opacity-60" /> SI Prefix</NavLink></Button>
+            <Button variant="ghost" asChild className="gap-1.5 text-sm font-medium"><NavLink to="/conversion-charts/"><TableProperties className="h-4 w-4 opacity-60" /> Charts</NavLink></Button>
+            <Button variant="ghost" asChild className="gap-1.5 text-sm font-medium"><NavLink to="/guides/"><BookOpen className="h-4 w-4 opacity-60" /> Guides</NavLink></Button>
 
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="ghost" className="gap-1.5 text-sm font-medium">
-                  <Languages className="h-4 w-4 opacity-60" /> Languages <ChevronDown className="h-4 w-4 opacity-60" />
-                </Button>
+                <Button variant="ghost" className="gap-1.5 text-sm font-medium"><Languages className="h-4 w-4 opacity-60" /> Languages <ChevronDown className="h-4 w-4 opacity-60" /></Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end" className="max-h-[70vh] w-56 overflow-y-auto">
                 <DropdownMenuItem asChild><Link to="/nano-to-micro-conversion/">English</Link></DropdownMenuItem>
                 <DropdownMenuSeparator />
-                {LOCALIZED_HUBS.map((locale) => (
-                  <DropdownMenuItem key={locale.code} asChild>
-                    <Link to={`/${locale.code}/`} lang={locale.code}>{locale.language}</Link>
-                  </DropdownMenuItem>
-                ))}
+                {LOCALIZED_HUBS.map((locale) => <DropdownMenuItem key={locale.code} asChild><Link to={`/${locale.code}/`} lang={locale.code}>{locale.language}</Link></DropdownMenuItem>)}
               </DropdownMenuContent>
             </DropdownMenu>
           </nav>
 
           <Sheet open={open} onOpenChange={setOpen}>
-            <SheetTrigger asChild className="md:hidden">
-              <Button variant="ghost" size="icon" aria-label="Open menu"><Menu className="h-5 w-5" /></Button>
-            </SheetTrigger>
+            <SheetTrigger asChild className="md:hidden"><Button variant="ghost" size="icon" aria-label="Open menu"><Menu className="h-5 w-5" /></Button></SheetTrigger>
             <SheetContent side="right" className="w-80 overflow-y-auto">
               <SheetHeader><SheetTitle className="flex items-center gap-2"><Atom className="h-5 w-5 text-primary" /> NanoToMicro</SheetTitle></SheetHeader>
               <div className="mt-6 flex flex-col gap-1">
@@ -110,11 +91,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
                   const hubPath = categoryHubPath(cat.name);
                   return (
                     <div key={cat.name} className="mt-3">
-                      {hubPath ? (
-                        <Link to={hubPath} onClick={() => setOpen(false)} className="block px-3 pb-1 text-xs font-semibold uppercase tracking-wider text-muted-foreground hover:text-primary">{cat.name} hub</Link>
-                      ) : (
-                        <p className="px-3 pb-1 text-xs font-semibold uppercase tracking-wider text-muted-foreground">{cat.name}</p>
-                      )}
+                      {hubPath ? <Link to={hubPath} onClick={() => setOpen(false)} className="block px-3 pb-1 text-xs font-semibold uppercase tracking-wider text-muted-foreground hover:text-primary">{cat.name} hub</Link> : <p className="px-3 pb-1 text-xs font-semibold uppercase tracking-wider text-muted-foreground">{cat.name}</p>}
                       {cat.slugs.map((slug) => {
                         const c = getConverter(slug)!;
                         return <Link key={slug} to={converterPath(slug)} onClick={() => setOpen(false)} className="block rounded-md px-3 py-2 text-sm hover:bg-accent">{c.fromNamePlural} to {c.toNamePlural}</Link>;
@@ -124,12 +101,9 @@ export function Layout({ children }: { children: React.ReactNode }) {
                 })}
 
                 <Link to="/units/radiation/" onClick={() => setOpen(false)} className="mt-3 rounded-md px-3 py-2 text-sm font-semibold text-primary hover:bg-accent">Radiation unit hub</Link>
-
                 <div className="mt-4 border-t border-border pt-4">
                   <p className="px-3 pb-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground">Languages</p>
-                  <div className="grid grid-cols-2 gap-1">
-                    {LOCALIZED_HUBS.map((locale) => <Link key={locale.code} to={`/${locale.code}/`} lang={locale.code} onClick={() => setOpen(false)} className="rounded-md px-3 py-2 text-sm hover:bg-accent">{locale.language}</Link>)}
-                  </div>
+                  <div className="grid grid-cols-2 gap-1">{LOCALIZED_HUBS.map((locale) => <Link key={locale.code} to={`/${locale.code}/`} lang={locale.code} onClick={() => setOpen(false)} className="rounded-md px-3 py-2 text-sm hover:bg-accent">{locale.language}</Link>)}</div>
                 </div>
               </div>
             </SheetContent>
@@ -156,9 +130,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
             <div className="grid grid-cols-2 gap-8 sm:grid-cols-3">
               <div>
                 <p className="mb-3 text-xs font-semibold uppercase tracking-wider text-muted-foreground">Unit hubs</p>
-                <ul className="space-y-2">
-                  {CATEGORY_HUBS.map((hub) => <li key={hub.slug}><Link to={`/units/${hub.slug}/`} className="text-sm text-foreground/80 hover:text-primary">{hub.name}</Link></li>)}
-                </ul>
+                <ul className="space-y-2">{CATEGORY_HUBS.map((hub) => <li key={hub.slug}><Link to={`/units/${hub.slug}/`} className="text-sm text-foreground/80 hover:text-primary">{hub.name}</Link></li>)}</ul>
               </div>
               <div>
                 <p className="mb-3 text-xs font-semibold uppercase tracking-wider text-muted-foreground">Tools & learning</p>
