@@ -16,14 +16,12 @@ const staticMetadata = new Map([
   ['', {
     title: 'Nano to Micro Converter — Instant n to µ Conversions | NanoToMicro',
     description: 'Free nano to micro converters: n to µ, nm to µm, ng to µg, nM to µM, nF to µF, ns to µs and more. Exact formulas, conversion tables, worked examples and FAQs.',
-    canonical: `${SITE}/`,
-    lang: 'en',
+    canonical: `${SITE}/`, lang: 'en',
   }],
   ['nano-to-micro-conversion', {
     title: 'Nano to Micro Conversion: Formula, Guide & Calculators',
     description: 'Convert nano units to micro units using the universal ÷1,000 formula. Explore calculators for nanometers, nanoseconds, nanograms, nanosieverts and more.',
-    canonical: `${SITE}/nano-to-micro-conversion/`,
-    lang: 'en', alternates: true,
+    canonical: `${SITE}/nano-to-micro-conversion/`, lang: 'en', alternates: true,
   }],
   ['length/nm-to-um', {
     title: 'Nanometers to Micrometers Converter (nm to µm) & Scale Guide',
@@ -43,52 +41,52 @@ const staticMetadata = new Map([
   ['radiation/gray-vs-sievert', {
     title: 'Gray vs Sievert (Gy vs Sv): Radiation Units Explained | NanoToMicro',
     description: 'Understand the difference between gray (Gy) absorbed dose and sievert (Sv) radiation-protection dose quantities, why they are not generally interchangeable, and where becquerel fits.',
-    canonical: `${SITE}/radiation/gray-vs-sievert`, lang: 'en',
+    canonical: `${SITE}/radiation/gray-vs-sievert/`, lang: 'en',
   }],
   ['radiation/usv-vs-usv-per-hour', {
     title: 'µSv vs µSv/h: Microsievert vs Dose Rate Explained | NanoToMicro',
     description: 'Understand the difference between microsieverts (µSv), which express a dose quantity, and microsieverts per hour (µSv/h), which express a dose rate.',
-    canonical: `${SITE}/radiation/usv-vs-usv-per-hour`, lang: 'en',
+    canonical: `${SITE}/radiation/usv-vs-usv-per-hour/`, lang: 'en',
   }],
   ['radiation/usv-to-msv', {
     title: 'Microsieverts to Millisieverts Converter (µSv to mSv) | NanoToMicro',
     description: 'Convert microsieverts to millisieverts instantly. 1,000 µSv = 1 mSv. Exact µSv-to-mSv calculator, formula, examples and radiation-unit cautions.',
-    canonical: `${SITE}/radiation/usv-to-msv`, lang: 'en',
+    canonical: `${SITE}/radiation/usv-to-msv/`, lang: 'en',
   }],
   ['si-prefix-converter', {
     title: 'SI Prefix Converter — Nano, Micro, Milli, Pico & All 24 Prefixes | NanoToMicro',
     description: 'Convert between all 24 SI prefixes instantly: nano to micro, pico to nano, micro to milli and more. Exact powers-of-ten calculator with the full prefix table.',
-    canonical: `${SITE}/si-prefix-converter`, lang: 'en',
+    canonical: `${SITE}/si-prefix-converter/`, lang: 'en',
   }],
   ['conversion-charts', {
     title: 'Nano to Micro Conversion Charts — Quick Reference Tables | NanoToMicro',
     description: 'Quick-reference nano to micro conversion charts: nm to µm, ng to µg, nM to µM, nF to µF, ns to µs, nL to µL, nA to µA and nC to µC. Exact values, printable tables.',
-    canonical: `${SITE}/conversion-charts`, lang: 'en',
+    canonical: `${SITE}/conversion-charts/`, lang: 'en',
   }],
   ['guides', {
     title: 'Guides & Articles — Nano, Micro and SI Prefixes Explained | NanoToMicro',
     description: 'In-depth guides on nano vs micro, SI prefixes, nM to µM conversion, capacitor codes and more — written to make unit conversion finally click.',
-    canonical: `${SITE}/guides`, lang: 'en',
+    canonical: `${SITE}/guides/`, lang: 'en',
   }],
   ['about', {
     title: 'About NanoToMicro — Exact SI Unit Conversion Tools',
     description: 'Learn how NanoToMicro builds focused SI prefix converters, reference tables and educational guides for nano, micro, pico and milli measurements.',
-    canonical: `${SITE}/about`, lang: 'en',
+    canonical: `${SITE}/about/`, lang: 'en',
   }],
   ['contact', {
     title: 'Contact NanoToMicro — Corrections, Feedback & Questions',
     description: 'Contact NanoToMicro about calculator corrections, scientific sources, broken links, accessibility issues or general feedback.',
-    canonical: `${SITE}/contact`, lang: 'en',
+    canonical: `${SITE}/contact/`, lang: 'en',
   }],
   ['privacy', {
     title: 'Privacy Policy | NanoToMicro',
     description: 'Read the NanoToMicro privacy policy, including how browser-based calculators handle input, hosting logs, external links and contact information.',
-    canonical: `${SITE}/privacy`, lang: 'en',
+    canonical: `${SITE}/privacy/`, lang: 'en',
   }],
   ['terms', {
     title: 'Terms of Use | NanoToMicro',
     description: 'Terms of use for NanoToMicro calculators, educational guides, external references and informational content.',
-    canonical: `${SITE}/terms`, lang: 'en',
+    canonical: `${SITE}/terms/`, lang: 'en',
   }],
 ]);
 
@@ -119,7 +117,7 @@ for (const file of ['src/data/converters.ts', 'src/data/converters-expansion.ts'
     staticMetadata.set(record.slug, {
       title: record.title,
       description: record.description,
-      canonical: `${SITE}/${record.slug}`,
+      canonical: `${SITE}/${record.slug}/`,
       lang: 'en',
     });
   }
@@ -133,7 +131,7 @@ for (const record of extractSeoRecords(articleText)) {
   staticMetadata.set(route, {
     title: `${record.title} | NanoToMicro`,
     description: record.description,
-    canonical: `${SITE}/${route}`,
+    canonical: `${SITE}/${route}/`,
     lang: 'en',
   });
 }
@@ -146,7 +144,7 @@ for (const record of extractSeoRecords(categoryText)) {
   staticMetadata.set(route, {
     title: record.title,
     description: record.description,
-    canonical: `${SITE}/${route}`,
+    canonical: `${SITE}/${route}/`,
     lang: 'en',
   });
 }
@@ -156,9 +154,8 @@ const localeText = readFileSync(join(root, 'src/data/localized-hubs.ts'), 'utf8'
 const localePattern = /\{\s*code:\s*'((?:\\.|[^'])*)'[\s\S]*?seoTitle:\s*'((?:\\.|[^'])*)'[\s\S]*?seoDescription:\s*'((?:\\.|[^'])*)'/g;
 for (const match of localeText.matchAll(localePattern)) {
   const code = decodeJsString(match[1]);
-  const route = code;
-  localeRoutes.push(route);
-  staticMetadata.set(route, {
+  localeRoutes.push(code);
+  staticMetadata.set(code, {
     title: decodeJsString(match[2]),
     description: decodeJsString(match[3]),
     canonical: `${SITE}/${code}/`,
@@ -225,29 +222,16 @@ for (const route of uniqueRoutes) {
   writeFileSync(join(dir, 'index.html'), injectMetadata(baseHtml, metadata), 'utf8');
 }
 
-const sitemapPaths = [
-  '',
-  'nano-to-micro-conversion/',
-  'length/nm-to-um/',
-  'time/ns-to-us/',
-  'radiation/nsv-to-usv/',
-  ...specialtyRoutes,
-  ...utilityRoutes,
-  ...categoryRoutes,
-  ...converterRoutes,
-  ...guideRoutes,
-  ...localeRoutes.map((route) => `${route}/`),
-];
-const uniqueSitemapPaths = [...new Set(sitemapPaths)];
+const sitemapPaths = ['', ...uniqueRoutes.map((route) => `${route}/`)];
 const sitemapXml = [
   '<?xml version="1.0" encoding="UTF-8"?>',
   '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
-  ...uniqueSitemapPaths.map((path) => `  <url><loc>${SITE}/${path}</loc></url>`),
+  ...sitemapPaths.map((path) => `  <url><loc>${SITE}/${path}</loc></url>`),
   '</urlset>',
   '',
 ].join('\n');
 writeFileSync(join(dist, 'sitemap.xml'), sitemapXml, 'utf8');
 
 console.log(`Generated route-specific static SEO HTML for ${uniqueRoutes.length + 1} canonical pages.`);
-console.log(`Generated a canonical-only sitemap with ${uniqueSitemapPaths.length} URLs.`);
+console.log(`Generated a trailing-slash canonical sitemap with ${sitemapPaths.length} URLs.`);
 console.log(`Generated reciprocal hreflang annotations for English plus ${localeRoutes.length} localized hub pages.`);
