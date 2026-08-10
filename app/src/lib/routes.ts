@@ -5,7 +5,7 @@ const AUTHORITY_ROUTE_BY_CONVERTER_SLUG: Record<string, string> = {
 };
 
 export function converterPath(slug: string): string {
-  return AUTHORITY_ROUTE_BY_CONVERTER_SLUG[slug] ?? `/${slug}`;
+  return AUTHORITY_ROUTE_BY_CONVERTER_SLUG[slug] ?? `/${slug}/`;
 }
 
 export function canonicalConverterUrl(slug: string): string {
