@@ -2,6 +2,8 @@ const AUTHORITY_ROUTE_BY_CONVERTER_SLUG: Record<string, string> = {
   'nanometers-to-micrometers': '/length/nm-to-um/',
   'nanoseconds-to-microseconds': '/time/ns-to-us/',
   'nanosieverts-to-microsieverts': '/radiation/nsv-to-usv/',
+  'nanowatts-to-microwatts': '/power/nw-to-uw/',
+  'nanomoles-to-micromoles': '/amount/nmol-to-umol/',
 };
 
 export function converterPath(slug: string): string {
