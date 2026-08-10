@@ -1,3 +1,12 @@
+/nano-to-micro-conversion.html /nano-to-micro-conversion/ 301
+/length/nm-to-um.html /length/nm-to-um/ 301
+/time/ns-to-us.html /time/ns-to-us/ 301
+/radiation/nsv-to-usv.html /radiation/nsv-to-usv/ 301
+
+/nanometers-to-micrometers.html /length/nm-to-um/ 301
+/nanoseconds-to-microseconds.html /time/ns-to-us/ 301
+/nanosieverts-to-microsieverts.html /radiation/nsv-to-usv/ 301
+
 /nano-to-micro-conversion /nano-to-micro-conversion/ 301
 /length/nm-to-um /length/nm-to-um/ 301
 /time/ns-to-us /time/ns-to-us/ 301
@@ -9,5 +18,8 @@
 /nanoseconds-to-microseconds/ /time/ns-to-us/ 301
 /nanosieverts-to-microsieverts /radiation/nsv-to-usv/ 301
 /nanosieverts-to-microsieverts/ /radiation/nsv-to-usv/ 301
+
+# Catch any other previously generated .html URL before the SPA fallback.
+/*.html /:splat 301
 
 /* /index.html 200
