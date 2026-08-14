@@ -1,0 +1,160 @@
+---
+// src/pages/404.astro
+import Base from '../layouts/Base.astro';
+---
+
+<Base
+  title="404 - Metric Coordinate Not Found | NanoToMicro"
+  description="The requested scientific calculation or sub-atomic scale route could not be found."
+  canonicalPath="/404/"
+>
+  <div class="error-container">
+    <div class="error-badge">404 Error</div>
+    <h1 class="error-title">Coordinate Out of Range</h1>
+    <p class="error-desc">
+      The nanoscale calculation or documentation route you requested does not exist or has been shifted across the SI metric continuum.
+    </p>
+
+    <div class="scale-visual">
+      <div class="scale-tick">10<sup>-12</sup> (pico)</div>
+      <div class="scale-arrow">⇢</div>
+      <div class="scale-tick active">10<sup>-9</sup> (nano)</div>
+      <div class="scale-arrow">⇢</div>
+      <div class="scale-tick">10<sup>-6</sup> (micro)</div>
+    </div>
+
+    <div class="error-actions">
+      <a href="/" class="btn-primary">Return to Homepage</a>
+      <a href="/convert/nano-to-micro/" class="btn-secondary">Nano to Micro Converter</a>
+      <a href="/antigravity/" class="btn-secondary">Antigravity Physics Hub</a>
+    </div>
+  </div>
+</Base>
+
+<style>
+  .error-container {
+    max-width: 680px;
+    margin: 60px auto 100px;
+    text-align: center;
+    padding: 48px 24px;
+    background: #0f1623;
+    border: 1px solid rgba(245, 158, 11, 0.25);
+    border-radius: 20px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+  }
+
+  .error-badge {
+    display: inline-block;
+    background: rgba(239, 68, 68, 0.15);
+    color: #f87171;
+    border: 1px solid rgba(239, 68, 68, 0.35);
+    font-size: 13px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 6px 16px;
+    border-radius: 999px;
+    margin-bottom: 20px;
+  }
+
+  .error-title {
+    font-size: 38px;
+    font-weight: 900;
+    color: #ffffff;
+    margin: 0 0 16px;
+    line-height: 1.2;
+  }
+
+  .error-desc {
+    font-size: 16px;
+    color: #cbd5e1;
+    line-height: 1.6;
+    margin: 0 auto 32px;
+    max-width: 520px;
+  }
+
+  .scale-visual {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    padding: 16px 20px;
+    margin: 0 auto 36px;
+    max-width: 460px;
+    font-family: ui-monospace, monospace;
+    font-size: 13px;
+  }
+
+  .scale-tick {
+    color: #94a3b8;
+  }
+
+  .scale-tick.active {
+    color: #fbbf24;
+    font-weight: 800;
+  }
+
+  .scale-arrow {
+    color: #475569;
+  }
+
+  .error-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+  }
+
+  .btn-primary {
+    background: #f59e0b;
+    color: #070b12 !important;
+    padding: 12px 24px;
+    border-radius: 10px;
+    font-weight: 800;
+    font-size: 14px;
+    text-decoration: none !important;
+    transition: transform 0.15s ease, background-color 0.15s ease;
+  }
+
+  .btn-primary:hover {
+    background: #fbbf24;
+    transform: translateY(-1px);
+  }
+
+  .btn-secondary {
+    background: rgba(255, 255, 255, 0.06);
+    color: #e2e8f0 !important;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 12px 20px;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 14px;
+    text-decoration: none !important;
+    transition: all 0.15s ease;
+  }
+
+  .btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.12);
+    border-color: rgba(245, 158, 11, 0.4);
+    color: #fbbf24 !important;
+  }
+
+  @media (max-width: 600px) {
+    .error-container {
+      margin: 30px 16px;
+      padding: 32px 16px;
+    }
+    .error-title {
+      font-size: 28px;
+    }
+    .error-actions {
+      flex-direction: column;
+    }
+    .btn-primary, .btn-secondary {
+      width: 100%;
+    }
+  }
+</style>
