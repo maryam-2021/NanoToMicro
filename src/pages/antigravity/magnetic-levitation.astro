@@ -1,0 +1,204 @@
+---
+// src/pages/antigravity/magnetic-levitation.astro
+
+import Base from '../../layouts/Base.astro';
+import MagneticPressureIsland from '../../components/MagneticPressureIsland.svelte';
+
+const title = 'Magnetic Levitation vs Antigravity: Physics, Meissner Effect, and Diamagnetism';
+const description = 'Understand how magnetic levitation works, why it is force balance rather than gravity cancellation, and how the Meissner effect and diamagnetism produce real lift.';
+const canonical = `${Astro.site}antigravity/magnetic-levitation/`;
+
+const faqs = [
+  {
+    q: 'Can magnets create antigravity?',
+    a: 'Magnets can levitate objects by producing forces that oppose gravity. This is magnetic levitation, not antigravity. The gravitational field remains present.',
+  },
+  {
+    q: 'Why is magnetic levitation not considered antigravity?',
+    a: 'Magnetic levitation counteracts gravity using electromagnetic forces (Lorentz force, magnetic dipole repulsion, and Meissner flux exclusion). It does not alter, shield, or cancel the gravitational mass of the object or the local gravitational field.',
+  },
+  {
+    q: 'What is the Meissner effect in superconductors?',
+    a: 'The Meissner-Ochsenfeld effect is the complete expulsion of magnetic flux lines from the interior of a superconductor as it transitions into the superconducting state below its critical temperature (Tc), creating a strong repulsive magnetic pressure P = B² / (2µ₀).',
+  },
+  {
+    q: 'How does diamagnetic levitation differ from superconducting levitation?',
+    a: 'Diamagnetic levitation occurs in normal room-temperature materials (like pyrolytic graphite, bismuth, and water) that have a weak negative magnetic susceptibility (χ < 0). Superconducting levitation involves perfect diamagnetism (χ = -1) and quantum flux pinning, providing much higher stability and lifting forces.',
+  },
+];
+
+const articleSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'TechArticle',
+  headline: title,
+  description,
+  mainEntityOfPage: canonical,
+  author: {
+    '@type': 'Organization',
+    name: 'NanoToMicro',
+    url: Astro.site.toString(),
+  },
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: f.a,
+    },
+  })),
+};
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    {
+      '@type': 'ListItem',
+      position: 1,
+      name: 'Home',
+      item: Astro.site.toString(),
+    },
+    {
+      '@type': 'ListItem',
+      position: 2,
+      name: 'Antigravity Cluster',
+      item: `${Astro.site}antigravity/`,
+    },
+    {
+      '@type': 'ListItem',
+      position: 3,
+      name: 'Magnetic Levitation',
+      item: canonical,
+    },
+  ],
+};
+
+const jsonLd = [articleSchema, faqSchema, breadcrumbSchema];
+---
+
+<Base title={title} description={description} canonical={canonical} jsonLd={jsonLd}>
+  <article>
+    <div class="tag-row" style="margin-top: 0;">
+      <a href="/antigravity/" class="tag">← Antigravity Hub</a>
+      <span class="tag">Electromagnetism</span>
+      <span class="tag">Superconductivity</span>
+      <span class="tag">Diamagnetism</span>
+    </div>
+
+    <h1>Magnetic Levitation vs Antigravity: Physics and Equations</h1>
+
+    <p>
+      Magnetic levitation (maglev) is the most widespread and visually compelling form of physical levitation. While sensationalist accounts frequently confuse it with “antigravity,” maglev relies purely on <strong>Maxwellian electrodynamics</strong> to exert an upward electromagnetic force equal and opposite to the gravitational downward force (F_g = m · g).
+    </p>
+
+    <div class="panel">
+      <h3 style="margin-top: 0;">Levitation vs Antigravity Principle</h3>
+      <p>
+        Levitation is not automatically antigravity. An object can levitate when an
+        upward force balances its weight. Magnetic, acoustic, aerodynamic, and optical
+        forces can all produce levitation. These effects oppose gravity, but they do
+        not remove or cancel the gravitational field itself.
+      </p>
+    </div>
+
+    <!-- Live Calculator -->
+    <MagneticPressureIsland client:visible />
+
+    <section>
+      <h2>1. The Physics of Magnetic Pressure</h2>
+      <p>
+        Magnetic fields store volumetric energy density u_B = B² / (2µ₀) in Joules per cubic meter (J/m³), which exerts an equivalent isotropic mechanical pressure in Pascals (N/m²).
+      </p>
+      <p>
+        When an external magnetic field B encounters a diamagnetic barrier or superconductor, the surface experiences an upward mechanical thrust F = P_mag × A.
+      </p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Field Strength (B)</th>
+            <th>Magnetic Pressure (P_mag)</th>
+            <th>Levitation Capacity (m/A)</th>
+            <th>Real-World Example</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>0.1 T (1,000 G)</td>
+            <td>3.98 kPa</td>
+            <td>406 kg/m²</td>
+            <td>Ceramic Ferrite Magnet</td>
+          </tr>
+          <tr>
+            <td>1.4 T (14,000 G)</td>
+            <td>779.6 kPa (7.7 atm)</td>
+            <td>79,500 kg/m²</td>
+            <td>Neodymium N52 Magnet</td>
+          </tr>
+          <tr>
+            <td>3.0 T (30,000 G)</td>
+            <td>3.58 MPa (35.3 atm)</td>
+            <td>365,000 kg/m²</td>
+            <td>Hospital MRI Solenoid</td>
+          </tr>
+          <tr>
+            <td>16.0 T (160,000 G)</td>
+            <td>101.8 MPa (1,005 atm)</td>
+            <td>10,380,000 kg/m²</td>
+            <td>Nijmegen High Field Frog Levitation</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>2. Earnshaw’s Theorem and Stability</h2>
+      <p>
+        Earnshaw's Theorem states that a collection of static point charges or permanent ferromagnets cannot be maintained in a stable stationary equilibrium solely by electrostatic or static magnetic fields.
+      </p>
+      <p>
+        To bypass Earnshaw’s Theorem and achieve stable levitation without physical contact:
+      </p>
+      <ol>
+        <li><strong>Diamagnetism:</strong> Materials with negative susceptibility (χ &lt; 0) create local energy minima.</li>
+        <li><strong>Superconducting Flux Pinning:</strong> Type-II superconductors trap magnetic flux vortices, locking the object in 3D space.</li>
+        <li><strong>Active Feedback Control:</strong> Fast optical or Hall sensors modulate electromagnets in real time (e.g., Shanghai Transrapid Maglev).</li>
+        <li><strong>Electrodynamic Levitation (Eddy Currents):</strong> AC fields or moving permanent magnets over conducting tracks induce repulsive eddy currents.</li>
+      </ol>
+    </section>
+
+    <section>
+      <h2>3. Diamagnetic Levitation of Living Organisms</h2>
+      <p>
+        Water is diamagnetic (χ ≈ -9.05 × 10⁻⁶). Because biological organisms are mostly water, subjecting a small organism (such as a frog or droplet) to a magnetic field gradient where B · (dB/dz) ≥ 1400 T²/m produces an upward body force that balances gravity throughout the entire biological volume.
+      </p>
+    </section>
+
+    <section>
+      <h2>Frequently Asked Questions</h2>
+      {faqs.map((faq) => (
+        <details>
+          <summary>{faq.q}</summary>
+          <p>{faq.a}</p>
+        </details>
+      ))}
+    </section>
+
+    <section class="panel">
+      <h2 style="margin-top: 0;">Explore the Antigravity Topic Cluster</h2>
+      <ul>
+        <li><a href="/antigravity/">Antigravity Pillar: Physics, Evidence & Experiments</a></li>
+        <li><a href="/antigravity/gravitational-shielding/">Gravitational Shielding: Podkletnov & Ning Li Claims Tested</a></li>
+        <li><a href="/antigravity/antimatter-gravity/">Antimatter Gravity: Does Antimatter Fall Up? (ALPHA-g Results)</a></li>
+        <li><a href="/antigravity/casimir-effect/">Casimir Effect: Quantum Vacuum Forces at Nanoscale</a></li>
+        <li><a href="/antigravity/negative-mass/">Negative Mass & Exotic Matter in General Relativity</a></li>
+        <li><a href="/antigravity/superconductors/">Superconductors & Flux Pinning Explained</a></li>
+      </ul>
+    </section>
+  </article>
+</Base>

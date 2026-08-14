@@ -1,0 +1,190 @@
+---
+// src/pages/antigravity/equivalence-principle.astro
+
+import Base from '../../layouts/Base.astro';
+
+const title = 'The Equivalence Principle: Weak, Einstein, and Strong Equivalence in Gravitational Physics';
+const description = 'An in-depth physics guide to the Equivalence Principle: why inertial mass equals gravitational mass, Eötvös balance tests, MICROSCOPE satellite precision, and antigravity implications.';
+const canonical = `${Astro.site}antigravity/equivalence-principle/`;
+
+const faqs = [
+  {
+    q: 'What is the Equivalence Principle in physics?',
+    a: 'The Equivalence Principle is the foundational postulate of gravitational physics stating that the effect of a uniform gravitational field is physically indistinguishable from uniform mechanical acceleration in flat spacetime.',
+  },
+  {
+    q: 'What is the difference between Weak and Einstein Equivalence?',
+    a: 'The Weak Equivalence Principle (WEP / Universality of Free Fall) states that all uncharged test bodies fall with the exact same acceleration in vacuum. The Einstein Equivalence Principle (EEP) adds that local Lorentz invariance and local position invariance hold for all non-gravitational physics experiments in any freely falling frame.',
+  },
+  {
+    q: 'What is the most precise test of the Equivalence Principle to date?',
+    a: 'The French CNES MICROSCOPE satellite mission (2016–2022) measured the Eötvös parameter between titanium and platinum test masses in Earth orbit to an unprecedented precision of η = (-1.5 ± 2.7) × 10⁻¹⁵, confirming the Weak Equivalence Principle to 15 decimal places.',
+  },
+];
+
+const articleSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'TechArticle',
+  headline: title,
+  description,
+  mainEntityOfPage: canonical,
+  author: {
+    '@type': 'Organization',
+    name: 'NanoToMicro',
+    url: Astro.site.toString(),
+  },
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: f.a,
+    },
+  })),
+};
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    {
+      '@type': 'ListItem',
+      position: 1,
+      name: 'Home',
+      item: Astro.site.toString(),
+    },
+    {
+      '@type': 'ListItem',
+      position: 2,
+      name: 'Antigravity Cluster',
+      item: `${Astro.site}antigravity/`,
+    },
+    {
+      '@type': 'ListItem',
+      position: 3,
+      name: 'Equivalence Principle',
+      item: canonical,
+    },
+  ],
+};
+
+const definedTermSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'DefinedTerm',
+  name: 'Equivalence Principle',
+  description:
+    'The principle asserting the exact equivalence of inertial and gravitational mass, establishing that gravitational acceleration is independent of body composition.',
+  inDefinedTermSet: {
+    '@type': 'DefinedTermSet',
+    name: 'General Relativity Principles',
+  },
+};
+
+const jsonLd = [articleSchema, faqSchema, breadcrumbSchema, definedTermSchema];
+---
+
+<Base title={title} description={description} canonical={canonical} jsonLd={jsonLd}>
+  <article>
+    <div class="tag-row" style="margin-top: 0;">
+      <a href="/antigravity/" class="tag">← Antigravity Hub</a>
+      <span class="tag">General Relativity</span>
+      <span class="tag">Equivalence Principle</span>
+      <span class="tag">Experimental Precision</span>
+    </div>
+
+    <h1>The Equivalence Principle: Foundations & Experimental Tests</h1>
+
+    <p>
+      The <strong>Equivalence Principle</strong> is the conceptual cornerstone of Albert Einstein’s General Relativity. It explains why all objects—regardless of mass, chemical composition, or internal structure—accelerate at the exact same rate in a vacuum under gravity (g ≈ 9.81 m/s² on Earth).
+    </p>
+
+    <div class="panel">
+      <h3 style="margin-top: 0;">The Eötvös Parameter (η)</h3>
+      <p>
+        The degree to which two different test bodies (A and B) accelerate identically is quantified by the Eötvös parameter:<br />
+        <code>η = 2 · |a_A - a_B| / (a_A + a_B)</code>
+      </p>
+      <p class="muted">
+        If the Equivalence Principle is exact, η = 0. Modern experiments bound η to less than 10⁻¹⁵.
+      </p>
+    </div>
+
+    <section>
+      <h2>1. The Three Forms of the Equivalence Principle</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Principle Form</th>
+            <th>Core Statement</th>
+            <th>What it Forbids</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Weak Equivalence (WEP)</strong></td>
+            <td>Universality of Free Fall: m_i = m_g for all test masses.</td>
+            <td>Composition-dependent falling rates (e.g. wood falling faster than lead).</td>
+          </tr>
+          <tr>
+            <td><strong>Einstein Equivalence (EEP)</strong></td>
+            <td>In any local freely falling frame, non-gravitational laws of physics are identical to Special Relativity.</td>
+            <td>Spatial variation of fundamental constants (e.g., fine-structure constant α).</td>
+          </tr>
+          <tr>
+            <td><strong>Strong Equivalence (SEP)</strong></td>
+            <td>Applies to self-gravitating bodies (like planets, stars, and black holes) as well as test masses.</td>
+            <td>Nordtvedt effect (Earth and Moon falling differently toward the Sun).</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>2. Landmark Experimental Milestones</h2>
+      <ol>
+        <li><strong>Galileo Galilei (1589):</strong> Demonstrated that different masses dropped simultaneously hit the ground together, refuting Aristotelian mechanics.</li>
+        <li><strong>Loránd Eötvös (1889–1908):</strong> Used torsion balances to establish m_i = m_g to parts in 10⁻⁹.</li>
+        <li><strong>Lunar Laser Ranging (1969–Present):</strong> Bouncing lasers off retroreflectors left on the Moon by Apollo astronauts tests the Strong Equivalence Principle to 10⁻¹³.</li>
+        <li><strong>MICROSCOPE Satellite (2022):</strong> Differential electrostatic accelerometers in Earth orbit measured η = (-1.5 ± 2.7) × 10⁻¹⁵, the most precise gravitational test in human history.</li>
+      </ol>
+    </section>
+
+    <section>
+      <h2>3. Consequences for Antigravity Claims</h2>
+      <p>
+        Because the Equivalence Principle is verified to 15 decimal places:
+      </p>
+      <ul>
+        <li>Any technology claiming to "cancel gravity" must violate the Equivalence Principle by creating an artificial divergence between inertial and gravitational mass.</li>
+        <li>If an object had negative gravitational mass (-m_g) but positive inertial mass (+m_i), it would fall upward at rate g, creating an immediate observable violation of the WEP.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Frequently Asked Questions</h2>
+      {faqs.map((faq) => (
+        <details>
+          <summary>{faq.q}</summary>
+          <p>{faq.a}</p>
+        </details>
+      ))}
+    </section>
+
+    <section class="panel">
+      <h2 style="margin-top: 0;">Explore the Antigravity Topic Cluster</h2>
+      <ul>
+        <li><a href="/antigravity/">Antigravity Pillar: Physics, Evidence & Experiments</a></li>
+        <li><a href="/antigravity/what-is-antigravity/">What is Antigravity? Definitions & Categories</a></li>
+        <li><a href="/antigravity/weight-vs-mass/">Weight vs Mass: Physics & Measurement Scales</a></li>
+        <li><a href="/antigravity/antimatter-gravity/">Antimatter Gravity: CERN ALPHA-g Observations</a></li>
+        <li><a href="/antigravity/negative-mass/">Negative Mass in General Relativity</a></li>
+        <li><a href="/antigravity/gravitational-shielding/">Gravitational Shielding: Podkletnov Tests</a></li>
+      </ul>
+    </section>
+  </article>
+</Base>

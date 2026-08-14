@@ -1,0 +1,186 @@
+---
+// src/pages/antigravity/inertial-mass-vs-gravitational-mass.astro
+
+import Base from '../../layouts/Base.astro';
+
+const title = 'Inertial Mass vs Gravitational Mass: Definitions, Experiments, and Equivalence';
+const description = 'Explore the profound physics difference between inertial mass (resistance to acceleration) and gravitational mass (coupling to gravity), and how their equality underpins General Relativity.';
+const canonical = `${Astro.site}antigravity/inertial-mass-vs-gravitational-mass/`;
+
+const faqs = [
+  {
+    q: 'What is the operational difference between inertial mass and gravitational mass?',
+    a: 'Inertial mass (m_i) is a body’s resistance to changes in its velocity when subjected to any net force (F = m_i · a). Gravitational mass (m_g) is the property of a body that determines the strength of the gravitational force it exerts on and experiences from other masses (F = G · M · m_g / r²).',
+  },
+  {
+    q: 'Why is it surprising that inertial mass equals gravitational mass?',
+    a: 'In classical mechanics, there is no fundamental reason why an object’s resistance to acceleration (inertia) should be related to its gravitational attraction. For example, electric charge (q) determines electromagnetic force, but is completely independent of mass. The exact equality m_i = m_g is the experimental puzzle that led Einstein to General Relativity.',
+  },
+  {
+    q: 'What would happen if an object had m_i ≠ m_g?',
+    a: 'If a material had unequal inertial and gravitational mass, its free-fall acceleration under gravity (a = (m_g / m_i) · g) would differ from other materials. An object with m_g < 0 and m_i > 0 would accelerate upward in Earth’s gravity, producing true antigravity.',
+  },
+];
+
+const articleSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'TechArticle',
+  headline: title,
+  description,
+  mainEntityOfPage: canonical,
+  author: {
+    '@type': 'Organization',
+    name: 'NanoToMicro',
+    url: Astro.site.toString(),
+  },
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: f.a,
+    },
+  })),
+};
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    {
+      '@type': 'ListItem',
+      position: 1,
+      name: 'Home',
+      item: Astro.site.toString(),
+    },
+    {
+      '@type': 'ListItem',
+      position: 2,
+      name: 'Antigravity Cluster',
+      item: `${Astro.site}antigravity/`,
+    },
+    {
+      '@type': 'ListItem',
+      position: 3,
+      name: 'Inertial Mass vs Gravitational Mass',
+      item: canonical,
+    },
+  ],
+};
+
+const definedTermSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'DefinedTerm',
+  name: 'Inertial vs Gravitational Mass',
+  description:
+    'The conceptual and experimental distinction between inertial mass (F = ma) and gravitational mass (F = GMm/r²).',
+  inDefinedTermSet: {
+    '@type': 'DefinedTermSet',
+    name: 'Foundational Physics Concepts',
+  },
+};
+
+const jsonLd = [articleSchema, faqSchema, breadcrumbSchema, definedTermSchema];
+---
+
+<Base title={title} description={description} canonical={canonical} jsonLd={jsonLd}>
+  <article>
+    <div class="tag-row" style="margin-top: 0;">
+      <a href="/antigravity/" class="tag">← Antigravity Hub</a>
+      <span class="tag">Mass & Inertia</span>
+      <span class="tag">Equivalence Principle</span>
+      <span class="tag">General Relativity</span>
+    </div>
+
+    <h1>Inertial Mass vs Gravitational Mass: Physics & Experiments</h1>
+
+    <p>
+      One of the deepest mysteries in classical physics was why two conceptually unrelated properties of matter—an object’s <strong>inertial resistance to acceleration</strong> and its <strong>gravitational attraction</strong>—are numerically identical to at least 15 decimal places.
+    </p>
+
+    <div class="panel">
+      <h3 style="margin-top: 0;">Operational Definitions</h3>
+      <ul>
+        <li><strong>Inertial Mass (m_i):</strong> Measured via acceleration in response to a known non-gravitational force: <code>m_i = F / a</code>.</li>
+        <li><strong>Gravitational Mass (m_g):</strong> Measured via the force experienced in a gravitational field: <code>m_g = F_g / g</code>.</li>
+      </ul>
+    </div>
+
+    <section>
+      <h2>1. The Acceleration of Free Fall</h2>
+      <p>
+        Combining Newton’s Second Law (F = m_i · a) with Universal Gravitation (F = G · M · m_g / r²):
+      </p>
+      <p>
+        <code>a = (m_g / m_i) · (G · M / r²) = (m_g / m_i) · g</code>
+      </p>
+      <p>
+        Because experiment demonstrates that m_g / m_i ≡ 1.000000000000000, all objects accelerate downward at the exact same rate g, regardless of whether they are a feather or a bowling ball.
+      </p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Mass Concept</th>
+            <th>Governing Equation</th>
+            <th>Measurement Technique</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Inertial Mass (m_i)</strong></td>
+            <td>F = m_i · a</td>
+            <td>Oscillating spring balance, space station body mass measurement</td>
+          </tr>
+          <tr>
+            <td><strong>Passive Gravitational Mass (m_p)</strong></td>
+            <td>F_g = m_p · g</td>
+            <td>Weighing scale, force transducer in Earth gravity</td>
+          </tr>
+          <tr>
+            <td><strong>Active Gravitational Mass (m_a)</strong></td>
+            <td>g = G · m_a / r²</td>
+            <td>Cavendish torsion balance, orbital perturbation analysis</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>2. Experimental Confirmation Timeline</h2>
+      <ol>
+        <li><strong>Isaac Newton (1687):</strong> Used simple pendulums of different materials (gold, silver, lead, glass, sand) to prove \(m_i = m_g\) within \(10^{-3}\).</li>
+        <li><strong>Loránd Eötvös (1889–1908):</strong> Built torsion balances comparing gravitational and centrifugal forces on different metals, achieving \(10^{-9}\) precision.</li>
+        <li><strong>Roll, Krotkov, and Dicke (1964):</strong> Princeton torsion balance tests improved limits to \(10^{-11}\).</li>
+        <li><strong>Braginsky & Panov (1971):</strong> Moscow State University tests bounded variations to \(10^{-12}\).</li>
+        <li><strong>MICROSCOPE Satellite (2022):</strong> Orbital free-fall accelerometers verified \(m_i = m_g\) to \(10^{-15}\).</li>
+      </ol>
+    </section>
+
+    <section>
+      <h2>Frequently Asked Questions</h2>
+      {faqs.map((faq) => (
+        <details>
+          <summary>{faq.q}</summary>
+          <p>{faq.a}</p>
+        </details>
+      ))}
+    </section>
+
+    <section class="panel">
+      <h2 style="margin-top: 0;">Explore the Antigravity Topic Cluster</h2>
+      <ul>
+        <li><a href="/antigravity/">Antigravity Pillar: Physics, Evidence & Experiments</a></li>
+        <li><a href="/antigravity/equivalence-principle/">The Equivalence Principle: Weak, Einstein, and Strong</a></li>
+        <li><a href="/antigravity/weight-vs-mass/">Weight vs Mass: Differences & Formulas</a></li>
+        <li><a href="/antigravity/general-relativity-basics/">General Relativity Basics: Spacetime Curvature</a></li>
+        <li><a href="/antigravity/antimatter-gravity/">Antimatter Gravity: CERN ALPHA-g Experiments</a></li>
+      </ul>
+    </section>
+  </article>
+</Base>

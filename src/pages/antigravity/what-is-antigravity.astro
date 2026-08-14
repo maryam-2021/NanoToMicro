@@ -1,0 +1,214 @@
+---
+// src/pages/antigravity/what-is-antigravity.astro
+
+import Base from '../../layouts/Base.astro';
+
+const title = 'What Is Antigravity? Definition, Physics, and Common Misconceptions';
+const description = 'What does antigravity mean? Learn the difference between real levitation, gravitational shielding, negative mass, and speculative antigravity claims.';
+const canonical = `${Astro.site}antigravity/what-is-antigravity/`;
+
+const faqs = [
+  {
+    q: 'Is antigravity possible?',
+    a: 'There is no verified antigravity technology at present. Some theoretical ideas involve exotic matter, negative energy, or modifications to gravity, but they remain speculative and experimentally unconfirmed.',
+  },
+  {
+    q: 'What is the difference between antigravity and anti-matter?',
+    a: 'Antimatter is real and consists of particles with opposite charges to normal matter. Antigravity is a hypothetical effect involving gravity. Antimatter does not currently provide evidence of antigravity.',
+  },
+  {
+    q: 'Is zero gravity the same as antigravity?',
+    a: 'No. Zero gravity or microgravity usually means free fall or a very weak local acceleration environment, such as in orbit. It does not mean gravity has been canceled or shielded.',
+  },
+  {
+    q: 'What is the precise scientific definition of antigravity?',
+    a: 'In physics, true antigravity refers to a hypothetical mechanism that reduces, cancels, shields, or inverts the local gravitational spacetime curvature or gravitational mass of an object, rather than merely balancing gravity with another force.',
+  },
+  {
+    q: 'How does true antigravity differ from levitation?',
+    a: 'Levitation uses upward physical forces (electromagnetic, aerodynamic, acoustic, or radiation pressure) to oppose downward gravitational force (F = mg), while the object’s gravitational mass and weight remain unchanged. True antigravity would alter the gravitational interaction itself.',
+  },
+  {
+    q: 'Why does General Relativity make antigravity difficult?',
+    a: 'In Einstein’s General Relativity, gravity is the geometric curvature of spacetime created by energy-momentum. Because all known matter has positive energy density (T_µν ≥ 0), gravity is universally attractive.',
+  },
+];
+
+const articleSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'TechArticle',
+  headline: title,
+  description,
+  mainEntityOfPage: canonical,
+  author: {
+    '@type': 'Organization',
+    name: 'NanoToMicro',
+    url: Astro.site.toString(),
+  },
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: f.a,
+    },
+  })),
+};
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    {
+      '@type': 'ListItem',
+      position: 1,
+      name: 'Home',
+      item: Astro.site.toString(),
+    },
+    {
+      '@type': 'ListItem',
+      position: 2,
+      name: 'Antigravity Cluster',
+      item: `${Astro.site}antigravity/`,
+    },
+    {
+      '@type': 'ListItem',
+      position: 3,
+      name: 'What is Antigravity',
+      item: canonical,
+    },
+  ],
+};
+
+const definedTermSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'DefinedTerm',
+  name: 'Antigravity',
+  description:
+    'A proposed or hypothetical effect in which gravity is canceled, shielded, reversed, or neutralized.',
+  inDefinedTermSet: {
+    '@type': 'DefinedTermSet',
+    name: 'Physics and Speculative Propulsion Concepts',
+  },
+};
+
+const jsonLd = [articleSchema, faqSchema, breadcrumbSchema, definedTermSchema];
+---
+
+<Base title={title} description={description} canonical={canonical} jsonLd={jsonLd}>
+  <article>
+    <div class="tag-row" style="margin-top: 0;">
+      <a href="/antigravity/" class="tag">← Antigravity Hub</a>
+      <span class="tag">Fundamentals</span>
+      <span class="tag">General Relativity</span>
+      <span class="tag">Physics Definitions</span>
+    </div>
+
+    <h1>What Is Antigravity? Definition, Physics, and Common Misconceptions</h1>
+
+    <p>
+      Antigravity is a proposed or hypothetical effect in which gravity is canceled,
+      shielded, reversed, or otherwise neutralized. In popular usage, it often refers
+      to a technology that allows objects to float without conventional support or
+      propulsion. In physics, however, no verified antigravity technology has been
+      demonstrated.
+    </p>
+
+    <div class="panel">
+      <h3 style="margin-top: 0;">The Core Scientific Distinction</h3>
+      <p class="muted">
+        <strong>True Antigravity:</strong> Modifying, nullifying, or inverting the gravitational interaction or spacetime curvature itself.<br />
+        <strong>Force-Balanced Levitation:</strong> Using an independent upward force (electromagnetic, aerodynamic, acoustic) to hold an object against Earth's gravitational acceleration (g = 9.81 m/s²).
+      </p>
+    </div>
+
+    <section>
+      <h2>1. The Four Operational Categories of Antigravity</h2>
+      <p>
+        Physicists classify speculative antigravity concepts into distinct theoretical domains:
+      </p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Category</th>
+            <th>Proposed Mechanism</th>
+            <th>Scientific Feasibility</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Gravity Cancellation</strong></td>
+            <td>Nullifying the local gravitational field strength</td>
+            <td>Conflicts with General Relativity without negative energy</td>
+          </tr>
+          <tr>
+            <td><strong>Gravitational Shielding</strong></td>
+            <td>Placing a barrier to block gravitational field lines</td>
+            <td>Tested to parts-per-trillion precision; unobserved</td>
+          </tr>
+          <tr>
+            <td><strong>Negative Gravitational Mass</strong></td>
+            <td>Matter that experiences repulsive gravitational acceleration</td>
+            <td>Hypothetical; violates classical Null Energy Conditions</td>
+          </tr>
+          <tr>
+            <td><strong>Apparent Weight Reduction</strong></td>
+            <td>Using electromagnetic/aerodynamic lift to counteract gravity</td>
+            <td>Routinely engineered (Maglev, helicopters, ion thrusters)</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>2. Why Gravity Differs from Electromagnetism</h2>
+      <p>
+        Many antigravity claims assume gravity can be shielded like electricity (via a Faraday cage). However, fundamental physics highlights three key asymmetries:
+      </p>
+      <ol>
+        <li><strong>Single Sign of Charge:</strong> Electromagnetism has both positive (+q) and negative (-q) charges, allowing cancellation. Gravity has only positive mass-energy (T_µν ≥ 0).</li>
+        <li><strong>Spacetime Curvature:</strong> In General Relativity, gravity is the metric curvature of spacetime through which all energy travels along geodesics.</li>
+        <li><strong>Equivalence Principle:</strong> Inertial mass and gravitational mass are identically equal (m_i = m_g), so all objects in a vacuum accelerate at the exact same rate regardless of composition.</li>
+      </ol>
+    </section>
+
+    <section>
+      <h2>Frequently Asked Questions</h2>
+      {faqs.map((faq) => (
+        <details>
+          <summary>{faq.q}</summary>
+          <p>{faq.a}</p>
+        </details>
+      ))}
+    </section>
+
+    <section class="panel">
+      <h2 style="margin-top: 0;">Authoritative References</h2>
+      <ul>
+        <li><a href="https://www.nist.gov/pml/owm/metric-si/si-units" target="_blank" rel="noopener noreferrer">NIST: International System of Units</a></li>
+        <li><a href="https://www.bipm.org/en/publications/si-brochure" target="_blank" rel="noopener noreferrer">BIPM: SI Brochure</a></li>
+        <li><a href="https://home.cern/science/physics/antimatter" target="_blank" rel="noopener noreferrer">CERN: Antimatter and antihydrogen experiments</a></li>
+        <li><a href="https://www.nasa.gov/mission/physical-sciences-microgravity-research/" target="_blank" rel="noopener noreferrer">NASA: Microgravity science and propulsion research</a></li>
+        <li><a href="https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.129.121102" target="_blank" rel="noopener noreferrer">Peer-reviewed literature on gravitation and equivalence principle tests (MICROSCOPE Collaboration, Physical Review Letters)</a></li>
+      </ul>
+    </section>
+
+    <section class="panel">
+      <h2 style="margin-top: 0;">Explore the Antigravity Topic Cluster</h2>
+      <ul>
+        <li><a href="/antigravity/">Antigravity Pillar: Physics, Evidence & Experiments</a></li>
+        <li><a href="/antigravity/equivalence-principle/">Equivalence Principle: Inertial vs Gravitational Mass</a></li>
+        <li><a href="/antigravity/weight-vs-mass/">Weight vs Mass: Measurement Science & Conversions</a></li>
+        <li><a href="/antigravity/gravitational-shielding/">Gravitational Shielding: Podkletnov Claims Tested</a></li>
+        <li><a href="/antigravity/antimatter-gravity/">Antimatter Gravity: Does Antimatter Fall Up?</a></li>
+        <li><a href="/antigravity/negative-mass/">Negative Mass & Exotic Matter in General Relativity</a></li>
+      </ul>
+    </section>
+  </article>
+</Base>

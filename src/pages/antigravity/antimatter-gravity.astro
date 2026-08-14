@@ -1,0 +1,177 @@
+---
+// src/pages/antigravity/antimatter-gravity.astro
+
+import Base from '../../layouts/Base.astro';
+
+const title = 'Does Antimatter Fall Up? Antigravity and Antimatter Gravity Experiments';
+const description = 'Do antimatter and normal matter fall the same way? Explore antihydrogen experiments, gravitational measurements, and what current evidence suggests.';
+const canonical = `${Astro.site}antigravity/antimatter-gravity/`;
+
+const faqs = [
+  {
+    q: 'What is the difference between antigravity and anti-matter?',
+    a: 'Antimatter is real and consists of particles with opposite charges to normal matter. Antigravity is a hypothetical effect involving gravity. Antimatter does not currently provide evidence of antigravity.',
+  },
+  {
+    q: 'Does antimatter fall up or down in Earth gravity?',
+    a: 'Antimatter falls down. In September 2023, the ALPHA-g collaboration at CERN published direct free-fall measurements demonstrating that magnetically released antihydrogen atoms fall downward under Earth gravity with an acceleration consistent with g = 9.81 m/s² (specifically ~0.75 ± 0.29 g, ruling out repulsive antigravity).',
+  },
+  {
+    q: 'What is the Weak Equivalence Principle (WEP)?',
+    a: 'The Weak Equivalence Principle states that the gravitational acceleration of a test particle is independent of its composition and internal structure. The ALPHA-g and AEgIS experiments test whether antimatter obeys the exact same WEP as normal matter.',
+  },
+  {
+    q: 'Why was measuring antimatter gravity so difficult for decades?',
+    a: 'Charged antiparticles (like positrons and antiprotons) are overwhelmingly affected by stray electric and magnetic fields. A stray field of just 1 volt/meter exerts a force on an antiproton 100 trillion times stronger than gravity. Only neutral antihydrogen atoms cooled to fractions of a Kelvin can isolate the tiny gravitational signal.',
+  },
+];
+
+const articleSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'TechArticle',
+  headline: title,
+  description,
+  mainEntityOfPage: canonical,
+  author: {
+    '@type': 'Organization',
+    name: 'NanoToMicro',
+    url: Astro.site.toString(),
+  },
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: f.a,
+    },
+  })),
+};
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    {
+      '@type': 'ListItem',
+      position: 1,
+      name: 'Home',
+      item: Astro.site.toString(),
+    },
+    {
+      '@type': 'ListItem',
+      position: 2,
+      name: 'Antigravity Cluster',
+      item: `${Astro.site}antigravity/`,
+    },
+    {
+      '@type': 'ListItem',
+      position: 3,
+      name: 'Antimatter Gravity',
+      item: canonical,
+    },
+  ],
+};
+
+const jsonLd = [articleSchema, faqSchema, breadcrumbSchema];
+---
+
+<Base title={title} description={description} canonical={canonical} jsonLd={jsonLd}>
+  <article>
+    <div class="tag-row" style="margin-top: 0;">
+      <a href="/antigravity/" class="tag">← Antigravity Hub</a>
+      <span class="tag">Antimatter</span>
+      <span class="tag">CERN Physics</span>
+      <span class="tag">ALPHA-g</span>
+      <span class="tag">General Relativity</span>
+    </div>
+
+    <h1>Does Antimatter Fall Up? Antigravity and Antimatter Gravity Experiments</h1>
+
+    <p>
+      For over a century, one of the most intriguing questions in fundamental physics was whether antimatter might experience <strong>repulsive gravity</strong> (falling upward in Earth's gravitational field). Such an effect would provide a direct mechanism for natural antigravity.
+    </p>
+
+    <div class="panel">
+      <h3 style="margin-top: 0;">The Landmark 2023 CERN Finding</h3>
+      <p class="muted">
+        In September 2023, the ALPHA collaboration at CERN published in <em>Nature</em> direct observations confirming that <strong>antihydrogen atoms fall downward</strong> under Earth's gravity with an acceleration consistent with standard gravity (g ≈ 9.81 m/s²), definitively ruling out repulsive "antigravity" for antimatter.
+      </p>
+    </div>
+
+    <section>
+      <h2>1. The CERN Antiproton Decelerator Experiments</h2>
+      <p>
+        Measuring gravity on antimatter required synthesizing electrically neutral atoms (antihydrogen, consisting of an antiproton orbited by a positron) and trapping them in magnetic minimum wells at temperatures below <strong>0.5 Kelvin</strong>.
+      </p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Experiment</th>
+            <th>Location</th>
+            <th>Primary Method</th>
+            <th>Target Precision</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>ALPHA-g</strong></td>
+            <td>CERN AD Hall</td>
+            <td>Vertical magnetic trap release and annihilation vertex tracking</td>
+            <td>1% of standard <em>g</em></td>
+          </tr>
+          <tr>
+            <td><strong>AEgIS</strong></td>
+            <td>CERN AD Hall</td>
+            <td>Moiré deflectometer on a pulsed antihydrogen beam</td>
+            <td>1% of standard <em>g</em></td>
+          </tr>
+          <tr>
+            <td><strong>GBAR</strong></td>
+            <td>CERN AD Hall</td>
+            <td>Laser cooling of H̄⁺ ions followed by photodetachment free fall</td>
+            <td>0.1% of standard <em>g</em></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>2. Theoretical Implications for General Relativity</h2>
+      <p>
+        In Einstein's General Relativity, gravity is not a traditional force but the curvature of spacetime. Any particle traveling along a geodesic follows the curvature irrespective of whether its electric charge, baryon number, or lepton number is positive or negative.
+      </p>
+      <ul>
+        <li><strong>CPT Symmetry:</strong> Combining Charge Conjugation (C), Parity (P), and Time Reversal (T) implies antimatter has positive inertial mass \(m_i > 0\).</li>
+        <li><strong>Weak Equivalence Principle:</strong> \(m_g = m_i\) dictates that antimatter accelerates downward at rate \(g\).</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Frequently Asked Questions</h2>
+      {faqs.map((faq) => (
+        <details>
+          <summary>{faq.q}</summary>
+          <p>{faq.a}</p>
+        </details>
+      ))}
+    </section>
+
+    <section class="panel">
+      <h2 style="margin-top: 0;">Explore the Antigravity Topic Cluster</h2>
+      <ul>
+        <li><a href="/antigravity/">Antigravity Pillar: Physics, Evidence & Experiments</a></li>
+        <li><a href="/antigravity/magnetic-levitation/">Magnetic Levitation vs Antigravity</a></li>
+        <li><a href="/antigravity/gravitational-shielding/">Gravitational Shielding: Podkletnov Claims Tested</a></li>
+        <li><a href="/antigravity/casimir-effect/">Casimir Effect: Quantum Vacuum Forces</a></li>
+        <li><a href="/antigravity/negative-mass/">Negative Mass in General Relativity</a></li>
+        <li><a href="/antigravity/superconductors/">Superconductors & Flux Pinning</a></li>
+      </ul>
+    </section>
+  </article>
+</Base>

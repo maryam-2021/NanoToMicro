@@ -1,0 +1,196 @@
+---
+// src/pages/antigravity/general-relativity-basics.astro
+
+import Base from '../../layouts/Base.astro';
+
+const title = 'General Relativity Basics: Spacetime Curvature, Geodesics, and Gravity';
+const description = 'A beginner-to-intermediate guide to Einstein’s General Relativity: the Einstein Field Equations, spacetime curvature, gravitational time dilation, and geodesic motion.';
+const canonical = `${Astro.site}antigravity/general-relativity-basics/`;
+
+const faqs = [
+  {
+    q: 'How does General Relativity explain gravity without a conventional force?',
+    a: 'In General Relativity, mass and energy curve the four-dimensional fabric of spacetime. Objects and light follow the straightest possible paths (geodesics) through this curved geometry. What we perceive as a gravitational force pulling us down is actually spacetime curvature directing our motion.',
+  },
+  {
+    q: 'What is the Einstein Field Equation?',
+    a: 'The Einstein Field Equations (G_µν + Λg_µν = (8πG / c⁴) · T_µν) relate the curvature of spacetime (Einstein tensor G_µν) to the distribution of matter and energy (stress-energy tensor T_µν).',
+  },
+  {
+    q: 'Why does General Relativity make true antigravity unlikely?',
+    a: 'Because gravity is spacetime curvature caused by mass-energy, and all known matter-energy distributions have positive energy density (T_µν ≥ 0), curvature always attracts rather than repels under standard conditions.',
+  },
+];
+
+const articleSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'TechArticle',
+  headline: title,
+  description,
+  mainEntityOfPage: canonical,
+  author: {
+    '@type': 'Organization',
+    name: 'NanoToMicro',
+    url: Astro.site.toString(),
+  },
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: f.a,
+    },
+  })),
+};
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    {
+      '@type': 'ListItem',
+      position: 1,
+      name: 'Home',
+      item: Astro.site.toString(),
+    },
+    {
+      '@type': 'ListItem',
+      position: 2,
+      name: 'Antigravity Cluster',
+      item: `${Astro.site}antigravity/`,
+    },
+    {
+      '@type': 'ListItem',
+      position: 3,
+      name: 'General Relativity Basics',
+      item: canonical,
+    },
+  ],
+};
+
+const definedTermSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'DefinedTerm',
+  name: 'General Relativity',
+  description:
+    'Albert Einstein’s geometric theory of gravitation where gravity arises from the curvature of four-dimensional spacetime caused by mass-energy.',
+  inDefinedTermSet: {
+    '@type': 'DefinedTermSet',
+    name: 'Fundamental Physics Theories',
+  },
+};
+
+const jsonLd = [articleSchema, faqSchema, breadcrumbSchema, definedTermSchema];
+---
+
+<Base title={title} description={description} canonical={canonical} jsonLd={jsonLd}>
+  <article>
+    <div class="tag-row" style="margin-top: 0;">
+      <a href="/antigravity/" class="tag">← Antigravity Hub</a>
+      <span class="tag">General Relativity</span>
+      <span class="tag">Spacetime Physics</span>
+      <span class="tag">Einstein Equations</span>
+    </div>
+
+    <h1>General Relativity Basics: Spacetime Curvature & Gravity</h1>
+
+    <p>
+      Published by Albert Einstein in 1915, <strong>General Relativity</strong> replaced the Newtonian concept of gravity as an invisible pulling force across empty space. Instead, Einstein revealed that gravity is the geometric distortion of four-dimensional <strong>spacetime</strong> caused by mass, energy, and momentum.
+    </p>
+
+    <div class="panel">
+      <h3 style="margin-top: 0;">John Wheeler’s Summary</h3>
+      <p style="font-size: 18px; margin: 8px 0;">
+        <em>“Spacetime tells matter how to move; matter tells spacetime how to curve.”</em>
+      </p>
+      <p class="muted" style="margin-bottom: 0;">
+        — Physicist John Archibald Wheeler
+      </p>
+    </div>
+
+    <section>
+      <h2>1. The Einstein Field Equations Explained</h2>
+      <p>
+        The fundamental mathematics of General Relativity is encapsulated in the Einstein Field Equations:
+      </p>
+      <p>
+        <code>G_µν + Λ · g_µν = (8πG / c⁴) · T_µν</code>
+      </p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Symbol</th>
+            <th>Term Name</th>
+            <th>Physical Meaning</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>G_µν</code></td>
+            <td>Einstein Tensor</td>
+            <td>Describes the local curvature and geometry of 4D spacetime</td>
+          </tr>
+          <tr>
+            <td><code>Λ · g_µν</code></td>
+            <td>Cosmological Constant</td>
+            <td>Energy density of empty space (dark energy driving cosmic expansion)</td>
+          </tr>
+          <tr>
+            <td><code>8πG / c⁴</code></td>
+            <td>Einstein Gravitational Coupling</td>
+            <td>Determines how stiff spacetime is (c⁴ in the denominator makes spacetime very rigid)</td>
+          </tr>
+          <tr>
+            <td><code>T_µν</code></td>
+            <td>Stress-Energy Tensor</td>
+            <td>The density, pressure, and flux of matter, energy, and momentum</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>2. Key Phenomena of General Relativity</h2>
+      <ol>
+        <li><strong>Gravitational Time Dilation:</strong> Clocks tick slower in deeper gravitational potentials. GPS satellites must adjust their atomic clocks by +38.6 microseconds per day to remain accurate.</li>
+        <li><strong>Gravitational Lensing:</strong> Massive objects (like galaxy clusters) bend the paths of passing light rays, acting as cosmic lenses.</li>
+        <li><strong>Gravitational Redshift:</strong> Photons climbing out of a gravity well lose energy, shifting to longer wavelengths.</li>
+        <li><strong>Gravitational Waves:</strong> Accelerating massive bodies (such as merging black holes) generate ripples in spacetime traveling at the speed of light (first detected by LIGO in 2015).</li>
+      </ol>
+    </section>
+
+    <section>
+      <h2>3. Why Antigravity Requires Modifying T_µν</h2>
+      <p>
+        To create repulsive gravity or a "warp bubble" within General Relativity, the right-hand side of the field equation (T_µν) must contain <strong>negative energy density</strong>. Because all known standard model particles have positive energy density, standard spacetime curvature is universally attractive.
+      </p>
+    </section>
+
+    <section>
+      <h2>Frequently Asked Questions</h2>
+      {faqs.map((faq) => (
+        <details>
+          <summary>{faq.q}</summary>
+          <p>{faq.a}</p>
+        </details>
+      ))}
+    </section>
+
+    <section class="panel">
+      <h2 style="margin-top: 0;">Explore the Antigravity Topic Cluster</h2>
+      <ul>
+        <li><a href="/antigravity/">Antigravity Pillar: Physics, Evidence & Experiments</a></li>
+        <li><a href="/antigravity/newtonian-gravity-basics/">Newtonian Gravity Basics: Inverse-Square Law & Formulas</a></li>
+        <li><a href="/antigravity/gravitational-fields/">Gravitational Fields: Field Lines & Potential Energy</a></li>
+        <li><a href="/antigravity/equivalence-principle/">The Equivalence Principle: Foundations & Precision Tests</a></li>
+        <li><a href="/antigravity/negative-mass/">Negative Mass & Exotic Matter in General Relativity</a></li>
+      </ul>
+    </section>
+  </article>
+</Base>

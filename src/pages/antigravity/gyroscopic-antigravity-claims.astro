@@ -1,0 +1,183 @@
+---
+// src/pages/antigravity/gyroscopic-antigravity-claims.astro
+
+import Base from '../../layouts/Base.astro';
+
+const title = 'Gyroscopic Antigravity Claims: Eric Laithwaite, Hayasaka-Takeuchi, and Angular Momentum';
+const description = 'A scientific evaluation of gyroscopic antigravity claims: Eric Laithwaite’s demonstrations, the 1989 Hayasaka-Takeuchi experiment, and conservation of angular momentum.';
+const canonical = `${Astro.site}antigravity/gyroscopic-antigravity-claims/`;
+
+const faqs = [
+  {
+    q: 'Can a spinning gyroscope lose weight or produce antigravity?',
+    a: 'No. Spinning a gyroscope stores rotational kinetic energy (E_rot = 0.5 · I · ω²), which by mass-energy equivalence (E = mc²) actually increases its relativistic mass by an imperceptible amount (~10⁻¹⁵ kg). It does not reduce weight or shield gravity.',
+  },
+  {
+    q: 'What were Eric Laithwaite’s gyroscopic claims?',
+    a: 'In 1974, British engineer Eric Laithwaite demonstrated that a heavy spinning flywheel at the end of a long pole could be lifted with one hand, claiming that gyroscopic precession created "massless" force. Rigorous Newtonian mechanics showed that the perceived ease of lifting was due to gyroscopic precession transferring torque along the pivot, without altering net weight.',
+  },
+  {
+    q: 'What was the 1989 Hayasaka-Takeuchi experiment and why did it fail replication?',
+    a: 'In 1989, Japanese researchers Hayasaka and Takeuchi reported that right-spinning gyroscopes dropped in a vacuum lost ~1 part in 100,000 of their weight. Subsequent ultra-precise replications (by Faller at NIST, Quinn at BIPM, and Nitschke at Boulder) found zero weight change down to 1 part in 10⁸, proving the original result was a thermal/vibrational sensor artifact.',
+  },
+];
+
+const articleSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'TechArticle',
+  headline: title,
+  description,
+  mainEntityOfPage: canonical,
+  author: {
+    '@type': 'Organization',
+    name: 'NanoToMicro',
+    url: Astro.site.toString(),
+  },
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: f.a,
+    },
+  })),
+};
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    {
+      '@type': 'ListItem',
+      position: 1,
+      name: 'Home',
+      item: Astro.site.toString(),
+    },
+    {
+      '@type': 'ListItem',
+      position: 2,
+      name: 'Antigravity Cluster',
+      item: `${Astro.site}antigravity/`,
+    },
+    {
+      '@type': 'ListItem',
+      position: 3,
+      name: 'Gyroscopic Antigravity Claims',
+      item: canonical,
+    },
+  ],
+};
+
+const definedTermSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'DefinedTerm',
+  name: 'Gyroscopic Levitation Claims',
+  description:
+    'Hypotheses suggesting that rotating flywheels and angular momentum precession can counteract gravitational force or reduce inertial mass.',
+  inDefinedTermSet: {
+    '@type': 'DefinedTermSet',
+    name: 'Classical Mechanics & Anomalies',
+  },
+};
+
+const jsonLd = [articleSchema, faqSchema, breadcrumbSchema, definedTermSchema];
+---
+
+<Base title={title} description={description} canonical={canonical} jsonLd={jsonLd}>
+  <article>
+    <div class="tag-row" style="margin-top: 0;">
+      <a href="/antigravity/" class="tag">← Antigravity Hub</a>
+      <span class="tag">Angular Momentum</span>
+      <span class="tag">Gyroscopes</span>
+      <span class="tag">Laithwaite Claims</span>
+      <span class="tag">Replication Studies</span>
+    </div>
+
+    <h1>Gyroscopic Antigravity Claims: Mechanics vs Anomalies</h1>
+
+    <p>
+      Rotating masses exhibit counter-intuitive behavior—such as resisting changes in orientation and precessing perpendicular to applied torque. Because of these striking visual demonstrations, <strong>gyroscopes</strong> have frequently been claimed to generate "antigravity" or create propulsion without reaction mass.
+    </p>
+
+    <div class="panel">
+      <h3 style="margin-top: 0;">Newtonian Mechanics & Conservation of Momentum</h3>
+      <p>
+        <strong>Rotational Torque Equation:</strong><br />
+        <code>τ = dL / dt = I · α + ω × L</code>
+      </p>
+      <p class="muted">
+        Torque only changes the direction of angular momentum vector L. It cannot produce a net unidirectional linear force in any closed system.
+      </p>
+    </div>
+
+    <section>
+      <h2>1. The Eric Laithwaite Demonstrations (1974)</h2>
+      <p>
+        In a famous 1974 Royal Institution Christmas Lecture, Professor Eric Laithwaite lifted a 50 lb (23 kg) spinning flywheel above his head with his little finger, claiming Newtonian physics was incomplete and that precessing gyroscopes lost mass.
+      </p>
+      <p>
+        <strong>The Physical Explanation:</strong> When a precessing gyroscope is rotated in a circle, the demonstrator does not need to exert vertical torque to prevent the wheel from falling; the gyroscopic torque redirects the effort into horizontal circular motion. However, placing the demonstrator on a sensitive weighing scale reveals that the total downward weight (m · g) remains exactly identical.
+      </p>
+    </section>
+
+    <section>
+      <h2>2. The Hayasaka-Takeuchi Anomaly & NIST Replications</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Study / Experiment</th>
+            <th>Lead Physicist / Lab</th>
+            <th>Reported Effect</th>
+            <th>Scientific Consensus</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>1989 PRL Paper</strong></td>
+            <td>Hayasaka & Takeuchi (Tohoku Univ.)</td>
+            <td>Reported right-spinning gyroscopes fell ~0.005% slower in vacuum</td>
+            <td>Attributed to uncalibrated mechanical vibration and thermal drift</td>
+          </tr>
+          <tr>
+            <td><strong>1990 NIST Replication</strong></td>
+            <td>James Faller et al. (NIST/JILA)</td>
+            <td>Measured falling rate to 10⁻⁸ precision</td>
+            <td>Null result: No difference between right-spin, left-spin, or stationary</td>
+          </tr>
+          <tr>
+            <td><strong>1990 BIPM Paris Test</strong></td>
+            <td>Terry Quinn (BIPM)</td>
+            <td>Ultra-precise beam balance weighing</td>
+            <td>Null result: Weight change &lt; 10⁻⁸ N</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>Frequently Asked Questions</h2>
+      {faqs.map((faq) => (
+        <details>
+          <summary>{faq.q}</summary>
+          <p>{faq.a}</p>
+        </details>
+      ))}
+    </section>
+
+    <section class="panel">
+      <h2 style="margin-top: 0;">Explore the Antigravity Topic Cluster</h2>
+      <ul>
+        <li><a href="/antigravity/">Antigravity Pillar: Physics, Evidence & Experiments</a></li>
+        <li><a href="/antigravity/reproducibility-and-experimental-errors/">Reproducibility & Experimental Errors in Physics</a></li>
+        <li><a href="/antigravity/newtonian-gravity-basics/">Newtonian Gravity Basics: Inverse-Square Law</a></li>
+        <li><a href="/antigravity/inertial-mass-vs-gravitational-mass/">Inertial Mass vs Gravitational Mass</a></li>
+        <li><a href="/antigravity/superconductor-anomaly-claims/">Superconductor Gravitational Anomaly Claims</a></li>
+      </ul>
+    </section>
+  </article>
+</Base>

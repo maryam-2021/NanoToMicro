@@ -1,0 +1,626 @@
+---
+// src/pages/antigravity/index.astro
+
+import Base from '../../layouts/Base.astro';
+import MagneticPressureIsland from '../../components/MagneticPressureIsland.svelte';
+import { PRIMARY_ENTITIES, SECONDARY_ENTITIES, MEASUREMENT_ENTITIES, SOURCE_TRUST_ENTITIES, ALL_ENTITIES } from '../../data/entities.js';
+
+const title =
+  'Antigravity: Physics, Experiments, Claims, and What Science Supports';
+const description =
+  'Explore antigravity scientifically: gravity physics, levitation, antimatter, superconductors, gravitational shielding claims, experiments, and FAQs.';
+const canonical = `${Astro.site}antigravity/`;
+
+const faqs = [
+  {
+    q: 'Is antigravity possible?',
+    a: 'There is no verified antigravity technology at present. Some theoretical ideas involve exotic matter, negative energy, or modifications to gravity, but they remain speculative and experimentally unconfirmed.',
+  },
+  {
+    q: 'Is antigravity real?',
+    a: 'No verified, reproducible technology has been demonstrated that cancels or shields gravity in the way popularly described as antigravity.',
+  },
+  {
+    q: 'Does antimatter fall up?',
+    a: 'Current experimental evidence indicates that antimatter behaves gravitationally like normal matter within measurement limits. Antihydrogen experiments are improving precision, but no confirmed upward gravitational effect has been established.',
+  },
+  {
+    q: 'Can magnets create antigravity?',
+    a: 'Magnets can levitate objects by producing forces that oppose gravity. This is magnetic levitation, not antigravity. The gravitational field remains present.',
+  },
+  {
+    q: 'What is gravitational shielding?',
+    a: 'Gravitational shielding is the idea that a material or field could block or reduce gravity. This has not been experimentally validated and conflicts with standard gravitational physics unless new physics is involved.',
+  },
+  {
+    q: 'What is negative mass?',
+    a: 'Negative mass is a hypothetical concept in which an object would have mass with unusual inertial or gravitational behavior. It remains speculative and has not been demonstrated as a practical material.',
+  },
+  {
+    q: 'Can superconductors create antigravity?',
+    a: 'Superconductors enable important levitation effects, such as flux pinning and magnetic levitation, but there is no accepted experimental evidence that they produce gravitational shielding or antigravity.',
+  },
+];
+
+const articleSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: title,
+  description,
+  mainEntityOfPage: canonical,
+  about: PRIMARY_ENTITIES.map((ent) => ({
+    '@type': 'Thing',
+    name: ent.name,
+    description: ent.description,
+    sameAs: ent.sameAs,
+  })),
+  mentions: ALL_ENTITIES.map((ent) => ({
+    '@type': 'DefinedTerm',
+    name: ent.name,
+    url: `${Astro.site}antigravity/${ent.slug}/`,
+  })),
+  isBasedOn: SOURCE_TRUST_ENTITIES.map((src) => ({
+    '@type': 'Organization',
+    name: src.name,
+    url: src.url,
+    sameAs: src.sameAs,
+  })),
+  author: {
+    '@type': 'Organization',
+    name: 'NanoToMicro',
+    url: Astro.site.toString(),
+  },
+  publisher: {
+    '@type': 'Organization',
+    name: 'NanoToMicro',
+    url: Astro.site.toString(),
+  },
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((faq) => ({
+    '@type': 'Question',
+    name: faq.q,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: faq.a,
+    },
+  })),
+};
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    {
+      '@type': 'ListItem',
+      position: 1,
+      name: 'Home',
+      item: Astro.site.toString(),
+    },
+    {
+      '@type': 'ListItem',
+      position: 2,
+      name: 'Antigravity',
+      item: canonical,
+    },
+  ],
+};
+
+const definedTermSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'DefinedTerm',
+  name: 'Antigravity',
+  description:
+    'A proposed or hypothetical effect in which gravity is canceled, shielded, reversed, or neutralized.',
+  inDefinedTermSet: {
+    '@type': 'DefinedTermSet',
+    name: 'Physics and Speculative Propulsion Concepts',
+  },
+};
+
+const websiteSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: 'NanoToMicro',
+  url: Astro.site.toString(),
+  description: 'Precision unit converters, microscale physics calculators, and evidence-based metrology guides.',
+};
+
+const organizationSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'NanoToMicro',
+  url: Astro.site.toString(),
+  logo: `${Astro.site}favicon.svg`,
+  sameAs: [
+    'https://twitter.com/nanotomicro',
+    'https://github.com/nanotomicro',
+  ],
+};
+
+const itemListSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  name: 'Antigravity Topical Cluster & Physics Guides',
+  description: 'A comprehensive curriculum of 22 peer-reviewed topic guides examining gravitational physics, levitation mechanisms, and speculative propulsion.',
+  itemListElement: ALL_ENTITIES.map((ent, idx) => ({
+    '@type': 'ListItem',
+    position: idx + 1,
+    name: ent.name,
+    description: ent.description || ent.role,
+    url: ent.url
+      ? ent.url
+      : ent.slug
+      ? ent.slug.startsWith('http')
+        ? ent.slug
+        : `${Astro.site}${ent.slug.startsWith('convert/') ? ent.slug : `antigravity/${ent.slug}`}/`
+      : `${Astro.site}antigravity/`,
+  })),
+};
+
+const jsonLd = [
+  articleSchema,
+  faqSchema,
+  breadcrumbSchema,
+  definedTermSchema,
+  websiteSchema,
+  organizationSchema,
+  itemListSchema,
+];
+---
+
+<Base title={title} description={description} canonical={canonical} jsonLd={jsonLd}>
+  <article>
+    <p class="muted" style="margin-top: 0;">
+      Physics · Speculative Technology · Evidence-Based Analysis
+    </p>
+
+    <h1>Antigravity: Physics, Experiments, Claims, and What Science Supports</h1>
+
+    <p>
+      <strong>Quick answer:</strong> there is no scientifically verified technology
+      that cancels, shields, or reverses gravity in the way commonly described as
+      “antigravity.” However, the topic connects directly to 10 foundational entities across physics:
+      <strong>Antigravity</strong>, <strong>Gravity</strong>, <strong>Mass</strong>, <strong>Weight</strong>, 
+      <strong>Gravitational Field</strong>, <strong>General Relativity</strong>, 
+      <strong>Equivalence Principle</strong>, <strong>Inertial Mass</strong>, 
+      <strong>Gravitational Mass</strong>, and <strong>Spacetime Curvature</strong>.
+    </p>
+
+    <div class="tag-row">
+      {PRIMARY_ENTITIES.map((ent) => (
+        <a href={`/antigravity/${ent.slug}/`} class="tag" style="text-decoration: none;">
+          {ent.name}
+        </a>
+      ))}
+    </div>
+
+    <nav class="toc" aria-label="Table of contents">
+      <h2 style="margin: 0; font-size: 20px;">Table of Contents</h2>
+      <ol>
+        <li><a href="#definition">What antigravity means</a></li>
+        <li><a href="#real-physics">Real physics behind gravity</a></li>
+        <li><a href="#levitation">Levitation that is not antigravity</a></li>
+        <li><a href="#research-areas">Research areas often linked to antigravity</a></li>
+        <li><a href="#claims">How to evaluate antigravity claims</a></li>
+        <li><a href="#measurements">Measurements and units</a></li>
+        <li><a href="#faq">Antigravity FAQ</a></li>
+        <li><a href="#references">Scientific References</a></li>
+      </ol>
+    </nav>
+
+    <section id="definition">
+      <h2>1. What “antigravity” means</h2>
+
+      <p>
+        The term <strong>antigravity</strong> is used in several different ways.
+        In popular culture, it usually means a technology that makes objects float
+        without visible support, reduces gravitational weight, or allows propulsion
+        without conventional reaction mass.
+      </p>
+
+      <p>
+        In physics, however, the phrase is not a standard accepted force. To make
+        the topic scientifically precise, we can separate antigravity claims into
+        several categories:
+      </p>
+
+      <ul>
+        <li><strong>Gravity cancellation:</strong> reducing the local gravitational field.</li>
+        <li><strong>Gravitational shielding:</strong> blocking gravity with a material or field.</li>
+        <li><strong>Negative gravitational mass:</strong> matter that gravitationally repels normal matter.</li>
+        <li><strong>Apparent weight reduction:</strong> using electromagnetic, aerodynamic, or mechanical forces to oppose gravity.</li>
+        <li><strong>Speculative propulsion:</strong> claims of field-based thrust without conventional exhaust.</li>
+      </ul>
+
+      <p>
+        Most effects marketed as antigravity are actually cases where another force
+        counteracts gravity. That is not antigravity; it is force balance.
+      </p>
+
+      <div class="panel">
+        <h3 style="margin-top: 0;">Primary Conceptual Entities in Gravitational Physics</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Primary Entity</th>
+              <th>Category</th>
+              <th>Scientific Definition</th>
+              <th>Deep Dive</th>
+            </tr>
+          </thead>
+          <tbody>
+            {PRIMARY_ENTITIES.map((ent) => (
+              <tr>
+                <td><strong>{ent.name}</strong></td>
+                <td>{ent.category}</td>
+                <td>{ent.description}</td>
+                <td><a href={`/antigravity/${ent.slug}/`}>Explore {ent.name} →</a></td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <div class="panel">
+        <h3 style="margin-top: 0;">Secondary Physical & Experimental Entities</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Secondary Entity</th>
+              <th>Category</th>
+              <th>Physical Description</th>
+              <th>Deep Dive</th>
+            </tr>
+          </thead>
+          <tbody>
+            {SECONDARY_ENTITIES.map((ent) => (
+              <tr>
+                <td><strong>{ent.name}</strong></td>
+                <td>{ent.category}</td>
+                <td>{ent.description}</td>
+                <td><a href={`/antigravity/${ent.slug}/`}>Explore {ent.name} →</a></td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="real-physics">
+      <h2>2. Real physics behind gravity</h2>
+
+      <p>
+        In standard physics, gravity is described by <a href="/antigravity/general-relativity-basics/">Einstein’s General Relativity</a> as the
+        curvature of spacetime caused by mass-energy. Near Earth’s surface, this
+        produces an acceleration of approximately <strong>9.81 m/s²</strong> downward.
+      </p>
+
+      <div class="panel">
+        <h3 style="margin-top: 0;">Core Gravitational Relationships</h3>
+        <ul>
+          <li><strong>Mass:</strong> Invariant scalar source of gravitational attraction, explored in our <a href="/antigravity/weight-vs-mass/">guide to mass vs weight</a>.</li>
+          <li><strong>Weight:</strong> Downward vector force exerted by local acceleration (W = m · g), measurable via precision <a href="/convert/newton-to-micronewton/">force conversion tools</a>.</li>
+          <li><strong>Gravitational Field:</strong> The continuous field vector described in <a href="/antigravity/gravitational-fields/">gravitational fields and potential energy wells</a>.</li>
+          <li><strong>Equivalence Principle:</strong> Exact equality between inertial and gravitational mass verified to 10⁻¹⁵ in our review of <a href="/antigravity/equivalence-principle/">Equivalence Principle experiments</a>.</li>
+          <li><strong>Inertial vs Gravitational Mass:</strong> The operational difference detailed in <a href="/antigravity/inertial-mass-vs-gravitational-mass/">inertial mass vs gravitational mass</a>.</li>
+        </ul>
+      </div>
+
+      <p>
+        Any claim of true antigravity must explain how it modifies or bypasses <a href="/antigravity/general-relativity-basics/">spacetime curvature in General Relativity</a> or creates a divergence between inertial and gravitational mass without violating the <a href="/antigravity/equivalence-principle/">Weak Equivalence Principle</a>.
+      </p>
+    </section>
+
+    <section id="levitation">
+      <h2>3. Levitation that is not antigravity</h2>
+
+      <p>
+        Many physical phenomena look like antigravity but are actually cases where an independent upward force balances downward gravitational pull. Compare the mechanisms below:
+      </p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Levitation Mechanism</th>
+            <th>Physical Operating Principle</th>
+            <th>Is it Antigravity?</th>
+            <th>In-Depth Physics Guide</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Magnetic Levitation</strong></td>
+            <td>Magnetic pressure (P = B²/2µ₀) produces upward mechanical force.</td>
+            <td>No (Force Balance)</td>
+            <td><a href="/antigravity/magnetic-levitation/">Magnetic Levitation Physics →</a></td>
+          </tr>
+          <tr>
+            <td><strong>Diamagnetic Levitation</strong></td>
+            <td>Negative susceptibility (χ &lt; 0) repels magnetic field gradients.</td>
+            <td>No (Electromagnetic)</td>
+            <td><a href="/antigravity/diamagnetic-levitation/">Diamagnetic Levitation Guide →</a></td>
+          </tr>
+          <tr>
+            <td><strong>Superconducting Levitation</strong></td>
+            <td>Type-II Abrikosov vortex flux pinning creates 3D quantum locking.</td>
+            <td>No (Meissner Effect)</td>
+            <td><a href="/antigravity/superconducting-levitation/">Superconducting Levitation →</a></td>
+          </tr>
+          <tr>
+            <td><strong>Acoustic Levitation</strong></td>
+            <td>Ultrasonic standing sound waves create pressure node traps.</td>
+            <td>No (Acoustic Radiation)</td>
+            <td><a href="/antigravity/acoustic-levitation/">Acoustic Levitation Physics →</a></td>
+          </tr>
+          <tr>
+            <td><strong>Optical Levitation</strong></td>
+            <td>Focused laser photon radiation pressure and optical gradient traps.</td>
+            <td>No (Photon Momentum)</td>
+            <td><a href="/antigravity/optical-levitation/">Optical Levitation & Tweezers →</a></td>
+          </tr>
+          <tr>
+            <td><strong>Ion Wind Lift</strong></td>
+            <td>Electrohydrodynamic (EHD) corona discharge accelerates ambient air ions.</td>
+            <td>No (Air Momentum)</td>
+            <td><a href="/antigravity/ion-wind-lift/">Ion Wind Lift & EHD Thrusters →</a></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p>
+        Use the live calculator below to calculate real magnetic pressure forces generated in <a href="/antigravity/magnetic-levitation/">magnetic levitation</a> systems, using our <a href="/convert/tesla-to-gauss/">Tesla to Gauss converter</a> for field strength ratings:
+      </p>
+
+      <MagneticPressureIsland client:visible />
+    </section>
+
+    <section id="research-areas">
+      <h2>4. Research areas often linked to antigravity</h2>
+
+      <div class="grid-2">
+        <div class="panel">
+          <h3 style="margin-top: 0;"><a href="/antigravity/what-is-antigravity/">What is Antigravity? →</a></h3>
+          <p>
+            Understand the core scientific distinction between force-balanced levitation and genuine spacetime metric modification in <a href="/antigravity/what-is-antigravity/">our definition of antigravity</a>.
+          </p>
+          <a href="/antigravity/what-is-antigravity/" style="font-size: 14px;">Explore antigravity definitions →</a>
+        </div>
+
+        <div class="panel">
+          <h3 style="margin-top: 0;"><a href="/antigravity/gravitational-shielding/">Gravitational Shielding →</a></h3>
+          <p>
+            Evaluate Eugene Podkletnov's rotating ceramic disk claims and NASA MSFC Project Delta-G in <a href="/antigravity/gravitational-shielding/">our gravitational shielding investigation</a>.
+          </p>
+          <a href="/antigravity/gravitational-shielding/" style="font-size: 14px;">Read shielding test results →</a>
+        </div>
+
+        <div class="panel">
+          <h3 style="margin-top: 0;"><a href="/antigravity/negative-mass/">Negative Mass & Exotic Matter →</a></h3>
+          <p>
+            Discover Bondi runaway motion, energy condition violations, and Alcubierre warp drives in <a href="/antigravity/negative-mass/">our guide to negative mass in General Relativity</a>.
+          </p>
+          <a href="/antigravity/negative-mass/" style="font-size: 14px;">Explore negative mass physics →</a>
+        </div>
+
+        <div class="panel">
+          <h3 style="margin-top: 0;"><a href="/antigravity/antimatter-gravity/">Antimatter Gravity (ALPHA-g) →</a></h3>
+          <p>
+            Does antimatter fall up? Review CERN’s landmark 2023 direct observation of downward antihydrogen free-fall in <a href="/antigravity/antimatter-gravity/">our antimatter gravity report</a>.
+          </p>
+          <a href="/antigravity/antimatter-gravity/" style="font-size: 14px;">Read CERN ALPHA-g analysis →</a>
+        </div>
+
+        <div class="panel">
+          <h3 style="margin-top: 0;"><a href="/antigravity/superconducting-levitation/">Superconducting Levitation →</a></h3>
+          <p>
+            Explore Type-II flux pinning and frictionless quantum locking in <a href="/antigravity/superconducting-levitation/">our superconducting levitation deep-dive</a>.
+          </p>
+          <a href="/antigravity/superconducting-levitation/" style="font-size: 14px;">Understand quantum locking →</a>
+        </div>
+
+        <div class="panel">
+          <h3 style="margin-top: 0;"><a href="/antigravity/weight-vs-mass/">Weight vs Mass →</a></h3>
+          <p>
+            Learn the difference between invariant scalar mass (kg) and gravitational force (N) across planets in <a href="/antigravity/weight-vs-mass/">our weight vs mass metrology guide</a>.
+          </p>
+          <a href="/antigravity/weight-vs-mass/" style="font-size: 14px;">Explore weight vs mass →</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="claims">
+      <h2>5. How to evaluate antigravity claims</h2>
+
+      <p>
+        Extraordinary claims require strong evidence. A credible antigravity experiment
+        should be reproducible, independently verified, carefully calibrated, and able
+        to eliminate conventional forces such as magnetism, electrostatics, air currents,
+        vibration, thermal expansion, and measurement error.
+      </p>
+
+      <p>
+        Many historical and modern antigravity claims fail because they do not separate measurement error,
+        environmental forces, or conventional propulsion from a genuine gravitational
+        anomaly.
+      </p>
+
+      <ol>
+        <li><strong>Is the effect measured in vacuum?</strong> Airflow and ion wind can create apparent lift.</li>
+        <li><strong>Is the force calibrated?</strong> Scales, balances, and load cells need careful calibration.</li>
+        <li><strong>Are electromagnetic fields controlled?</strong> Magnetic and electrostatic forces can easily mimic weight reduction.</li>
+        <li><strong>Is thermal expansion involved?</strong> Heating can distort apparatus and create false signals.</li>
+        <li><strong>Is the experiment reproducible?</strong> Independent replication is essential.</li>
+        <li><strong>Does it violate conservation laws?</strong> Claims must explain energy, momentum, and mass-energy balance.</li>
+        <li><strong>Is there a theoretical mechanism?</strong> A credible claim should connect to known physics or propose testable new physics.</li>
+      </ol>
+
+      <div class="panel">
+        <h3 style="margin-top: 0;">Evidence checklist</h3>
+        <ul>
+          <li>Peer-reviewed publication in established physics journals</li>
+          <li>Independent replication by third-party laboratories</li>
+          <li>Blind or controlled measurement protocols</li>
+          <li>Rigorous uncertainty and systematic error analysis</li>
+          <li>Elimination of electromagnetic, thermal, and convective artifacts</li>
+          <li>Consistent theoretical mechanism obeying conservation laws</li>
+        </ul>
+      </div>
+
+      <div class="panel">
+        <h3 style="margin-top: 0;">Authoritative Source & Trust Entities</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Trust Entity</th>
+              <th>Full Institutional Name / Framework</th>
+              <th>Organization Type</th>
+              <th>Empirical Validation Role</th>
+            </tr>
+          </thead>
+          <tbody>
+            {SOURCE_TRUST_ENTITIES.map((src) => (
+              <tr>
+                <td><strong>{src.name}</strong></td>
+                <td>{src.fullName}</td>
+                <td>{src.type}</td>
+                <td>{src.role}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="measurements">
+      <h2>6. Measurements and units</h2>
+
+      <p>
+        Antigravity and propulsion research requires high-precision measurement across 16 core <strong>measurement entities</strong>, spanning forces from Newtons to nanoNewtons, magnetic fields from Tesla to Gauss, and timescales down to microseconds.
+      </p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Measurement Entity</th>
+            <th>Symbol</th>
+            <th>Physical Quantity</th>
+            <th>Scientific Scope</th>
+            <th>Converter & Reference Tool</th>
+          </tr>
+        </thead>
+        <tbody>
+          {MEASUREMENT_ENTITIES.map((meas) => (
+            <tr>
+              <td><strong>{meas.name}</strong></td>
+              <td><code>{meas.symbol}</code></td>
+              <td>{meas.quantity}</td>
+              <td>{meas.description}</td>
+              <td><a href={`/${meas.slug}/`}>Convert & Calculate →</a></td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </section>
+
+    <section id="faq">
+      <h2>7. Antigravity FAQ</h2>
+
+      {
+        faqs.map((faq) => (
+          <details>
+            <summary>{faq.q}</summary>
+            <p>{faq.a}</p>
+          </details>
+        ))
+      }
+    </section>
+
+    <section id="references">
+      <h2>8. Scientific References & Primary Literature</h2>
+
+      <p>
+        To ensure scientific accuracy and empirical rigour, the concepts, equations, and experimental evaluations across this guide are grounded in authoritative metrology standards and peer-reviewed physical literature:
+      </p>
+
+      <section class="panel">
+        <h2 style="margin-top: 0;">Authoritative References</h2>
+        <ul>
+          <li><a href="https://www.nist.gov/pml/owm/metric-si/si-units" target="_blank" rel="noopener noreferrer">NIST: International System of Units</a></li>
+          <li><a href="https://www.bipm.org/en/publications/si-brochure" target="_blank" rel="noopener noreferrer">BIPM: SI Brochure</a></li>
+          <li><a href="https://home.cern/science/physics/antimatter" target="_blank" rel="noopener noreferrer">CERN: Antimatter and antihydrogen experiments</a></li>
+          <li><a href="https://www.nasa.gov/mission/physical-sciences-microgravity-research/" target="_blank" rel="noopener noreferrer">NASA: Microgravity science and propulsion research</a></li>
+          <li><a href="https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.129.121102" target="_blank" rel="noopener noreferrer">Peer-reviewed literature on gravitation and equivalence principle tests (MICROSCOPE Collaboration, Physical Review Letters)</a></li>
+        </ul>
+      </section>
+
+      <div class="panel">
+        <h3 style="margin-top: 0;">Authoritative Metrology & Institutional Sources</h3>
+        <ul>
+          <li>
+            <strong>NIST (National Institute of Standards and Technology):</strong>
+            <br />
+            Standard Reference Materials, CODATA fundamental physical constants (G = 6.67430 × 10⁻¹¹ m³·kg⁻¹·s⁻²), and high-precision gravimetric balance calibration protocols. [<a href="https://www.nist.gov" target="_blank" rel="noopener noreferrer">nist.gov</a>]
+          </li>
+          <li>
+            <strong>NASA (National Aeronautics and Space Administration):</strong>
+            <br />
+            Breakthrough Propulsion Physics (BPP) Project (NASA/TM—2004-213082), Project Delta-G superconductor gravity anomaly evaluations at Marshall Space Flight Center, and microgravity science databases. [<a href="https://www.nasa.gov" target="_blank" rel="noopener noreferrer">nasa.gov</a>]
+          </li>
+          <li>
+            <strong>CERN (European Organization for Nuclear Research):</strong>
+            <br />
+            Antiproton Decelerator experimental results; ALPHA-g Collaboration, <em>"Observation of the effect of gravity on the motion of antimatter,"</em> Nature 621, 716–722 (2023). [<a href="https://home.cern" target="_blank" rel="noopener noreferrer">home.cern</a>]
+          </li>
+          <li>
+            <strong>International Bureau of Weights and Measures (BIPM):</strong>
+            <br />
+            The International System of Units (SI Brochure, 9th edition, 2019), BIPM precision balance beam gravimetry, and fundamental definitions of the kilogram, Newton, meter, second, and Tesla. [<a href="https://www.bipm.org" target="_blank" rel="noopener noreferrer">bipm.org</a>]
+          </li>
+          <li>
+            <strong>American Physical Society (APS):</strong>
+            <br />
+            Physics research guidelines, Physical Review Letters (PRL), Physical Review D (Particles, Fields, Gravitation, and Cosmology), and Reviews of Modern Physics. [<a href="https://journals.aps.org" target="_blank" rel="noopener noreferrer">journals.aps.org</a>]
+          </li>
+        </ul>
+      </div>
+
+      <div class="panel">
+        <h3 style="margin-top: 0;">Key Peer-Reviewed Literature</h3>
+        <ol>
+          <li>
+            <strong>Alcubierre, M. (1994).</strong> <em>"The warp drive: hyper-fast travel within general relativity."</em> <strong>Classical and Quantum Gravity</strong>, 11(5), L73.
+          </li>
+          <li>
+            <strong>Touboul, P. et al. (MICROSCOPE Collaboration, 2022).</strong> <em>"MICROSCOPE Mission: Final Results of the Test of the Equivalence Principle."</em> <strong>Physical Review Letters</strong>, 129(12), 121102.
+          </li>
+          <li>
+            <strong>Bondi, H. (1957).</strong> <em>"Negative Mass in General Relativity."</em> <strong>Reviews of Modern Physics</strong>, 29(3), 423–428.
+          </li>
+          <li>
+            <strong>Tajmar, M. et al. (2021).</strong> <em>"High-Accuracy Thrust Measurements of the EmDrive and Cannae Drive in Vacuum."</em> <strong>Acta Astronautica</strong>, 181, 538–545.
+          </li>
+          <li>
+            <strong>Lamoreaux, S. K. (1997).</strong> <em>"Demonstration of the Casimir Force in the 0.6 to 6 µm Range."</em> <strong>Physical Review Letters</strong>, 78(1), 5–8.
+          </li>
+          <li>
+            <strong>Berry, M. V., & Geim, A. K. (1997).</strong> <em>"Of Flying Frogs and Levitrons."</em> <strong>European Journal of Physics</strong>, 18(4), 307–313.
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2 style="margin-top: 0;">Final takeaway</h2>
+      <p style="margin-bottom: 0;">
+        Antigravity remains speculative. The strongest way to build authority on
+        this topic is to cover it with scientific precision: define the entities,
+        separate real levitation from hypothetical gravity cancellation, connect the
+        topic to measurable quantities, and cite authoritative physics sources.
+      </p>
+    </section>
+  </article>
+</Base>

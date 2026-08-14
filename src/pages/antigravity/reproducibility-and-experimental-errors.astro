@@ -1,0 +1,202 @@
+---
+// src/pages/antigravity/reproducibility-and-experimental-errors.astro
+
+import Base from '../../layouts/Base.astro';
+
+const title = 'Reproducibility and Experimental Errors in Antigravity Claims: A Metrology Guide';
+const description = 'How experimental errors create false antigravity signals: thermal convection, Lorentz forces, vibration rectification, outgassing, and null-control methodologies.';
+const canonical = `${Astro.site}antigravity/reproducibility-and-experimental-errors/`;
+
+const faqs = [
+  {
+    q: 'Why have so many antigravity experiments produced false positive results?',
+    a: 'Gravitational forces are extremely weak compared to electromagnetic, thermal, and acoustic forces (gravity is ~10³⁶ times weaker than electromagnetism). Minute unshielded environmental effects (air currents, magnetic interactions from power leads, thermal expansion of supports) easily overwhelm genuine gravitational signals.',
+  },
+  {
+    q: 'What is vibration rectification in precision gravimetry?',
+    a: 'Vibration rectification is an error mechanism where asymmetric non-linear mechanical resonances in balance pivots or load cells convert symmetric alternating vibrations (from rotating motors or cryocoolers) into a false steady DC upward force reading.',
+  },
+  {
+    q: 'What experimental controls are required to prove an antigravity effect?',
+    a: 'Essential controls include: (1) Operation in ultra-high vacuum (&lt; 10⁻⁵ Torr), (2) Mu-metal magnetic shielding, (3) Thermal equilibrium isolation, (4) Inverted symmetric orientation testing, and (5) Independent blind replication by third-party laboratories.',
+  },
+];
+
+const articleSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'TechArticle',
+  headline: title,
+  description,
+  mainEntityOfPage: canonical,
+  author: {
+    '@type': 'Organization',
+    name: 'NanoToMicro',
+    url: Astro.site.toString(),
+  },
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: f.a,
+    },
+  })),
+};
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    {
+      '@type': 'ListItem',
+      position: 1,
+      name: 'Home',
+      item: Astro.site.toString(),
+    },
+    {
+      '@type': 'ListItem',
+      position: 2,
+      name: 'Antigravity Cluster',
+      item: `${Astro.site}antigravity/`,
+    },
+    {
+      '@type': 'ListItem',
+      position: 3,
+      name: 'Reproducibility & Experimental Errors',
+      item: canonical,
+    },
+  ],
+};
+
+const definedTermSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'DefinedTerm',
+  name: 'Experimental Metrology in Gravitation',
+  description:
+    'The systematic identification and elimination of environmental, thermal, and electromagnetic systematic errors in precision gravitational measurements.',
+  inDefinedTermSet: {
+    '@type': 'DefinedTermSet',
+    name: 'Experimental Physics & Metrology',
+  },
+};
+
+const jsonLd = [articleSchema, faqSchema, breadcrumbSchema, definedTermSchema];
+---
+
+<Base title={title} description={description} canonical={canonical} jsonLd={jsonLd}>
+  <article>
+    <div class="tag-row" style="margin-top: 0;">
+      <a href="/antigravity/" class="tag">← Antigravity Hub</a>
+      <span class="tag">Metrology</span>
+      <span class="tag">Systematic Errors</span>
+      <span class="tag">Experimental Controls</span>
+      <span class="tag">Reproducibility</span>
+    </div>
+
+    <h1>Reproducibility and Experimental Errors in Antigravity Research</h1>
+
+    <p>
+      Over the past century, dozens of peer-reviewed and independent papers have claimed the discovery of anomalous weight loss, propellantless thrust, or gravitational shielding. Yet, <strong>not a single claim has survived independent replication</strong>. Understanding the metrology and physics of false positives explains why.
+    </p>
+
+    <div class="panel">
+      <h3 style="margin-top: 0;">Scientific Standard for Gravitational Claims</h3>
+      <p>
+        Extraordinary claims require strong evidence. A credible antigravity experiment
+        should be reproducible, independently verified, carefully calibrated, and able
+        to eliminate conventional forces such as magnetism, electrostatics, air currents,
+        vibration, thermal expansion, and measurement error.
+      </p>
+    </div>
+
+    <div class="panel">
+      <h3 style="margin-top: 0;">The Metrologist’s Rule of Thumb</h3>
+      <p style="font-size: 16px; margin: 8px 0;">
+        <em>“When measuring forces below 1 milliNewton, you are not measuring gravity—you are measuring thermal expansion, magnetic coupling, and air convection until proven otherwise.”</em>
+      </p>
+    </div>
+
+    <section>
+      <h2>1. The Five Most Common Systematic Error Sources</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Systematic Error</th>
+            <th>Physical Mechanism</th>
+            <th>Typical Spurious Signal</th>
+            <th>Historical Examples</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Thermal Convection & Buoyancy</strong></td>
+            <td>Cryogenic boil-off or hot components alter local air density, creating buoyant updrafts</td>
+            <td>0.1% to 2.0% apparent weight change</td>
+            <td>Podkletnov rotating disk (1992), early cold fusion tests</td>
+          </tr>
+          <tr>
+            <td><strong>Lorentz Force from Power Leads</strong></td>
+            <td>High current in power supply cables interacts with Earth’s magnetic field (F = I · L × B_earth)</td>
+            <td>1 µN to 100 µN spurious thrust</td>
+            <td>NASA Eagleworks & early EmDrive tests</td>
+          </tr>
+          <tr>
+            <td><strong>Vibration Rectification</strong></td>
+            <td>Non-linear pivots turn symmetrical motor vibrations into steady DC directional displacement</td>
+            <td>10 µN to 5 mN false lift</td>
+            <td>Hayasaka gyroscopes (1989), dean drive mechanics</td>
+          </tr>
+          <tr>
+            <td><strong>Electrostatic Charging</strong></td>
+            <td>High voltage induces charge on nearby vacuum chamber walls, creating Coulomb attraction</td>
+            <td>0.1 mN to 10 mN force</td>
+            <td>Biefeld-Brown lifters, Woodward Mach effect thrusters</td>
+          </tr>
+          <tr>
+            <td><strong>Outgassing & Asymmetric Thermal Radiation</strong></td>
+            <td>Poynting-Robertson photon pressure or desorbing gas molecules create reaction thrust</td>
+            <td>0.01 µN to 1 µN force</td>
+            <td>Pioneer anomaly (proven to be asymmetric thermal radiation)</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>2. Gold-Standard Experimental Checklist for Gravitational Claims</h2>
+      <ol>
+        <li><strong>High Vacuum Environment:</strong> All testing performed at chamber pressures below 10⁻⁵ Torr to eliminate aerodynamic, convective, and ion-wind forces.</li>
+        <li><strong>Full Mu-Metal Shielding:</strong> Magnetic isolation to prevent background geomagnetic coupling with electrical wiring.</li>
+        <li><strong>Inverted Geometry Control:</strong> Rotating or flipping the test apparatus 180°. A true gravitational or propellantless force must flip sign; an environmental artifact typically remains unidirectional.</li>
+        <li><strong>Independent Replicability:</strong> Replicated with independent hardware by unaffiliated research institutions.</li>
+      </ol>
+    </section>
+
+    <section>
+      <h2>Frequently Asked Questions</h2>
+      {faqs.map((faq) => (
+        <details>
+          <summary>{faq.q}</summary>
+          <p>{faq.a}</p>
+        </details>
+      ))}
+    </section>
+
+    <section class="panel">
+      <h2 style="margin-top: 0;">Explore the Antigravity Topic Cluster</h2>
+      <ul>
+        <li><a href="/antigravity/">Antigravity Pillar: Physics, Evidence & Experiments</a></li>
+        <li><a href="/antigravity/superconductor-anomaly-claims/">Superconductor Gravitational Anomaly Claims</a></li>
+        <li><a href="/antigravity/gyroscopic-antigravity-claims/">Gyroscopic Antigravity Claims Evaluated</a></li>
+        <li><a href="/antigravity/biefeld-brown-effect/">Biefeld-Brown Effect & Electrogravitics</a></li>
+        <li><a href="/antigravity/propellantless-propulsion/">Propellantless Propulsion: EmDrive Replications</a></li>
+        <li><a href="/convert/newton-to-micronewton/">Newton to Micronewton Converter (N → µN)</a></li>
+      </ul>
+    </section>
+  </article>
+</Base>

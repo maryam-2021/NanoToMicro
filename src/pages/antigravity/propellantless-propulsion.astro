@@ -1,0 +1,195 @@
+---
+// src/pages/antigravity/propellantless-propulsion.astro
+
+import Base from '../../layouts/Base.astro';
+
+const title = 'Propellantless Propulsion: Physics, The EmDrive, Mach Effect Thrusters, and Solar Sails';
+const description = 'An objective physics evaluation of propellantless propulsion: Newton’s Third Law conservation of momentum, the EmDrive tests, Mach effect thrusters, and real photon propulsion.';
+const canonical = `${Astro.site}antigravity/propellantless-propulsion/`;
+
+const faqs = [
+  {
+    q: 'Could antigravity be used for propulsion?',
+    a: 'Hypothetically, if gravity could be controlled, it might enable advanced propulsion. However, no known experiment has demonstrated such control, so this remains speculative.',
+  },
+  {
+    q: 'What is propellantless propulsion?',
+    a: 'Propellantless propulsion refers to hypothetical or real space propulsion systems that accelerate a spacecraft without expelling chemical or reaction mass (propellant) out of an exhaust nozzle, bypassing the exponential mass penalty of Tsiolkovsky’s rocket equation.',
+  },
+  {
+    q: 'Is true propellantless propulsion possible within standard physics?',
+    a: 'Real propellantless propulsion exists using external environmental interactions: solar radiation sails (photons from the Sun), magnetic sails (solar wind plasma), and gravitational slingshots. However, closed internal propellantless thrusters (like the EmDrive) violate conservation of momentum and have failed in high-precision replication tests.',
+  },
+  {
+    q: 'What was the final scientific verdict on the EmDrive?',
+    a: 'In 2021, high-precision experiments at TU Dresden (led by Martin Tajmar) demonstrated that the apparent thrust measured in earlier NASA Eagleworks EmDrive tests was a thermal measurement artifact caused by electromagnetic interaction between power cables and Earth’s magnetic field.',
+  },
+];
+
+const articleSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'TechArticle',
+  headline: title,
+  description,
+  mainEntityOfPage: canonical,
+  author: {
+    '@type': 'Organization',
+    name: 'NanoToMicro',
+    url: Astro.site.toString(),
+  },
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: f.a,
+    },
+  })),
+};
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    {
+      '@type': 'ListItem',
+      position: 1,
+      name: 'Home',
+      item: Astro.site.toString(),
+    },
+    {
+      '@type': 'ListItem',
+      position: 2,
+      name: 'Antigravity Cluster',
+      item: `${Astro.site}antigravity/`,
+    },
+    {
+      '@type': 'ListItem',
+      position: 3,
+      name: 'Propellantless Propulsion',
+      item: canonical,
+    },
+  ],
+};
+
+const definedTermSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'DefinedTerm',
+  name: 'Propellantless Propulsion',
+  description:
+    'Methods of spacecraft acceleration that do not require onboard reaction propellant mass.',
+  inDefinedTermSet: {
+    '@type': 'DefinedTermSet',
+    name: 'Aerospace & Propulsion Physics',
+  },
+};
+
+const jsonLd = [articleSchema, faqSchema, breadcrumbSchema, definedTermSchema];
+---
+
+<Base title={title} description={description} canonical={canonical} jsonLd={jsonLd}>
+  <article>
+    <div class="tag-row" style="margin-top: 0;">
+      <a href="/antigravity/" class="tag">← Antigravity Hub</a>
+      <span class="tag">Space Propulsion</span>
+      <span class="tag">Momentum Conservation</span>
+      <span class="tag">EmDrive Tests</span>
+      <span class="tag">Solar Sails</span>
+    </div>
+
+    <h1>Propellantless Propulsion: Physics & Experimental Claims</h1>
+
+    <p>
+      In deep space exploration, the <strong>Tsiolkovsky Rocket Equation</strong> imposes severe limits: to carry more fuel, a rocket must burn exponentially more fuel to lift that fuel's mass. <strong>Propellantless propulsion</strong> concepts seek to bypass this limit by accelerating without carrying and exhausting internal propellant mass.
+    </p>
+
+    <div class="panel">
+      <h3 style="margin-top: 0;">The Fundamental Conservation Law</h3>
+      <p>
+        <strong>Conservation of Linear Momentum:</strong><br />
+        <code>dp_total / dt = 0  (in any closed isolated physical system)</code>
+      </p>
+      <p class="muted">
+        Any closed device claiming to generate forward thrust without emitting mass, photons, or gravitational waves violates Newton's Third Law and Noether's Theorem.
+      </p>
+    </div>
+
+    <section>
+      <h2>1. Real vs Speculative Propellantless Systems</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Propulsion Concept</th>
+            <th>Operating Principle</th>
+            <th>Physics Validation Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Solar Radiation Sails</strong></td>
+            <td>Reflects ambient photons from the Sun (radiation pressure F = 2P/c)</td>
+            <td>Flight-proven (JAXA IKAROS 2010, Planetary Society LightSail 2)</td>
+          </tr>
+          <tr>
+            <td><strong>Electrodynamic Tethers</strong></td>
+            <td>Interacts with planetary magnetic fields and ambient plasma</td>
+            <td>Flight-proven in orbital space missions</td>
+          </tr>
+          <tr>
+            <td><strong>Laser Photon Rocket</strong></td>
+            <td>Emits focused directed photons as reaction mass (Thrust = Power / c)</td>
+            <td>Physically sound; requires high power (~300 MW per 1 N of thrust)</td>
+          </tr>
+          <tr>
+            <td><strong>EmDrive (RF Resonant Cavity)</strong></td>
+            <td>Asymmetric bouncing of microwaves inside a closed cone</td>
+            <td>Refuted in 2021 Dresden vacuum tests as magnetic/thermal artifact</td>
+          </tr>
+          <tr>
+            <td><strong>Mach Effect Gravitational Thruster (MEGA)</strong></td>
+            <td>Piezoelectric mass fluctuations coupled to cosmic inertial frame</td>
+            <td>Under laboratory study; highly disputed coupling magnitude</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>2. The EmDrive Experimental Replications</h2>
+      <p>
+        Proposed by Roger Shawyer in 2001, the EmDrive claimed that radiation pressure differences on asymmetric copper cone walls produced net closed-system thrust.
+      </p>
+      <ul>
+        <li><strong>2016 NASA Eagleworks:</strong> Reported ~1.2 mN/kW thrust on a torsion pendulum.</li>
+        <li><strong>2021 TU Dresden SpaceDrive Project:</strong> Using an ultra-precise micro-Newton torsion balance with null-damping, researchers proved the reported "thrust" was caused by interaction between thermal expansion, magnetic fields from electrical wires, and the balance frame. In shielded configurations, thrust was strictly 0.000 µN.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Frequently Asked Questions</h2>
+      {faqs.map((faq) => (
+        <details>
+          <summary>{faq.q}</summary>
+          <p>{faq.a}</p>
+        </details>
+      ))}
+    </section>
+
+    <section class="panel">
+      <h2 style="margin-top: 0;">Explore the Antigravity Topic Cluster</h2>
+      <ul>
+        <li><a href="/antigravity/">Antigravity Pillar: Physics, Evidence & Experiments</a></li>
+        <li><a href="/antigravity/warp-drive-physics/">Warp Drive Physics: Alcubierre Metrics</a></li>
+        <li><a href="/antigravity/exotic-matter/">Exotic Matter: Energy Conditions & Physics</a></li>
+        <li><a href="/antigravity/negative-mass/">Negative Mass & Bondi Runaway Motion</a></li>
+        <li><a href="/antigravity/ion-wind-lift/">Ion Wind Lift: Electrohydrodynamic Thrusters</a></li>
+        <li><a href="/convert/newton-to-micronewton/">Newton to Micronewton Converter (N → µN)</a></li>
+      </ul>
+    </section>
+  </article>
+</Base>

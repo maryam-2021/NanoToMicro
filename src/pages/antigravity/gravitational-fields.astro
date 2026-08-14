@@ -1,0 +1,198 @@
+---
+// src/pages/antigravity/gravitational-fields.astro
+
+import Base from '../../layouts/Base.astro';
+
+const title = 'Gravitational Fields: Field Lines, Gravitational Potential, and Energy Wells';
+const description = 'Understand gravitational fields in classical and modern physics: field strength vectors g = GM/r², gravitational potential energy, escape velocity, and field gradients.';
+const canonical = `${Astro.site}antigravity/gravitational-fields/`;
+
+const faqs = [
+  {
+    q: 'What is a gravitational field?',
+    a: 'A gravitational field is a vector field that associates a gravitational acceleration vector g (in N/kg or m/s²) with every point in space surrounding a massive object.',
+  },
+  {
+    q: 'What is gravitational potential (V)?',
+    a: 'Gravitational potential V(r) = -G·M / r represents the gravitational potential energy per unit mass at a distance r from a mass M. It is always negative (reaching zero at infinite distance), representing an attractive energy well.',
+  },
+  {
+    q: 'Can a gravitational field be neutralized or deflected?',
+    a: 'No known physical material or static field can redirect, deflect, or neutralize a gravitational field without placing an opposite mass. Because negative mass is unobserved, gravitational fields permeate all materials without attenuation.',
+  },
+];
+
+const articleSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'TechArticle',
+  headline: title,
+  description,
+  mainEntityOfPage: canonical,
+  author: {
+    '@type': 'Organization',
+    name: 'NanoToMicro',
+    url: Astro.site.toString(),
+  },
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: f.a,
+    },
+  })),
+};
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    {
+      '@type': 'ListItem',
+      position: 1,
+      name: 'Home',
+      item: Astro.site.toString(),
+    },
+    {
+      '@type': 'ListItem',
+      position: 2,
+      name: 'Antigravity Cluster',
+      item: `${Astro.site}antigravity/`,
+    },
+    {
+      '@type': 'ListItem',
+      position: 3,
+      name: 'Gravitational Fields',
+      item: canonical,
+    },
+  ],
+};
+
+const definedTermSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'DefinedTerm',
+  name: 'Gravitational Field',
+  description:
+    'A physical vector field representing the gravitational force per unit mass exerted at every coordinate in space by surrounding mass distributions.',
+  inDefinedTermSet: {
+    '@type': 'DefinedTermSet',
+    name: 'Classical Field Theory',
+  },
+};
+
+const jsonLd = [articleSchema, faqSchema, breadcrumbSchema, definedTermSchema];
+---
+
+<Base title={title} description={description} canonical={canonical} jsonLd={jsonLd}>
+  <article>
+    <div class="tag-row" style="margin-top: 0;">
+      <a href="/antigravity/" class="tag">← Antigravity Hub</a>
+      <span class="tag">Field Theory</span>
+      <span class="tag">Potential Wells</span>
+      <span class="tag">Escape Velocity</span>
+    </div>
+
+    <h1>Gravitational Fields: Field Vectors & Potential Wells</h1>
+
+    <p>
+      In field theory, gravity is represented as a continuous <strong>vector field</strong> g(r) that permeates space. Rather than thinking of masses acting instantaneously at a distance, mass creates a gravitational field in its surrounding space, and other masses respond locally to this field.
+    </p>
+
+    <div class="panel">
+      <h3 style="margin-top: 0;">Key Field Equations</h3>
+      <p>
+        <strong>Gravitational Field Strength Vector:</strong><br />
+        <code>g = G · M / r²  (pointing radially inward)</code>
+      </p>
+      <p>
+        <strong>Gravitational Potential:</strong><br />
+        <code>V(r) = -G · M / r  (in Joules per kilogram, J/kg)</code>
+      </p>
+      <p>
+        <strong>Escape Velocity from Field:</strong><br />
+        <code>v_esc = √(2 · G · M / r)</code>
+      </p>
+    </div>
+
+    <section>
+      <h2>1. Gravitational Potential Energy Wells</h2>
+      <p>
+        Because gravitational force is universally attractive, the gravitational potential V(r) is defined as negative relative to zero at infinity. To escape a planet's gravitational field, an object must supply enough kinetic energy to climb out of the potential well:
+      </p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Body</th>
+            <th>Surface Field (g)</th>
+            <th>Potential at Surface (V)</th>
+            <th>Escape Velocity (v_esc)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Earth</strong></td>
+            <td>9.81 N/kg</td>
+            <td>-62.5 MJ/kg</td>
+            <td>11.186 km/s (40,270 km/h)</td>
+          </tr>
+          <tr>
+            <td><strong>Moon</strong></td>
+            <td>1.62 N/kg</td>
+            <td>-2.8 MJ/kg</td>
+            <td>2.38 km/s (8,570 km/h)</td>
+          </tr>
+          <tr>
+            <td><strong>Mars</strong></td>
+            <td>3.72 N/kg</td>
+            <td>-12.6 MJ/kg</td>
+            <td>5.03 km/s (18,100 km/h)</td>
+          </tr>
+          <tr>
+            <td><strong>Sun</strong></td>
+            <td>274.0 N/kg</td>
+            <td>-1,900 MJ/kg</td>
+            <td>617.5 km/s (2,223,000 km/h)</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>2. Gravitational Gradients & Tidal Forces</h2>
+      <p>
+        The rate at which gravitational field strength changes across distance is the <strong>gravitational gradient</strong> (dg/dr = -2GM / r³). This gradient produces tidal stretching on extended objects:
+      </p>
+      <ul>
+        <li><strong>Earth-Moon Tides:</strong> The differential gravitational pull across Earth's diameter generates ocean tides.</li>
+        <li><strong>Spaghettification:</strong> Near black hole event horizons, extreme gravitational gradients stretch matter vertically and compress it horizontally.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Frequently Asked Questions</h2>
+      {faqs.map((faq) => (
+        <details>
+          <summary>{faq.q}</summary>
+          <p>{faq.a}</p>
+        </details>
+      ))}
+    </section>
+
+    <section class="panel">
+      <h2 style="margin-top: 0;">Explore the Antigravity Topic Cluster</h2>
+      <ul>
+        <li><a href="/antigravity/">Antigravity Pillar: Physics, Evidence & Experiments</a></li>
+        <li><a href="/antigravity/newtonian-gravity-basics/">Newtonian Gravity Basics: Inverse-Square Law & Formulas</a></li>
+        <li><a href="/antigravity/general-relativity-basics/">General Relativity Basics: Spacetime Curvature</a></li>
+        <li><a href="/antigravity/gravitational-shielding/">Gravitational Shielding: Podkletnov Claims Tested</a></li>
+        <li><a href="/convert/newton-to-micronewton/">Newton to Micronewton Converter (N → µN)</a></li>
+      </ul>
+    </section>
+  </article>
+</Base>

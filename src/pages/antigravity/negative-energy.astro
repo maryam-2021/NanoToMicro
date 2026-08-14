@@ -1,0 +1,190 @@
+---
+// src/pages/antigravity/negative-energy.astro
+
+import Base from '../../layouts/Base.astro';
+
+const title = 'Negative Energy: Quantum Field Theory, Casimir Vacuum, and Quantum Inequalities';
+const description = 'How negative energy exists in physics: Casimir vacuum cavities, squeezed light states, Ford-Roman Quantum Inequalities, and constraints on antigravity.';
+const canonical = `${Astro.site}antigravity/negative-energy/`;
+
+const faqs = [
+  {
+    q: 'Can negative energy really exist in physics?',
+    a: 'Yes, in Quantum Field Theory (QFT), local energy densities can drop below the zero-point vacuum energy, creating regions of genuine negative energy density. Examples include the Casimir effect between closely spaced conducting plates and squeezed vacuum states of laser light.',
+  },
+  {
+    q: 'Why can’t we harvest large amounts of negative energy for warp drives or antigravity?',
+    a: 'Quantum Field Theory is constrained by Ford-Roman Quantum Inequalities. These mathematical theorems prove that negative energy can only exist for extremely short durations or across microscopic sub-micron spatial scales, and must always be followed by a larger pulse of positive energy (quantum interest).',
+  },
+  {
+    q: 'What is the difference between negative energy and dark energy?',
+    a: 'Dark energy has positive energy density (ρ > 0) with negative pressure (p = -ρ), driving the accelerated expansion of the universe. Negative energy refers to states where the energy density itself is strictly negative (ρ < 0).',
+  },
+];
+
+const articleSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'TechArticle',
+  headline: title,
+  description,
+  mainEntityOfPage: canonical,
+  author: {
+    '@type': 'Organization',
+    name: 'NanoToMicro',
+    url: Astro.site.toString(),
+  },
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: f.a,
+    },
+  })),
+};
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    {
+      '@type': 'ListItem',
+      position: 1,
+      name: 'Home',
+      item: Astro.site.toString(),
+    },
+    {
+      '@type': 'ListItem',
+      position: 2,
+      name: 'Antigravity Cluster',
+      item: `${Astro.site}antigravity/`,
+    },
+    {
+      '@type': 'ListItem',
+      position: 3,
+      name: 'Negative Energy',
+      item: canonical,
+    },
+  ],
+};
+
+const definedTermSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'DefinedTerm',
+  name: 'Negative Energy Density',
+  description:
+    'A quantum state in which the local energy density of a field falls below the baseline vacuum zero-point energy.',
+  inDefinedTermSet: {
+    '@type': 'DefinedTermSet',
+    name: 'Quantum Field Theory',
+  },
+};
+
+const jsonLd = [articleSchema, faqSchema, breadcrumbSchema, definedTermSchema];
+---
+
+<Base title={title} description={description} canonical={canonical} jsonLd={jsonLd}>
+  <article>
+    <div class="tag-row" style="margin-top: 0;">
+      <a href="/antigravity/" class="tag">← Antigravity Hub</a>
+      <span class="tag">Quantum Field Theory</span>
+      <span class="tag">Vacuum States</span>
+      <span class="tag">Quantum Inequalities</span>
+    </div>
+
+    <h1>Negative Energy: Quantum Vacuum States & Physical Limits</h1>
+
+    <p>
+      While classical physics dictates that energy is strictly non-negative, <strong>Quantum Field Theory (QFT)</strong> allows the local expectation value of the energy-momentum tensor to drop below zero (&lang;T_00&rang; &lt; 0). This phenomenon is observed in laboratory physics and forms the theoretical backbone for speculative spacetime engineering.
+    </p>
+
+    <div class="panel">
+      <h3 style="margin-top: 0;">The Casimir Negative Energy Density Formula</h3>
+      <p>
+        <strong>Cavity Energy Density:</strong><br />
+        <code>ρ_Casimir = - (π² · ħ · c) / (720 · d⁴)</code>
+      </p>
+      <p class="muted">
+        Inside a sub-micron cavity of width d, the zero-point electromagnetic energy density is strictly negative relative to empty space outside.
+      </p>
+    </div>
+
+    <section>
+      <h2>1. Real Physical Sources of Negative Energy</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Phenomenon</th>
+            <th>Physical Mechanism</th>
+            <th>Experimental Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Casimir Cavity</strong></td>
+            <td>Boundary conditions suppress long-wavelength vacuum modes</td>
+            <td>Experimentally verified to &lt; 1% precision via AFM</td>
+          </tr>
+          <tr>
+            <td><strong>Squeezed Light States</strong></td>
+            <td>Quantum optics reduces noise in one phase below shot noise</td>
+            <td>Routinely used in LIGO gravitational wave detectors</td>
+          </tr>
+          <tr>
+            <td><strong>Hawking Radiation Flux</strong></td>
+            <td>Negative energy virtual particle flux entering black hole event horizons</td>
+            <td>Widely accepted theoretical consensus in black hole thermodynamics</td>
+          </tr>
+          <tr>
+            <td><strong>Moving Mirror Effect (Dynamical Casimir)</strong></td>
+            <td>Relativistic acceleration of boundaries creates negative energy fluxes</td>
+            <td>Demonstrated in superconducting coplanar waveguides (2011)</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>2. Ford-Roman Quantum Energy Inequalities</h2>
+      <p>
+        Why doesn't quantum negative energy lead to macroscopic antigravity machines? Physicists <strong>Larry Ford and Thomas Roman</strong> proved that nature imposes strict mathematical bounds:
+      </p>
+      <p>
+        <code>∫ ρ(t) · g(t)² dt ≥ - C · ħ / τ⁴</code>
+      </p>
+      <p class="muted">
+        Where τ is the sampling duration, g(t) is a smooth test function, and C is a geometric constant.
+      </p>
+      <ul>
+        <li><strong>Duration Limit:</strong> The larger the magnitude of negative energy density, the shorter the time it can persist.</li>
+        <li><strong>Quantum Interest:</strong> Any pulse of negative energy must be rapidly followed by an overcompensating pulse of positive energy.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Frequently Asked Questions</h2>
+      {faqs.map((faq) => (
+        <details>
+          <summary>{faq.q}</summary>
+          <p>{faq.a}</p>
+        </details>
+      ))}
+    </section>
+
+    <section class="panel">
+      <h2 style="margin-top: 0;">Explore the Antigravity Topic Cluster</h2>
+      <ul>
+        <li><a href="/antigravity/">Antigravity Pillar: Physics, Evidence & Experiments</a></li>
+        <li><a href="/antigravity/casimir-effect/">Casimir Effect & Quantum Cavity Levitation</a></li>
+        <li><a href="/antigravity/exotic-matter/">Exotic Matter: Energy Conditions & Physics</a></li>
+        <li><a href="/antigravity/warp-drive-physics/">Warp Drive Physics: Alcubierre Spacetime Metrics</a></li>
+        <li><a href="/antigravity/negative-mass/">Negative Mass & Bondi Runaway Motion</a></li>
+      </ul>
+    </section>
+  </article>
+</Base>

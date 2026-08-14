@@ -1,0 +1,189 @@
+---
+// src/pages/antigravity/optical-levitation.astro
+
+import Base from '../../layouts/Base.astro';
+
+const title = 'Optical Levitation & Optical Tweezers: Laser Radiation Pressure Physics';
+const description = 'Explore optical levitation and optical tweezers: photon momentum transfer (F = P/c), laser gradient traps, Arthur Ashkin’s Nobel prize discovery, and nanoscale precision manipulation.';
+const canonical = `${Astro.site}antigravity/optical-levitation/`;
+
+const faqs = [
+  {
+    q: 'What is optical levitation?',
+    a: 'Optical levitation is the physical suspension and trapping of micro- and nano-scale dielectric particles using the momentum carried by focused laser beams (photon radiation pressure and optical gradient forces).',
+  },
+  {
+    q: 'How can light exert physical force?',
+    a: 'Photons carry momentum p = E / c = h / λ. When a photon is reflected, absorbed, or refracted by a particle, its momentum changes. By Newton’s Third Law, this imparts an equal and opposite mechanical force F = dp/dt on the particle.',
+  },
+  {
+    q: 'Who discovered optical levitation and optical tweezers?',
+    a: 'Arthur Ashkin at Bell Laboratories pioneered optical levitation in 1970 and invented single-beam gradient optical tweezers in 1986, for which he was awarded the Nobel Prize in Physics in 2018.',
+  },
+];
+
+const articleSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'TechArticle',
+  headline: title,
+  description,
+  mainEntityOfPage: canonical,
+  author: {
+    '@type': 'Organization',
+    name: 'NanoToMicro',
+    url: Astro.site.toString(),
+  },
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: f.a,
+    },
+  })),
+};
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    {
+      '@type': 'ListItem',
+      position: 1,
+      name: 'Home',
+      item: Astro.site.toString(),
+    },
+    {
+      '@type': 'ListItem',
+      position: 2,
+      name: 'Antigravity Cluster',
+      item: `${Astro.site}antigravity/`,
+    },
+    {
+      '@type': 'ListItem',
+      position: 3,
+      name: 'Optical Levitation',
+      item: canonical,
+    },
+  ],
+};
+
+const definedTermSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'DefinedTerm',
+  name: 'Optical Levitation',
+  description:
+    'The suspension of micro- and nano-scale particles in vacuum or air using focused laser photon momentum transfer and optical gradient forces.',
+  inDefinedTermSet: {
+    '@type': 'DefinedTermSet',
+    name: 'Optics & Quantum Physics',
+  },
+};
+
+const jsonLd = [articleSchema, faqSchema, breadcrumbSchema, definedTermSchema];
+---
+
+<Base title={title} description={description} canonical={canonical} jsonLd={jsonLd}>
+  <article>
+    <div class="tag-row" style="margin-top: 0;">
+      <a href="/antigravity/" class="tag">← Antigravity Hub</a>
+      <span class="tag">Optics</span>
+      <span class="tag">Photon Momentum</span>
+      <span class="tag">Optical Tweezers</span>
+      <span class="tag">Nobel Physics</span>
+    </div>
+
+    <h1>Optical Levitation: Laser Radiation Pressure & Optical Tweezers</h1>
+
+    <p>
+      <strong>Optical levitation</strong> demonstrates that pure light can counteract gravity. By harnessing the infinitesimal momentum carried by photons, tightly focused laser beams can trap, manipulate, and levitate micro- and nanoscale particles in liquids, air, and ultra-high vacuum.
+    </p>
+
+    <div class="panel">
+      <h3 style="margin-top: 0;">Levitation vs Antigravity Principle</h3>
+      <p>
+        Levitation is not automatically antigravity. An object can levitate when an
+        upward force balances its weight. Magnetic, acoustic, aerodynamic, and optical
+        forces can all produce levitation. These effects oppose gravity, but they do
+        not remove or cancel the gravitational field itself.
+      </p>
+    </div>
+
+    <div class="panel">
+      <h3 style="margin-top: 0;">Photon Radiation Force Equation</h3>
+      <p>
+        <strong>Radiation Force for Absorbed/Reflected Light:</strong><br />
+        <code>F_rad = (1 + R) · P / c</code>
+      </p>
+      <p class="muted">
+        Where <strong>P</strong> is laser power in Watts, <strong>c</strong> is the speed of light (3 × 10⁸ m/s), and <strong>R</strong> is reflectivity (0 for absorbing, 1 for ideal mirror).
+      </p>
+    </div>
+
+    <section>
+      <h2>1. The Two Optical Forces in Levitation</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Force Component</th>
+            <th>Physical Origin</th>
+            <th>Direction</th>
+            <th>Role in Levitation</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Scattering Force</strong></td>
+            <td>Direct momentum transfer along beam axis (p = E/c)</td>
+            <td>In direction of light propagation</td>
+            <td>Pushes the particle upward against gravity</td>
+          </tr>
+          <tr>
+            <td><strong>Gradient Force</strong></td>
+            <td>Induced dipole in electric field gradient (Lorentz force)</td>
+            <td>Toward region of maximum light intensity</td>
+            <td>Pulls particle into beam focus for 3D lateral stability</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>2. Scale and Force Magnitude</h2>
+      <p>
+        Because the speed of light c is so large, a <strong>1 Watt</strong> laser beam exerts an upward radiation force of only <strong>3.34 to 6.68 nanoNewtons (nN)</strong>.
+      </p>
+      <p>
+        While this force cannot lift a human, a 1-micrometer silica sphere has a mass of only ~1 picogram (10⁻¹⁵ kg) and a gravitational weight of ~0.01 picoNewtons (pN). A few milliwatts of laser power easily overcomes gravity by millions of times!
+      </p>
+    </section>
+
+    <section>
+      <h2>Frequently Asked Questions</h2>
+      {faqs.map((faq) => (
+        <details>
+          <summary>{faq.q}</summary>
+          <p>{faq.a}</p>
+        </details>
+      ))}
+    </section>
+
+    <section class="panel">
+      <h2 style="margin-top: 0;">Explore Related Levitation & Antigravity Topics</h2>
+      <ul>
+        <li><a href="/antigravity/">Antigravity Pillar: Physics, Evidence & Experiments</a></li>
+        <li><a href="/antigravity/magnetic-levitation/">Magnetic Levitation vs Antigravity</a></li>
+        <li><a href="/antigravity/superconducting-levitation/">Superconducting Levitation & Flux Pinning</a></li>
+        <li><a href="/antigravity/diamagnetic-levitation/">Diamagnetic Levitation & Pyrolytic Graphite</a></li>
+        <li><a href="/antigravity/acoustic-levitation/">Acoustic Levitation: Sound Wave Pressure Nodes</a></li>
+        <li><a href="/antigravity/ion-wind-lift/">Ion Wind Lift: Electrohydrodynamic Propulsion</a></li>
+        <li><a href="/convert/newton-to-micronewton/">Newton to Micronewton Converter (N → µN)</a></li>
+      </ul>
+    </section>
+  </article>
+</Base>

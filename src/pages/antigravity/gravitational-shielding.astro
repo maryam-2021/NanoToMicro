@@ -1,0 +1,196 @@
+---
+// src/pages/antigravity/gravitational-shielding.astro
+
+import Base from '../../layouts/Base.astro';
+
+const title = 'Gravitational Shielding: Theory, Claims, and Experimental Evidence';
+const description = 'What is gravitational shielding? Explore the hypothesis, historical claims, experimental challenges, and why it remains unproven in modern physics.';
+const canonical = `${Astro.site}antigravity/gravitational-shielding/`;
+
+const faqs = [
+  {
+    q: 'What is gravitational shielding?',
+    a: 'Gravitational shielding is the hypothetical phenomenon where an intervening material or energy field reduces or redirects the gravitational attraction between two masses.',
+  },
+  {
+    q: 'Did Eugene Podkletnov prove gravitational shielding?',
+    a: 'No. In 1992, Eugene Podkletnov claimed a 0.3% to 2% weight reduction above a spinning superconducting disk. However, subsequent high-precision replication attempts by NASA Marshall Space Flight Center and independent university labs failed to reproduce any anomalous gravitational shielding.',
+  },
+  {
+    q: 'Why does General Relativity disallow simple gravitational shielding?',
+    a: 'In General Relativity, gravity is the geometry of spacetime determined by the stress-energy tensor. Unlike electromagnetism, which has positive and negative charges that allow screening (like a Faraday cage), gravity only possesses positive mass-energy attraction, making conventional shielding mathematically forbidden without negative mass.',
+  },
+];
+
+const articleSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'TechArticle',
+  headline: title,
+  description,
+  mainEntityOfPage: canonical,
+  author: {
+    '@type': 'Organization',
+    name: 'NanoToMicro',
+    url: Astro.site.toString(),
+  },
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: f.a,
+    },
+  })),
+};
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    {
+      '@type': 'ListItem',
+      position: 1,
+      name: 'Home',
+      item: Astro.site.toString(),
+    },
+    {
+      '@type': 'ListItem',
+      position: 2,
+      name: 'Antigravity Cluster',
+      item: `${Astro.site}antigravity/`,
+    },
+    {
+      '@type': 'ListItem',
+      position: 3,
+      name: 'Gravitational Shielding',
+      item: canonical,
+    },
+  ],
+};
+
+const jsonLd = [articleSchema, faqSchema, breadcrumbSchema];
+---
+
+<Base title={title} description={description} canonical={canonical} jsonLd={jsonLd}>
+  <article>
+    <div class="tag-row" style="margin-top: 0;">
+      <a href="/antigravity/" class="tag">← Antigravity Hub</a>
+      <span class="tag">Gravitational Shielding</span>
+      <span class="tag">Experimental Physics</span>
+      <span class="tag">NASA Studies</span>
+    </div>
+
+    <h1>Gravitational Shielding: Theory, Claims, and Experimental Evidence</h1>
+
+    <p>
+      Gravitational shielding is the idea that a material, field, or device can block
+      or reduce the influence of gravity. This idea has appeared in historical claims
+      and speculative engineering, but it has not been confirmed by reproducible
+      laboratory experiments and is not part of accepted gravitational physics.
+    </p>
+
+    <div class="panel">
+      <h3 style="margin-top: 0;">The Scientific Consensus</h3>
+      <p class="muted">
+        Multiple ultra-precise gravimeter measurements, lunar eclipse observations, and NASA laboratory replications confirm to parts-per-trillion accuracy that gravity cannot be shielded by ordinary or superconducting materials.
+      </p>
+    </div>
+
+    <section>
+      <h2>1. The Eugene Podkletnov Experiment (1992–1997)</h2>
+      <p>
+        In 1992, Russian researcher Eugene Podkletnov at Tampere University of Technology in Finland published a paper claiming that objects suspended above a magnetically levitated, cryogenically cooled, rotating YBCO superconducting ceramic disk lost between <strong>0.3% and 2.0%</strong> of their measurable weight.
+      </p>
+
+      <h3>Why the Claim Failed Replicability:</h3>
+      <ol>
+        <li><strong>Air Current Artifacts:</strong> The rotating disk created thermal convection currents in the ambient air, generating aerodynamic buoyant lift on test samples. When tested in vacuum, the apparent weight loss vanished.</li>
+        <li><strong>Electromagnetic Coupling:</strong> High-frequency magnetic fields used to levitate and rotate the disk induced eddy currents and electrostatic charges on sensitive balance arms.</li>
+        <li><strong>NASA Marshall Replications:</strong> NASA's Breakthrough Propulsion Physics Project built a dedicated test rig with a 0.28-meter YBCO disk and detected no gravitational shielding within instrument noise levels (Δg / g &lt; 10⁻⁸).</li>
+      </ol>
+    </section>
+
+    <section>
+      <h2>2. Major Shielding Tests Across History</h2>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Experiment / Observer</th>
+            <th>Mechanism Tested</th>
+            <th>Claimed Effect</th>
+            <th>Confirmed Outcome</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Quirino Majorana (1920)</td>
+            <td>Heavy metal lead/mercury shields</td>
+            <td>0.001% attenuation</td>
+            <td>Refuted by refined torsion balance tests</td>
+          </tr>
+          <tr>
+            <td>Eugene Podkletnov (1992)</td>
+            <td>Rotating YBCO superconductor</td>
+            <td>0.3% – 2.0% weight reduction</td>
+            <td>Failed independent replication (NASA MSFC)</td>
+          </tr>
+          <tr>
+            <td>Lunar Eclipse Tests (Wang et al., 2000)</td>
+            <td>Earth shielding Moon from Sun gravity</td>
+            <td>Anomalous gravimeter dip</td>
+            <td>Attributed to Earth atmospheric tidal loading</td>
+          </tr>
+          <tr>
+            <td>Tajmar et al. (ESA, 2006)</td>
+            <td>Rotating cryogenic rings (Gravitomagnetism)</td>
+            <td>Frame-dragging anomaly</td>
+            <td>Traced to cryogenic sensor acoustic vibration</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>3. Why Gravity Cannot Form a "Faraday Cage"</h2>
+      <p>
+        In electromagnetism, positive charges (+q) and negative charges (-q) exist. Placing a conductor in an electric field causes charges to rearrange, exactly canceling the internal field.
+      </p>
+      <p>
+        In gravitation:
+      </p>
+      <ul>
+        <li>There is only one type of gravitational charge: <strong>positive mass-energy</strong> (T_µν ≥ 0).</li>
+        <li>Adding matter between two objects always increases the total gravitational field, never decreases it.</li>
+        <li>Birkhoff's theorem in General Relativity proves that spherical mass distributions exert gravitational influence determined solely by total enclosed mass-energy.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Frequently Asked Questions</h2>
+      {faqs.map((faq) => (
+        <details>
+          <summary>{faq.q}</summary>
+          <p>{faq.a}</p>
+        </details>
+      ))}
+    </section>
+
+    <section class="panel">
+      <h2 style="margin-top: 0;">Explore the Antigravity Topic Cluster</h2>
+      <ul>
+        <li><a href="/antigravity/">Antigravity Pillar: Physics, Evidence & Experiments</a></li>
+        <li><a href="/antigravity/magnetic-levitation/">Magnetic Levitation vs Antigravity</a></li>
+        <li><a href="/antigravity/antimatter-gravity/">Antimatter Gravity: Does Antimatter Fall Up?</a></li>
+        <li><a href="/antigravity/casimir-effect/">Casimir Effect: Quantum Vacuum Forces</a></li>
+        <li><a href="/antigravity/negative-mass/">Negative Mass in General Relativity</a></li>
+        <li><a href="/antigravity/superconductors/">Superconductors & Flux Pinning</a></li>
+      </ul>
+    </section>
+  </article>
+</Base>

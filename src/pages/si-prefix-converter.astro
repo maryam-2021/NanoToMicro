@@ -1,0 +1,153 @@
+---
+import Base from '../layouts/Base.astro';
+
+const prefixes = [
+  { name: 'quetta', symbol: 'Q', power: '10³⁰', factor: '1,000,000,000,000,000,000,000,000,000,000', scale: 'Septillion' },
+  { name: 'ronna', symbol: 'R', power: '10²⁷', factor: '1,000,000,000,000,000,000,000,000,000', scale: 'Sextillion' },
+  { name: 'yotta', symbol: 'Y', power: '10²⁴', factor: '1,000,000,000,000,000,000,000,000', scale: 'Septillion (short)' },
+  { name: 'zetta', symbol: 'Z', power: '10²¹', factor: '1,000,000,000,000,000,000,000', scale: 'Sextillion' },
+  { name: 'exa', symbol: 'E', power: '10¹⁸', factor: '1,000,000,000,000,000,000', scale: 'Quintillion' },
+  { name: 'peta', symbol: 'P', power: '10¹⁵', factor: '1,000,000,000,000,000', scale: 'Quadrillion' },
+  { name: 'tera', symbol: 'T', power: '10¹²', factor: '1,000,000,000,000', scale: 'Trillion' },
+  { name: 'giga', symbol: 'G', power: '10⁹', factor: '1,000,000,000', scale: 'Billion' },
+  { name: 'mega', symbol: 'M', power: '10⁶', factor: '1,000,000', scale: 'Million' },
+  { name: 'kilo', symbol: 'k', power: '10³', factor: '1,000', scale: 'Thousand' },
+  { name: 'hecto', symbol: 'h', power: '10²', factor: '100', scale: 'Hundred' },
+  { name: 'deca', symbol: 'da', power: '10¹', factor: '10', scale: 'Ten' },
+  { name: 'base unit', symbol: '—', power: '10⁰', factor: '1', scale: 'One (Unity)' },
+  { name: 'deci', symbol: 'd', power: '10⁻¹', factor: '0.1', scale: 'Tenth' },
+  { name: 'centi', symbol: 'c', power: '10⁻²', factor: '0.01', scale: 'Hundredth' },
+  { name: 'milli', symbol: 'm', power: '10⁻³', factor: '0.001', scale: 'Thousandth' },
+  { name: 'micro', symbol: 'µ', power: '10⁻⁶', factor: '0.000 001', scale: 'Millionth', highlight: true },
+  { name: 'nano', symbol: 'n', power: '10⁻⁹', factor: '0.000 000 001', scale: 'Billionth', highlight: true },
+  { name: 'pico', symbol: 'p', power: '10⁻¹²', factor: '0.000 000 000 001', scale: 'Trillionth' },
+  { name: 'femto', symbol: 'f', power: '10⁻¹⁵', factor: '0.000 000 000 000 001', scale: 'Quadrillionth' },
+  { name: 'atto', symbol: 'a', power: '10⁻¹⁸', factor: '0.000 000 000 000 000 001', scale: 'Quintillionth' },
+  { name: 'zepto', symbol: 'z', power: '10⁻²¹', factor: '0.000 000 000 000 000 000 001', scale: 'Sextillionth' },
+  { name: 'yocto', symbol: 'y', power: '10⁻²⁴', factor: '0.000 000 000 000 000 000 000 001', scale: 'Septillionth' },
+  { name: 'ronto', symbol: 'r', power: '10⁻²⁷', factor: '10⁻²⁷', scale: 'Octillionth' },
+  { name: 'quecto', symbol: 'q', power: '10⁻³⁰', factor: '10⁻³⁰', scale: 'Nonillionth' },
+];
+---
+
+<Base
+  title="Complete SI Prefix Converter Table — Nano, Micro, Pico & All 24 Prefixes | NanoToMicro"
+  description="The comprehensive 24 SI metric prefix table: quetto to quetta, milli, micro, nano, pico, femto with powers of ten and conversion factors."
+  canonicalPath="/si-prefix-converter"
+>
+  <div class="page-head">
+    <div class="pill">Metric Reference</div>
+    <h1 class="title">Complete 24 SI Prefix Guide & Matrix</h1>
+    <p class="subtitle">
+      The International System of Units (SI) defines 24 metric prefixes ranging across 60 orders of magnitude from quecto (10⁻³⁰) to quetta (10³⁰).
+    </p>
+  </div>
+
+  <div class="table-card">
+    <table class="si-table">
+      <thead>
+        <tr>
+          <th>Prefix</th>
+          <th>Symbol</th>
+          <th>Power of 10</th>
+          <th>Scale Name</th>
+          <th>Multiplier Value</th>
+        </tr>
+      </thead>
+      <tbody>
+        {prefixes.map((p) => (
+          <tr class={p.highlight ? 'highlight-row' : ''}>
+            <td><strong>{p.name}</strong></td>
+            <td><span class="symbol-pill">{p.symbol}</span></td>
+            <td><code>{p.power}</code></td>
+            <td>{p.scale}</td>
+            <td class="factor-cell">{p.factor}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+</Base>
+
+<style>
+  .page-head {
+    text-align: center;
+    padding: 2rem 0;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .pill {
+    display: inline-block;
+    background: rgba(56, 189, 248, 0.1);
+    color: var(--primary);
+    border: 1px solid rgba(56, 189, 248, 0.3);
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+
+  .title {
+    font-size: clamp(2rem, 4vw, 2.75rem);
+    font-weight: 800;
+    color: #ffffff;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.75rem;
+  }
+
+  .subtitle {
+    color: var(--text-muted);
+    font-size: 1.0625rem;
+    line-height: 1.6;
+  }
+
+  .table-card {
+    overflow-x: auto;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 0.75rem;
+    margin: 2rem 0;
+  }
+
+  .si-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.875rem;
+    text-align: left;
+  }
+
+  .si-table th,
+  .si-table td {
+    padding: 0.75rem 1.25rem;
+    border-bottom: 1px solid rgba(51, 65, 85, 0.4);
+  }
+
+  .si-table th {
+    background: rgba(15, 23, 42, 0.95);
+    color: #cbd5e1;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .symbol-pill {
+    background: #1e293b;
+    color: var(--primary);
+    padding: 0.15rem 0.5rem;
+    border-radius: 0.25rem;
+    font-family: ui-monospace, monospace;
+    font-weight: 700;
+  }
+
+  .factor-cell {
+    font-family: ui-monospace, monospace;
+    color: #cbd5e1;
+    font-size: 0.8125rem;
+  }
+
+  .highlight-row {
+    background: rgba(56, 189, 248, 0.08);
+  }
+</style>

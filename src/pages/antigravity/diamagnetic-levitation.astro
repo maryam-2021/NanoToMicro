@@ -1,0 +1,216 @@
+---
+// src/pages/antigravity/diamagnetic-levitation.astro
+
+import Base from '../../layouts/Base.astro';
+
+const title = 'Diamagnetic Levitation: Physics, Pyrolytic Carbon, and Room-Temperature Maglev';
+const description = 'How diamagnetic levitation works: negative magnetic susceptibility, magnetic field gradients (B·dB/dz ≥ 1400 T²/m), levitating pyrolytic graphite, and living organism levitation.';
+const canonical = `${Astro.site}antigravity/diamagnetic-levitation/`;
+
+const faqs = [
+  {
+    q: 'What is diamagnetic levitation?',
+    a: 'Diamagnetic levitation is the passive physical levitation of diamagnetic materials (which develop an induced magnetic dipole opposing an external magnetic field) in strong magnetic field gradients without requiring external power or active electronic stabilization.',
+  },
+  {
+    q: 'Why can diamagnets achieve stable levitation without violating Earnshaw’s Theorem?',
+    a: 'Earnshaw’s Theorem assumes static electric or magnetic fields with materials that have positive constant permeability. Because diamagnetic materials have negative magnetic susceptibility (χ < 0), they are repelled toward regions of minimum magnetic field strength, creating a stable local potential energy minimum.',
+  },
+  {
+    q: 'What magnetic field gradient is required to levitate water or living organisms?',
+    a: 'Water has a magnetic susceptibility of χ ≈ -9.05 × 10⁻⁶. To balance gravity (ρ·g), the magnetic field times its vertical gradient must satisfy B · (dB/dz) ≥ (µ₀ · ρ · g) / |χ| ≈ 1,400 T²/m. This was demonstrated by Andre Geim and Michael Berry in 1997 by levitating a live frog in a 16 Tesla Bitter solenoid.',
+  },
+];
+
+const articleSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'TechArticle',
+  headline: title,
+  description,
+  mainEntityOfPage: canonical,
+  author: {
+    '@type': 'Organization',
+    name: 'NanoToMicro',
+    url: Astro.site.toString(),
+  },
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: f.a,
+    },
+  })),
+};
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    {
+      '@type': 'ListItem',
+      position: 1,
+      name: 'Home',
+      item: Astro.site.toString(),
+    },
+    {
+      '@type': 'ListItem',
+      position: 2,
+      name: 'Antigravity Cluster',
+      item: `${Astro.site}antigravity/`,
+    },
+    {
+      '@type': 'ListItem',
+      position: 3,
+      name: 'Diamagnetic Levitation',
+      item: canonical,
+    },
+  ],
+};
+
+const definedTermSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'DefinedTerm',
+  name: 'Diamagnetic Levitation',
+  description:
+    'The stable, passive levitation of substances with negative magnetic susceptibility in inhomogeneous magnetic fields.',
+  inDefinedTermSet: {
+    '@type': 'DefinedTermSet',
+    name: 'Electromagnetism & Levitation Physics',
+  },
+};
+
+const jsonLd = [articleSchema, faqSchema, breadcrumbSchema, definedTermSchema];
+---
+
+<Base title={title} description={description} canonical={canonical} jsonLd={jsonLd}>
+  <article>
+    <div class="tag-row" style="margin-top: 0;">
+      <a href="/antigravity/" class="tag">← Antigravity Hub</a>
+      <span class="tag">Diamagnetism</span>
+      <span class="tag">Magnetic Gradients</span>
+      <span class="tag">Earnshaw Bypassing</span>
+    </div>
+
+    <h1>Diamagnetic Levitation: Physics, Materials & Equations</h1>
+
+    <p>
+      <strong>Diamagnetic levitation</strong> is one of the few forms of completely passive, stable levitation achievable at room temperature without electronic feedback controls. While often described in popular media as "magnetic antigravity," it is a purely electromagnetic phenomenon governed by quantum mechanical orbital diamagnetism.
+    </p>
+
+    <div class="panel">
+      <h3 style="margin-top: 0;">Levitation vs Antigravity Principle</h3>
+      <p>
+        Levitation is not automatically antigravity. An object can levitate when an
+        upward force balances its weight. Magnetic, acoustic, aerodynamic, and optical
+        forces can all produce levitation. These effects oppose gravity, but they do
+        not remove or cancel the gravitational field itself.
+      </p>
+    </div>
+
+    <div class="panel">
+      <h3 style="margin-top: 0;">The Levitation Threshold Equation</h3>
+      <p>
+        <strong>Upward Magnetic Gradient Force:</strong><br />
+        <code>F_mag / V = (χ / µ₀) · B · (dB/dz)</code>
+      </p>
+      <p>
+        <strong>Levitation Condition:</strong><br />
+        <code>B · (dB/dz) ≥ (µ₀ · ρ · g) / |χ|</code>
+      </p>
+      <p class="muted">
+        Where <strong>χ</strong> is magnetic susceptibility, <strong>µ₀</strong> is vacuum permeability (4π × 10⁻⁷ H/m), <strong>ρ</strong> is mass density (kg/m³), and <strong>g</strong> is 9.81 m/s².
+      </p>
+    </div>
+
+    <section>
+      <h2>1. Diamagnetic Materials & Susceptibility Values</h2>
+      <p>
+        All materials exhibit some degree of diamagnetism, but its strength varies by orders of magnitude based on electronic band structure:
+      </p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Material</th>
+            <th>Magnetic Susceptibility (χ)</th>
+            <th>Required B · (dB/dz) for Lift</th>
+            <th>Levitation Practicality</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Pyrolytic Graphite</strong> (c-axis)</td>
+            <td>-4.5 × 10⁻⁴</td>
+            <td>~60 T²/m</td>
+            <td>Floats easily over standard neodymium (N42–N52) magnet arrays at room temperature</td>
+          </tr>
+          <tr>
+            <td><strong>Bismuth Metal</strong></td>
+            <td>-1.66 × 10⁻⁴</td>
+            <td>~740 T²/m</td>
+            <td>Levitates between strong neodymium poles with knife-edge geometry</td>
+          </tr>
+          <tr>
+            <td><strong>Liquid Water</strong></td>
+            <td>-9.05 × 10⁻⁶</td>
+            <td>~1,400 T²/m</td>
+            <td>Requires 15–20 Tesla high-field laboratory superconducting magnet</td>
+          </tr>
+          <tr>
+            <td><strong>Living Biological Tissue</strong> (e.g. frog)</td>
+            <td>~ -9.0 × 10⁻⁶</td>
+            <td>~1,400 T²/m</td>
+            <td>Levitates stably in high-field solenoids (1997 Geim-Berry experiment)</td>
+          </tr>
+          <tr>
+            <td><strong>Superconductors</strong> (Type-I / II)</td>
+            <td>-1.0 (Perfect Diamagnetism)</td>
+            <td>&lt; 0.1 T²/m</td>
+            <td>Extremely strong levitation (Meissner effect)</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>2. Why Earnshaw’s Theorem Does Not Apply</h2>
+      <p>
+        Earnshaw’s Theorem (1842) mathematically proves that no system of permanent magnets or static electric charges can be held in stable 3D equilibrium. However, diamagnets bypass Earnshaw’s Theorem because:
+      </p>
+      <ul>
+        <li>Their induced magnetic dipole is not fixed; it is proportional and opposite to the local applied field (M = χ · H).</li>
+        <li>The potential energy U = -0.5 · M · B = (|χ| / (2µ₀)) · B² increases wherever magnetic field strength increases.</li>
+        <li>The diamagnet is naturally repelled toward the magnetic field <strong>minimum</strong>, forming a stable 3-dimensional potential energy well.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Frequently Asked Questions</h2>
+      {faqs.map((faq) => (
+        <details>
+          <summary>{faq.q}</summary>
+          <p>{faq.a}</p>
+        </details>
+      ))}
+    </section>
+
+    <section class="panel">
+      <h2 style="margin-top: 0;">Explore Related Levitation & Antigravity Topics</h2>
+      <ul>
+        <li><a href="/antigravity/">Antigravity Pillar: Physics, Evidence & Experiments</a></li>
+        <li><a href="/antigravity/magnetic-levitation/">Magnetic Levitation vs Antigravity</a></li>
+        <li><a href="/antigravity/superconducting-levitation/">Superconducting Levitation & Flux Pinning</a></li>
+        <li><a href="/antigravity/acoustic-levitation/">Acoustic Levitation: Sound Wave Pressure Nodes</a></li>
+        <li><a href="/antigravity/optical-levitation/">Optical Levitation: Laser Radiation Pressure</a></li>
+        <li><a href="/antigravity/ion-wind-lift/">Ion Wind Lift: Electrohydrodynamic Propulsion</a></li>
+        <li><a href="/convert/tesla-to-gauss/">Tesla to Gauss Converter (T → G)</a></li>
+      </ul>
+    </section>
+  </article>
+</Base>

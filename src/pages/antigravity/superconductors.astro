@@ -1,0 +1,168 @@
+---
+// src/pages/antigravity/superconductors.astro
+
+import Base from '../../layouts/Base.astro';
+
+const title = 'Superconductors & Flux Pinning: Quantum Levitation vs Gravitational Anomalies';
+const description = 'Understand the physics of high-temperature superconductors, Type-II flux pinning (quantum locking), and why superconducting levitation is not antigravity.';
+const canonical = `${Astro.site}antigravity/superconductors/`;
+
+const faqs = [
+  {
+    q: 'What is quantum locking (flux pinning)?',
+    a: 'In Type-II superconductors (like YBCO), magnetic flux penetrates through nanoscale normal channels called Abrikosov vortices. Crystal defects physically pin these magnetic vortex lines, locking the superconductor in 3D space above or below a magnet in any orientation.',
+  },
+  {
+    q: 'Can a superconductor levitate upside down?',
+    a: 'Yes. Due to quantum flux pinning, a Type-II superconductor suspended below a magnetic track is prevented from falling by the pinned flux vortices, supporting its own weight against gravity.',
+  },
+  {
+    q: 'Do superconductors modify the local gravitational field?',
+    a: 'No. Despite historical claims of weight reductions above rotating superconductors, rigorous laboratory tests demonstrate that superconductors interact purely electromagnetically, with zero measurable modification to local gravitational spacetime curvature.',
+  },
+];
+
+const articleSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'TechArticle',
+  headline: title,
+  description,
+  mainEntityOfPage: canonical,
+  author: {
+    '@type': 'Organization',
+    name: 'NanoToMicro',
+    url: Astro.site.toString(),
+  },
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: f.a,
+    },
+  })),
+};
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    {
+      '@type': 'ListItem',
+      position: 1,
+      name: 'Home',
+      item: Astro.site.toString(),
+    },
+    {
+      '@type': 'ListItem',
+      position: 2,
+      name: 'Antigravity Cluster',
+      item: `${Astro.site}antigravity/`,
+    },
+    {
+      '@type': 'ListItem',
+      position: 3,
+      name: 'Superconductors',
+      item: canonical,
+    },
+  ],
+};
+
+const jsonLd = [articleSchema, faqSchema, breadcrumbSchema];
+---
+
+<Base title={title} description={description} canonical={canonical} jsonLd={jsonLd}>
+  <article>
+    <div class="tag-row" style="margin-top: 0;">
+      <a href="/antigravity/" class="tag">← Antigravity Hub</a>
+      <span class="tag">Condensed Matter</span>
+      <span class="tag">Superconductivity</span>
+      <span class="tag">Flux Pinning</span>
+    </div>
+
+    <h1>Superconductors & Quantum Levitation</h1>
+
+    <p>
+      Superconductors provide the most dramatic demonstration of physical levitation in modern physics. When chilled below their critical temperature with liquid nitrogen (77 K), high-T_c cuprate ceramics like <strong>YBCO</strong> (YBa₂Cu₃O₇) can float indefinitely above permanent magnets.
+    </p>
+
+    <div class="panel">
+      <h3 style="margin-top: 0;">Quantum Locking at a Glance</h3>
+      <p class="muted">
+        Unlike simple magnetic repulsion, flux pinning traps magnetic flux tubes in place. The superconductor resists any movement—up, down, or sideways—enabling frictionless inverted levitation.
+      </p>
+    </div>
+
+    <section>
+      <h2>1. Type-I vs Type-II Superconductors</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Property</th>
+            <th>Type-I Superconductors (e.g., Lead, Mercury)</th>
+            <th>Type-II Superconductors (e.g., YBCO, BSCCO)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Meissner Effect</td>
+            <td>Complete flux expulsion up to B_c</td>
+            <td>Mixed vortex state between B_c1 and B_c2</td>
+          </tr>
+          <tr>
+            <td>Levitation Stability</td>
+            <td>Unstable (tends to slide off magnet)</td>
+            <td>Extremely stable due to quantum flux pinning</td>
+          </tr>
+          <tr>
+            <td>Critical Field (B_c)</td>
+            <td>Low (&lt; 0.1 Tesla)</td>
+            <td>Very high (&gt; 50–100 Tesla)</td>
+          </tr>
+          <tr>
+            <td>Coolant Required</td>
+            <td>Liquid Helium (4.2 K)</td>
+            <td>Liquid Nitrogen (77 K) for high-T_c</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>2. The Physics of Abrikosov Flux Vortices</h2>
+      <p>
+        In Type-II superconductors placed in a magnetic field between B_c1 and B_c2, magnetic flux penetrates in discrete quantum units called fluxoids (Φ₀ = h / (2e) ≈ 2.0678 × 10⁻¹⁵ Wb).
+      </p>
+      <p>
+        Each vortex consists of a normal conducting cylindrical core of radius ξ (coherence length, ~1.5 nm in YBCO) carrying supercurrents circulating around it. Atomic-scale defects pin these vortices, creating mechanical stiffness against external gravitational or inertial forces.
+      </p>
+    </section>
+
+    <section>
+      <h2>Frequently Asked Questions</h2>
+      {faqs.map((faq) => (
+        <details>
+          <summary>{faq.q}</summary>
+          <p>{faq.a}</p>
+        </details>
+      ))}
+    </section>
+
+    <section class="panel">
+      <h2 style="margin-top: 0;">Explore the Antigravity Topic Cluster</h2>
+      <ul>
+        <li><a href="/antigravity/">Antigravity Pillar: Physics, Evidence & Experiments</a></li>
+        <li><a href="/antigravity/magnetic-levitation/">Magnetic Levitation vs Antigravity</a></li>
+        <li><a href="/antigravity/gravitational-shielding/">Gravitational Shielding: Podkletnov Claims Tested</a></li>
+        <li><a href="/antigravity/antimatter-gravity/">Antimatter Gravity: ALPHA-g CERN Findings</a></li>
+        <li><a href="/antigravity/casimir-effect/">Casimir Effect: Quantum Vacuum Forces</a></li>
+        <li><a href="/antigravity/negative-mass/">Negative Mass in General Relativity</a></li>
+      </ul>
+    </section>
+  </article>
+</Base>

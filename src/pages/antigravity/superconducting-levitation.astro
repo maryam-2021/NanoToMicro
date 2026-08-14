@@ -1,0 +1,205 @@
+---
+// src/pages/antigravity/superconducting-levitation.astro
+
+import Base from '../../layouts/Base.astro';
+import MagneticPressureIsland from '../../components/MagneticPressureIsland.svelte';
+
+const title = 'Superconducting Levitation: Meissner Effect, Flux Pinning, and Quantum Locking';
+const description = 'An in-depth guide to superconducting levitation: Type-I Meissner flux expulsion, Type-II Abrikosov vortex pinning, and zero-friction quantum locking physics.';
+const canonical = `${Astro.site}antigravity/superconducting-levitation/`;
+
+const faqs = [
+  {
+    q: 'What is the Meissner-Ochsenfeld effect?',
+    a: 'Discovered in 1933, the Meissner effect is the spontaneous, complete expulsion of magnetic flux from the interior of a material as it transitions into the superconducting state below its critical temperature (Tc).',
+  },
+  {
+    q: 'Why can a superconductor stay levitated sideways or upside down?',
+    a: 'In Type-II superconductors (such as YBCO), magnetic field lines penetrate through microscopic cylindrical non-superconducting cores called Abrikosov vortices. Crystal lattice impurities "pin" these vortices in place, preventing the superconductor from moving in any direction relative to the magnet (quantum locking).',
+  },
+  {
+    q: 'How much weight can superconducting levitation support?',
+    a: 'Superconducting levitation generates magnetic pressure P = B² / (2µ₀). In a 1.4 Tesla field, the magnetic pressure reaches ~780 kPa (7.7 atmospheres), supporting upwards of 79,500 kg per square meter of surface area.',
+  },
+];
+
+const articleSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'TechArticle',
+  headline: title,
+  description,
+  mainEntityOfPage: canonical,
+  author: {
+    '@type': 'Organization',
+    name: 'NanoToMicro',
+    url: Astro.site.toString(),
+  },
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: f.a,
+    },
+  })),
+};
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    {
+      '@type': 'ListItem',
+      position: 1,
+      name: 'Home',
+      item: Astro.site.toString(),
+    },
+    {
+      '@type': 'ListItem',
+      position: 2,
+      name: 'Antigravity Cluster',
+      item: `${Astro.site}antigravity/`,
+    },
+    {
+      '@type': 'ListItem',
+      position: 3,
+      name: 'Superconducting Levitation',
+      item: canonical,
+    },
+  ],
+};
+
+const definedTermSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'DefinedTerm',
+  name: 'Superconducting Levitation',
+  description:
+    'Frictionless physical levitation achieved via the Meissner effect and magnetic flux pinning in superconducting materials.',
+  inDefinedTermSet: {
+    '@type': 'DefinedTermSet',
+    name: 'Superconductivity & Quantum Physics',
+  },
+};
+
+const jsonLd = [articleSchema, faqSchema, breadcrumbSchema, definedTermSchema];
+---
+
+<Base title={title} description={description} canonical={canonical} jsonLd={jsonLd}>
+  <article>
+    <div class="tag-row" style="margin-top: 0;">
+      <a href="/antigravity/" class="tag">← Antigravity Hub</a>
+      <span class="tag">Superconductivity</span>
+      <span class="tag">Flux Pinning</span>
+      <span class="tag">Quantum Locking</span>
+    </div>
+
+    <h1>Superconducting Levitation: Meissner Effect & Quantum Locking</h1>
+
+    <p>
+      <strong>Superconducting levitation</strong> is the most powerful and stable form of magnetic levitation known to physics. When cooled below their critical temperature (T_c), superconductors exhibit zero electrical resistance and perfect diamagnetism (χ = -1), creating an impenetrable magnetic barrier against external fields.
+    </p>
+
+    <div class="panel">
+      <h3 style="margin-top: 0;">Levitation vs Antigravity Principle</h3>
+      <p>
+        Levitation is not automatically antigravity. An object can levitate when an
+        upward force balances its weight. Magnetic, acoustic, aerodynamic, and optical
+        forces can all produce levitation. These effects oppose gravity, but they do
+        not remove or cancel the gravitational field itself.
+      </p>
+    </div>
+
+    <div class="panel">
+      <h3 style="margin-top: 0;">Superconducting Magnetic Pressure Formula</h3>
+      <p>
+        <strong>Surface Mechanical Stress:</strong><br />
+        <code>P_mag = B² / (2µ₀)</code>
+      </p>
+      <p class="muted">
+        At 2.0 Tesla, a superconductor generates 1.59 MPa (15.7 atmospheres) of upward mechanical pressure, enabling frictionless levitation of high-speed maglev trains.
+      </p>
+    </div>
+
+    <!-- Live Calculator Island -->
+    <MagneticPressureIsland client:visible />
+
+    <section>
+      <h2>1. Type-I vs Type-II Superconducting Physics</h2>
+      <p>
+        The mechanism of levitation depends directly on the superconductor classification:
+      </p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Characteristic</th>
+            <th>Type-I Superconductors (Elemental metals: Pb, Hg, Al)</th>
+            <th>Type-II Superconductors (Cuprates: YBCO, BSCCO)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Flux Behavior</strong></td>
+            <td>100% flux expulsion until critical field B_c</td>
+            <td>Mixed vortex state between B_c1 and B_c2</td>
+          </tr>
+          <tr>
+            <td><strong>Levitation Mode</strong></td>
+            <td>Pure Meissner repulsion (wobbly, lateral drift)</td>
+            <td>Quantum Locking (rigid 3D spatial stability)</td>
+          </tr>
+          <tr>
+            <td><strong>Critical Magnetic Field</strong></td>
+            <td>Low (&lt; 0.1 Tesla)</td>
+            <td>Extremely High (&gt; 50–100 Tesla)</td>
+          </tr>
+          <tr>
+            <td><strong>Operating Coolant</strong></td>
+            <td>Liquid Helium (4.2 K)</td>
+            <td>Liquid Nitrogen (77 K) for High-T_c</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>2. The Physics of Quantum Flux Pinning</h2>
+      <p>
+        In Type-II superconductors, when an external magnetic field exceeds B_c1, magnetic flux penetrates the material in discrete bundles called <strong>fluxoids</strong>:
+      </p>
+      <p>
+        <code>Φ₀ = h / (2e) ≈ 2.0678 × 10⁻¹⁵ Weber (T·m²)</code>
+      </p>
+      <p>
+        Each flux tube is surrounded by circulating superconducting vortices. Atomic-scale structural defects in the ceramic crystal trap these vortices. Attempting to move the superconductor requires tearing the flux lines through the material, which creates a restoring force that locks the object in 3D space.
+      </p>
+    </section>
+
+    <section>
+      <h2>Frequently Asked Questions</h2>
+      {faqs.map((faq) => (
+        <details>
+          <summary>{faq.q}</summary>
+          <p>{faq.a}</p>
+        </details>
+      ))}
+    </section>
+
+    <section class="panel">
+      <h2 style="margin-top: 0;">Explore Related Levitation & Antigravity Topics</h2>
+      <ul>
+        <li><a href="/antigravity/">Antigravity Pillar: Physics, Evidence & Experiments</a></li>
+        <li><a href="/antigravity/magnetic-levitation/">Magnetic Levitation vs Antigravity</a></li>
+        <li><a href="/antigravity/diamagnetic-levitation/">Diamagnetic Levitation & Pyrolytic Graphite</a></li>
+        <li><a href="/antigravity/acoustic-levitation/">Acoustic Levitation: Sound Wave Pressure Nodes</a></li>
+        <li><a href="/antigravity/optical-levitation/">Optical Levitation: Laser Radiation Pressure</a></li>
+        <li><a href="/antigravity/ion-wind-lift/">Ion Wind Lift: Electrohydrodynamic Propulsion</a></li>
+      </ul>
+    </section>
+  </article>
+</Base>

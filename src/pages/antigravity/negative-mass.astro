@@ -1,0 +1,166 @@
+---
+// src/pages/antigravity/negative-mass.astro
+
+import Base from '../../layouts/Base.astro';
+
+const title = 'Negative Mass & Exotic Matter in General Relativity: Physics and Warp Mechanics';
+const description = 'An in-depth physics exploration of hypothetical negative mass, energy condition violations, runaway motion paradoxes, and warp drive geometries.';
+const canonical = `${Astro.site}antigravity/negative-mass/`;
+
+const faqs = [
+  {
+    q: 'What is negative mass in theoretical physics?',
+    a: 'Negative mass is a hypothetical concept where a body would possess negative inertial mass (accelerating opposite to applied force: F = -m·a) and/or negative gravitational mass (gravitationally repelling standard positive mass).',
+  },
+  {
+    q: 'What is the runaway motion paradox of negative mass?',
+    a: 'Bondi (1957) demonstrated that if an equal positive mass (+m) and negative mass (-m) are placed near each other, +m repels -m while -m attracts +m. The pair would accelerate continuously along the line connecting them without requiring external energy, while total momentum and kinetic energy remain zero.',
+  },
+  {
+    q: 'Does negative mass exist in nature?',
+    a: 'No stable negative mass particle or bulk material has ever been discovered. In General Relativity, negative mass violates the Null and Weak Energy Conditions (NEC and WEC). However, effective negative mass behaviors have been engineered in laboratory optical lattices and dispersion-engineered Bose-Einstein condensates.',
+  },
+];
+
+const articleSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'TechArticle',
+  headline: title,
+  description,
+  mainEntityOfPage: canonical,
+  author: {
+    '@type': 'Organization',
+    name: 'NanoToMicro',
+    url: Astro.site.toString(),
+  },
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: f.a,
+    },
+  })),
+};
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    {
+      '@type': 'ListItem',
+      position: 1,
+      name: 'Home',
+      item: Astro.site.toString(),
+    },
+    {
+      '@type': 'ListItem',
+      position: 2,
+      name: 'Antigravity Cluster',
+      item: `${Astro.site}antigravity/`,
+    },
+    {
+      '@type': 'ListItem',
+      position: 3,
+      name: 'Negative Mass',
+      item: canonical,
+    },
+  ],
+};
+
+const jsonLd = [articleSchema, faqSchema, breadcrumbSchema];
+---
+
+<Base title={title} description={description} canonical={canonical} jsonLd={jsonLd}>
+  <article>
+    <div class="tag-row" style="margin-top: 0;">
+      <a href="/antigravity/" class="tag">← Antigravity Hub</a>
+      <span class="tag">General Relativity</span>
+      <span class="tag">Theoretical Physics</span>
+      <span class="tag">Exotic Matter</span>
+    </div>
+
+    <h1>Negative Mass & Exotic Matter in General Relativity</h1>
+
+    <p>
+      Negative mass is a theoretical concept in which mass would respond to forces
+      differently from ordinary matter. Some equations in theoretical physics allow
+      exotic forms of mass or energy, but negative mass has not been produced as a
+      stable, measurable material.
+    </p>
+
+    <div class="panel">
+      <h3 style="margin-top: 0;">Theoretical Status</h3>
+      <p class="muted">
+        While mathematically consistent within the field equations of General Relativity (G_µν = (8πG / c⁴) · T_µν), negative mass has never been observed in particle physics and violates classical energy conditions.
+      </p>
+    </div>
+
+    <section>
+      <h2>1. The Four Types of Mass</h2>
+      <p>
+        To understand negative mass, physicists distinguish between four operational definitions of mass:
+      </p>
+      <ol>
+        <li><strong>Active Gravitational Mass (\(m_a\)):</strong> The mass acting as the source of a gravitational field.</li>
+        <li><strong>Passive Gravitational Mass (\(m_p\)):</strong> The mass responding to an external gravitational field.</li>
+        <li><strong>Inertial Mass (\(m_i\)):</strong> The resistance to acceleration (\(F = m_i a\)).</li>
+        <li><strong>Rest Mass Energy (\(E = mc^2\)):</strong> The invariant mass-energy content.</li>
+      </ol>
+      <p>
+        The Equivalence Principle mandates \(m_a = m_p = m_i\). If all three are negative, applying a force forward causes the object to accelerate backward.
+      </p>
+    </section>
+
+    <section>
+      <h2>2. The Bondi "Runaway Motion" Solution (1957)</h2>
+      <p>
+        Hermann Bondi investigated the exact General Relativity solutions for negative mass:
+      </p>
+      <ul>
+        <li>A positive mass (\(+M\)) attracts all masses.</li>
+        <li>A negative mass (\(-M\)) repels all masses.</li>
+        <li>When placed near each other, \(+M\) is repelled by \(-M\), while \(-M\) is attracted to \(+M\).</li>
+        <li>The system accelerates indefinitely in one direction without external force. Because the total mass \(+M + (-M) = 0\), momentum and energy conservation are preserved.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>3. Role in Alcubierre Warp Drives and Traversable Wormholes</h2>
+      <p>
+        In theoretical spacetime engineering:
+      </p>
+      <ul>
+        <li><strong>Alcubierre Warp Drive (1994):</strong> Compressing space ahead and expanding space behind a spacecraft requires negative energy density to sustain the warp bubble boundary.</li>
+        <li><strong>Morris-Thorne Wormholes:</strong> Keeping a wormhole throat open against gravitational collapse requires exotic matter with negative radial tension exceeding its energy density.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Frequently Asked Questions</h2>
+      {faqs.map((faq) => (
+        <details>
+          <summary>{faq.q}</summary>
+          <p>{faq.a}</p>
+        </details>
+      ))}
+    </section>
+
+    <section class="panel">
+      <h2 style="margin-top: 0;">Explore the Antigravity Topic Cluster</h2>
+      <ul>
+        <li><a href="/antigravity/">Antigravity Pillar: Physics, Evidence & Experiments</a></li>
+        <li><a href="/antigravity/magnetic-levitation/">Magnetic Levitation vs Antigravity</a></li>
+        <li><a href="/antigravity/gravitational-shielding/">Gravitational Shielding: Podkletnov Claims Tested</a></li>
+        <li><a href="/antigravity/antimatter-gravity/">Antimatter Gravity: ALPHA-g CERN Findings</a></li>
+        <li><a href="/antigravity/casimir-effect/">Casimir Effect: Quantum Vacuum Forces</a></li>
+        <li><a href="/antigravity/superconductors/">Superconductors & Flux Pinning</a></li>
+      </ul>
+    </section>
+  </article>
+</Base>

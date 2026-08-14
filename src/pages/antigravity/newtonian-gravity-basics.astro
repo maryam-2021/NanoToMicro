@@ -1,0 +1,195 @@
+---
+// src/pages/antigravity/newtonian-gravity-basics.astro
+
+import Base from '../../layouts/Base.astro';
+
+const title = 'Newtonian Gravity Basics: Inverse-Square Law, Formulas, and Gravitational Constant';
+const description = 'A comprehensive guide to Newton’s Law of Universal Gravitation: the inverse-square law formula (F = G·m₁·m₂/r²), the gravitational constant G, and orbital mechanics.';
+const canonical = `${Astro.site}antigravity/newtonian-gravity-basics/`;
+
+const faqs = [
+  {
+    q: 'What is Newton’s Law of Universal Gravitation?',
+    a: 'Formulated by Sir Isaac Newton in 1687, the law states that every point mass attracts every other point mass with a force directly proportional to the product of their masses and inversely proportional to the square of the distance between their centers: F = G · (m₁ · m₂) / r².',
+  },
+  {
+    q: 'What is the value of the gravitational constant G?',
+    a: 'The Newtonian gravitational constant G is approximately 6.67430 × 10⁻¹¹ N·m²/kg². It was first measured experimentally in the laboratory by Henry Cavendish in 1798 using a torsion balance.',
+  },
+  {
+    q: 'Why does Newtonian gravity not allow antigravity?',
+    a: 'In Newtonian gravity, mass (m) is always positive. Because G > 0, m₁ > 0, and m₂ > 0, the force F is strictly positive and attractive for all matter.',
+  },
+];
+
+const articleSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'TechArticle',
+  headline: title,
+  description,
+  mainEntityOfPage: canonical,
+  author: {
+    '@type': 'Organization',
+    name: 'NanoToMicro',
+    url: Astro.site.toString(),
+  },
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: f.a,
+    },
+  })),
+};
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    {
+      '@type': 'ListItem',
+      position: 1,
+      name: 'Home',
+      item: Astro.site.toString(),
+    },
+    {
+      '@type': 'ListItem',
+      position: 2,
+      name: 'Antigravity Cluster',
+      item: `${Astro.site}antigravity/`,
+    },
+    {
+      '@type': 'ListItem',
+      position: 3,
+      name: 'Newtonian Gravity Basics',
+      item: canonical,
+    },
+  ],
+};
+
+const definedTermSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'DefinedTerm',
+  name: 'Universal Gravitation',
+  description:
+    'Newton’s classical law describing the attractive gravitational force between massive bodies proportional to their masses and inversely proportional to distance squared.',
+  inDefinedTermSet: {
+    '@type': 'DefinedTermSet',
+    name: 'Classical Mechanics Laws',
+  },
+};
+
+const jsonLd = [articleSchema, faqSchema, breadcrumbSchema, definedTermSchema];
+---
+
+<Base title={title} description={description} canonical={canonical} jsonLd={jsonLd}>
+  <article>
+    <div class="tag-row" style="margin-top: 0;">
+      <a href="/antigravity/" class="tag">← Antigravity Hub</a>
+      <span class="tag">Classical Mechanics</span>
+      <span class="tag">Newtonian Physics</span>
+      <span class="tag">Inverse-Square Law</span>
+    </div>
+
+    <h1>Newtonian Gravity Basics: Inverse-Square Law & Formulas</h1>
+
+    <p>
+      Isaac Newton’s 1687 <em>Philosophiae Naturalis Principia Mathematica</em> unified the motion of falling apples on Earth with the orbits of the Moon and planets under a single mathematical law: the <strong>Universal Law of Gravitation</strong>.
+    </p>
+
+    <div class="panel">
+      <h3 style="margin-top: 0;">The Universal Gravitation Formula</h3>
+      <p>
+        <strong>Gravitational Force:</strong><br />
+        <code>F = G · (m₁ · m₂) / r²</code>
+      </p>
+      <p class="muted">
+        Where <strong>F</strong> is gravitational force in Newtons (N), <strong>G</strong> is the gravitational constant (6.6743 × 10⁻¹¹ N·m²/kg²), <strong>m₁, m₂</strong> are masses in kg, and <strong>r</strong> is distance in meters.
+      </p>
+    </div>
+
+    <section>
+      <h2>1. The Inverse-Square Law</h2>
+      <p>
+        Gravitational force weakens rapidly with distance:
+      </p>
+      <ul>
+        <li>Double the distance (2r) → Force drops to <strong>1/4</strong> (25%).</li>
+        <li>Triple the distance (3r) → Force drops to <strong>1/9</strong> (11.1%).</li>
+        <li>Ten times the distance (10r) → Force drops to <strong>1/100</strong> (1%).</li>
+      </ul>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Distance Multiple</th>
+            <th>Relative Force</th>
+            <th>Orbital Context</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1 Earth Radius (6,371 km)</td>
+            <td>100.0% (g = 9.81 m/s²)</td>
+            <td>Earth Sea Level</td>
+          </tr>
+          <tr>
+            <td>1.06 Earth Radii (ISS Orbit, 400 km)</td>
+            <td>88.8% (g = 8.71 m/s²)</td>
+            <td>Low Earth Orbit (Apparent weightlessness is due to free fall, not zero gravity)</td>
+          </tr>
+          <tr>
+            <td>6.6 Earth Radii (35,786 km)</td>
+            <td>2.3% (g = 0.22 m/s²)</td>
+            <td>Geostationary Orbit</td>
+          </tr>
+          <tr>
+            <td>60.3 Earth Radii (384,400 km)</td>
+            <td>0.027% (g = 0.0027 m/s²)</td>
+            <td>Lunar Orbit</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>2. Deriving Surface Gravity (g)</h2>
+      <p>
+        By equating Newton’s Second Law (F = m · g) with Universal Gravitation (F = G · M · m / R²), the surface gravitational acceleration of any spherical planet is:
+      </p>
+      <p>
+        <code>g = G · M / R²</code>
+      </p>
+      <p class="muted">
+        For Earth: M = 5.972 × 10²⁴ kg, R = 6.371 × 10⁶ m → g ≈ 9.81 m/s².
+      </p>
+    </section>
+
+    <section>
+      <h2>Frequently Asked Questions</h2>
+      {faqs.map((faq) => (
+        <details>
+          <summary>{faq.q}</summary>
+          <p>{faq.a}</p>
+        </details>
+      ))}
+    </section>
+
+    <section class="panel">
+      <h2 style="margin-top: 0;">Explore the Antigravity Topic Cluster</h2>
+      <ul>
+        <li><a href="/antigravity/">Antigravity Pillar: Physics, Evidence & Experiments</a></li>
+        <li><a href="/antigravity/general-relativity-basics/">General Relativity Basics: Spacetime Curvature & Geodesics</a></li>
+        <li><a href="/antigravity/gravitational-fields/">Gravitational Fields: Field Lines & Potentials</a></li>
+        <li><a href="/antigravity/weight-vs-mass/">Weight vs Mass: Differences & Formulas</a></li>
+        <li><a href="/convert/newton-to-micronewton/">Newton to Micronewton Converter (N → µN)</a></li>
+      </ul>
+    </section>
+  </article>
+</Base>

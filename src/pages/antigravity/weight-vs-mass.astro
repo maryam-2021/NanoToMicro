@@ -1,0 +1,244 @@
+---
+// src/pages/antigravity/weight-vs-mass.astro
+
+import Base from '../../layouts/Base.astro';
+
+const title = 'Weight vs Mass: Physics, Units, Formulas, and Gravitational Variations';
+const description = 'A definitive guide to the difference between mass and weight: SI definitions, Newton formulas (W = mg), gravitational acceleration across celestial bodies, and precision conversion tools.';
+const canonical = `${Astro.site}antigravity/weight-vs-mass/`;
+
+const faqs = [
+  {
+    q: 'Is zero gravity the same as antigravity?',
+    a: 'No. Zero gravity or microgravity usually means free fall or a very weak local acceleration environment, such as in orbit. It does not mean gravity has been canceled or shielded.',
+  },
+  {
+    q: 'What is the fundamental difference between mass and weight?',
+    a: 'Mass is an intrinsic scalar property of matter quantifying its inertia and resistance to acceleration (measured in kilograms, kg). Weight is the downward gravitational force exerted on that mass by an external gravitational field (measured in Newtons, N, where W = m · g).',
+  },
+  {
+    q: 'Why does weight change on different planets while mass remains constant?',
+    a: 'Mass is invariant because it depends only on the quantity of matter. Weight varies because it depends on the local gravitational acceleration (g): on the Moon (g = 1.62 m/s²), a 70 kg person weighs ~113 N, whereas on Earth (g = 9.81 m/s²), they weigh ~687 N.',
+  },
+  {
+    q: 'Can weight be zero while mass is positive?',
+    a: 'Yes. In orbit (free fall) or in deep space far from massive bodies, an object experiences apparent weightlessness (W = 0 N) because no normal contact force is supporting it, even though its mass (m) and inertia remain completely unchanged.',
+  },
+];
+
+const articleSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'TechArticle',
+  headline: title,
+  description,
+  mainEntityOfPage: canonical,
+  author: {
+    '@type': 'Organization',
+    name: 'NanoToMicro',
+    url: Astro.site.toString(),
+  },
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: f.a,
+    },
+  })),
+};
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    {
+      '@type': 'ListItem',
+      position: 1,
+      name: 'Home',
+      item: Astro.site.toString(),
+    },
+    {
+      '@type': 'ListItem',
+      position: 2,
+      name: 'Antigravity Cluster',
+      item: `${Astro.site}antigravity/`,
+    },
+    {
+      '@type': 'ListItem',
+      position: 3,
+      name: 'Weight vs Mass',
+      item: canonical,
+    },
+  ],
+};
+
+const definedTermSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'DefinedTerm',
+  name: 'Weight vs Mass',
+  description:
+    'The distinction between mass (invariant quantity of matter in kilograms) and weight (gravitational body force in Newtons).',
+  inDefinedTermSet: {
+    '@type': 'DefinedTermSet',
+    name: 'Classical Mechanics & Metrology',
+  },
+};
+
+const jsonLd = [articleSchema, faqSchema, breadcrumbSchema, definedTermSchema];
+---
+
+<Base title={title} description={description} canonical={canonical} jsonLd={jsonLd}>
+  <article>
+    <div class="tag-row" style="margin-top: 0;">
+      <a href="/antigravity/" class="tag">← Antigravity Hub</a>
+      <span class="tag">Classical Mechanics</span>
+      <span class="tag">SI Units</span>
+      <span class="tag">Gravitation</span>
+    </div>
+
+    <h1>Weight vs Mass: Physics, Units, and Formulas</h1>
+
+    <p>
+      In everyday language, the terms <strong>mass</strong> and <strong>weight</strong> are frequently used interchangeably. However, in physics and measurement science, they describe fundamentally different physical quantities with distinct dimensional units and behaviors.
+    </p>
+
+    <div class="panel">
+      <h3 style="margin-top: 0;">The Fundamental Formula</h3>
+      <p>
+        <strong>Weight Force:</strong><br />
+        <code>W = m · g</code>
+      </p>
+      <p class="muted">
+        Where <strong>W</strong> is weight force in Newtons (N), <strong>m</strong> is mass in kilograms (kg), and <strong>g</strong> is the local gravitational acceleration (9.80665 m/s² on Earth).
+      </p>
+    </div>
+
+    <section>
+      <h2>1. Direct Side-by-Side Comparison</h2>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Characteristic</th>
+            <th>Mass (m)</th>
+            <th>Weight (W / F_g)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Definition</strong></td>
+            <td>Quantitative measure of inertia and matter content</td>
+            <td>Gravitational force exerted on a mass by a planetary body</td>
+          </tr>
+          <tr>
+            <td><strong>SI Base Unit</strong></td>
+            <td>Kilogram (kg)</td>
+            <td>Newton (N = kg·m/s²)</td>
+          </tr>
+          <tr>
+            <td><strong>Vector Property</strong></td>
+            <td>Scalar (magnitude only)</td>
+            <td>Vector (points downward toward center of gravity)</td>
+          </tr>
+          <tr>
+            <td><strong>Location Invariance</strong></td>
+            <td>Constant everywhere in the universe</td>
+            <td>Varies with local gravitational acceleration (g)</td>
+          </tr>
+          <tr>
+            <td><strong>Measurement Instrument</strong></td>
+            <td>Balance beam / Inertial balance</td>
+            <td>Spring scale / Strain-gauge load cell</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>2. Weight Across the Solar System (70 kg Mass Example)</h2>
+      <p>
+        A person with a mass of <strong>70 kg</strong> retains an identical 70 kg mass across every celestial body, but their weight force changes drastically depending on surface gravity:
+      </p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Celestial Body</th>
+            <th>Surface Gravity (g)</th>
+            <th>Weight in Newtons (N)</th>
+            <th>Apparent Earth Equivalent</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Earth</strong></td>
+            <td>9.81 m/s² (1.00 g)</td>
+            <td>686.7 N</td>
+            <td>70.0 kg</td>
+          </tr>
+          <tr>
+            <td><strong>Moon</strong></td>
+            <td>1.62 m/s² (0.17 g)</td>
+            <td>113.4 N</td>
+            <td>11.6 kg</td>
+          </tr>
+          <tr>
+            <td><strong>Mars</strong></td>
+            <td>3.72 m/s² (0.38 g)</td>
+            <td>260.4 N</td>
+            <td>26.5 kg</td>
+          </tr>
+          <tr>
+            <td><strong>Jupiter</strong> (cloud tops)</td>
+            <td>24.79 m/s² (2.53 g)</td>
+            <td>1,735.3 N</td>
+            <td>176.9 kg</td>
+          </tr>
+          <tr>
+            <td><strong>International Space Station</strong></td>
+            <td>0.00 m/s² (apparent microgravity)</td>
+            <td>0.0 N (Weightless)</td>
+            <td>0.0 kg</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>3. Antigravity & Weight Reduction</h2>
+      <p>
+        When people discuss "antigravity," they usually mean reducing the <strong>weight force</strong> (W) of an object. In physics:
+      </p>
+      <ul>
+        <li><strong>Apparent Weight Reduction:</strong> Buoyancy (submarines), aerodynamic lift (airplanes), or magnetic forces (maglev) create an upward force F_up, reducing the net normal scale reading W_app = m · g - F_up.</li>
+        <li><strong>True Antigravity:</strong> Reducing the gravitational constant G or shielding g, which has never been observed in controlled experiments.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Frequently Asked Questions</h2>
+      {faqs.map((faq) => (
+        <details>
+          <summary>{faq.q}</summary>
+          <p>{faq.a}</p>
+        </details>
+      ))}
+    </section>
+
+    <section class="panel">
+      <h2 style="margin-top: 0;">Explore the Antigravity Topic Cluster & Unit Tools</h2>
+      <ul>
+        <li><a href="/antigravity/">Antigravity Pillar: Physics, Evidence & Experiments</a></li>
+        <li><a href="/antigravity/what-is-antigravity/">What is Antigravity? Definitions & Physics</a></li>
+        <li><a href="/antigravity/equivalence-principle/">Equivalence Principle: Inertial vs Gravitational Mass</a></li>
+        <li><a href="/convert/newton-to-micronewton/">Newton to Micronewton Converter (N → µN)</a></li>
+        <li><a href="/convert/nanograms-to-micrograms/">Nanograms to Micrograms Converter (ng → µg)</a></li>
+      </ul>
+    </section>
+  </article>
+</Base>

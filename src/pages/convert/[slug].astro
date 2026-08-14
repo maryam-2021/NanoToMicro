@@ -1,0 +1,185 @@
+---
+// src/pages/convert/[slug].astro
+
+import Base from '../../layouts/Base.astro';
+import ConverterIsland from '../../components/ConverterIsland.svelte';
+import { converters } from '../../data/converters';
+
+export function getStaticPaths() {
+  return converters.map((converter) => ({
+    params: { slug: converter.slug },
+    props: { converter },
+  }));
+}
+
+const converter = Astro.props.converter;
+const canonical = `${Astro.site}convert/${converter.slug}/`;
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    {
+      '@type': 'ListItem',
+      position: 1,
+      name: 'Home',
+      item: Astro.site.toString(),
+    },
+    {
+      '@type': 'ListItem',
+      position: 2,
+      name: 'Converters',
+      item: `${Astro.site}convert/`,
+    },
+    {
+      '@type': 'ListItem',
+      position: 3,
+      name: converter.title,
+      item: canonical,
+    },
+  ],
+};
+
+const definedTermSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'DefinedTerm',
+  name: `${converter.fromName} to ${converter.toName} conversion`,
+  description: converter.description,
+  termCode: `${converter.fromSymbol} to ${converter.toSymbol}`,
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: converter.examples.map((example) => ({
+    '@type': 'Question',
+    name: example.question,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: example.answer,
+    },
+  })),
+};
+
+const jsonLd = [breadcrumbSchema, definedTermSchema, faqSchema];
+---
+
+<Base
+  title={converter.title}
+  description={converter.description}
+  canonical={canonical}
+  jsonLd={jsonLd}
+>
+  <article>
+    <p class="muted" style="margin-top: 0;">
+      {converter.quantity}
+    </p>
+
+    <h1>{converter.h1}</h1>
+
+    <p>
+      {converter.intro}
+    </p>
+
+    <ConverterIsland
+      client:visible
+      fromSymbol={converter.fromSymbol}
+      toSymbol={converter.toSymbol}
+      factor={converter.factor}
+    />
+
+    <section class="panel">
+      <h2 style="margin-top: 0;">Formula</h2>
+      <p>
+        <strong>{converter.formulaTo}</strong>
+      </p>
+      <p>
+        <strong>{converter.formulaFrom}</strong>
+      </p>
+      <p class="muted">
+        Shortcut: move the decimal point three places.
+        From {converter.fromSymbol} to {converter.toSymbol}, move left.
+        From {converter.toSymbol} to {converter.fromSymbol}, move right.
+      </p>
+    </section>
+
+    <section>
+      <h2>Quick Conversion Table</h2>
+
+      <table>
+        <thead>
+          <tr>
+            <th>{converter.fromName} ({converter.fromSymbol})</th>
+            <th>{converter.toName} ({converter.toSymbol})</th>
+          </tr>
+        </thead>
+        <tbody>
+          {
+            converter.table.map((row) => (
+              <tr>
+                <td>{row.from}</td>
+                <td>{row.to}</td>
+              </tr>
+            ))
+          }
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>Examples</h2>
+
+      {
+        converter.examples.map((example) => (
+          <details>
+            <summary>{example.question}</summary>
+            <p>{example.answer}</p>
+          </details>
+        ))
+      }
+    </section>
+
+    <section class="panel">
+      <h2 style="margin-top: 0;">Physics & Research Applications</h2>
+      {converter.slug === 'newton-to-micronewton' ? (
+        <p>
+          Micro-force calibration is vital for detecting micro-g and nano-g gravitational anomalies. Learn how micro-Newton precision balances isolate forces in <a href="/antigravity/">Antigravity Measurement</a>, <a href="/antigravity/reproducibility-and-experimental-errors/">Experimental Error Analysis</a>, and <a href="/antigravity/propellantless-propulsion/">Propellantless Propulsion Testing</a>.
+        </p>
+      ) : converter.slug === 'tesla-to-gauss' ? (
+        <p>
+          Converting magnetic flux density is essential for calculating magnetic pressure lift (P = B²/2µ₀). Explore real field equations in <a href="/antigravity/magnetic-levitation/">Magnetic Levitation</a>, <a href="/antigravity/diamagnetic-levitation/">Diamagnetic Levitation</a>, and <a href="/antigravity/superconducting-levitation/">Superconducting Levitation</a>.
+        </p>
+      ) : converter.slug === 'meter-to-micrometer' || converter.slug === 'micrometers-to-nanometers' || converter.slug === 'nanometers-to-micrometers' ? (
+        <p>
+          Sub-millimeter and nanoscale distance measurement is critical for cavity alignment and optical traps. Explore precision requirements in <a href="/antigravity/reproducibility-and-experimental-errors/">Experimental Precision</a>, the <a href="/antigravity/casimir-effect/">Casimir Effect</a>, and <a href="/antigravity/optical-levitation/">Optical Levitation</a>.
+        </p>
+      ) : converter.slug === 'second-to-microsecond' || converter.slug === 'nanoseconds-to-microseconds' ? (
+        <p>
+          Microsecond timing synchronization is required to isolate transient noise from steady forces. Discover time dilation and sensor calibration in <a href="/antigravity/reproducibility-and-experimental-errors/">Sensor Timing</a> and <a href="/antigravity/general-relativity-basics/">General Relativity Basics</a>.
+        </p>
+      ) : converter.slug === 'gram-to-microgram' || converter.slug === 'nanograms-to-micrograms' || converter.slug === 'micrograms-to-nanograms' ? (
+        <p>
+          High-precision mass metrology distinguishes invariant matter content from planetary gravitational forces. Compare standards in <a href="/antigravity/weight-vs-mass/">Weight vs Mass</a> and <a href="/antigravity/inertial-mass-vs-gravitational-mass/">Inertial Mass vs Gravitational Mass</a>.
+        </p>
+      ) : (
+        <p>
+          Precision SI unit scaling connects directly to laboratory gravimetry and advanced field testing. Explore the complete <a href="/antigravity/">Antigravity Physics Guide</a> and <a href="/si-prefix-converter/">SI Prefix Reference</a>.
+        </p>
+      )}
+    </section>
+
+    <section class="panel">
+      <h2 style="margin-top: 0;">Related Conversions</h2>
+      <ul>
+        <li><a href="/convert/nano-to-micro/">Nano to Micro (n → µ)</a></li>
+        <li><a href="/convert/micro-to-nano/">Micro to Nano (µ → n)</a></li>
+        <li><a href="/convert/newton-to-micronewton/">Newton to Micronewton (N → µN)</a></li>
+        <li><a href="/convert/tesla-to-gauss/">Tesla to Gauss (T → G)</a></li>
+        <li><a href="/convert/meter-to-micrometer/">Meter to Micrometer (m → µm)</a></li>
+        <li><a href="/convert/second-to-microsecond/">Second to Microsecond (s → µs)</a></li>
+        <li><a href="/convert/gram-to-microgram/">Gram to Microgram (g → µg)</a></li>
+      </ul>
+    </section>
+  </article>
+</Base>
+

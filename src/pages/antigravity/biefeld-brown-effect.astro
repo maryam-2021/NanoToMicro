@@ -1,0 +1,190 @@
+---
+// src/pages/antigravity/biefeld-brown-effect.astro
+
+import Base from '../../layouts/Base.astro';
+
+const title = 'Biefeld-Brown Effect: History, Electrogravitics Claims, and Air-Ion Thrust Physics';
+const description = 'A scientific analysis of the Biefeld-Brown effect: Thomas Townsend Brown’s electrogravitics patents, corona discharge, and vacuum chamber validation experiments.';
+const canonical = `${Astro.site}antigravity/biefeld-brown-effect/`;
+
+const faqs = [
+  {
+    q: 'What is the Biefeld-Brown effect?',
+    a: 'Discovered by Thomas Townsend Brown in the 1920s, the Biefeld-Brown effect refers to the observable mechanical force produced when an asymmetric capacitor with sharp electrodes is energized with high-voltage direct current (typically 20 kV to 50 kV).',
+  },
+  {
+    q: 'Did Townsend Brown prove electrogravitics (coupling between electricity and gravity)?',
+    a: 'No. While Brown believed he had discovered a fundamental coupling between high-voltage electric fields and gravity, rigorous modern replications (including tests by NASA Glenn Research Center and the US Air Force) showed that the force is entirely caused by air-ion momentum transfer (ion wind) and disappears in a high vacuum.',
+  },
+  {
+    q: 'What happens when a Biefeld-Brown capacitor is operated in a vacuum chamber?',
+    a: 'When the ambient air is pumped down below 10⁻⁴ Torr, the thrust drops to zero (within instrument noise). If an electrogravitic force existed independent of ambient gas, the device would continue to produce thrust in a vacuum.',
+  },
+];
+
+const articleSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'TechArticle',
+  headline: title,
+  description,
+  mainEntityOfPage: canonical,
+  author: {
+    '@type': 'Organization',
+    name: 'NanoToMicro',
+    url: Astro.site.toString(),
+  },
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: f.a,
+    },
+  })),
+};
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    {
+      '@type': 'ListItem',
+      position: 1,
+      name: 'Home',
+      item: Astro.site.toString(),
+    },
+    {
+      '@type': 'ListItem',
+      position: 2,
+      name: 'Antigravity Cluster',
+      item: `${Astro.site}antigravity/`,
+    },
+    {
+      '@type': 'ListItem',
+      position: 3,
+      name: 'Biefeld-Brown Effect',
+      item: canonical,
+    },
+  ],
+};
+
+const definedTermSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'DefinedTerm',
+  name: 'Biefeld-Brown Effect',
+  description:
+    'An electrical phenomenon where high-voltage asymmetric electrodes produce mechanical thrust via corona discharge and ion wind in dielectric gas mediums.',
+  inDefinedTermSet: {
+    '@type': 'DefinedTermSet',
+    name: 'Historical Physics Claims',
+  },
+};
+
+const jsonLd = [articleSchema, faqSchema, breadcrumbSchema, definedTermSchema];
+---
+
+<Base title={title} description={description} canonical={canonical} jsonLd={jsonLd}>
+  <article>
+    <div class="tag-row" style="margin-top: 0;">
+      <a href="/antigravity/" class="tag">← Antigravity Hub</a>
+      <span class="tag">Electrogravitics</span>
+      <span class="tag">Historical Claims</span>
+      <span class="tag">Corona Discharge</span>
+      <span class="tag">Vacuum Testing</span>
+    </div>
+
+    <h1>The Biefeld-Brown Effect: Electrogravitics vs Air-Ion Physics</h1>
+
+    <p>
+      In 1928, American inventor <strong>Thomas Townsend Brown</strong> filed patents describing an anomalous force produced by high-voltage capacitors, claiming he had discovered a direct link between electromagnetism and gravitation—a concept termed <strong>"electrogravitics."</strong>
+    </p>
+
+    <div class="panel">
+      <h3 style="margin-top: 0;">The Scientific Verdict</h3>
+      <p class="muted">
+        Multiple independent aerospace laboratories (NASA, MIT, Army Research Laboratory) have conclusively established that the Biefeld-Brown effect is <strong>100% electrohydrodynamic (EHD) ion wind</strong>. No gravitational coupling or vacuum propellantless thrust exists.
+      </p>
+    </div>
+
+    <section>
+      <h2>1. Historical Timeline of the Claim</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Year</th>
+            <th>Event / Investigation</th>
+            <th>Outcome</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>1928</strong></td>
+            <td>Townsend Brown patents US Patent 1,974,483</td>
+            <td>Claims charged capacitors move toward positive pole via gravitational coupling</td>
+          </tr>
+          <tr>
+            <td><strong>1950s</strong></td>
+            <td>Aviation industry "Electrogravitics" boom (Aviation Studies Ltd)</td>
+            <td>Speculative reports suggested gravity control for aerospace flight</td>
+          </tr>
+          <tr>
+            <td><strong>2003</strong></td>
+            <td>NASA Glenn Research Center (Canning et al.)</td>
+            <td>Asymmetric capacitors tested in vacuum chamber: thrust drops to zero at high vacuum</td>
+          </tr>
+          <tr>
+            <td><strong>2004</strong></td>
+            <td>Army Research Laboratory (Tajmar et al.)</td>
+            <td>Identified acoustic and corona wind as sole physical force contributors</td>
+          </tr>
+          <tr>
+            <td><strong>2018</strong></td>
+            <td>MIT Solid-State Ion Plane (Steven Barrett)</td>
+            <td>Successfully flew 5-meter aircraft utilizing EHD ion wind thrust in Earth atmosphere</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>2. Why the Effect Disappears in a Vacuum</h2>
+      <p>
+        In atmospheric air, the high electric field near the small wire ionizes nitrogen and oxygen molecules. These ions accelerate toward the broad plate, colliding with neutral air molecules and imparting downward kinetic momentum.
+      </p>
+      <p>
+        In a vacuum chamber (pressure &lt; 10⁻⁴ Torr):
+      </p>
+      <ul>
+        <li>There are no air molecules to ionize into a corona discharge.</li>
+        <li>There is no neutral medium to receive momentum exchange.</li>
+        <li>Net thrust drops to <strong>0.000 Newtons</strong>, disproving any underlying gravitational shielding or space-coupling effect.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Frequently Asked Questions</h2>
+      {faqs.map((faq) => (
+        <details>
+          <summary>{faq.q}</summary>
+          <p>{faq.a}</p>
+        </details>
+      ))}
+    </section>
+
+    <section class="panel">
+      <h2 style="margin-top: 0;">Explore the Antigravity Topic Cluster</h2>
+      <ul>
+        <li><a href="/antigravity/">Antigravity Pillar: Physics, Evidence & Experiments</a></li>
+        <li><a href="/antigravity/ion-wind-lift/">Ion Wind Lift: Electrohydrodynamic Propulsion</a></li>
+        <li><a href="/antigravity/reproducibility-and-experimental-errors/">Reproducibility & Experimental Errors in Physics</a></li>
+        <li><a href="/antigravity/propellantless-propulsion/">Propellantless Propulsion: EmDrive Tests</a></li>
+        <li><a href="/convert/newton-to-micronewton/">Newton to Micronewton Converter (N → µN)</a></li>
+      </ul>
+    </section>
+  </article>
+</Base>

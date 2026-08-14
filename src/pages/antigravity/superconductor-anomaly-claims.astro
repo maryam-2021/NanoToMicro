@@ -1,0 +1,187 @@
+---
+// src/pages/antigravity/superconductor-anomaly-claims.astro
+
+import Base from '../../layouts/Base.astro';
+
+const title = 'Superconductor Gravitational Anomaly Claims: Podkletnov, Ning Li, and NASA MSFC Replications';
+const description = 'A comprehensive review of claimed gravitational shielding in rotating superconductors: Eugene Podkletnov’s 2% weight loss claim, Ning Li’s AC gravity, and NASA Marshall tests.';
+const canonical = `${Astro.site}antigravity/superconductor-anomaly-claims/`;
+
+const faqs = [
+  {
+    q: 'What was Eugene Podkletnov’s gravitational shielding claim?',
+    a: 'In 1992, Russian materials scientist Eugene Podkletnov at Tampere University in Finland claimed that a rotating Type-II YBCO superconducting ceramic disk levitated in a magnetic field reduced the weight of objects placed above it by 0.3% to 2.0%.',
+  },
+  {
+    q: 'What were the findings of NASA’s Project Delta-G replication?',
+    a: 'NASA’s Marshall Space Flight Center (MSFC) conducted "Project Delta-G" to test Podkletnov’s and Ning Li’s claims. Using customized YBCO disks and high-precision gravimeters, NASA achieved a measurement sensitivity of 1 part in 10⁸ (~10⁻⁸ g) and detected zero gravitational shielding or weight change.',
+  },
+  {
+    q: 'Why did some initial tests report small weight fluctuations?',
+    a: 'Cryogenic fluids (liquid helium and nitrogen) create intense thermal air currents, convective buoyancy gradients, and acoustic pressure waves. When test masses are not placed in hermetically sealed vacuum chambers, convective air currents simulate minute weight fluctuations.',
+  },
+];
+
+const articleSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'TechArticle',
+  headline: title,
+  description,
+  mainEntityOfPage: canonical,
+  author: {
+    '@type': 'Organization',
+    name: 'NanoToMicro',
+    url: Astro.site.toString(),
+  },
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: f.a,
+    },
+  })),
+};
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    {
+      '@type': 'ListItem',
+      position: 1,
+      name: 'Home',
+      item: Astro.site.toString(),
+    },
+    {
+      '@type': 'ListItem',
+      position: 2,
+      name: 'Antigravity Cluster',
+      item: `${Astro.site}antigravity/`,
+    },
+    {
+      '@type': 'ListItem',
+      position: 3,
+      name: 'Superconductor Anomaly Claims',
+      item: canonical,
+    },
+  ],
+};
+
+const definedTermSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'DefinedTerm',
+  name: 'Gravitational Shielding Claims',
+  description:
+    'Experimental claims asserting that rotating superconducting disks or gravitomagnetic fields can shield or modify Earth’s local gravitational field.',
+  inDefinedTermSet: {
+    '@type': 'DefinedTermSet',
+    name: 'Experimental Physics Claims',
+  },
+};
+
+const jsonLd = [articleSchema, faqSchema, breadcrumbSchema, definedTermSchema];
+---
+
+<Base title={title} description={description} canonical={canonical} jsonLd={jsonLd}>
+  <article>
+    <div class="tag-row" style="margin-top: 0;">
+      <a href="/antigravity/" class="tag">← Antigravity Hub</a>
+      <span class="tag">Superconductors</span>
+      <span class="tag">Podkletnov Claim</span>
+      <span class="tag">NASA MSFC</span>
+      <span class="tag">Gravitomagnetism</span>
+    </div>
+
+    <h1>Superconductor Gravitational Anomaly Claims: A Scientific Review</h1>
+
+    <p>
+      During the 1990s and early 2000s, claims emerged that rotating high-temperature <strong>superconducting ceramics</strong> could generate gravitational shielding or modify local gravitational acceleration. These claims triggered multi-million-dollar replication programs across academic and government laboratories.
+    </p>
+
+    <div class="panel">
+      <h3 style="margin-top: 0;">What is Gravitational Shielding?</h3>
+      <p>
+        Gravitational shielding is the idea that a material, field, or device can block
+        or reduce the influence of gravity. This idea has appeared in historical claims
+        and speculative engineering, but it has not been confirmed by reproducible
+        laboratory experiments and is not part of accepted gravitational physics.
+      </p>
+    </div>
+
+    <div class="panel">
+      <h3 style="margin-top: 0;">The Scientific Consensus</h3>
+      <p class="muted">
+        Independent replication programs by <strong>NASA MSFC</strong>, the <strong>Max Planck Institute</strong>, and <strong>Toronto University</strong> found no evidence of gravitational shielding down to the limits of experimental precision (&lt; 10⁻⁸ g).
+      </p>
+    </div>
+
+    <section>
+      <h2>1. The Major Historical Claims</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Claimant / Year</th>
+            <th>Proposed Mechanism</th>
+            <th>Claimed Effect</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Eugene Podkletnov (1992, 1997)</strong></td>
+            <td>Rotating, magnetically levitated 12-inch YBCO ring driven by RF fields at 5,000 RPM</td>
+            <td>0.3% to 2.0% weight reduction of non-magnetic test samples placed directly above the cryostat</td>
+          </tr>
+          <tr>
+            <td><strong>Ning Li & Douglas Torr (1991–1993)</strong></td>
+            <td>Lattice-ion alignment in high-T_c superconductors generating an AC gravitomagnetic field</td>
+            <td>Theoretical localized gravitational force field aligned with Cooper pair spin</td>
+          </tr>
+          <tr>
+            <td><strong>Giovanni Modanese (1996)</strong></td>
+            <td>Quantum gravitational coupling in high-frequency superconducting Josephson junctions</td>
+            <td>Anomalous impulsive radiation beam from high-voltage discharge through YBCO disk</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>2. NASA Project Delta-G & Independent Replications</h2>
+      <p>
+        To determine whether these claims were genuine breakthroughs or experimental artifacts, NASA Marshall Space Flight Center launched a rigorous testing program led by physicist Ron Koczor:
+      </p>
+      <ul>
+        <li><strong>Disk Fabrication:</strong> NASA successfully fabricated large 12-inch diameter YBCO disks matching Podkletnov’s exact multi-layer specifications.</li>
+        <li><strong>Thermal & Air Convection Isolation:</strong> Test masses were isolated in high-vacuum chambers above the cryostat to prevent cold helium and nitrogen boil-off from producing buoyant updrafts.</li>
+        <li><strong>Gravimeter Precision:</strong> Using Scintrex CG-3 and LaCoste-Romberg gravimeters with nano-g sensitivity, NASA detected <strong>zero gravitational shielding</strong> (Δg/g &lt; 10⁻⁸).</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Frequently Asked Questions</h2>
+      {faqs.map((faq) => (
+        <details>
+          <summary>{faq.q}</summary>
+          <p>{faq.a}</p>
+        </details>
+      ))}
+    </section>
+
+    <section class="panel">
+      <h2 style="margin-top: 0;">Explore the Antigravity Topic Cluster</h2>
+      <ul>
+        <li><a href="/antigravity/">Antigravity Pillar: Physics, Evidence & Experiments</a></li>
+        <li><a href="/antigravity/gravitational-shielding/">Gravitational Shielding: Podkletnov Claims Tested</a></li>
+        <li><a href="/antigravity/superconducting-levitation/">Superconducting Levitation & Quantum Locking</a></li>
+        <li><a href="/antigravity/reproducibility-and-experimental-errors/">Reproducibility & Experimental Errors in Physics</a></li>
+        <li><a href="/antigravity/gyroscopic-antigravity-claims/">Gyroscopic Antigravity Claims Evaluated</a></li>
+      </ul>
+    </section>
+  </article>
+</Base>

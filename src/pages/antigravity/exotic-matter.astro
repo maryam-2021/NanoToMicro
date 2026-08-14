@@ -1,0 +1,196 @@
+---
+// src/pages/antigravity/exotic-matter.astro
+
+import Base from '../../layouts/Base.astro';
+
+const title = 'Exotic Matter: Theoretical Physics, Negative Mass, Tachyons, and Energy Conditions';
+const description = 'An objective physics guide to exotic matter: negative mass-energy, hypothetical tachyons, violations of energy conditions, and wormhole/warp drive stabilization.';
+const canonical = `${Astro.site}antigravity/exotic-matter/`;
+
+const faqs = [
+  {
+    q: 'What is exotic matter in theoretical physics?',
+    a: 'In general relativity and astrophysics, "exotic matter" refers to hypothetical matter that deviates from standard matter properties—specifically matter with negative mass, negative energy density, or negative pressure that violates classical energy conditions.',
+  },
+  {
+    q: 'Is antimatter the same as exotic matter?',
+    a: 'No. Antimatter is real, laboratory-confirmed matter with positive mass and positive energy, identical to ordinary matter except for inverted electric charge and quantum numbers. Exotic matter requires negative mass or negative energy density.',
+  },
+  {
+    q: 'Has exotic matter ever been observed?',
+    a: 'Macroscopic exotic matter particles have never been observed. However, quantum field theory routinely produces microscopic negative energy densities (such as the Casimir effect between conducting plates or squeezed vacuum states).',
+  },
+];
+
+const articleSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'TechArticle',
+  headline: title,
+  description,
+  mainEntityOfPage: canonical,
+  author: {
+    '@type': 'Organization',
+    name: 'NanoToMicro',
+    url: Astro.site.toString(),
+  },
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: f.a,
+    },
+  })),
+};
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    {
+      '@type': 'ListItem',
+      position: 1,
+      name: 'Home',
+      item: Astro.site.toString(),
+    },
+    {
+      '@type': 'ListItem',
+      position: 2,
+      name: 'Antigravity Cluster',
+      item: `${Astro.site}antigravity/`,
+    },
+    {
+      '@type': 'ListItem',
+      position: 3,
+      name: 'Exotic Matter',
+      item: canonical,
+    },
+  ],
+};
+
+const definedTermSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'DefinedTerm',
+  name: 'Exotic Matter',
+  description:
+    'Hypothetical physical matter possessing negative mass, negative energy density, or negative pressure.',
+  inDefinedTermSet: {
+    '@type': 'DefinedTermSet',
+    name: 'Theoretical Physics Concepts',
+  },
+};
+
+const jsonLd = [articleSchema, faqSchema, breadcrumbSchema, definedTermSchema];
+---
+
+<Base title={title} description={description} canonical={canonical} jsonLd={jsonLd}>
+  <article>
+    <div class="tag-row" style="margin-top: 0;">
+      <a href="/antigravity/" class="tag">← Antigravity Hub</a>
+      <span class="tag">Theoretical Physics</span>
+      <span class="tag">Energy Conditions</span>
+      <span class="tag">Wormhole Stability</span>
+    </div>
+
+    <h1>Exotic Matter: Negative Mass, Energy Conditions & Physics</h1>
+
+    <p>
+      In astrophysics and general relativity, <strong>exotic matter</strong> describes hypothetical substances whose physical properties violate the energy conditions satisfied by all known classical matter. It plays a central role in theoretical solutions for traversable wormholes, warp drives, and antigravity mechanisms.
+    </p>
+
+    <div class="panel">
+      <h3 style="margin-top: 0;">Negative Mass & Exotic Matter Definition</h3>
+      <p>
+        Negative mass is a theoretical concept in which mass would respond to forces
+        differently from ordinary matter. Some equations in theoretical physics allow
+        exotic forms of mass or energy, but negative mass has not been produced as a
+        stable, measurable material.
+      </p>
+    </div>
+
+    <div class="panel">
+      <h3 style="margin-top: 0;">Exotic Matter vs Normal & Antimatter</h3>
+      <p class="muted">
+        <strong>Normal Matter (Protons, Electrons):</strong> Mass &gt; 0, Energy &gt; 0, Charge ±q<br />
+        <strong>Antimatter (Positrons, Antiprotons):</strong> Mass &gt; 0, Energy &gt; 0, Charge ∓q (falls downward under gravity)<br />
+        <strong>Exotic Matter:</strong> Mass &lt; 0, Energy Density &lt; 0 (repels standard gravity)
+      </p>
+    </div>
+
+    <section>
+      <h2>1. The Four Major Energy Conditions</h2>
+      <p>
+        General Relativity relies on energy conditions to prevent unphysical spacetime geometries (such as closed time loops and naked singularities). Exotic matter violates one or more of these:
+      </p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Energy Condition</th>
+            <th>Mathematical Formulation</th>
+            <th>Physical Meaning</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Null Energy Condition (NEC)</strong></td>
+            <td><code>T_µν · k^µ · k^ν ≥ 0</code> (for all null vectors k^µ)</td>
+            <td>Energy density measured by light rays is non-negative; required for wormhole throats to stay open</td>
+          </tr>
+          <tr>
+            <td><strong>Weak Energy Condition (WEC)</strong></td>
+            <td><code>T_µν · u^µ · u^ν ≥ 0</code> (for timelike vectors u^µ)</td>
+            <td>Local energy density is positive for all physical observers: ρ ≥ 0 and ρ + p ≥ 0</td>
+          </tr>
+          <tr>
+            <td><strong>Dominant Energy Condition (DEC)</strong></td>
+            <td><code>T_µν · u^µ · v^ν ≥ 0</code> (energy flux is causal)</td>
+            <td>Energy cannot flow faster than the speed of light: ρ ≥ |p|</td>
+          </tr>
+          <tr>
+            <td><strong>Strong Energy Condition (SEC)</strong></td>
+            <td><code>(T_µν - 0.5 · T · g_µν) · u^µ · u^ν ≥ 0</code></td>
+            <td>Gravity is always attractive; violated during cosmic cosmological inflation and dark energy acceleration</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>2. Types of Hypothesized Exotic Matter</h2>
+      <ul>
+        <li><strong>Negative Mass Matter:</strong> Objects with negative inertial and gravitational mass (m &lt; 0) that cause runaway acceleration.</li>
+        <li><strong>Tachyons:</strong> Hypothetical particles with imaginary rest mass (m² &lt; 0) that travel faster than light and accelerate as they lose energy.</li>
+        <li><strong>Phantom Dark Energy:</strong> Cosmological dark energy with equation of state parameter w &lt; -1, leading to a hypothetical "Big Rip" cosmic ending.</li>
+        <li><strong>Casimir Vacuum States:</strong> Microscopic quantum cavity modes where local energy density is strictly negative relative to surrounding vacuum.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Frequently Asked Questions</h2>
+      {faqs.map((faq) => (
+        <details>
+          <summary>{faq.q}</summary>
+          <p>{faq.a}</p>
+        </details>
+      ))}
+    </section>
+
+    <section class="panel">
+      <h2 style="margin-top: 0;">Explore the Antigravity Topic Cluster</h2>
+      <ul>
+        <li><a href="/antigravity/">Antigravity Pillar: Physics, Evidence & Experiments</a></li>
+        <li><a href="/antigravity/negative-energy/">Negative Energy in Quantum Field Theory</a></li>
+        <li><a href="/antigravity/warp-drive-physics/">Warp Drive Physics & Alcubierre Metrics</a></li>
+        <li><a href="/antigravity/negative-mass/">Negative Mass in General Relativity</a></li>
+        <li><a href="/antigravity/antimatter-gravity/">Antimatter Gravity: ALPHA-g Observations</a></li>
+        <li><a href="/antigravity/casimir-effect/">Casimir Effect & Quantum Vacuum Energy</a></li>
+      </ul>
+    </section>
+  </article>
+</Base>
