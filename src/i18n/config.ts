@@ -126,3 +126,8 @@ export function getLocalizedPath(pathname: string, targetLocale: string): string
 
   return `/${targetLocale}${cleanPath === '/' ? '/' : cleanPath}`;
 }
+
+export function localePath(lang: string, path: string): string {
+  return getLocalizedPath(path, lang);
+}
+

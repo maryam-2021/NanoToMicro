@@ -1,6 +1,7 @@
 ---
 // src/layouts/Base.astro
-import { LOCALES, getLocale, getLocalizedPath, DEFAULT_LOCALE } from '../i18n/config';
+import { LOCALES, getLocale, getLocalizedPath, DEFAULT_LOCALE, localePath } from '../i18n/config';
+import { t } from '../i18n/utils';
 import LanguageSwitcher from '../components/LanguageSwitcher.astro';
 
 export interface Props {
@@ -329,16 +330,16 @@ if (faqs && faqs.length > 0) {
   <body>
     <header>
       <div class="nav-inner">
-        <a href={getLocalizedPath('/', lang)} class="brand-logo">
-          <span style="color: #f59e0b;">⚡</span> Nano to Micro
+        <a href={localePath(lang, '/')} class="brand-logo">
+          <span style="color: #f59e0b;">⚡</span> {t('nav.brand', undefined, lang)}
         </a>
 
         <div class="nav-right-wrap">
           <nav class="nav-links" aria-label="Main navigation">
-            <a href={getLocalizedPath('/convert/nano-to-micro/', lang)}>Converters</a>
-            <a href={getLocalizedPath('/si-prefix-converter/', lang)}>SI Prefixes</a>
-            <a href={getLocalizedPath('/conversion-charts/', lang)}>Charts</a>
-            <a href={getLocalizedPath('/antigravity/', lang)} class="nav-badge">Antigravity Hub</a>
+            <a href={localePath(lang, '/convert/nano-to-micro/')}>{t('nav.converters', undefined, lang)}</a>
+            <a href={localePath(lang, '/si-prefix-converter/')}>{t('nav.siPrefixes', undefined, lang)}</a>
+            <a href={localePath(lang, '/conversion-charts/')}>{t('nav.charts', undefined, lang)}</a>
+            <a href={localePath(lang, '/antigravity/')} class="nav-badge">{t('nav.antigravityHub', undefined, lang)}</a>
           </nav>
           <LanguageSwitcher currentLocale={lang} currentPath={pathname} />
         </div>
@@ -354,109 +355,109 @@ if (faqs && faqs.length > 0) {
         <div class="footer-top">
           <div class="footer-brand">
             <div class="brand-logo" style="font-size: 16px;">
-              <span style="color: #f59e0b;">⚡</span> Nano to Micro
+              <span style="color: #f59e0b;">⚡</span> {t('nav.brand', undefined, lang)}
             </div>
             <p>
-              The definitive reference for all nano ↔ micro conversions. Every calculation is performed using exact SI metric definitions for zero floating-point drift and scientific precision.
+              {t('footer.tagline', undefined, lang)}
             </p>
           </div>
 
           <div class="footer-links-grid">
             <!-- LENGTH -->
             <div class="footer-col">
-              <h4>Length</h4>
+              <h4>{t('categories.length', undefined, lang)}</h4>
               <ul>
-                <li><a href={getLocalizedPath('/convert/nanometers-to-micrometers/', lang)}>nm ↔ µm</a></li>
-                <li><a href={getLocalizedPath('/convert/nano-to-micro/', lang)}>pm ↔ nm</a></li>
-                <li><a href={getLocalizedPath('/convert/micrometers-to-nanometers/', lang)}>µm ↔ mm</a></li>
-                <li><a href={getLocalizedPath('/convert/nano-to-pico/', lang)}>nm ↔ pm</a></li>
-                <li><a href={getLocalizedPath('/convert/pico-to-nano/', lang)}>pm ↔ µm</a></li>
-                <li><a href={getLocalizedPath('/convert/meter-to-micrometer/', lang)}>µm ↔ m</a></li>
+                <li><a href={localePath(lang, '/convert/nanometers-to-micrometers/')}>nm ↔ µm</a></li>
+                <li><a href={localePath(lang, '/convert/nano-to-micro/')}>pm ↔ nm</a></li>
+                <li><a href={localePath(lang, '/convert/micrometers-to-nanometers/')}>µm ↔ mm</a></li>
+                <li><a href={localePath(lang, '/convert/nano-to-pico/')}>nm ↔ pm</a></li>
+                <li><a href={localePath(lang, '/convert/pico-to-nano/')}>pm ↔ µm</a></li>
+                <li><a href={localePath(lang, '/convert/meter-to-micrometer/')}>µm ↔ m</a></li>
               </ul>
             </div>
 
             <!-- MASS -->
             <div class="footer-col">
-              <h4>Mass</h4>
+              <h4>{t('categories.mass', undefined, lang)}</h4>
               <ul>
-                <li><a href={getLocalizedPath('/convert/nanograms-to-micrograms/', lang)}>ng ↔ µg</a></li>
-                <li><a href={getLocalizedPath('/convert/micrograms-to-nanograms/', lang)}>pg ↔ ng</a></li>
-                <li><a href={getLocalizedPath('/convert/gram-to-microgram/', lang)}>µg ↔ mg</a></li>
-                <li><a href={getLocalizedPath('/convert/nanograms-to-micrograms/', lang)}>ng ↔ pg</a></li>
-                <li><a href={getLocalizedPath('/convert/gram-to-microgram/', lang)}>µg ↔ g</a></li>
-                <li><a href={getLocalizedPath('/convert/gram-to-microgram/', lang)}>kg ↔ µg</a></li>
+                <li><a href={localePath(lang, '/convert/nanograms-to-micrograms/')}>ng ↔ µg</a></li>
+                <li><a href={localePath(lang, '/convert/micrograms-to-nanograms/')}>pg ↔ ng</a></li>
+                <li><a href={localePath(lang, '/convert/gram-to-microgram/')}>µg ↔ mg</a></li>
+                <li><a href={localePath(lang, '/convert/nanograms-to-micrograms/')}>ng ↔ pg</a></li>
+                <li><a href={localePath(lang, '/convert/gram-to-microgram/')}>µg ↔ g</a></li>
+                <li><a href={localePath(lang, '/convert/gram-to-microgram/')}>kg ↔ µg</a></li>
               </ul>
             </div>
 
             <!-- CONCENTRATION -->
             <div class="footer-col">
-              <h4>Concentration</h4>
+              <h4>{t('categories.concentration', undefined, lang)}</h4>
               <ul>
-                <li><a href={getLocalizedPath('/convert/nanomolar-to-micromolar/', lang)}>nM ↔ µM</a></li>
-                <li><a href={getLocalizedPath('/convert/nanomolar-to-micromolar/', lang)}>pM ↔ nM</a></li>
-                <li><a href={getLocalizedPath('/convert/nanomolar-to-micromolar/', lang)}>µM ↔ mM</a></li>
-                <li><a href={getLocalizedPath('/convert/nanomolar-to-micromolar/', lang)}>pM ↔ µM</a></li>
-                <li><a href={getLocalizedPath('/convert/nanomolar-to-micromolar/', lang)}>µM ↔ M</a></li>
+                <li><a href={localePath(lang, '/convert/nanomolar-to-micromolar/')}>nM ↔ µM</a></li>
+                <li><a href={localePath(lang, '/convert/nanomolar-to-micromolar/')}>pM ↔ nM</a></li>
+                <li><a href={localePath(lang, '/convert/nanomolar-to-micromolar/')}>µM ↔ mM</a></li>
+                <li><a href={localePath(lang, '/convert/nanomolar-to-micromolar/')}>pM ↔ µM</a></li>
+                <li><a href={localePath(lang, '/convert/nanomolar-to-micromolar/')}>µM ↔ M</a></li>
               </ul>
             </div>
 
             <!-- CAPACITANCE -->
             <div class="footer-col">
-              <h4>Capacitance</h4>
+              <h4>{t('categories.capacitance', undefined, lang)}</h4>
               <ul>
-                <li><a href={getLocalizedPath('/convert/nanofarads-to-microfarads/', lang)}>nF ↔ µF</a></li>
-                <li><a href={getLocalizedPath('/convert/microfarads-to-nanofarads/', lang)}>pF ↔ nF</a></li>
-                <li><a href={getLocalizedPath('/convert/microfarads-to-nanofarads/', lang)}>µF ↔ mF</a></li>
-                <li><a href={getLocalizedPath('/convert/nanofarads-to-microfarads/', lang)}>nF ↔ pF</a></li>
-                <li><a href={getLocalizedPath('/convert/microfarads-to-nanofarads/', lang)}>µF ↔ F</a></li>
+                <li><a href={localePath(lang, '/convert/nanofarads-to-microfarads/')}>nF ↔ µF</a></li>
+                <li><a href={localePath(lang, '/convert/microfarads-to-nanofarads/')}>pF ↔ nF</a></li>
+                <li><a href={localePath(lang, '/convert/microfarads-to-nanofarads/')}>µF ↔ mF</a></li>
+                <li><a href={localePath(lang, '/convert/nanofarads-to-microfarads/')}>nF ↔ pF</a></li>
+                <li><a href={localePath(lang, '/convert/microfarads-to-nanofarads/')}>µF ↔ F</a></li>
               </ul>
             </div>
 
             <!-- TIME -->
             <div class="footer-col">
-              <h4>Time</h4>
+              <h4>{t('categories.time', undefined, lang)}</h4>
               <ul>
-                <li><a href={getLocalizedPath('/convert/nanoseconds-to-microseconds/', lang)}>ns ↔ µs</a></li>
-                <li><a href={getLocalizedPath('/convert/second-to-microsecond/', lang)}>ps ↔ ns</a></li>
-                <li><a href={getLocalizedPath('/convert/second-to-microsecond/', lang)}>µs ↔ ms</a></li>
-                <li><a href={getLocalizedPath('/convert/second-to-microsecond/', lang)}>µs ↔ s</a></li>
-                <li><a href={getLocalizedPath('/convert/second-to-microsecond/', lang)}>µs ↔ min</a></li>
+                <li><a href={localePath(lang, '/convert/nanoseconds-to-microseconds/')}>ns ↔ µs</a></li>
+                <li><a href={localePath(lang, '/convert/second-to-microsecond/')}>ps ↔ ns</a></li>
+                <li><a href={localePath(lang, '/convert/second-to-microsecond/')}>µs ↔ ms</a></li>
+                <li><a href={localePath(lang, '/convert/second-to-microsecond/')}>µs ↔ s</a></li>
+                <li><a href={localePath(lang, '/convert/second-to-microsecond/')}>µs ↔ min</a></li>
               </ul>
             </div>
 
             <!-- VOLUME -->
             <div class="footer-col">
-              <h4>Volume</h4>
+              <h4>{t('categories.volume', undefined, lang)}</h4>
               <ul>
-                <li><a href={getLocalizedPath('/convert/nano-to-micro/', lang)}>nL ↔ µL</a></li>
-                <li><a href={getLocalizedPath('/convert/nano-to-micro/', lang)}>pL ↔ nL</a></li>
-                <li><a href={getLocalizedPath('/convert/micro-to-nano/', lang)}>µL ↔ mL</a></li>
-                <li><a href={getLocalizedPath('/convert/pico-to-nano/', lang)}>pL ↔ µL</a></li>
-                <li><a href={getLocalizedPath('/convert/micro-to-nano/', lang)}>µL ↔ L</a></li>
+                <li><a href={localePath(lang, '/convert/nano-to-micro/')}>nL ↔ µL</a></li>
+                <li><a href={localePath(lang, '/convert/nano-to-micro/')}>pL ↔ nL</a></li>
+                <li><a href={localePath(lang, '/convert/micro-to-nano/')}>µL ↔ mL</a></li>
+                <li><a href={localePath(lang, '/convert/pico-to-nano/')}>pL ↔ µL</a></li>
+                <li><a href={localePath(lang, '/convert/micro-to-nano/')}>µL ↔ L</a></li>
               </ul>
             </div>
 
             <!-- FORCE & MAGNETIC -->
             <div class="footer-col">
-              <h4>Force & Fields</h4>
+              <h4>{t('categories.forceAndFields', undefined, lang)}</h4>
               <ul>
-                <li><a href={getLocalizedPath('/convert/newton-to-micronewton/', lang)}>N ↔ µN</a></li>
-                <li><a href={getLocalizedPath('/convert/tesla-to-gauss/', lang)}>T ↔ G</a></li>
-                <li><a href={getLocalizedPath('/convert/meter-to-micrometer/', lang)}>m ↔ µm</a></li>
-                <li><a href={getLocalizedPath('/convert/second-to-microsecond/', lang)}>s ↔ µs</a></li>
+                <li><a href={localePath(lang, '/convert/newton-to-micronewton/')}>N ↔ µN</a></li>
+                <li><a href={localePath(lang, '/convert/tesla-to-gauss/')}>T ↔ G</a></li>
+                <li><a href={localePath(lang, '/convert/meter-to-micrometer/')}>m ↔ µm</a></li>
+                <li><a href={localePath(lang, '/convert/second-to-microsecond/')}>s ↔ µs</a></li>
               </ul>
             </div>
 
             <!-- PHYSICS HUB -->
             <div class="footer-col">
-              <h4>Physics Research</h4>
+              <h4>{t('categories.physicsResearch', undefined, lang)}</h4>
               <ul>
-                <li><a href={getLocalizedPath('/antigravity/', lang)}>Antigravity Hub</a></li>
-                <li><a href={getLocalizedPath('/antigravity/what-is-antigravity/', lang)}>What is Antigravity</a></li>
-                <li><a href={getLocalizedPath('/antigravity/gravitational-shielding/', lang)}>Gravitational Shielding</a></li>
-                <li><a href={getLocalizedPath('/antigravity/antimatter-gravity/', lang)}>Antimatter Gravity</a></li>
-                <li><a href={getLocalizedPath('/antigravity/negative-mass/', lang)}>Negative Mass</a></li>
-                <li><a href={getLocalizedPath('/antigravity/magnetic-levitation/', lang)}>Magnetic Levitation</a></li>
+                <li><a href={localePath(lang, '/antigravity/')}>{t('nav.antigravityHub', undefined, lang)}</a></li>
+                <li><a href={localePath(lang, '/antigravity/what-is-antigravity/')}>{t('antigravitySection.card1Title', undefined, lang)}</a></li>
+                <li><a href={localePath(lang, '/antigravity/gravitational-shielding/')}>{t('antigravitySection.card2Title', undefined, lang)}</a></li>
+                <li><a href={localePath(lang, '/antigravity/antimatter-gravity/')}>{t('antigravitySection.card3Title', undefined, lang)}</a></li>
+                <li><a href={localePath(lang, '/antigravity/negative-mass/')}>{t('antigravitySection.card4Title', undefined, lang)}</a></li>
+                <li><a href={localePath(lang, '/antigravity/magnetic-levitation/')}>{t('antigravitySection.card5Title', undefined, lang)}</a></li>
               </ul>
             </div>
           </div>
@@ -464,10 +465,10 @@ if (faqs && faqs.length > 0) {
 
         <div class="footer-bottom">
           <div>
-            © {new Date().getFullYear()} Nano to Micro. All rights reserved. Precision SI conversions & peer-reviewed physical metrology.
+            {t('footer.copyright', { year: new Date().getFullYear().toString() }, lang)}
           </div>
           <div>
-            NIST & BIPM Compliant · Zero Floating-Point Drift
+            {t('footer.compliance', undefined, lang)}
           </div>
         </div>
       </div>

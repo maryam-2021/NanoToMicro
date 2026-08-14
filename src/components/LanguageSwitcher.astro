@@ -1,6 +1,7 @@
 ---
 // src/components/LanguageSwitcher.astro
 import { LOCALES, getLocale, getLocalizedPath, DEFAULT_LOCALE } from '../i18n/config';
+import { t } from '../i18n/utils';
 
 export interface Props {
   currentLocale?: string;
@@ -13,7 +14,7 @@ const current = getLocale(currentLocale);
 
 <div class="lang-switcher-container">
   <details class="lang-dropdown">
-    <summary class="lang-btn" aria-label="Select Language">
+    <summary class="lang-btn" aria-label={t('nav.language', undefined, currentLocale)}>
       <svg class="lang-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <circle cx="12" cy="12" r="10"></circle>
         <line x1="2" y1="12" x2="22" y2="12"></line>
@@ -48,10 +49,10 @@ const current = getLocale(currentLocale);
 <!-- Non-blocking Suggestion Banner Island -->
 <div id="i18n-suggest-banner" class="suggest-banner" style="display: none;">
   <div class="suggest-content">
-    <span id="suggest-text">Switch language?</span>
+    <span id="suggest-text">{t('nav.suggestBanner', { name: '' }, currentLocale)}</span>
     <div class="suggest-actions">
-      <a id="suggest-link" href="#" class="suggest-btn-yes">Switch</a>
-      <button type="button" id="suggest-dismiss" class="suggest-btn-dismiss">Stay</button>
+      <a id="suggest-link" href="#" class="suggest-btn-yes">{t('nav.suggestYes', undefined, currentLocale)}</a>
+      <button type="button" id="suggest-dismiss" class="suggest-btn-dismiss">{t('nav.suggestDismiss', undefined, currentLocale)}</button>
     </div>
   </div>
 </div>
