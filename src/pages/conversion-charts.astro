@@ -25,7 +25,7 @@ const forwardConverters = CONVERTERS.filter(c => c.factor < 1);
         <div class="card-header">
           <div class="badge">{conv.category}</div>
           <h2 class="chart-title">
-            <a href={`/convert/${conv.slug}`}>{conv.fromName} to {conv.toName}</a>
+            <a href={`/convert/${conv.slug}/`}>{conv.fromName} to {conv.toName}</a>
           </h2>
           <div class="sub-formula">1 {conv.fromSymbol} = {conv.factor} {conv.toSymbol}</div>
         </div>
@@ -53,7 +53,7 @@ const forwardConverters = CONVERTERS.filter(c => c.factor < 1);
         </table>
 
         <div class="card-footer">
-          <a href={`/convert/${conv.slug}`} class="full-calc-link">
+          <a href={`/convert/${conv.slug}/`} class="full-calc-link">
             Open Interactive Calculator & Formula →
           </a>
         </div>

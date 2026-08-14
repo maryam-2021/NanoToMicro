@@ -12,6 +12,7 @@ for (const loc of LOCALES) {
 // https://astro.build/config
 export default defineConfig({
   site: 'https://nanotomicro.com',
+  trailingSlash: 'always',
   integrations: [
     svelte(),
     sitemap({
