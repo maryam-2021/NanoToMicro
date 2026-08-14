@@ -1,5 +1,7 @@
 ---
 // src/layouts/Base.astro
+import { LOCALES, getLocale, getLocalizedPath, DEFAULT_LOCALE } from '../i18n/config';
+import LanguageSwitcher from '../components/LanguageSwitcher.astro';
 
 export interface Props {
   title: string;
@@ -7,22 +9,57 @@ export interface Props {
   canonical?: string;
   canonicalPath?: string;
   jsonLd?: object | object[];
+  faqs?: Array<{ q: string; a: string }>;
+  lang?: string;
 }
 
-const { title, description, canonical, canonicalPath, jsonLd } = Astro.props;
+const { title, description, canonical, canonicalPath, jsonLd, faqs, lang = DEFAULT_LOCALE } = Astro.props;
 
+const currentLocaleConfig = getLocale(lang);
 const baseUrl = 'https://nanotomicro.com';
+
+// Current clean path without query or locale prefix
+const pathname = Astro.url.pathname;
 const resolvedCanonical = canonical
   ? canonical
   : canonicalPath
   ? `${baseUrl}${canonicalPath.startsWith('/') ? canonicalPath : `/${canonicalPath}`}`
-  : `${baseUrl}/`;
+  : `${baseUrl}${getLocalizedPath(pathname, lang)}`;
 
-const jsonLdArray = Array.isArray(jsonLd) ? jsonLd : jsonLd ? [jsonLd] : [];
+// Build Hreflang Alternates (one per locale + x-default)
+const hreflangAlternates = LOCALES.map((loc) => ({
+  hreflang: loc.hreflang,
+  href: `${baseUrl}${getLocalizedPath(pathname, loc.code)}`,
+}));
+
+const xDefaultHref = `${baseUrl}${getLocalizedPath(pathname, DEFAULT_LOCALE)}`;
+
+// Process JSON-LD with inLanguage
+const rawJsonLdArray = Array.isArray(jsonLd) ? jsonLd : jsonLd ? [jsonLd] : [];
+const jsonLdArray = rawJsonLdArray.map((item) => ({
+  ...item,
+  inLanguage: currentLocaleConfig.code,
+}));
+
+if (faqs && faqs.length > 0) {
+  jsonLdArray.push({
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    inLanguage: currentLocaleConfig.code,
+    mainEntity: faqs.map((faq) => ({
+      '@type': 'Question',
+      name: faq.q,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: faq.a,
+      },
+    })),
+  });
+}
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={currentLocaleConfig.hreflang} dir={currentLocaleConfig.dir}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -30,20 +67,28 @@ const jsonLdArray = Array.isArray(jsonLd) ? jsonLd : jsonLd ? [jsonLd] : [];
     <meta name="description" content={description} />
     <link rel="canonical" href={resolvedCanonical} />
 
+    <!-- Hreflang Alternates Architecture -->
+    {
+      hreflangAlternates.map((alt) => (
+        <link rel="alternate" hreflang={alt.hreflang} href={alt.href} />
+      ))
+    }
+    <link rel="alternate" hreflang="x-default" href={xDefaultHref} />
+
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
     <meta property="og:url" content={resolvedCanonical} />
     <meta property="og:site_name" content="NanoToMicro" />
-    <meta property="og:image" content="https://nanotomicro.com/og-image.png" />
+    <meta property="og:image" content={`${baseUrl}og/${currentLocaleConfig.code}.png`} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="Nano to Micro Scale Continuum: Transistor nm to Biological Cell µm" />
+    <meta property="og:image:alt" content={`Nano to Micro Scale Continuum (${currentLocaleConfig.name})`} />
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content="https://nanotomicro.com/og-image.png" />
+    <meta name="twitter:image" content={`${baseUrl}og/${currentLocaleConfig.code}.png`} />
 
     <meta name="robots" content="index,follow,max-image-preview:large" />
     <meta name="theme-color" content="#070b12" />
@@ -113,7 +158,7 @@ const jsonLdArray = Array.isArray(jsonLd) ? jsonLd : jsonLd ? [jsonLd] : [];
         position: sticky;
         top: 0;
         z-index: 100;
-        padding: 14px 24px;
+        padding: 12px 24px;
       }
 
       .nav-inner {
@@ -122,6 +167,7 @@ const jsonLdArray = Array.isArray(jsonLd) ? jsonLd : jsonLd ? [jsonLd] : [];
         display: flex;
         align-items: center;
         justify-content: space-between;
+        gap: 16px;
       }
 
       .brand-logo {
@@ -133,16 +179,23 @@ const jsonLdArray = Array.isArray(jsonLd) ? jsonLd : jsonLd ? [jsonLd] : [];
         color: #ffffff !important;
         text-decoration: none !important;
         letter-spacing: -0.02em;
+        flex-shrink: 0;
       }
 
       .brand-logo:hover {
         color: var(--accent) !important;
       }
 
+      .nav-right-wrap {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
+
       .nav-links {
         display: flex;
         align-items: center;
-        gap: 20px;
+        gap: 18px;
         font-size: 14px;
         font-weight: 600;
       }
@@ -170,6 +223,15 @@ const jsonLdArray = Array.isArray(jsonLd) ? jsonLd : jsonLd ? [jsonLd] : [];
         padding: 24px 20px 80px;
       }
 
+      /* RTL Support Helpers */
+      [dir="rtl"] {
+        text-align: right;
+      }
+
+      [dir="rtl"] .brand-logo {
+        margin-inline-end: auto;
+      }
+
       /* Multi-Column Footer */
       footer {
         border-top: 1px solid var(--border);
@@ -195,7 +257,7 @@ const jsonLdArray = Array.isArray(jsonLd) ? jsonLd : jsonLd ? [jsonLd] : [];
         font-size: 13px;
         line-height: 1.6;
         margin-top: 10px;
-        color: #64748b;
+        color: #cbd5e1;
       }
 
       .footer-links-grid {
@@ -223,7 +285,7 @@ const jsonLdArray = Array.isArray(jsonLd) ? jsonLd : jsonLd ? [jsonLd] : [];
       }
 
       .footer-col a {
-        color: #64748b;
+        color: #cbd5e1;
         font-size: 12px;
         font-family: ui-monospace, monospace;
       }
@@ -234,14 +296,14 @@ const jsonLdArray = Array.isArray(jsonLd) ? jsonLd : jsonLd ? [jsonLd] : [];
 
       .footer-bottom {
         padding-top: 24px;
-        border-top: 1px solid rgba(255, 255, 255, 0.05);
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
         display: flex;
         justify-content: space-between;
         align-items: center;
         flex-wrap: wrap;
         gap: 12px;
         font-size: 12px;
-        color: #475569;
+        color: #94a3b8;
       }
 
       @media (max-width: 900px) {
@@ -253,13 +315,9 @@ const jsonLdArray = Array.isArray(jsonLd) ? jsonLd : jsonLd ? [jsonLd] : [];
         }
       }
 
-      @media (max-width: 600px) {
+      @media (max-width: 700px) {
         .nav-links {
-          gap: 12px;
-          font-size: 13px;
-        }
-        .footer-links-grid {
-          grid-template-columns: 1fr;
+          display: none;
         }
       }
     </style>
@@ -268,15 +326,19 @@ const jsonLdArray = Array.isArray(jsonLd) ? jsonLd : jsonLd ? [jsonLd] : [];
   <body>
     <header>
       <div class="nav-inner">
-        <a href="/" class="brand-logo">
+        <a href={getLocalizedPath('/', lang)} class="brand-logo">
           <span style="color: #f59e0b;">⚡</span> Nano to Micro
         </a>
-        <nav class="nav-links" aria-label="Main navigation">
-          <a href="/convert/nano-to-micro/">Converters</a>
-          <a href="/si-prefix-converter/">SI Prefixes</a>
-          <a href="/conversion-charts/">Charts</a>
-          <a href="/antigravity/" class="nav-badge">Antigravity Hub</a>
-        </nav>
+
+        <div class="nav-right-wrap">
+          <nav class="nav-links" aria-label="Main navigation">
+            <a href={getLocalizedPath('/convert/nano-to-micro/', lang)}>Converters</a>
+            <a href={getLocalizedPath('/si-prefix-converter/', lang)}>SI Prefixes</a>
+            <a href={getLocalizedPath('/conversion-charts/', lang)}>Charts</a>
+            <a href={getLocalizedPath('/antigravity/', lang)} class="nav-badge">Antigravity Hub</a>
+          </nav>
+          <LanguageSwitcher currentLocale={lang} currentPath={pathname} />
+        </div>
       </div>
     </header>
 
@@ -301,12 +363,12 @@ const jsonLdArray = Array.isArray(jsonLd) ? jsonLd : jsonLd ? [jsonLd] : [];
             <div class="footer-col">
               <h4>Length</h4>
               <ul>
-                <li><a href="/convert/nanometers-to-micrometers/">nm ↔ µm</a></li>
-                <li><a href="/convert/nano-to-micro/">pm ↔ nm</a></li>
-                <li><a href="/convert/micrometers-to-nanometers/">µm ↔ mm</a></li>
-                <li><a href="/convert/nano-to-pico/">nm ↔ pm</a></li>
-                <li><a href="/convert/pico-to-nano/">pm ↔ µm</a></li>
-                <li><a href="/convert/meter-to-micrometer/">µm ↔ m</a></li>
+                <li><a href={getLocalizedPath('/convert/nanometers-to-micrometers/', lang)}>nm ↔ µm</a></li>
+                <li><a href={getLocalizedPath('/convert/nano-to-micro/', lang)}>pm ↔ nm</a></li>
+                <li><a href={getLocalizedPath('/convert/micrometers-to-nanometers/', lang)}>µm ↔ mm</a></li>
+                <li><a href={getLocalizedPath('/convert/nano-to-pico/', lang)}>nm ↔ pm</a></li>
+                <li><a href={getLocalizedPath('/convert/pico-to-nano/', lang)}>pm ↔ µm</a></li>
+                <li><a href={getLocalizedPath('/convert/meter-to-micrometer/', lang)}>µm ↔ m</a></li>
               </ul>
             </div>
 
@@ -314,12 +376,12 @@ const jsonLdArray = Array.isArray(jsonLd) ? jsonLd : jsonLd ? [jsonLd] : [];
             <div class="footer-col">
               <h4>Mass</h4>
               <ul>
-                <li><a href="/convert/nanograms-to-micrograms/">ng ↔ µg</a></li>
-                <li><a href="/convert/micrograms-to-nanograms/">pg ↔ ng</a></li>
-                <li><a href="/convert/gram-to-microgram/">µg ↔ mg</a></li>
-                <li><a href="/convert/nanograms-to-micrograms/">ng ↔ pg</a></li>
-                <li><a href="/convert/gram-to-microgram/">µg ↔ g</a></li>
-                <li><a href="/convert/gram-to-microgram/">kg ↔ µg</a></li>
+                <li><a href={getLocalizedPath('/convert/nanograms-to-micrograms/', lang)}>ng ↔ µg</a></li>
+                <li><a href={getLocalizedPath('/convert/micrograms-to-nanograms/', lang)}>pg ↔ ng</a></li>
+                <li><a href={getLocalizedPath('/convert/gram-to-microgram/', lang)}>µg ↔ mg</a></li>
+                <li><a href={getLocalizedPath('/convert/nanograms-to-micrograms/', lang)}>ng ↔ pg</a></li>
+                <li><a href={getLocalizedPath('/convert/gram-to-microgram/', lang)}>µg ↔ g</a></li>
+                <li><a href={getLocalizedPath('/convert/gram-to-microgram/', lang)}>kg ↔ µg</a></li>
               </ul>
             </div>
 
@@ -327,11 +389,11 @@ const jsonLdArray = Array.isArray(jsonLd) ? jsonLd : jsonLd ? [jsonLd] : [];
             <div class="footer-col">
               <h4>Concentration</h4>
               <ul>
-                <li><a href="/convert/nanomolar-to-micromolar/">nM ↔ µM</a></li>
-                <li><a href="/convert/nanomolar-to-micromolar/">pM ↔ nM</a></li>
-                <li><a href="/convert/nanomolar-to-micromolar/">µM ↔ mM</a></li>
-                <li><a href="/convert/nanomolar-to-micromolar/">pM ↔ µM</a></li>
-                <li><a href="/convert/nanomolar-to-micromolar/">µM ↔ M</a></li>
+                <li><a href={getLocalizedPath('/convert/nanomolar-to-micromolar/', lang)}>nM ↔ µM</a></li>
+                <li><a href={getLocalizedPath('/convert/nanomolar-to-micromolar/', lang)}>pM ↔ nM</a></li>
+                <li><a href={getLocalizedPath('/convert/nanomolar-to-micromolar/', lang)}>µM ↔ mM</a></li>
+                <li><a href={getLocalizedPath('/convert/nanomolar-to-micromolar/', lang)}>pM ↔ µM</a></li>
+                <li><a href={getLocalizedPath('/convert/nanomolar-to-micromolar/', lang)}>µM ↔ M</a></li>
               </ul>
             </div>
 
@@ -339,11 +401,11 @@ const jsonLdArray = Array.isArray(jsonLd) ? jsonLd : jsonLd ? [jsonLd] : [];
             <div class="footer-col">
               <h4>Capacitance</h4>
               <ul>
-                <li><a href="/convert/nanofarads-to-microfarads/">nF ↔ µF</a></li>
-                <li><a href="/convert/microfarads-to-nanofarads/">pF ↔ nF</a></li>
-                <li><a href="/convert/microfarads-to-nanofarads/">µF ↔ mF</a></li>
-                <li><a href="/convert/nanofarads-to-microfarads/">nF ↔ pF</a></li>
-                <li><a href="/convert/microfarads-to-nanofarads/">µF ↔ F</a></li>
+                <li><a href={getLocalizedPath('/convert/nanofarads-to-microfarads/', lang)}>nF ↔ µF</a></li>
+                <li><a href={getLocalizedPath('/convert/microfarads-to-nanofarads/', lang)}>pF ↔ nF</a></li>
+                <li><a href={getLocalizedPath('/convert/microfarads-to-nanofarads/', lang)}>µF ↔ mF</a></li>
+                <li><a href={getLocalizedPath('/convert/nanofarads-to-microfarads/', lang)}>nF ↔ pF</a></li>
+                <li><a href={getLocalizedPath('/convert/microfarads-to-nanofarads/', lang)}>µF ↔ F</a></li>
               </ul>
             </div>
 
@@ -351,11 +413,11 @@ const jsonLdArray = Array.isArray(jsonLd) ? jsonLd : jsonLd ? [jsonLd] : [];
             <div class="footer-col">
               <h4>Time</h4>
               <ul>
-                <li><a href="/convert/nanoseconds-to-microseconds/">ns ↔ µs</a></li>
-                <li><a href="/convert/second-to-microsecond/">ps ↔ ns</a></li>
-                <li><a href="/convert/second-to-microsecond/">µs ↔ ms</a></li>
-                <li><a href="/convert/second-to-microsecond/">µs ↔ s</a></li>
-                <li><a href="/convert/second-to-microsecond/">µs ↔ min</a></li>
+                <li><a href={getLocalizedPath('/convert/nanoseconds-to-microseconds/', lang)}>ns ↔ µs</a></li>
+                <li><a href={getLocalizedPath('/convert/second-to-microsecond/', lang)}>ps ↔ ns</a></li>
+                <li><a href={getLocalizedPath('/convert/second-to-microsecond/', lang)}>µs ↔ ms</a></li>
+                <li><a href={getLocalizedPath('/convert/second-to-microsecond/', lang)}>µs ↔ s</a></li>
+                <li><a href={getLocalizedPath('/convert/second-to-microsecond/', lang)}>µs ↔ min</a></li>
               </ul>
             </div>
 
@@ -363,11 +425,11 @@ const jsonLdArray = Array.isArray(jsonLd) ? jsonLd : jsonLd ? [jsonLd] : [];
             <div class="footer-col">
               <h4>Volume</h4>
               <ul>
-                <li><a href="/convert/nano-to-micro/">nL ↔ µL</a></li>
-                <li><a href="/convert/nano-to-micro/">pL ↔ nL</a></li>
-                <li><a href="/convert/micro-to-nano/">µL ↔ mL</a></li>
-                <li><a href="/convert/pico-to-nano/">pL ↔ µL</a></li>
-                <li><a href="/convert/micro-to-nano/">µL ↔ L</a></li>
+                <li><a href={getLocalizedPath('/convert/nano-to-micro/', lang)}>nL ↔ µL</a></li>
+                <li><a href={getLocalizedPath('/convert/nano-to-micro/', lang)}>pL ↔ nL</a></li>
+                <li><a href={getLocalizedPath('/convert/micro-to-nano/', lang)}>µL ↔ mL</a></li>
+                <li><a href={getLocalizedPath('/convert/pico-to-nano/', lang)}>pL ↔ µL</a></li>
+                <li><a href={getLocalizedPath('/convert/micro-to-nano/', lang)}>µL ↔ L</a></li>
               </ul>
             </div>
 
@@ -375,10 +437,10 @@ const jsonLdArray = Array.isArray(jsonLd) ? jsonLd : jsonLd ? [jsonLd] : [];
             <div class="footer-col">
               <h4>Force & Fields</h4>
               <ul>
-                <li><a href="/convert/newton-to-micronewton/">N ↔ µN</a></li>
-                <li><a href="/convert/tesla-to-gauss/">T ↔ G</a></li>
-                <li><a href="/convert/meter-to-micrometer/">m ↔ µm</a></li>
-                <li><a href="/convert/second-to-microsecond/">s ↔ µs</a></li>
+                <li><a href={getLocalizedPath('/convert/newton-to-micronewton/', lang)}>N ↔ µN</a></li>
+                <li><a href={getLocalizedPath('/convert/tesla-to-gauss/', lang)}>T ↔ G</a></li>
+                <li><a href={getLocalizedPath('/convert/meter-to-micrometer/', lang)}>m ↔ µm</a></li>
+                <li><a href={getLocalizedPath('/convert/second-to-microsecond/', lang)}>s ↔ µs</a></li>
               </ul>
             </div>
 
@@ -386,12 +448,12 @@ const jsonLdArray = Array.isArray(jsonLd) ? jsonLd : jsonLd ? [jsonLd] : [];
             <div class="footer-col">
               <h4>Physics Research</h4>
               <ul>
-                <li><a href="/antigravity/">Antigravity Hub</a></li>
-                <li><a href="/antigravity/what-is-antigravity/">What is Antigravity</a></li>
-                <li><a href="/antigravity/gravitational-shielding/">Gravitational Shielding</a></li>
-                <li><a href="/antigravity/antimatter-gravity/">Antimatter Gravity</a></li>
-                <li><a href="/antigravity/negative-mass/">Negative Mass</a></li>
-                <li><a href="/antigravity/magnetic-levitation/">Magnetic Levitation</a></li>
+                <li><a href={getLocalizedPath('/antigravity/', lang)}>Antigravity Hub</a></li>
+                <li><a href={getLocalizedPath('/antigravity/what-is-antigravity/', lang)}>What is Antigravity</a></li>
+                <li><a href={getLocalizedPath('/antigravity/gravitational-shielding/', lang)}>Gravitational Shielding</a></li>
+                <li><a href={getLocalizedPath('/antigravity/antimatter-gravity/', lang)}>Antimatter Gravity</a></li>
+                <li><a href={getLocalizedPath('/antigravity/negative-mass/', lang)}>Negative Mass</a></li>
+                <li><a href={getLocalizedPath('/antigravity/magnetic-levitation/', lang)}>Magnetic Levitation</a></li>
               </ul>
             </div>
           </div>

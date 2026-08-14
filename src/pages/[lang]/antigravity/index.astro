@@ -1,0 +1,108 @@
+---
+// src/pages/[lang]/antigravity/index.astro
+import Base from '../../../layouts/Base.astro';
+import MagneticPressureIsland from '../../../components/MagneticPressureIsland.svelte';
+import { PRIMARY_ENTITIES, SECONDARY_ENTITIES, MEASUREMENT_ENTITIES, SOURCE_TRUST_ENTITIES, ALL_ENTITIES } from '../../../data/entities.js';
+import { NON_DEFAULT_LOCALES } from '../../../i18n/config';
+
+export function getStaticPaths() {
+  return NON_DEFAULT_LOCALES.map((loc) => ({
+    params: { lang: loc.code },
+  }));
+}
+
+const { lang } = Astro.params;
+
+const title =
+  'Antigravity: Physics, Experiments, Claims, and What Science Supports | NanoToMicro';
+const description =
+  'Explore antigravity scientifically: gravity physics, levitation, antimatter, superconductors, gravitational shielding claims, experiments, and FAQs.';
+
+const faqs = [
+  {
+    q: 'Is antigravity possible?',
+    a: 'There is no verified antigravity technology at present. Some theoretical ideas involve exotic matter, negative energy, or modifications to gravity, but they remain speculative and experimentally unconfirmed.',
+  },
+  {
+    q: 'Is antigravity real?',
+    a: 'No verified, reproducible technology has been demonstrated that cancels or shields gravity in the way popularly described as antigravity.',
+  },
+  {
+    q: 'Does antimatter fall up?',
+    a: 'Current experimental evidence indicates that antimatter behaves gravitationally like normal matter within measurement limits. Antihydrogen experiments are improving precision, but no confirmed upward gravitational effect has been established.',
+  },
+  {
+    q: 'Can magnets create antigravity?',
+    a: 'Magnets can levitate objects by producing forces that oppose gravity. This is magnetic levitation, not antigravity. The gravitational field remains present.',
+  },
+  {
+    q: 'What is gravitational shielding?',
+    a: 'Gravitational shielding is the idea that a material or field could block or reduce gravity. This has not been experimentally validated and conflicts with standard gravitational physics unless new physics is involved.',
+  },
+  {
+    q: 'What is negative mass?',
+    a: 'Negative mass is a hypothetical concept in which an object would have mass with unusual inertial or gravitational behavior. It remains speculative and has not been demonstrated as a practical material.',
+  },
+  {
+    q: 'Can superconductors create antigravity?',
+    a: 'Superconductors enable important levitation effects, such as flux pinning and magnetic levitation, but there is no accepted experimental evidence that they produce gravitational shielding or antigravity.',
+  },
+];
+---
+
+<Base
+  title={title}
+  description={description}
+  canonicalPath={`/${lang}/antigravity/`}
+  lang={lang}
+  faqs={faqs}
+>
+  <article>
+    <h1>Antigravity: Physics, Experiments, Claims, and What Science Supports</h1>
+    <p class="muted" style="font-size: 17px; line-height: 1.6;">
+      Antigravity is a popular term used to describe hypothetical methods of canceling, shielding, reversing, or engineering gravity. In mainstream physics, gravity is described by Newton's law of universal gravitation and Einstein's General Relativity.
+    </p>
+
+    <!-- Table of Contents -->
+    <nav class="toc" aria-label="Table of contents">
+      <h2 style="font-size: 18px; margin: 0 0 10px;">Curriculum Sections</h2>
+      <ol>
+        <li><a href={`/${lang}/antigravity/what-is-antigravity/`}>What is Antigravity?</a></li>
+        <li><a href={`/${lang}/antigravity/gravitational-shielding/`}>Gravitational Shielding Claims</a></li>
+        <li><a href={`/${lang}/antigravity/antimatter-gravity/`}>Antimatter & Gravity (CERN ALPHA-g)</a></li>
+        <li><a href={`/${lang}/antigravity/negative-mass/`}>Negative Mass & Relativistic Dynamics</a></li>
+        <li><a href={`/${lang}/antigravity/magnetic-levitation/`}>Magnetic Levitation vs Antigravity</a></li>
+        <li><a href={`/${lang}/antigravity/superconducting-levitation/`}>Superconducting Levitation & Flux Pinning</a></li>
+        <li><a href={`/${lang}/antigravity/reproducibility-and-experimental-errors/`}>Evidence Checklist & Error Sources</a></li>
+      </ol>
+    </nav>
+
+    <!-- Interactive Island -->
+    <section style="margin: 40px 0;">
+      <MagneticPressureIsland client:visible />
+    </section>
+
+    <!-- Standard FAQs -->
+    <section class="panel" style="margin-top: 40px;">
+      <h2>Antigravity Frequently Asked Questions</h2>
+      {faqs.map(faq => (
+        <details>
+          <summary>{faq.q}</summary>
+          <p>{faq.a}</p>
+        </details>
+      ))}
+    </section>
+
+    <!-- Authoritative References -->
+    <section class="panel" style="margin-top: 40px;">
+      <h2 style="margin-top: 0;">Authoritative References</h2>
+      <ul>
+        <li><a href="https://www.nist.gov/pml/owm/metric-si/si-units" target="_blank" rel="noopener noreferrer">NIST: International System of Units</a></li>
+        <li><a href="https://www.bipm.org/en/publications/si-brochure" target="_blank" rel="noopener noreferrer">BIPM: SI Brochure</a></li>
+        <li><a href="https://home.cern/science/physics/antimatter" target="_blank" rel="noopener noreferrer">CERN: Antimatter and antihydrogen experiments</a></li>
+        <li><a href="https://www.nasa.gov/mission/physical-sciences-microgravity-research/" target="_blank" rel="noopener noreferrer">NASA: Microgravity science and propulsion research</a></li>
+        <li><a href="https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.129.121102" target="_blank" rel="noopener noreferrer">Peer-reviewed literature on gravitation and equivalence principle tests (MICROSCOPE Collaboration, Physical Review Letters)</a></li>
+      </ul>
+    </section>
+  </article>
+</Base>

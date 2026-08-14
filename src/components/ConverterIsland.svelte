@@ -6,24 +6,40 @@
   export let fromName = 'nanometer';
   export let toName = 'micrometer';
   export let exampleInput = 2500;
+  export let locale = 'en';
 
-  let fromValue = exampleInput;
-  let toValue = formatNumber(fromValue * factor);
+  let fromValue = String(exampleInput);
+  let toValue = formatNumber(exampleInput * factor);
   let copied = false;
 
+  // Safe input parser supporting dot and comma decimal notations
+  function parseLocaleNumber(str) {
+    if (!str || typeof str !== 'string') return NaN;
+    // Replace comma with dot for standard JS float parsing
+    const normalized = str.trim().replace(',', '.');
+    return parseFloat(normalized);
+  }
+
   function formatNumber(num) {
+    if (isNaN(num)) return '';
     if (num === 0) return '0';
-    if (Math.abs(num) >= 1e6 || (Math.abs(num) < 1e-4 && num !== 0)) {
+    if (Math.abs(num) >= 1e9 || (Math.abs(num) < 1e-6 && num !== 0)) {
       return num.toExponential(4).replace(/\+?0*(\d+)$/, '$1');
     }
-    // Round cleanly to avoid floating-point issues (e.g. 0.0000000000000001)
-    const str = num.toFixed(8);
-    return parseFloat(str).toString();
+    try {
+      return new Intl.NumberFormat(locale || 'en', {
+        maximumFractionDigits: 12,
+        useGrouping: true,
+      }).format(num);
+    } catch {
+      return parseFloat(num.toFixed(8)).toString();
+    }
   }
 
   function handleFromInput(e) {
-    const val = parseFloat(e.target.value);
-    fromValue = e.target.value;
+    const raw = e.target.value;
+    fromValue = raw;
+    const val = parseLocaleNumber(raw);
     if (isNaN(val)) {
       toValue = '';
     } else {
@@ -32,8 +48,9 @@
   }
 
   function handleToInput(e) {
-    const val = parseFloat(e.target.value);
-    toValue = e.target.value;
+    const raw = e.target.value;
+    toValue = raw;
+    const val = parseLocaleNumber(raw);
     if (isNaN(val)) {
       fromValue = '';
     } else {
@@ -42,7 +59,7 @@
   }
 
   function setPreset(val) {
-    fromValue = val;
+    fromValue = String(val);
     toValue = formatNumber(val * factor);
   }
 
@@ -63,7 +80,8 @@
     fromSymbol = toSymbol;
     toSymbol = tempSymbol;
     factor = 1 / factor;
-    toValue = formatNumber(parseFloat(fromValue || '0') * factor);
+    const num = parseLocaleNumber(fromValue || '0');
+    toValue = isNaN(num) ? '' : formatNumber(num * factor);
   }
 </script>
 
@@ -72,14 +90,15 @@
     <!-- From Box -->
     <div class="input-box">
       <div class="box-label">INPUT ({fromSymbol})</div>
-      <div class="input-control-wrap">
+      <div class="input-control-wrap" dir="ltr">
         <input
-          type="number"
-          step="any"
+          type="text"
+          inputmode="decimal"
           value={fromValue}
           on:input={handleFromInput}
           placeholder="0"
           class="calc-input"
+          dir="ltr"
         />
         {#if fromValue !== ''}
           <button type="button" class="action-btn clear-btn" on:click={clearAll} title="Clear">✕</button>
@@ -96,14 +115,15 @@
     <!-- To Box -->
     <div class="input-box">
       <div class="box-label">OUTPUT ({toSymbol})</div>
-      <div class="input-control-wrap">
+      <div class="input-control-wrap" dir="ltr">
         <input
-          type="number"
-          step="any"
+          type="text"
+          inputmode="decimal"
           value={toValue}
           on:input={handleToInput}
           placeholder="0"
           class="calc-input"
+          dir="ltr"
         />
         <button type="button" class="action-btn copy-btn" on:click={copyResult} title="Copy result">
           {copied ? '✓' : '⧉'}
@@ -126,9 +146,9 @@
     <a href="/conversion-charts/" class="chart-link">Full Pre-calculated Chart →</a>
   </div>
 
-  <!-- Formula Banner -->
-  <div class="formula-banner">
-    <code>Formula: {fromValue || '0'} {fromSymbol} {factor < 1 ? `÷ ${(1/factor).toLocaleString()}` : `× ${factor.toLocaleString()}`} = {toValue || '0'} {toSymbol}</code>
+  <!-- Formula Banner (Always LTR) -->
+  <div class="formula-banner" dir="ltr">
+    <code>Formula: {fromValue || '0'} {fromSymbol} {factor < 1 ? `÷ ${(1/factor).toLocaleString('en')}` : `× ${factor.toLocaleString('en')}`} = {toValue || '0'} {toSymbol}</code>
   </div>
 
   <!-- Feature Checkmarks -->
@@ -142,7 +162,7 @@
 <style>
   .calculator-card {
     background: radial-gradient(circle at top, #131c2e 0%, #0c121d 100%);
-    border: 1px solid rgba(245, 158, 11, 0.25);
+    border: 1px solid rgba(245, 158, 11, 0.3);
     border-radius: 16px;
     padding: 24px;
     box-shadow: 0 16px 40px -10px rgba(0, 0, 0, 0.6), 0 0 30px rgba(245, 158, 11, 0.08);
@@ -158,8 +178,8 @@
 
   .input-box {
     flex: 1;
-    background: rgba(11, 15, 25, 0.85);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(11, 15, 25, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.12);
     border-radius: 12px;
     padding: 12px 16px;
     transition: border-color 0.2s;
@@ -167,13 +187,13 @@
 
   .input-box:focus-within {
     border-color: #f59e0b;
-    box-shadow: 0 0 0 2px rgba(245, 158, 11, 0.2);
+    box-shadow: 0 0 0 2px rgba(245, 158, 11, 0.25);
   }
 
   .box-label {
     font-size: 11px;
-    font-weight: 700;
-    color: #94a3b8;
+    font-weight: 800;
+    color: #cbd5e1;
     letter-spacing: 0.05em;
     margin-bottom: 6px;
   }
@@ -195,30 +215,25 @@
     font-family: ui-monospace, 'SF Mono', Menlo, monospace;
   }
 
-  .calc-input::-webkit-outer-spin-button,
-  .calc-input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-  }
-
   .unit-tag {
     font-size: 14px;
-    font-weight: 700;
-    color: #94a3b8;
+    font-weight: 800;
+    color: #cbd5e1;
     background: rgba(255, 255, 255, 0.08);
     padding: 4px 8px;
     border-radius: 6px;
+    flex-shrink: 0;
   }
 
   .highlight-unit {
     color: #f59e0b;
-    background: rgba(245, 158, 11, 0.15);
+    background: rgba(245, 158, 11, 0.18);
   }
 
   .action-btn {
-    background: rgba(255, 255, 255, 0.06);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    color: #cbd5e1;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    color: #e2e8f0;
     border-radius: 6px;
     width: 28px;
     height: 28px;
@@ -228,17 +243,18 @@
     cursor: pointer;
     font-size: 14px;
     transition: all 0.2s;
+    flex-shrink: 0;
   }
 
   .action-btn:hover {
-    background: rgba(245, 158, 11, 0.2);
+    background: rgba(245, 158, 11, 0.25);
     color: #f59e0b;
     border-color: #f59e0b;
   }
 
   .swap-btn {
-    background: rgba(245, 158, 11, 0.15);
-    border: 1px solid rgba(245, 158, 11, 0.4);
+    background: rgba(245, 158, 11, 0.18);
+    border: 1px solid rgba(245, 158, 11, 0.45);
     color: #f59e0b;
     width: 44px;
     height: 44px;
@@ -255,7 +271,7 @@
 
   .swap-btn:hover {
     background: #f59e0b;
-    color: #0b0f14;
+    color: #070b12;
     transform: rotate(180deg);
   }
 
@@ -267,7 +283,7 @@
     gap: 10px;
     margin-top: 16px;
     padding-top: 14px;
-    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
   }
 
   .preset-buttons {
@@ -279,15 +295,15 @@
 
   .presets-label {
     font-size: 12px;
-    color: #64748b;
-    font-weight: 600;
+    color: #cbd5e1;
+    font-weight: 700;
   }
 
   .preset-btn {
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    color: #94a3b8;
-    padding: 3px 8px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    color: #e2e8f0;
+    padding: 4px 10px;
     border-radius: 6px;
     font-size: 12px;
     cursor: pointer;
@@ -296,15 +312,15 @@
   }
 
   .preset-btn:hover {
-    background: rgba(245, 158, 11, 0.15);
-    color: #f59e0b;
-    border-color: rgba(245, 158, 11, 0.3);
+    background: rgba(245, 158, 11, 0.2);
+    color: #fbbf24;
+    border-color: rgba(245, 158, 11, 0.4);
   }
 
   .chart-link {
-    font-size: 12px;
-    color: #f59e0b;
-    font-weight: 600;
+    font-size: 13px;
+    color: #fbbf24;
+    font-weight: 700;
     text-decoration: none;
   }
 
@@ -314,8 +330,8 @@
 
   .formula-banner {
     margin-top: 14px;
-    background: rgba(0, 0, 0, 0.4);
-    border: 1px solid rgba(255, 255, 255, 0.06);
+    background: rgba(0, 0, 0, 0.45);
+    border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 8px;
     padding: 8px 14px;
     text-align: center;
@@ -331,7 +347,7 @@
     gap: 20px;
     margin-top: 14px;
     font-size: 12px;
-    color: #64748b;
+    color: #cbd5e1;
   }
 
   .feat-item {

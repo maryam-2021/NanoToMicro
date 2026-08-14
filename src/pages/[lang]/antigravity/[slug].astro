@@ -1,0 +1,36 @@
+---
+// src/pages/[lang]/antigravity/[slug].astro
+import Base from '../../../layouts/Base.astro';
+import { NON_DEFAULT_LOCALES } from '../../../i18n/config';
+
+export async function getStaticPaths() {
+  const topicFiles = import.meta.glob('../../antigravity/*.astro');
+  const slugs = Object.keys(topicFiles)
+    .map((path) => path.split('/').pop()?.replace('.astro', ''))
+    .filter((slug) => slug && slug !== 'index');
+
+  const paths = [];
+  for (const loc of NON_DEFAULT_LOCALES) {
+    for (const slug of slugs) {
+      paths.push({
+        params: { lang: loc.code, slug },
+      });
+    }
+  }
+  return paths;
+}
+
+const { lang, slug } = Astro.params;
+
+// Dynamically load English content as baseline
+const topicModules = import.meta.glob('../../antigravity/*.astro', { eager: true });
+const targetModule: any = topicModules[`../../antigravity/${slug}.astro`];
+
+const Component = targetModule?.default;
+---
+
+{Component ? (
+  <Component lang={lang} />
+) : (
+  <div>Page not found</div>
+)}

@@ -1,0 +1,122 @@
+---
+// src/pages/[lang]/conversion-charts.astro
+import Base from '../../layouts/Base.astro';
+import { NON_DEFAULT_LOCALES } from '../../i18n/config';
+
+export function getStaticPaths() {
+  return NON_DEFAULT_LOCALES.map((loc) => ({
+    params: { lang: loc.code },
+  }));
+}
+
+const { lang } = Astro.params;
+
+const chartData = [
+  { nm: 1, um: '0.001', mm: '0.000001', pm: '1,000' },
+  { nm: 5, um: '0.005', mm: '0.000005', pm: '5,000' },
+  { nm: 10, um: '0.01', mm: '0.00001', pm: '10,000' },
+  { nm: 25, um: '0.025', mm: '0.000025', pm: '25,000' },
+  { nm: 50, um: '0.05', mm: '0.00005', pm: '50,000' },
+  { nm: 100, um: '0.1', mm: '0.0001', pm: '100,000' },
+  { nm: 250, um: '0.25', mm: '0.00025', pm: '250,000' },
+  { nm: 500, um: '0.5', mm: '0.0005', pm: '500,000' },
+  { nm: 750, um: '0.75', mm: '0.00075', pm: '750,000' },
+  { nm: 1000, um: '1.0', mm: '0.001', pm: '1,000,000' },
+  { nm: 2500, um: '2.5', mm: '0.0025', pm: '2,500,000' },
+  { nm: 5000, um: '5.0', mm: '0.005', pm: '5,000,000' },
+  { nm: 10000, um: '10.0', mm: '0.01', pm: '10,000,000' },
+];
+---
+
+<Base
+  title="Printable Metric Conversion Charts — Nanometers to Micrometers | NanoToMicro"
+  description="High-precision printable metric conversion charts covering nanometers, micrometers, picometers, and millimeters."
+  canonicalPath={`/${lang}/conversion-charts/`}
+  lang={lang}
+>
+  <div class="page-head">
+    <div class="pill">Print-Ready Reference</div>
+    <h1 class="title">Nanometer to Micrometer Conversion Chart</h1>
+    <p class="subtitle">
+      Exact 1:1,000 metric scaling reference table for laboratory measurements, semiconductor fabrication, and microscopy.
+    </p>
+  </div>
+
+  <div class="table-card">
+    <table class="chart-table" dir="ltr">
+      <thead>
+        <tr>
+          <th>Nanometers (nm)</th>
+          <th>Micrometers (µm)</th>
+          <th>Millimeters (mm)</th>
+          <th>Picometers (pm)</th>
+        </tr>
+      </thead>
+      <tbody>
+        {chartData.map((row) => (
+          <tr>
+            <td style="font-weight: 700;">{row.nm.toLocaleString('en')} nm</td>
+            <td style="color: #fbbf24; font-weight: 800;">{row.um} µm</td>
+            <td style="color: #38bdf8;">{row.mm} mm</td>
+            <td style="color: #cbd5e1;">{row.pm} pm</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+</Base>
+
+<style>
+  .page-head {
+    text-align: center;
+    max-width: 800px;
+    margin: 20px auto 40px;
+  }
+  .pill {
+    display: inline-block;
+    background: rgba(245, 158, 11, 0.15);
+    color: #fbbf24;
+    border: 1px solid rgba(245, 158, 11, 0.35);
+    padding: 4px 12px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 16px;
+  }
+  .title {
+    font-size: 36px;
+    font-weight: 900;
+    color: #ffffff;
+    margin: 0 0 12px;
+  }
+  .subtitle {
+    font-size: 16px;
+    color: #cbd5e1;
+    line-height: 1.6;
+  }
+  .table-card {
+    background: #0f1623;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    padding: 24px;
+    overflow-x: auto;
+  }
+  .chart-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    font-family: ui-monospace, monospace;
+  }
+  .chart-table th {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 12px 16px;
+    text-align: left;
+    color: #cbd5e1;
+    font-weight: 700;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  .chart-table td {
+    padding: 10px 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  }
+</style>

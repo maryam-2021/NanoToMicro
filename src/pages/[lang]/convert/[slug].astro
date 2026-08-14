@@ -1,0 +1,149 @@
+---
+// src/pages/[lang]/convert/[slug].astro
+import Base from '../../../layouts/Base.astro';
+import ConverterIsland from '../../../components/ConverterIsland.svelte';
+import { converters } from '../../../data/converters';
+import { NON_DEFAULT_LOCALES } from '../../../i18n/config';
+
+export function getStaticPaths() {
+  const paths = [];
+  for (const loc of NON_DEFAULT_LOCALES) {
+    for (const converter of converters) {
+      paths.push({
+        params: { lang: loc.code, slug: converter.slug },
+        props: { converter },
+      });
+    }
+  }
+  return paths;
+}
+
+const { lang } = Astro.params;
+const converter = Astro.props.converter;
+
+const canonical = `https://nanotomicro.com/${lang}/convert/${converter.slug}/`;
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    {
+      '@type': 'ListItem',
+      position: 1,
+      name: 'Home',
+      item: `https://nanotomicro.com/${lang}/`,
+    },
+    {
+      '@type': 'ListItem',
+      position: 2,
+      name: 'Converters',
+      item: `https://nanotomicro.com/${lang}/convert/nano-to-micro/`,
+    },
+    {
+      '@type': 'ListItem',
+      position: 3,
+      name: converter.title,
+      item: canonical,
+    },
+  ],
+};
+
+const definedTermSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'DefinedTerm',
+  name: `${converter.fromName} to ${converter.toName} conversion`,
+  description: converter.description,
+  termCode: `${converter.fromSymbol} to ${converter.toSymbol}`,
+};
+
+const related = converters
+  .filter((c) => c.slug !== converter.slug)
+  .slice(0, 8);
+---
+
+<Base
+  title={`${converter.title} | NanoToMicro`}
+  description={converter.description}
+  canonicalPath={`/${lang}/convert/${converter.slug}/`}
+  lang={lang}
+  jsonLd={[breadcrumbSchema, definedTermSchema]}
+  faqs={converter.examples.map(ex => ({ q: ex.question, a: ex.answer }))}
+>
+  <article>
+    <h1>{converter.h1}</h1>
+    <p class="muted" style="font-size: 16px;">{converter.intro}</p>
+
+    <div style="margin: 30px 0;">
+      <ConverterIsland
+        client:load
+        fromSymbol={converter.fromSymbol}
+        toSymbol={converter.toSymbol}
+        factor={converter.factor}
+        fromName={converter.fromName}
+        toName={converter.toName}
+        locale={lang}
+      />
+    </div>
+
+    <section class="panel">
+      <h2>Conversion Formula</h2>
+      <p style="font-size: 18px; font-family: ui-monospace, monospace; color: #fbbf24;" dir="ltr">
+        <code>{converter.formulaTo}</code>
+      </p>
+      <p>
+        To convert from {converter.fromName} ({converter.fromSymbol}) to {converter.toName} ({converter.toSymbol}),
+        multiply by {converter.factor} (or divide by {converter.factor < 1 ? 1 / converter.factor : 1}).
+      </p>
+      <p style="font-size: 18px; font-family: ui-monospace, monospace; color: #38bdf8;" dir="ltr">
+        <code>{converter.formulaFrom}</code>
+      </p>
+    </section>
+
+    <section>
+      <h2>Quick Reference Table</h2>
+      <table dir="ltr">
+        <thead>
+          <tr>
+            <th>{converter.fromName} ({converter.fromSymbol})</th>
+            <th>{converter.toName} ({converter.toSymbol})</th>
+          </tr>
+        </thead>
+        <tbody>
+          {
+            converter.table.map((row) => (
+              <tr>
+                <td>{row.from}</td>
+                <td style="color: #fbbf24; font-weight: 700;">{row.to}</td>
+              </tr>
+            ))
+          }
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>Frequently Asked Questions</h2>
+      {
+        converter.examples.map((item) => (
+          <details>
+            <summary>{item.question}</summary>
+            <p>{item.answer}</p>
+          </details>
+        ))
+      }
+    </section>
+
+    <section style="margin-top: 50px;">
+      <h2>Related Metric Converters</h2>
+      <div class="tag-row">
+        {
+          related.map((item) => (
+            <a class="tag" href={`/${lang}/convert/${item.slug}/`}>
+              {item.fromSymbol} ↔ {item.toSymbol}
+            </a>
+          ))
+        }
+      </div>
+    </section>
+  </article>
+</Base>

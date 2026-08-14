@@ -1,0 +1,276 @@
+---
+// src/components/LanguageSwitcher.astro
+import { LOCALES, getLocale, getLocalizedPath, DEFAULT_LOCALE } from '../i18n/config';
+
+export interface Props {
+  currentLocale?: string;
+  currentPath?: string;
+}
+
+const { currentLocale = DEFAULT_LOCALE, currentPath = '/' } = Astro.props;
+const current = getLocale(currentLocale);
+---
+
+<div class="lang-switcher-container">
+  <details class="lang-dropdown">
+    <summary class="lang-btn" aria-label="Select Language">
+      <svg class="lang-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10"></circle>
+        <line x1="2" y1="12" x2="22" y2="12"></line>
+        <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+      </svg>
+      <span class="lang-current-name">{current.name}</span>
+      <span class="lang-arrow">▾</span>
+    </summary>
+
+    <div class="lang-menu">
+      <div class="lang-grid">
+        {LOCALES.map((loc) => {
+          const targetUrl = getLocalizedPath(currentPath, loc.code);
+          const isSelected = loc.code === currentLocale;
+          return (
+            <a
+              href={targetUrl}
+              class={`lang-item ${isSelected ? 'active' : ''}`}
+              data-lang={loc.code}
+              dir={loc.dir}
+            >
+              <span class="lang-name">{loc.name}</span>
+              {isSelected && <span class="lang-check">✓</span>}
+            </a>
+          );
+        })}
+      </div>
+    </div>
+  </details>
+</div>
+
+<!-- Non-blocking Suggestion Banner Island -->
+<div id="i18n-suggest-banner" class="suggest-banner" style="display: none;">
+  <div class="suggest-content">
+    <span id="suggest-text">Switch language?</span>
+    <div class="suggest-actions">
+      <a id="suggest-link" href="#" class="suggest-btn-yes">Switch</a>
+      <button type="button" id="suggest-dismiss" class="suggest-btn-dismiss">Stay</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Language Persistence & Non-Blocking Suggestion Banner
+  document.addEventListener('DOMContentLoaded', () => {
+    // 1. Close dropdown on click outside
+    document.addEventListener('click', (e) => {
+      const details = document.querySelector('.lang-dropdown') as HTMLDetailsElement;
+      if (details && details.open && !details.contains(e.target as Node)) {
+        details.removeAttribute('open');
+      }
+    });
+
+    // 2. Remember user language choice
+    const items = document.querySelectorAll('.lang-item');
+    items.forEach((item) => {
+      item.addEventListener('click', () => {
+        const lang = item.getAttribute('data-lang');
+        if (lang) {
+          localStorage.setItem('preferred_locale', lang);
+        }
+      });
+    });
+
+    // 3. Subtle non-blocking suggestion banner (No auto-redirect)
+    const currentHtmlLang = document.documentElement.lang || 'en';
+    const savedLocale = localStorage.getItem('preferred_locale');
+    const userBrowserLang = navigator.language || navigator.languages?.[0];
+
+    if (!savedLocale && userBrowserLang) {
+      const matchedLink = Array.from(items).find((el) => {
+        const l = el.getAttribute('data-lang');
+        return l && (userBrowserLang.startsWith(l) || userBrowserLang.toLowerCase() === l.toLowerCase());
+      }) as HTMLAnchorElement;
+
+      if (matchedLink && matchedLink.getAttribute('data-lang') !== currentHtmlLang) {
+        const banner = document.getElementById('i18n-suggest-banner');
+        const suggestText = document.getElementById('suggest-text');
+        const suggestLink = document.getElementById('suggest-link') as HTMLAnchorElement;
+        const dismissBtn = document.getElementById('suggest-dismiss');
+
+        if (banner && suggestText && suggestLink && dismissBtn) {
+          const targetName = matchedLink.querySelector('.lang-name')?.textContent || '';
+          suggestText.textContent = `View in ${targetName}?`;
+          suggestLink.href = matchedLink.href;
+          banner.style.display = 'block';
+
+          suggestLink.addEventListener('click', () => {
+            localStorage.setItem('preferred_locale', matchedLink.getAttribute('data-lang') || 'en');
+          });
+
+          dismissBtn.addEventListener('click', () => {
+            banner.style.display = 'none';
+            localStorage.setItem('preferred_locale', currentHtmlLang);
+          });
+        }
+      }
+    }
+  });
+</script>
+
+<style>
+  .lang-switcher-container {
+    position: relative;
+    display: inline-block;
+  }
+
+  .lang-dropdown {
+    position: relative;
+  }
+
+  .lang-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 8px;
+    padding: 6px 12px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #e2e8f0;
+    cursor: pointer;
+    list-style: none;
+    transition: all 0.15s ease;
+    user-select: none;
+  }
+
+  .lang-btn::-webkit-details-marker {
+    display: none;
+  }
+
+  .lang-btn:hover {
+    background: rgba(245, 158, 11, 0.15);
+    border-color: rgba(245, 158, 11, 0.4);
+    color: #fbbf24;
+  }
+
+  .lang-icon {
+    stroke: #fbbf24;
+  }
+
+  .lang-arrow {
+    font-size: 11px;
+    color: #94a3b8;
+  }
+
+  .lang-menu {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    width: 320px;
+    max-height: 400px;
+    overflow-y: auto;
+    background: #0f1623;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 12px;
+    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.6);
+    padding: 8px;
+    z-index: 200;
+  }
+
+  .lang-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4px;
+  }
+
+  .lang-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 6px 10px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #cbd5e1;
+    text-decoration: none !important;
+    transition: all 0.12s ease;
+  }
+
+  .lang-item:hover {
+    background: rgba(245, 158, 11, 0.15);
+    color: #fbbf24;
+  }
+
+  .lang-item.active {
+    background: rgba(245, 158, 11, 0.25);
+    color: #fbbf24;
+    font-weight: 800;
+  }
+
+  .lang-check {
+    color: #fbbf24;
+    font-size: 12px;
+  }
+
+  /* Suggestion Banner */
+  .suggest-banner {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 999;
+    background: #111a2c;
+    border: 1px solid rgba(245, 158, 11, 0.4);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+    border-radius: 12px;
+    padding: 12px 18px;
+    animation: slideUp 0.3s ease;
+  }
+
+  .suggest-content {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #f8fafc;
+  }
+
+  .suggest-actions {
+    display: flex;
+    gap: 8px;
+  }
+
+  .suggest-btn-yes {
+    background: #f59e0b;
+    color: #070b12 !important;
+    padding: 4px 12px;
+    border-radius: 6px;
+    font-weight: 700;
+    font-size: 12px;
+    text-decoration: none !important;
+  }
+
+  .suggest-btn-dismiss {
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    color: #cbd5e1;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 12px;
+    cursor: pointer;
+  }
+
+  @keyframes slideUp {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+
+  @media (max-width: 600px) {
+    .lang-menu {
+      right: -50px;
+      width: 280px;
+    }
+    .lang-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
