@@ -11,9 +11,10 @@ export interface Props {
   jsonLd?: object | object[];
   faqs?: Array<{ q: string; a: string }>;
   lang?: string;
+  noindex?: boolean;
 }
 
-const { title, description, canonical, canonicalPath, jsonLd, faqs, lang = DEFAULT_LOCALE } = Astro.props;
+const { title, description, canonical, canonicalPath, jsonLd, faqs, lang = DEFAULT_LOCALE, noindex = false } = Astro.props;
 
 const currentLocaleConfig = getLocale(lang);
 const baseUrl = 'https://nanotomicro.com';
@@ -69,11 +70,13 @@ if (faqs && faqs.length > 0) {
 
     <!-- Hreflang Alternates Architecture -->
     {
-      hreflangAlternates.map((alt) => (
+      !noindex && hreflangAlternates.map((alt) => (
         <link rel="alternate" hreflang={alt.hreflang} href={alt.href} />
       ))
     }
-    <link rel="alternate" hreflang="x-default" href={xDefaultHref} />
+    {
+      !noindex && <link rel="alternate" hreflang="x-default" href={xDefaultHref} />
+    }
 
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
@@ -90,7 +93,7 @@ if (faqs && faqs.length > 0) {
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={`${baseUrl}og/${currentLocaleConfig.code}.png`} />
 
-    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <meta name="robots" content={noindex ? "noindex,follow" : "index,follow,max-image-preview:large"} />
     <meta name="theme-color" content="#070b12" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 

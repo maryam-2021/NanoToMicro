@@ -93,6 +93,11 @@ export function getLocalizedPath(pathname: string, targetLocale: string): string
   // Normalize path
   let cleanPath = pathname.split('?')[0].split('#')[0];
   
+  // If path is 404, map cleanly to respective homepages
+  if (cleanPath === '/404' || cleanPath === '/404/' || cleanPath.endsWith('/404') || cleanPath.endsWith('/404/')) {
+    cleanPath = '/';
+  }
+
   // Strip any existing locale prefix
   for (const loc of LOCALES) {
     if (loc.code !== DEFAULT_LOCALE) {
