@@ -35,9 +35,18 @@ const jsonLdArray = Array.isArray(jsonLd) ? jsonLd : jsonLd ? [jsonLd] : [];
     <meta property="og:type" content="website" />
     <meta property="og:url" content={resolvedCanonical} />
     <meta property="og:site_name" content="NanoToMicro" />
+    <meta property="og:image" content="https://nanotomicro.com/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Nano to Micro Scale Continuum: Transistor nm to Biological Cell µm" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content="https://nanotomicro.com/og-image.png" />
 
     <meta name="robots" content="index,follow,max-image-preview:large" />
-    <meta name="theme-color" content="#0b0f14" />
+    <meta name="theme-color" content="#070b12" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
     {
@@ -54,13 +63,13 @@ const jsonLdArray = Array.isArray(jsonLd) ? jsonLd : jsonLd ? [jsonLd] : [];
         --bg: #070b12;
         --panel: #0f1623;
         --text: #f8fafc;
-        --muted: #cbd5e1;
-        --text-dim: #94a3b8;
+        --muted: #e2e8f0;
+        --text-dim: #cbd5e1;
         --accent: #fbbf24;
         --accent-hover: #fde68a;
         --primary: #f59e0b;
         --cyan: #38bdf8;
-        --border: rgba(255, 255, 255, 0.1);
+        --border: rgba(255, 255, 255, 0.12);
         --radius: 14px;
         --max-width: 1120px;
       }
