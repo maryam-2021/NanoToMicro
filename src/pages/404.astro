@@ -1,22 +1,26 @@
 ---
 // src/pages/404.astro
 import Base from '../layouts/Base.astro';
+import { t } from '../i18n/utils';
+
+const lang = 'en';
 ---
 
 <Base
   title="404 - Metric Coordinate Not Found | NanoToMicro"
-  description="The requested scientific calculation or sub-atomic scale route could not be found."
+  description={t('errorPage.desc', undefined, lang)}
   canonicalPath="/"
   noindex={true}
+  lang={lang}
 >
   <div class="error-container">
-    <div class="error-badge">404 Error</div>
-    <h1 class="error-title">Coordinate Out of Range</h1>
+    <div class="error-badge">{t('errorPage.badge', undefined, lang)}</div>
+    <h1 class="error-title">{t('errorPage.title', undefined, lang)}</h1>
     <p class="error-desc">
-      The nanoscale calculation or documentation route you requested does not exist or has been shifted across the SI metric continuum.
+      {t('errorPage.desc', undefined, lang)}
     </p>
 
-    <div class="scale-visual">
+    <div class="scale-visual" dir="ltr">
       <div class="scale-tick">10<sup>-12</sup> (pico)</div>
       <div class="scale-arrow">⇢</div>
       <div class="scale-tick active">10<sup>-9</sup> (nano)</div>
@@ -25,9 +29,9 @@ import Base from '../layouts/Base.astro';
     </div>
 
     <div class="error-actions">
-      <a href="/" class="btn-primary">Return to Homepage</a>
-      <a href="/convert/nano-to-micro/" class="btn-secondary">Nano to Micro Converter</a>
-      <a href="/antigravity/" class="btn-secondary">Antigravity Physics Hub</a>
+      <a href="/" class="btn-primary">{t('errorPage.returnHome', undefined, lang)}</a>
+      <a href="/convert/nano-to-micro/" class="btn-secondary">{t('errorPage.converterBtn', undefined, lang)}</a>
+      <a href="/antigravity/" class="btn-secondary">{t('errorPage.physicsBtn', undefined, lang)}</a>
     </div>
   </div>
 </Base>
@@ -99,63 +103,43 @@ import Base from '../layouts/Base.astro';
   }
 
   .scale-arrow {
-    color: #475569;
+    color: #64748b;
   }
 
   .error-actions {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
     gap: 12px;
+    justify-content: center;
   }
 
   .btn-primary {
     background: #f59e0b;
-    color: #070b12 !important;
+    color: #0b0f19;
+    font-weight: 800;
     padding: 12px 24px;
     border-radius: 10px;
-    font-weight: 800;
-    font-size: 14px;
-    text-decoration: none !important;
-    transition: transform 0.15s ease, background-color 0.15s ease;
+    text-decoration: none;
+    transition: background 0.2s;
   }
 
   .btn-primary:hover {
-    background: #fbbf24;
-    transform: translateY(-1px);
+    background: #d97706;
   }
 
   .btn-secondary {
     background: rgba(255, 255, 255, 0.06);
-    color: #e2e8f0 !important;
-    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: #f8fafc;
+    font-weight: 600;
     padding: 12px 20px;
     border-radius: 10px;
-    font-weight: 700;
-    font-size: 14px;
-    text-decoration: none !important;
-    transition: all 0.15s ease;
+    text-decoration: none;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    transition: all 0.2s;
   }
 
   .btn-secondary:hover {
-    background: rgba(255, 255, 255, 0.12);
-    border-color: rgba(245, 158, 11, 0.4);
-    color: #fbbf24 !important;
-  }
-
-  @media (max-width: 600px) {
-    .error-container {
-      margin: 30px 16px;
-      padding: 32px 16px;
-    }
-    .error-title {
-      font-size: 28px;
-    }
-    .error-actions {
-      flex-direction: column;
-    }
-    .btn-primary, .btn-secondary {
-      width: 100%;
-    }
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.2);
   }
 </style>

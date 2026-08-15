@@ -2,6 +2,7 @@
 // src/pages/[lang]/conversion-charts.astro
 import Base from '../../layouts/Base.astro';
 import { NON_DEFAULT_LOCALES } from '../../i18n/config';
+import { t } from '../../i18n/utils';
 
 export function getStaticPaths() {
   return NON_DEFAULT_LOCALES.map((loc) => ({
@@ -10,6 +11,10 @@ export function getStaticPaths() {
 }
 
 const { lang } = Astro.params;
+
+const pageTitle = t('chartsPage.title', undefined, lang);
+const pageSubtitle = t('chartsPage.subtitle', undefined, lang);
+const pageBadge = t('chartsPage.badge', undefined, lang);
 
 const chartData = [
   { nm: 1, um: '0.001', mm: '0.000001', pm: '1,000' },
@@ -29,36 +34,36 @@ const chartData = [
 ---
 
 <Base
-  title="Printable Metric Conversion Charts — Nanometers to Micrometers | NanoToMicro"
-  description="High-precision printable metric conversion charts covering nanometers, micrometers, picometers, and millimeters."
+  title={`${pageTitle} | NanoToMicro`}
+  description={pageSubtitle}
   canonicalPath={`/${lang}/conversion-charts/`}
   lang={lang}
 >
   <div class="page-head">
-    <div class="pill">Print-Ready Reference</div>
-    <h1 class="title">Nanometer to Micrometer Conversion Chart</h1>
+    <div class="pill">{pageBadge}</div>
+    <h1 class="title">{pageTitle}</h1>
     <p class="subtitle">
-      Exact 1:1,000 metric scaling reference table for laboratory measurements, semiconductor fabrication, and microscopy.
+      {pageSubtitle}
     </p>
   </div>
 
   <div class="table-card">
-    <table class="chart-table" dir="ltr">
+    <table class="chart-table">
       <thead>
         <tr>
-          <th>Nanometers (nm)</th>
-          <th>Micrometers (µm)</th>
-          <th>Millimeters (mm)</th>
-          <th>Picometers (pm)</th>
+          <th>{t('units.nanometers', undefined, lang)} (<span dir="ltr">nm</span>)</th>
+          <th>{t('units.micrometers', undefined, lang)} (<span dir="ltr">µm</span>)</th>
+          <th>{t('units.millimeters', undefined, lang)} (<span dir="ltr">mm</span>)</th>
+          <th>{t('units.picometers', undefined, lang)} (<span dir="ltr">pm</span>)</th>
         </tr>
       </thead>
       <tbody>
         {chartData.map((row) => (
           <tr>
-            <td style="font-weight: 700;">{row.nm.toLocaleString('en')} nm</td>
-            <td style="color: #fbbf24; font-weight: 800;">{row.um} µm</td>
-            <td style="color: #38bdf8;">{row.mm} mm</td>
-            <td style="color: #cbd5e1;">{row.pm} pm</td>
+            <td style="font-weight: 700;"><bdi dir="ltr">{row.nm.toLocaleString('en')} nm</bdi></td>
+            <td style="color: #fbbf24; font-weight: 800;"><bdi dir="ltr">{row.um} µm</bdi></td>
+            <td style="color: #38bdf8;"><bdi dir="ltr">{row.mm} mm</bdi></td>
+            <td style="color: #cbd5e1;"><bdi dir="ltr">{row.pm} pm</bdi></td>
           </tr>
         ))}
       </tbody>
@@ -98,25 +103,24 @@ const chartData = [
     background: #0f1623;
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 16px;
-    padding: 24px;
     overflow-x: auto;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
   }
   .chart-table {
     width: 100%;
     border-collapse: collapse;
-    font-size: 14px;
-    font-family: ui-monospace, monospace;
+    font-size: 15px;
   }
   .chart-table th {
-    background: rgba(255, 255, 255, 0.05);
-    padding: 12px 16px;
-    text-align: left;
-    color: #cbd5e1;
-    font-weight: 700;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    background: #192338;
+    padding: 16px 20px;
+    font-weight: 800;
+    color: #f8fafc;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.1);
   }
   .chart-table td {
-    padding: 10px 16px;
+    padding: 14px 20px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    font-family: ui-monospace, monospace;
   }
 </style>

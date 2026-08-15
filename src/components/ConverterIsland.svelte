@@ -8,6 +8,20 @@
   export let exampleInput = 2500;
   export let locale = 'en';
 
+  // Localized UI strings passed from parent template
+  export let inputLabel = 'INPUT ({symbol})';
+  export let outputLabel = 'OUTPUT ({symbol})';
+  export let presetsLabel = 'Presets:';
+  export let fullChartLinkText = 'Full Pre-calculated Chart →';
+  export let fullChartHref = '/conversion-charts/';
+  export let bullet1 = 'Zero floating-point drift';
+  export let bullet2 = 'Precise scientific notation support';
+  export let bullet3 = 'True bidirectional algorithm';
+  export let clearTitle = 'Clear';
+  export let copyTitle = 'Copy result';
+  export let copiedText = 'Copied!';
+  export let swapTitle = 'Swap units';
+
   let fromValue = String(exampleInput);
   let toValue = formatNumber(exampleInput * factor);
   let copied = false;
@@ -89,7 +103,7 @@
   <div class="calc-inputs-row">
     <!-- From Box -->
     <div class="input-box">
-      <div class="box-label">INPUT ({fromSymbol})</div>
+      <div class="box-label">{inputLabel.replace('{symbol}', fromSymbol)}</div>
       <div class="input-control-wrap" dir="ltr">
         <input
           type="text"
@@ -101,20 +115,20 @@
           dir="ltr"
         />
         {#if fromValue !== ''}
-          <button type="button" class="action-btn clear-btn" on:click={clearAll} title="Clear">✕</button>
+          <button type="button" class="action-btn clear-btn" on:click={clearAll} title={clearTitle}>✕</button>
         {/if}
         <span class="unit-tag">{fromSymbol}</span>
       </div>
     </div>
 
     <!-- Swap / Equals Center Button -->
-    <button type="button" class="swap-btn" on:click={swapUnits} title="Swap units">
+    <button type="button" class="swap-btn" on:click={swapUnits} title={swapTitle}>
       <span>=</span>
     </button>
 
     <!-- To Box -->
     <div class="input-box">
-      <div class="box-label">OUTPUT ({toSymbol})</div>
+      <div class="box-label">{outputLabel.replace('{symbol}', toSymbol)}</div>
       <div class="input-control-wrap" dir="ltr">
         <input
           type="text"
@@ -125,7 +139,7 @@
           class="calc-input"
           dir="ltr"
         />
-        <button type="button" class="action-btn copy-btn" on:click={copyResult} title="Copy result">
+        <button type="button" class="action-btn copy-btn" on:click={copyResult} title={copyTitle}>
           {copied ? '✓' : '⧉'}
         </button>
         <span class="unit-tag highlight-unit">{toSymbol}</span>
@@ -133,17 +147,17 @@
     </div>
   </div>
 
-  <!-- Presets Row -->
+  <!-- Presets Row with Strict Bidi Isolation -->
   <div class="presets-row">
     <div class="preset-buttons">
-      <span class="presets-label">Presets:</span>
-      <button type="button" class="preset-btn" on:click={() => setPreset(1)}>1 {fromSymbol}</button>
-      <button type="button" class="preset-btn" on:click={() => setPreset(10)}>10 {fromSymbol}</button>
-      <button type="button" class="preset-btn" on:click={() => setPreset(100)}>100 {fromSymbol}</button>
-      <button type="button" class="preset-btn" on:click={() => setPreset(500)}>500 {fromSymbol}</button>
-      <button type="button" class="preset-btn" on:click={() => setPreset(1000)}>1,000 {fromSymbol}</button>
+      <span class="presets-label">{presetsLabel}</span>
+      <button type="button" class="preset-btn" on:click={() => setPreset(1)}><bdi dir="ltr">1 {fromSymbol}</bdi></button>
+      <button type="button" class="preset-btn" on:click={() => setPreset(10)}><bdi dir="ltr">10 {fromSymbol}</bdi></button>
+      <button type="button" class="preset-btn" on:click={() => setPreset(100)}><bdi dir="ltr">100 {fromSymbol}</bdi></button>
+      <button type="button" class="preset-btn" on:click={() => setPreset(500)}><bdi dir="ltr">500 {fromSymbol}</bdi></button>
+      <button type="button" class="preset-btn" on:click={() => setPreset(1000)}><bdi dir="ltr">1,000 {fromSymbol}</bdi></button>
     </div>
-    <a href="/conversion-charts/" class="chart-link">Full Pre-calculated Chart →</a>
+    <a href={fullChartHref} class="chart-link">{fullChartLinkText}</a>
   </div>
 
   <!-- Formula Banner (Always LTR) -->
@@ -153,9 +167,9 @@
 
   <!-- Feature Checkmarks -->
   <div class="features-row">
-    <span class="feat-item"><span class="check-dot">●</span> Zero floating-point drift</span>
-    <span class="feat-item"><span class="check-dot">●</span> Precise scientific notation support</span>
-    <span class="feat-item"><span class="check-dot">●</span> True bidirectional algorithm</span>
+    <span class="feat-item"><span class="check-dot">●</span> {bullet1}</span>
+    <span class="feat-item"><span class="check-dot">●</span> {bullet2}</span>
+    <span class="feat-item"><span class="check-dot">●</span> {bullet3}</span>
   </div>
 </div>
 

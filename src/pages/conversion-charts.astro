@@ -1,195 +1,118 @@
 ---
+// src/pages/conversion-charts.astro
 import Base from '../layouts/Base.astro';
-import { CONVERTERS } from '../data/converters';
+import { t } from '../i18n/utils';
 
-const chartValues = [1, 2, 5, 10, 25, 50, 100, 250, 500, 1000];
-const forwardConverters = CONVERTERS.filter(c => c.factor < 1);
+const lang = 'en';
+const pageTitle = t('chartsPage.title', undefined, lang);
+const pageSubtitle = t('chartsPage.subtitle', undefined, lang);
+const pageBadge = t('chartsPage.badge', undefined, lang);
+
+const chartData = [
+  { nm: 1, um: '0.001', mm: '0.000001', pm: '1,000' },
+  { nm: 5, um: '0.005', mm: '0.000005', pm: '5,000' },
+  { nm: 10, um: '0.01', mm: '0.00001', pm: '10,000' },
+  { nm: 25, um: '0.025', mm: '0.000025', pm: '25,000' },
+  { nm: 50, um: '0.05', mm: '0.00005', pm: '50,000' },
+  { nm: 100, um: '0.1', mm: '0.0001', pm: '100,000' },
+  { nm: 250, um: '0.25', mm: '0.00025', pm: '250,000' },
+  { nm: 500, um: '0.5', mm: '0.0005', pm: '500,000' },
+  { nm: 750, um: '0.75', mm: '0.00075', pm: '750,000' },
+  { nm: 1000, um: '1.0', mm: '0.001', pm: '1,000,000' },
+  { nm: 2500, um: '2.5', mm: '0.0025', pm: '2,500,000' },
+  { nm: 5000, um: '5.0', mm: '0.005', pm: '5,000,000' },
+  { nm: 10000, um: '10.0', mm: '0.01', pm: '10,000,000' },
+];
 ---
 
 <Base
-  title="Nano to Micro Conversion Charts & Quick Printable Tables | NanoToMicro"
-  description="Printable reference conversion tables for nanometers to micrometers, nanograms to micrograms, nanomolar to micromolar, nanofarads to microfarads."
-  canonicalPath="/conversion-charts"
+  title={`${pageTitle} | NanoToMicro`}
+  description={pageSubtitle}
+  canonicalPath="/conversion-charts/"
+  lang={lang}
 >
-  <div class="charts-header">
-    <div class="pill">Printable Reference</div>
-    <h1 class="title">Nano to Micro Conversion Charts</h1>
+  <div class="page-head">
+    <div class="pill">{pageBadge}</div>
+    <h1 class="title">{pageTitle}</h1>
     <p class="subtitle">
-      Quick-reference lookup matrices for high-frequency scientific and laboratory calculations.
+      {pageSubtitle}
     </p>
   </div>
 
-  <div class="charts-grid">
-    {forwardConverters.map((conv) => (
-      <div class="chart-card">
-        <div class="card-header">
-          <div class="badge">{conv.category}</div>
-          <h2 class="chart-title">
-            <a href={`/convert/${conv.slug}/`}>{conv.fromName} to {conv.toName}</a>
-          </h2>
-          <div class="sub-formula">1 {conv.fromSymbol} = {conv.factor} {conv.toSymbol}</div>
-        </div>
-
-        <table class="chart-table">
-          <thead>
-            <tr>
-              <th>{conv.fromSymbol}</th>
-              <th>{conv.toSymbol}</th>
-              <th>Scientific Notation</th>
-            </tr>
-          </thead>
-          <tbody>
-            {chartValues.map((v) => {
-              const res = v * conv.factor;
-              return (
-                <tr>
-                  <td><strong>{v.toLocaleString()}</strong></td>
-                  <td class="res-td">{res.toLocaleString(undefined, { maximumFractionDigits: 6 })}</td>
-                  <td><code>{res.toExponential(2)}</code></td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
-
-        <div class="card-footer">
-          <a href={`/convert/${conv.slug}/`} class="full-calc-link">
-            Open Interactive Calculator & Formula →
-          </a>
-        </div>
-      </div>
-    ))}
+  <div class="table-card">
+    <table class="chart-table">
+      <thead>
+        <tr>
+          <th>{t('units.nanometers', undefined, lang)} (<span dir="ltr">nm</span>)</th>
+          <th>{t('units.micrometers', undefined, lang)} (<span dir="ltr">µm</span>)</th>
+          <th>{t('units.millimeters', undefined, lang)} (<span dir="ltr">mm</span>)</th>
+          <th>{t('units.picometers', undefined, lang)} (<span dir="ltr">pm</span>)</th>
+        </tr>
+      </thead>
+      <tbody>
+        {chartData.map((row) => (
+          <tr>
+            <td style="font-weight: 700;"><bdi dir="ltr">{row.nm.toLocaleString('en')} nm</bdi></td>
+            <td style="color: #fbbf24; font-weight: 800;"><bdi dir="ltr">{row.um} µm</bdi></td>
+            <td style="color: #38bdf8;"><bdi dir="ltr">{row.mm} mm</bdi></td>
+            <td style="color: #cbd5e1;"><bdi dir="ltr">{row.pm} pm</bdi></td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
   </div>
 </Base>
 
 <style>
-  .charts-header {
+  .page-head {
     text-align: center;
-    padding: 2rem 0;
     max-width: 800px;
-    margin: 0 auto;
+    margin: 20px auto 40px;
   }
-
   .pill {
     display: inline-block;
-    background: rgba(56, 189, 248, 0.1);
-    color: var(--primary);
-    border: 1px solid rgba(56, 189, 248, 0.3);
-    padding: 0.25rem 0.75rem;
-    border-radius: 9999px;
-    font-size: 0.8125rem;
-    font-weight: 600;
-    margin-bottom: 1rem;
+    background: rgba(245, 158, 11, 0.15);
+    color: #fbbf24;
+    border: 1px solid rgba(245, 158, 11, 0.35);
+    padding: 4px 12px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 16px;
   }
-
   .title {
-    font-size: clamp(2rem, 4vw, 2.75rem);
-    font-weight: 800;
+    font-size: 36px;
+    font-weight: 900;
     color: #ffffff;
-    letter-spacing: -0.02em;
-    margin-bottom: 0.75rem;
+    margin: 0 0 12px;
   }
-
   .subtitle {
-    color: var(--text-muted);
-    font-size: 1.0625rem;
+    font-size: 16px;
+    color: #cbd5e1;
     line-height: 1.6;
   }
-
-  .charts-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-    gap: 1.5rem;
-    margin: 2rem 0;
+  .table-card {
+    background: #0f1623;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    overflow-x: auto;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
   }
-
-  .chart-card {
-    background: var(--bg-card);
-    border: 1px solid var(--border-color);
-    border-radius: 0.75rem;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .card-header {
-    padding: 1.25rem;
-    background: rgba(15, 23, 42, 0.6);
-    border-bottom: 1px solid var(--border-color);
-  }
-
-  .badge {
-    font-size: 0.6875rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    color: var(--purple-accent);
-    margin-bottom: 0.375rem;
-  }
-
-  .chart-title {
-    font-size: 1.125rem;
-    font-weight: 700;
-  }
-
-  .chart-title a {
-    color: #ffffff;
-  }
-
-  .chart-title a:hover {
-    color: var(--primary);
-  }
-
-  .sub-formula {
-    font-size: 0.8125rem;
-    color: #64748b;
-    font-family: ui-monospace, monospace;
-    margin-top: 0.25rem;
-  }
-
   .chart-table {
     width: 100%;
     border-collapse: collapse;
-    font-size: 0.8125rem;
-    text-align: left;
+    font-size: 15px;
   }
-
-  .chart-table th,
-  .chart-table td {
-    padding: 0.5rem 1rem;
-    border-bottom: 1px solid rgba(51, 65, 85, 0.4);
-  }
-
   .chart-table th {
-    background: #090e1a;
-    color: #94a3b8;
-    font-weight: 600;
-    font-size: 0.6875rem;
-    text-transform: uppercase;
+    background: #192338;
+    padding: 16px 20px;
+    font-weight: 800;
+    color: #f8fafc;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.1);
   }
-
-  .res-td {
-    color: var(--primary);
-    font-weight: 600;
-  }
-
-  .chart-table code {
-    background: #1e293b;
-    padding: 0.1rem 0.3rem;
-    border-radius: 0.2rem;
-    color: #cbd5e1;
-    font-size: 0.75rem;
-  }
-
-  .card-footer {
-    padding: 0.875rem 1rem;
-    background: #090e1a;
-    margin-top: auto;
-    border-top: 1px solid var(--border-color);
-  }
-
-  .full-calc-link {
-    font-size: 0.8125rem;
-    font-weight: 600;
-    color: var(--primary);
+  .chart-table td {
+    padding: 14px 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    font-family: ui-monospace, monospace;
   }
 </style>

@@ -3,7 +3,8 @@
 import Base from '../../../layouts/Base.astro';
 import ConverterIsland from '../../../components/ConverterIsland.svelte';
 import { converters } from '../../../data/converters';
-import { NON_DEFAULT_LOCALES } from '../../../i18n/config';
+import { NON_DEFAULT_LOCALES, localePath } from '../../../i18n/config';
+import { t } from '../../../i18n/utils';
 
 export function getStaticPaths() {
   const paths = [];
@@ -23,6 +24,53 @@ const converter = Astro.props.converter;
 
 const canonical = `https://nanotomicro.com/${lang}/convert/${converter.slug}/`;
 
+const fromUnitName = t(`units.${converter.fromName}`, undefined, lang);
+const toUnitName = t(`units.${converter.toName}`, undefined, lang);
+
+const pageH1 = t('convertPage.h1Pattern', { from: fromUnitName, to: toUnitName }, lang);
+const pageIntro = t('convertPage.introPattern', {
+  from: fromUnitName,
+  to: toUnitName,
+  fromSymbol: converter.fromSymbol,
+  toSymbol: converter.toSymbol,
+}, lang);
+
+const formulaDescText = t('convertPage.formulaDesc', {
+  from: fromUnitName,
+  to: toUnitName,
+  fromSymbol: converter.fromSymbol,
+  toSymbol: converter.toSymbol,
+  factor: String(converter.factor),
+  divisor: String(converter.factor < 1 ? Math.round(1 / converter.factor) : 1),
+}, lang);
+
+const faqItems = [
+  {
+    question: t('convertPage.faqQ1', { from: fromUnitName, to: toUnitName }, lang),
+    answer: t('convertPage.faqA1', {
+      fromSymbol: converter.fromSymbol,
+      toVal: String(converter.factor),
+      toSymbol: converter.toSymbol,
+    }, lang),
+  },
+  {
+    question: t('convertPage.faqQ2', { from: fromUnitName, to: toUnitName }, lang),
+    answer: t('convertPage.faqA2', {
+      fromSymbol: converter.fromSymbol,
+      toVal: String(1000 * converter.factor),
+      toSymbol: converter.toSymbol,
+    }, lang),
+  },
+  {
+    question: t('convertPage.faqQ3', { from: fromUnitName, to: toUnitName }, lang),
+    answer: t('convertPage.faqA3', {
+      fromSymbol: converter.fromSymbol,
+      toVal: String(2500 * converter.factor),
+      toSymbol: converter.toSymbol,
+    }, lang),
+  },
+];
+
 const breadcrumbSchema = {
   '@context': 'https://schema.org',
   '@type': 'BreadcrumbList',
@@ -30,19 +78,19 @@ const breadcrumbSchema = {
     {
       '@type': 'ListItem',
       position: 1,
-      name: 'Home',
+      name: t('nav.brand', undefined, lang),
       item: `https://nanotomicro.com/${lang}/`,
     },
     {
       '@type': 'ListItem',
       position: 2,
-      name: 'Converters',
-      item: `https://nanotomicro.com/${lang}/convert/nano-to-micro/`,
+      name: t('nav.converters', undefined, lang),
+      item: localePath(lang, '/convert/nano-to-micro/'),
     },
     {
       '@type': 'ListItem',
       position: 3,
-      name: converter.title,
+      name: pageH1,
       item: canonical,
     },
   ],
@@ -51,8 +99,8 @@ const breadcrumbSchema = {
 const definedTermSchema = {
   '@context': 'https://schema.org',
   '@type': 'DefinedTerm',
-  name: `${converter.fromName} to ${converter.toName} conversion`,
-  description: converter.description,
+  name: `${fromUnitName} to ${toUnitName}`,
+  description: pageIntro,
   termCode: `${converter.fromSymbol} to ${converter.toSymbol}`,
 };
 
@@ -62,16 +110,16 @@ const related = converters
 ---
 
 <Base
-  title={`${converter.title} | NanoToMicro`}
-  description={converter.description}
+  title={`${pageH1} | NanoToMicro`}
+  description={pageIntro}
   canonicalPath={`/${lang}/convert/${converter.slug}/`}
   lang={lang}
   jsonLd={[breadcrumbSchema, definedTermSchema]}
-  faqs={converter.examples.map(ex => ({ q: ex.question, a: ex.answer }))}
+  faqs={faqItems.map(ex => ({ q: ex.question, a: ex.answer }))}
 >
   <article>
-    <h1>{converter.h1}</h1>
-    <p class="muted" style="font-size: 16px;">{converter.intro}</p>
+    <h1>{pageH1}</h1>
+    <p class="muted" style="font-size: 16px;">{pageIntro}</p>
 
     <div style="margin: 30px 0;">
       <ConverterIsland
@@ -82,38 +130,52 @@ const related = converters
         fromName={converter.fromName}
         toName={converter.toName}
         locale={lang}
+        inputLabel={t('calculator.inputLabel', undefined, lang)}
+        outputLabel={t('calculator.outputLabel', undefined, lang)}
+        presetsLabel={t('calculator.presetsLabel', undefined, lang)}
+        fullChartLinkText={t('calculator.fullChartLink', undefined, lang)}
+        fullChartHref={localePath(lang, '/conversion-charts/')}
+        bullet1={t('calculator.bullet1', undefined, lang)}
+        bullet2={t('calculator.bullet2', undefined, lang)}
+        bullet3={t('calculator.bullet3', undefined, lang)}
+        clearTitle={t('calculator.clearTitle', undefined, lang)}
+        copyTitle={t('calculator.copyTitle', undefined, lang)}
+        copiedText={t('calculator.copiedText', undefined, lang)}
+        swapTitle={t('calculator.swapTitle', undefined, lang)}
       />
     </div>
 
     <section class="panel">
-      <h2>Conversion Formula</h2>
+      <h2>{t('convertPage.formulaHeading', undefined, lang)}</h2>
       <p style="font-size: 18px; font-family: ui-monospace, monospace; color: #fbbf24;" dir="ltr">
         <code>{converter.formulaTo}</code>
       </p>
       <p>
-        To convert from {converter.fromName} ({converter.fromSymbol}) to {converter.toName} ({converter.toSymbol}),
-        multiply by {converter.factor} (or divide by {converter.factor < 1 ? 1 / converter.factor : 1}).
+        {formulaDescText}
       </p>
       <p style="font-size: 18px; font-family: ui-monospace, monospace; color: #38bdf8;" dir="ltr">
         <code>{converter.formulaFrom}</code>
       </p>
+      <p class="muted">
+        {t('convertPage.shortcutText', undefined, lang)}
+      </p>
     </section>
 
     <section>
-      <h2>Quick Reference Table</h2>
-      <table dir="ltr">
+      <h2>{t('convertPage.quickTableHeading', undefined, lang)}</h2>
+      <table>
         <thead>
           <tr>
-            <th>{converter.fromName} ({converter.fromSymbol})</th>
-            <th>{converter.toName} ({converter.toSymbol})</th>
+            <th>{fromUnitName} (<span dir="ltr">{converter.fromSymbol}</span>)</th>
+            <th>{toUnitName} (<span dir="ltr">{converter.toSymbol}</span>)</th>
           </tr>
         </thead>
         <tbody>
           {
             converter.table.map((row) => (
               <tr>
-                <td>{row.from}</td>
-                <td style="color: #fbbf24; font-weight: 700;">{row.to}</td>
+                <td><bdi dir="ltr">{row.from}</bdi></td>
+                <td style="color: #fbbf24; font-weight: 700;"><bdi dir="ltr">{row.to}</bdi></td>
               </tr>
             ))
           }
@@ -122,24 +184,24 @@ const related = converters
     </section>
 
     <section>
-      <h2>Frequently Asked Questions</h2>
+      <h2>{t('convertPage.faqHeading', undefined, lang)}</h2>
       {
-        converter.examples.map((item) => (
+        faqItems.map((item) => (
           <details>
             <summary>{item.question}</summary>
-            <p>{item.answer}</p>
+            <p><bdi dir="ltr">{item.answer}</bdi></p>
           </details>
         ))
       }
     </section>
 
     <section style="margin-top: 50px;">
-      <h2>Related Metric Converters</h2>
+      <h2>{t('convertPage.relatedHeading', undefined, lang)}</h2>
       <div class="tag-row">
         {
           related.map((item) => (
-            <a class="tag" href={`/${lang}/convert/${item.slug}/`}>
-              {item.fromSymbol} ↔ {item.toSymbol}
+            <a class="tag" href={localePath(lang, `/convert/${item.slug}/`)}>
+              <bdi dir="ltr">{item.fromSymbol} ↔ {item.toSymbol}</bdi>
             </a>
           ))
         }
