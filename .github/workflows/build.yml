@@ -1,32 +1,44 @@
-name: Build validation
+name: Build & Internationalization Validation
 
 on:
   push:
     branches: [main]
   pull_request:
+    branches: [main]
 
 permissions:
   contents: read
 
 jobs:
   build:
+    name: Build, QA & Launch Audit
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: app
+
+    env:
+      NODE_OPTIONS: "--max-old-space-size=4096"
+
     steps:
-      - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup Node
+      - name: Setup Node.js 22
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
           cache: npm
-          cache-dependency-path: app/package-lock.json
+          cache-dependency-path: package-lock.json
 
       - name: Install dependencies
         run: npm ci
 
-      - name: Type-check and build
+      - name: Validate 52 i18n Dictionaries
+        run: npm run i18n:check
+
+      - name: Run RTL & Formatting QA
+        run: npm run i18n:qa
+
+      - name: Build Static Site
         run: npm run build
+
+      - name: Run Launch Audit
+        run: npm run audit
