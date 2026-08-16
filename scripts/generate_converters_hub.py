@@ -1,4 +1,10 @@
-<!DOCTYPE html>
+# scripts/generate_converters_hub.py
+import os
+
+PUBLIC_DIR = r"C:\Users\marya\.gemini\antigravity\scratch\antigravity-site\public"
+os.makedirs(os.path.join(PUBLIC_DIR, "converters"), exist_ok=True)
+
+PAGE_HTML = """<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -931,3 +937,9 @@
 
 </body>
 </html>
+"""
+
+with open(os.path.join(PUBLIC_DIR, "converters", "index.html"), "w", encoding="utf-8") as f:
+    f.write(PAGE_HTML)
+
+print("Generated Converters Hub landing page successfully!")
