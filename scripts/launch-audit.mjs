@@ -87,8 +87,11 @@ for (const file of htmlFiles) {
   for (const match of jsonLdMatches) {
     try {
       const parsed = JSON.parse(match[1]);
-      if (!parsed['@context'] || !parsed['@type']) {
-        jsonLdIssues.push(`${relPath} (missing @context or @type)`);
+      const items = Array.isArray(parsed) ? parsed : parsed['@graph'] ? parsed['@graph'] : [parsed];
+      for (const item of items) {
+        if (!item['@type'] && !parsed['@type']) {
+          jsonLdIssues.push(`${relPath} (missing @context or @type)`);
+        }
       }
     } catch (e) {
       jsonLdIssues.push(`${relPath} (invalid JSON: ${e.message})`);

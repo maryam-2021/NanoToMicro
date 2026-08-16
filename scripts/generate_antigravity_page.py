@@ -1,4 +1,10 @@
-<!DOCTYPE html>
+# scripts/generate_antigravity_page.py
+import os
+
+PUBLIC_DIR = r"C:\Users\marya\.gemini\antigravity\scratch\antigravity-site\public"
+os.makedirs(os.path.join(PUBLIC_DIR, "physics"), exist_ok=True)
+
+PAGE_HTML = """<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -547,8 +553,8 @@
       <div class="panel panel-highlight">
         <h3 style="margin-top: 0;">The Core Scientific Distinction</h3>
         <p>
-          <strong>True Antigravity:</strong> Modifying, nullifying, or inverting the gravitational interaction or spacetime curvature itself ($G_{\mu\nu} = 0$).<br />
-          <strong>Force-Balanced Levitation:</strong> Using an independent upward force (electromagnetic, aerodynamic, acoustic, or radiation pressure) to hold an object against Earth's gravitational acceleration ($g = 9.81\text{ m/s}^2$).
+          <strong>True Antigravity:</strong> Modifying, nullifying, or inverting the gravitational interaction or spacetime curvature itself ($G_{\\mu\\nu} = 0$).<br />
+          <strong>Force-Balanced Levitation:</strong> Using an independent upward force (electromagnetic, aerodynamic, acoustic, or radiation pressure) to hold an object against Earth's gravitational acceleration ($g = 9.81\\text{ m/s}^2$).
         </p>
       </div>
 
@@ -569,7 +575,7 @@
           <tbody>
             <tr>
               <td><strong>Gravity Cancellation</strong></td>
-              <td>Nullifying local gravitational field strength ($g \to 0$)</td>
+              <td>Nullifying local gravitational field strength ($g \\to 0$)</td>
               <td>Conflicts with General Relativity without negative energy</td>
             </tr>
             <tr>
@@ -597,7 +603,7 @@
           Many antigravity claims assume gravity can be shielded like electricity (via a Faraday cage). However, fundamental physics highlights three key asymmetries:
         </p>
         <ol>
-          <li><strong>Single Sign of Charge:</strong> Electromagnetism has both positive ($+q$) and negative ($-q$) charges, allowing cancellation. Gravity has only positive mass-energy ($T_{\mu\nu} \ge 0$).</li>
+          <li><strong>Single Sign of Charge:</strong> Electromagnetism has both positive ($+q$) and negative ($-q$) charges, allowing cancellation. Gravity has only positive mass-energy ($T_{\\mu\\nu} \\ge 0$).</li>
           <li><strong>Spacetime Curvature:</strong> In General Relativity, gravity is the metric curvature of spacetime through which all energy travels along geodesics.</li>
           <li><strong>Equivalence Principle:</strong> Inertial mass and gravitational mass are identically equal ($m_i = m_g$), so all objects in a vacuum accelerate at the exact same rate regardless of composition.</li>
         </ol>
@@ -717,3 +723,13 @@
 
 </body>
 </html>
+"""
+
+# Write to public/physics/antigravity-definition.html and public/physics/what-is-antigravity.html
+with open(os.path.join(PUBLIC_DIR, "physics", "antigravity-definition.html"), "w", encoding="utf-8") as f:
+    f.write(PAGE_HTML)
+
+with open(os.path.join(PUBLIC_DIR, "physics", "what-is-antigravity.html"), "w", encoding="utf-8") as f:
+    f.write(PAGE_HTML)
+
+print("Generated what-is-antigravity full page successfully!")
