@@ -1,4 +1,10 @@
-<!DOCTYPE html>
+# scripts/generate_length_page.py
+import os
+
+PUBLIC_DIR = r"C:\Users\marya\.gemini\antigravity\scratch\antigravity-site\public"
+os.makedirs(os.path.join(PUBLIC_DIR, "converters"), exist_ok=True)
+
+PAGE_HTML = """<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -610,7 +616,7 @@
       <h1>Convert Nanometers (nm) to Micrometers (µm) - Length</h1>
 
       <p>
-        Convert nanometers (\(\text{nm}\)) to micrometers (\(\mu\text{m}\), also known as microns) instantly. In the International System of Units (SI), \(1\text{ nanometer} = 10^{-9}\text{ m}\) and \(1\text{ micrometer} = 10^{-6}\text{ m}\).
+        Convert nanometers (\(\\text{nm}\)) to micrometers (\(\\mu\\text{m}\), also known as microns) instantly. In the International System of Units (SI), \(1\\text{ nanometer} = 10^{-9}\\text{ m}\) and \(1\\text{ micrometer} = 10^{-6}\\text{ m}\).
       </p>
 
       <!-- Interactive Embedded Converter Island -->
@@ -646,9 +652,9 @@
         <p>To convert between nanometers and micrometers, use the exact base-10 SI factor of \(1,000\):</p>
         
         <div class="formula-box">
-          $$	ext{Micrometers } (\mu	ext{m}) = rac{	ext{Nanometers } (	ext{nm})}{1,000} = 	ext{nm} 	imes 0.001$$
+          $$\text{Micrometers } (\mu\text{m}) = \frac{\text{Nanometers } (\text{nm})}{1,000} = \text{nm} \times 0.001$$
           <br>
-          $$	ext{Nanometers } (	ext{nm}) = 	ext{Micrometers } (\mu	ext{m}) 	imes 1,000$$
+          $$\text{Nanometers } (\text{nm}) = \text{Micrometers } (\mu\text{m}) \times 1,000$$
         </div>
       </section>
 
@@ -887,3 +893,9 @@
 
 </body>
 </html>
+"""
+
+with open(os.path.join(PUBLIC_DIR, "converters", "length.html"), "w", encoding="utf-8") as f:
+    f.write(PAGE_HTML)
+
+print("Generated length converter page successfully!")
