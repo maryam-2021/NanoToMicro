@@ -34,74 +34,74 @@
   <!-- Schema Markup: CollectionPage & BreadcrumbList -->
   <script type="application/ld+json">
   {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "BreadcrumbList",
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://nanotomicro.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Physics Research Hub",
+          "item": "https://nanotomicro.com/physics/"
+        }
+      ]
+    },
+    {
+      "@type": "CollectionPage",
+      "headline": "Physics Research Hub: Antigravity, Metrology & Exotic Matter",
+      "description": "Explore peer-reviewed research on antigravity physics, CERN ALPHA-g antimatter gravity, gravitational shielding, negative mass warp metrics, and nano-Newton metrology.",
+      "url": "https://nanotomicro.com/physics/",
+      "mainEntity": {
+        "@type": "ItemList",
         "itemListElement": [
           {
             "@type": "ListItem",
             "position": 1,
-            "name": "Home",
-            "item": "https://nanotomicro.com/"
+            "url": "https://nanotomicro.com/physics/antigravity-definition.html",
+            "name": "What Is Antigravity? A Scientific Definition"
           },
           {
             "@type": "ListItem",
             "position": 2,
-            "name": "Physics",
-            "item": "https://nanotomicro.com/physics/"
+            "url": "https://nanotomicro.com/physics/gravitational-shielding.html",
+            "name": "Gravitational Shielding: Physics & Debunking Myths"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "url": "https://nanotomicro.com/physics/antimatter-gravity.html",
+            "name": "Does Antimatter Fall Up? CERN ALPHA-g Explained"
+          },
+          {
+            "@type": "ListItem",
+            "position": 4,
+            "url": "https://nanotomicro.com/physics/negative-mass.html",
+            "name": "Negative Mass & Exotic Matter: Bondi Equations & Warp Drives"
+          },
+          {
+            "@type": "ListItem",
+            "position": 5,
+            "url": "https://nanotomicro.com/physics/magnetic-levitation.html",
+            "name": "Magnetic Levitation Physics: Earnshaw's Theorem & Applications"
+          },
+          {
+            "@type": "ListItem",
+            "position": 6,
+            "url": "https://nanotomicro.com/physics/metrology-checklist.html",
+            "name": "Evidence-Based Metrology: Precision Force Measurements"
           }
         ]
-      },
-      {
-        "@type": "CollectionPage",
-        "headline": "Physics Research Hub: Antigravity, Metrology & Exotic Matter",
-        "description": "Explore peer-reviewed research on antigravity physics, CERN ALPHA-g antimatter gravity, gravitational shielding, negative mass warp metrics, and nano-Newton metrology.",
-        "url": "https://nanotomicro.com/physics/",
-        "mainEntity": {
-          "@type": "ItemList",
-          "itemListElement": [
-            {
-              "@type": "ListItem",
-              "position": 1,
-              "url": "https://nanotomicro.com/physics/antigravity-definition.html",
-              "name": "What Is Antigravity? A Scientific Definition"
-            },
-            {
-              "@type": "ListItem",
-              "position": 2,
-              "url": "https://nanotomicro.com/physics/gravitational-shielding.html",
-              "name": "Gravitational Shielding: Physics & Debunking Myths"
-            },
-            {
-              "@type": "ListItem",
-              "position": 3,
-              "url": "https://nanotomicro.com/physics/antimatter-gravity.html",
-              "name": "Does Antimatter Fall Up? CERN ALPHA-g Explained"
-            },
-            {
-              "@type": "ListItem",
-              "position": 4,
-              "url": "https://nanotomicro.com/physics/negative-mass.html",
-              "name": "Negative Mass & Exotic Matter: Bondi Equations & Warp Drives"
-            },
-            {
-              "@type": "ListItem",
-              "position": 5,
-              "url": "https://nanotomicro.com/physics/magnetic-levitation.html",
-              "name": "Magnetic Levitation Physics: Earnshaw's Theorem & Applications"
-            },
-            {
-              "@type": "ListItem",
-              "position": 6,
-              "url": "https://nanotomicro.com/physics/metrology-checklist.html",
-              "name": "Evidence-Based Metrology: Precision Force Measurements"
-            }
-          ]
-        }
       }
-    ]
-  }
+    }
+  ]
+}
   </script>
 
   <style>
@@ -516,6 +516,15 @@
       font-size: 14px;
       color: var(--text-muted);
     }
+  
+    /* Standardized Breadcrumbs */
+    .breadcrumb { padding: 10px 0; margin: 0 0 20px 0; list-style: none; display: flex; flex-wrap: wrap; align-items: center; }
+    .breadcrumb-item { display: inline; font-size: 13px; }
+    .breadcrumb-item + .breadcrumb-item::before { content: "›"; padding: 0 8px; color: #94a3b8; }
+    .breadcrumb-item a { color: #38bdf8; text-decoration: none; font-weight: 500; }
+    .breadcrumb-item a:hover { text-decoration: underline; color: #fbbf24; }
+    .breadcrumb-item.active { color: #94a3b8; font-weight: 500; }
+
   </style>
 </head>
 <body>
@@ -536,11 +545,12 @@
   <div class="hub-layout">
     
     <!-- Top Breadcrumb Navigation: Home > Physics -->
-    <nav class="breadcrumb" aria-label="Breadcrumb">
-      <a href="/">Home</a>
-      <span aria-hidden="true" style="opacity: 0.5;">/</span>
-      <span aria-current="page">Physics</span>
-    </nav>
+    <nav aria-label="Breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/">Home</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Physics Research Hub</li>
+  </ol>
+</nav>
 
     <div class="pill">Fundamental Physics & Metrology</div>
     <h1>Physics Research Hub: Antigravity, Metrology & Exotic Matter</h1>

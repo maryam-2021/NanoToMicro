@@ -34,59 +34,59 @@
   <!-- Schema Markup: Article & BreadcrumbList -->
   <script type="application/ld+json">
   {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "BreadcrumbList",
-        "itemListElement": [
-          {
-            "@type": "ListItem",
-            "position": 1,
-            "name": "Home",
-            "item": "https://nanotomicro.com/"
-          },
-          {
-            "@type": "ListItem",
-            "position": 2,
-            "name": "Physics Research Hub",
-            "item": "https://nanotomicro.com/physics/"
-          },
-          {
-            "@type": "ListItem",
-            "position": 3,
-            "name": "Metrology Checklist",
-            "item": "https://nanotomicro.com/physics/metrology-checklist.html"
-          }
-        ]
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://nanotomicro.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Physics Research Hub",
+          "item": "https://nanotomicro.com/physics/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Metrology Checklist",
+          "item": "https://nanotomicro.com/physics/metrology-checklist.html"
+        }
+      ]
+    },
+    {
+      "@type": "Article",
+      "headline": "Evidence-Based Metrology: Eliminating Errors in Nano-Newton Measurements",
+      "description": "Evidence-based metrology checklist for nano-Newton and micro-Newton force measurements: eliminating thermal expansion, Lorentz forces, vibration, and electrostatic artifacts.",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://nanotomicro.com/physics/metrology-checklist.html"
       },
-      {
-        "@type": "Article",
-        "headline": "Evidence-Based Metrology: Eliminating Errors in Nano-Newton Measurements",
-        "description": "Evidence-based metrology checklist for nano-Newton and micro-Newton force measurements: eliminating thermal expansion, Lorentz forces, vibration, and electrostatic artifacts.",
-        "mainEntityOfPage": {
-          "@type": "WebPage",
-          "@id": "https://nanotomicro.com/physics/metrology-checklist.html"
-        },
-        "author": {
-          "@type": "Organization",
-          "name": "NanoToMicro Physics Metrology Team",
-          "url": "https://nanotomicro.com/"
-        },
-        "publisher": {
-          "@type": "Organization",
-          "name": "Nano to Micro",
-          "url": "https://nanotomicro.com/",
-          "logo": {
-            "@type": "ImageObject",
-            "url": "https://nanotomicro.com/favicon.svg"
-          }
-        },
-        "datePublished": "2026-02-10T00:00:00Z",
-        "dateModified": "2026-08-17T00:00:00Z",
-        "inLanguage": "en"
-      }
-    ]
-  }
+      "author": {
+        "@type": "Organization",
+        "name": "NanoToMicro Physics Metrology Team",
+        "url": "https://nanotomicro.com/"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Nano to Micro",
+        "url": "https://nanotomicro.com/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://nanotomicro.com/favicon.svg"
+        }
+      },
+      "datePublished": "2026-02-10T00:00:00Z",
+      "dateModified": "2026-08-17T00:00:00Z",
+      "inLanguage": "en"
+    }
+  ]
+}
   </script>
 
   <style>
@@ -485,6 +485,15 @@
         color: #000000 !important;
       }
     }
+  
+    /* Standardized Breadcrumbs */
+    .breadcrumb { padding: 10px 0; margin: 0 0 20px 0; list-style: none; display: flex; flex-wrap: wrap; align-items: center; }
+    .breadcrumb-item { display: inline; font-size: 13px; }
+    .breadcrumb-item + .breadcrumb-item::before { content: "›"; padding: 0 8px; color: #94a3b8; }
+    .breadcrumb-item a { color: #38bdf8; text-decoration: none; font-weight: 500; }
+    .breadcrumb-item a:hover { text-decoration: underline; color: #fbbf24; }
+    .breadcrumb-item.active { color: #94a3b8; font-weight: 500; }
+
   </style>
 </head>
 <body>
@@ -507,13 +516,13 @@
     <main class="main-content">
       
       <!-- Breadcrumbs -->
-      <nav class="breadcrumb" aria-label="Breadcrumb">
-        <a href="/">Home</a>
-        <span aria-hidden="true" style="opacity: 0.5;">/</span>
-        <a href="/physics/">Physics Research Hub</a>
-        <span aria-hidden="true" style="opacity: 0.5;">/</span>
-        <span aria-current="page">Metrology Checklist</span>
-      </nav>
+      <nav aria-label="Breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/">Home</a></li>
+    <li class="breadcrumb-item"><a href="/physics/">Physics Research Hub</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Metrology Checklist</li>
+  </ol>
+</nav>
 
       <div class="meta-bar">
         <div style="color: var(--accent-cyan); font-weight: 600;">

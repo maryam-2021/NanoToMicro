@@ -34,41 +34,41 @@
   <!-- Schema Markup: WebApplication & BreadcrumbList -->
   <script type="application/ld+json">
   {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "BreadcrumbList",
-        "itemListElement": [
-          {
-            "@type": "ListItem",
-            "position": 1,
-            "name": "Home",
-            "item": "https://nanotomicro.com/"
-          },
-          {
-            "@type": "ListItem",
-            "position": 2,
-            "name": "Converters",
-            "item": "https://nanotomicro.com/converters/"
-          },
-          {
-            "@type": "ListItem",
-            "position": 3,
-            "name": "Nanometers to Micrometers",
-            "item": "https://nanotomicro.com/converters/length.html"
-          }
-        ]
-      },
-      {
-        "@type": "WebApplication",
-        "name": "Nanometers to Micrometers Precision Converter",
-        "url": "https://nanotomicro.com/converters/length.html",
-        "applicationCategory": "UtilityApplication",
-        "operatingSystem": "All",
-        "description": "Interactive, real-time dual-direction nanometer to micrometer length converter with zero floating-point drift."
-      }
-    ]
-  }
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://nanotomicro.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Converters Hub",
+          "item": "https://nanotomicro.com/converters/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Nanometers to Micrometers (Length)",
+          "item": "https://nanotomicro.com/converters/length.html"
+        }
+      ]
+    },
+    {
+      "@type": "WebApplication",
+      "name": "Nanometers to Micrometers Precision Converter",
+      "url": "https://nanotomicro.com/converters/length.html",
+      "applicationCategory": "UtilityApplication",
+      "operatingSystem": "All",
+      "description": "Interactive, real-time dual-direction nanometer to micrometer length converter with zero floating-point drift."
+    }
+  ]
+}
   </script>
 
   <style>
@@ -567,6 +567,15 @@
         color: #000000 !important;
       }
     }
+  
+    /* Standardized Breadcrumbs */
+    .breadcrumb { padding: 10px 0; margin: 0 0 20px 0; list-style: none; display: flex; flex-wrap: wrap; align-items: center; }
+    .breadcrumb-item { display: inline; font-size: 13px; }
+    .breadcrumb-item + .breadcrumb-item::before { content: "›"; padding: 0 8px; color: #94a3b8; }
+    .breadcrumb-item a { color: #38bdf8; text-decoration: none; font-weight: 500; }
+    .breadcrumb-item a:hover { text-decoration: underline; color: #fbbf24; }
+    .breadcrumb-item.active { color: #94a3b8; font-weight: 500; }
+
   </style>
 </head>
 <body>
@@ -589,13 +598,13 @@
     <main class="main-content">
       
       <!-- Breadcrumb Navigation -->
-      <nav class="breadcrumb" aria-label="Breadcrumb">
-        <a href="/">Home</a>
-        <span aria-hidden="true" style="opacity: 0.5;">/</span>
-        <a href="/converters/">Converters</a>
-        <span aria-hidden="true" style="opacity: 0.5;">/</span>
-        <span aria-current="page">Nanometers to Micrometers</span>
-      </nav>
+      <nav aria-label="Breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/">Home</a></li>
+    <li class="breadcrumb-item"><a href="/converters/">Converters Hub</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Nanometers to Micrometers (Length)</li>
+  </ol>
+</nav>
 
       <div class="meta-bar">
         <div style="color: var(--accent-cyan); font-weight: 600;">

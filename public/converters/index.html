@@ -34,86 +34,86 @@
   <!-- Schema Markup: CollectionPage & BreadcrumbList -->
   <script type="application/ld+json">
   {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "BreadcrumbList",
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://nanotomicro.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Converters Hub",
+          "item": "https://nanotomicro.com/converters/"
+        }
+      ]
+    },
+    {
+      "@type": "CollectionPage",
+      "headline": "Nano to Micro Converters for Every Unit Type",
+      "description": "Explore precision nano to micro conversion tools for length (nm to \u00b5m), mass (ng to \u00b5g), volume, time, current, capacitance, force, and chemistry solutions.",
+      "url": "https://nanotomicro.com/converters/",
+      "mainEntity": {
+        "@type": "ItemList",
         "itemListElement": [
           {
             "@type": "ListItem",
             "position": 1,
-            "name": "Home",
-            "item": "https://nanotomicro.com/"
+            "url": "https://nanotomicro.com/converters/length.html",
+            "name": "Length & Distance Converter (Nanometers to Micrometers)"
           },
           {
             "@type": "ListItem",
             "position": 2,
-            "name": "Converters",
-            "item": "https://nanotomicro.com/converters/"
+            "url": "https://nanotomicro.com/converters/mass.html",
+            "name": "Mass & Weight Converter (Nanograms to Micrograms)"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "url": "https://nanotomicro.com/converters/volume.html",
+            "name": "Volume & Liquid Measure (Nanoliters to Microliters)"
+          },
+          {
+            "@type": "ListItem",
+            "position": 4,
+            "url": "https://nanotomicro.com/converters/time.html",
+            "name": "Time & Duration Converter (Nanoseconds to Microseconds)"
+          },
+          {
+            "@type": "ListItem",
+            "position": 5,
+            "url": "https://nanotomicro.com/converters/current.html",
+            "name": "Electric Current Converter (Nanoamperes to Microamperes)"
+          },
+          {
+            "@type": "ListItem",
+            "position": 6,
+            "url": "https://nanotomicro.com/converters/charge.html",
+            "name": "Electric Charge & Capacitance (Nanofarads to Microfarads)"
+          },
+          {
+            "@type": "ListItem",
+            "position": 7,
+            "url": "https://nanotomicro.com/converters/concentration.html",
+            "name": "Molar Concentration Converter (Nanomolar to Micromolar)"
+          },
+          {
+            "@type": "ListItem",
+            "position": 8,
+            "url": "https://nanotomicro.com/convert/newton-to-micronewton/",
+            "name": "Force Metrology Converter (Newtons to Micronewtons)"
           }
         ]
-      },
-      {
-        "@type": "CollectionPage",
-        "headline": "Nano to Micro Converters for Every Unit Type",
-        "description": "Explore precision nano to micro conversion tools for length (nm to µm), mass (ng to µg), volume, time, current, capacitance, force, and chemistry solutions.",
-        "url": "https://nanotomicro.com/converters/",
-        "mainEntity": {
-          "@type": "ItemList",
-          "itemListElement": [
-            {
-              "@type": "ListItem",
-              "position": 1,
-              "url": "https://nanotomicro.com/converters/length.html",
-              "name": "Length & Distance Converter (Nanometers to Micrometers)"
-            },
-            {
-              "@type": "ListItem",
-              "position": 2,
-              "url": "https://nanotomicro.com/converters/mass.html",
-              "name": "Mass & Weight Converter (Nanograms to Micrograms)"
-            },
-            {
-              "@type": "ListItem",
-              "position": 3,
-              "url": "https://nanotomicro.com/converters/volume.html",
-              "name": "Volume & Liquid Measure (Nanoliters to Microliters)"
-            },
-            {
-              "@type": "ListItem",
-              "position": 4,
-              "url": "https://nanotomicro.com/converters/time.html",
-              "name": "Time & Duration Converter (Nanoseconds to Microseconds)"
-            },
-            {
-              "@type": "ListItem",
-              "position": 5,
-              "url": "https://nanotomicro.com/converters/current.html",
-              "name": "Electric Current Converter (Nanoamperes to Microamperes)"
-            },
-            {
-              "@type": "ListItem",
-              "position": 6,
-              "url": "https://nanotomicro.com/converters/charge.html",
-              "name": "Electric Charge & Capacitance (Nanofarads to Microfarads)"
-            },
-            {
-              "@type": "ListItem",
-              "position": 7,
-              "url": "https://nanotomicro.com/converters/concentration.html",
-              "name": "Molar Concentration Converter (Nanomolar to Micromolar)"
-            },
-            {
-              "@type": "ListItem",
-              "position": 8,
-              "url": "https://nanotomicro.com/convert/newton-to-micronewton/",
-              "name": "Force Metrology Converter (Newtons to Micronewtons)"
-            }
-          ]
-        }
       }
-    ]
-  }
+    }
+  ]
+}
   </script>
 
   <style>
@@ -525,6 +525,15 @@
       color: var(--text-muted);
       margin-top: 60px;
     }
+  
+    /* Standardized Breadcrumbs */
+    .breadcrumb { padding: 10px 0; margin: 0 0 20px 0; list-style: none; display: flex; flex-wrap: wrap; align-items: center; }
+    .breadcrumb-item { display: inline; font-size: 13px; }
+    .breadcrumb-item + .breadcrumb-item::before { content: "›"; padding: 0 8px; color: #94a3b8; }
+    .breadcrumb-item a { color: #38bdf8; text-decoration: none; font-weight: 500; }
+    .breadcrumb-item a:hover { text-decoration: underline; color: #fbbf24; }
+    .breadcrumb-item.active { color: #94a3b8; font-weight: 500; }
+
   </style>
 </head>
 <body>
@@ -545,11 +554,12 @@
   <div class="hub-layout">
     
     <!-- Top Breadcrumb Navigation: Home > Converters -->
-    <nav class="breadcrumb" aria-label="Breadcrumb">
-      <a href="/">Home</a>
-      <span aria-hidden="true" style="opacity: 0.5;">/</span>
-      <span aria-current="page">Converters</span>
-    </nav>
+    <nav aria-label="Breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/">Home</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Converters Hub</li>
+  </ol>
+</nav>
 
     <div class="pill">International System of Units (SI) Metrology</div>
     <h1>Nano to Micro Converters for Every Unit Type</h1>

@@ -34,59 +34,59 @@
   <!-- Schema Markup (BreadcrumbList and Article with Author & Date) -->
   <script type="application/ld+json">
   {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "BreadcrumbList",
-        "itemListElement": [
-          {
-            "@type": "ListItem",
-            "position": 1,
-            "name": "Home",
-            "item": "https://nanotomicro.com/"
-          },
-          {
-            "@type": "ListItem",
-            "position": 2,
-            "name": "Physics Research Hub",
-            "item": "https://nanotomicro.com/physics/"
-          },
-          {
-            "@type": "ListItem",
-            "position": 3,
-            "name": "What Is Antigravity?",
-            "item": "https://nanotomicro.com/physics/antigravity-definition.html"
-          }
-        ]
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://nanotomicro.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Physics Research Hub",
+          "item": "https://nanotomicro.com/physics/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "What Is Antigravity?",
+          "item": "https://nanotomicro.com/physics/what-is-antigravity.html"
+        }
+      ]
+    },
+    {
+      "@type": "Article",
+      "headline": "What Is Antigravity? A Scientific Definition",
+      "description": "What is antigravity? Comprehensive scientific definition, General Relativity constraints, 4 operational categories, and why levitation is not antigravity.",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://nanotomicro.com/physics/antigravity-definition.html"
       },
-      {
-        "@type": "Article",
-        "headline": "What Is Antigravity? A Scientific Definition",
-        "description": "What is antigravity? Comprehensive scientific definition, General Relativity constraints, 4 operational categories, and why levitation is not antigravity.",
-        "mainEntityOfPage": {
-          "@type": "WebPage",
-          "@id": "https://nanotomicro.com/physics/antigravity-definition.html"
-        },
-        "author": {
-          "@type": "Organization",
-          "name": "NanoToMicro Physics Metrology Team",
-          "url": "https://nanotomicro.com/"
-        },
-        "publisher": {
-          "@type": "Organization",
-          "name": "Nano to Micro",
-          "url": "https://nanotomicro.com/",
-          "logo": {
-            "@type": "ImageObject",
-            "url": "https://nanotomicro.com/favicon.svg"
-          }
-        },
-        "datePublished": "2026-01-15T00:00:00Z",
-        "dateModified": "2026-08-17T00:00:00Z",
-        "inLanguage": "en"
-      }
-    ]
-  }
+      "author": {
+        "@type": "Organization",
+        "name": "NanoToMicro Physics Metrology Team",
+        "url": "https://nanotomicro.com/"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Nano to Micro",
+        "url": "https://nanotomicro.com/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://nanotomicro.com/favicon.svg"
+        }
+      },
+      "datePublished": "2026-01-15T00:00:00Z",
+      "dateModified": "2026-08-17T00:00:00Z",
+      "inLanguage": "en"
+    }
+  ]
+}
   </script>
 
   <style>
@@ -492,6 +492,15 @@
         color: #000000 !important;
       }
     }
+  
+    /* Standardized Breadcrumbs */
+    .breadcrumb { padding: 10px 0; margin: 0 0 20px 0; list-style: none; display: flex; flex-wrap: wrap; align-items: center; }
+    .breadcrumb-item { display: inline; font-size: 13px; }
+    .breadcrumb-item + .breadcrumb-item::before { content: "›"; padding: 0 8px; color: #94a3b8; }
+    .breadcrumb-item a { color: #38bdf8; text-decoration: none; font-weight: 500; }
+    .breadcrumb-item a:hover { text-decoration: underline; color: #fbbf24; }
+    .breadcrumb-item.active { color: #94a3b8; font-weight: 500; }
+
   </style>
 </head>
 <body>
@@ -516,13 +525,13 @@
     <main class="main-content">
       
       <!-- Breadcrumb Navigation -->
-      <nav class="breadcrumb" aria-label="Breadcrumb">
-        <a href="/">Home</a>
-        <span aria-hidden="true" style="opacity: 0.5;">/</span>
-        <a href="/physics/">Physics Research Hub</a>
-        <span aria-hidden="true" style="opacity: 0.5;">/</span>
-        <span aria-current="page">What Is Antigravity</span>
-      </nav>
+      <nav aria-label="Breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/">Home</a></li>
+    <li class="breadcrumb-item"><a href="/physics/">Physics Research Hub</a></li>
+    <li class="breadcrumb-item active" aria-current="page">What Is Antigravity?</li>
+  </ol>
+</nav>
 
       <div class="meta-bar">
         <div class="reading-time">

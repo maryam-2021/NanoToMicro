@@ -249,7 +249,16 @@ footer {
   font-size: 14px;
   color: var(--text-muted);
 }
-</style>
+
+    /* Standardized Breadcrumbs */
+    .breadcrumb { padding: 10px 0; margin: 0 0 20px 0; list-style: none; display: flex; flex-wrap: wrap; align-items: center; }
+    .breadcrumb-item { display: inline; font-size: 13px; }
+    .breadcrumb-item + .breadcrumb-item::before { content: "›"; padding: 0 8px; color: #94a3b8; }
+    .breadcrumb-item a { color: #38bdf8; text-decoration: none; font-weight: 500; }
+    .breadcrumb-item a:hover { text-decoration: underline; color: #fbbf24; }
+    .breadcrumb-item.active { color: #94a3b8; font-weight: 500; }
+
+  </style>
 </head>
 <body>
   <header>
@@ -265,6 +274,14 @@ footer {
   </header>
 
   <main class="main-content">
+      <nav aria-label="Breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/">Home</a></li>
+    <li class="breadcrumb-item"><a href="/converters/">Converters Hub</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Nanofarads to Microfarads (Capacitance)</li>
+  </ol>
+</nav>
+
     <div class="breadcrumb"><a href="/">Home</a> <span style="opacity: 0.5;">/</span> <a href="/converters/">Converters</a> <span style="opacity: 0.5;">/</span> <span>Charge</span></div>
     
     <div class="pill">Charge Domain</div>
