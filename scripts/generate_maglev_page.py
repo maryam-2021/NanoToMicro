@@ -1,4 +1,10 @@
-<!DOCTYPE html>
+# scripts/generate_maglev_page.py
+import os
+
+PUBLIC_DIR = r"C:\Users\marya\.gemini\antigravity\scratch\antigravity-site\public"
+os.makedirs(os.path.join(PUBLIC_DIR, "physics"), exist_ok=True)
+
+PAGE_HTML = """<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -507,15 +513,15 @@
       <h1>The Physics of Magnetic Levitation</h1>
 
       <p>
-        Magnetic levitation (maglev) is the most prominent and engineered form of contactless physical levitation. Often sensationalized as "antigravity," maglev operates strictly under <strong>Maxwellian electrodynamics</strong>, generating upward magnetic pressure and Lorentz forces that balance gravitational weight (\(F_g = m \cdot g\)).
+        Magnetic levitation (maglev) is the most prominent and engineered form of contactless physical levitation. Often sensationalized as "antigravity," maglev operates strictly under <strong>Maxwellian electrodynamics</strong>, generating upward magnetic pressure and Lorentz forces that balance gravitational weight (\(F_g = m \\cdot g\)).
       </p>
 
       <div class="panel panel-highlight">
         <h3 style="margin-top: 0;">Magnetic Pressure & Lifting Force Formula</h3>
         <p>A magnetic field with flux density \(B\) (Tesla) stores volumetric energy density \(u_B\), exerting isotropic outward pressure:</p>
-        <div class="formula-box">P_{\text{mag}} = \frac{B^2}{2\mu_0} \quad \left[\text{N/m}^2\right] \quad | \quad F_{\text{lift}} = P_{\text{mag}} \times A</div>
+        <div class="formula-box">P_{\\text{mag}} = \\frac{B^2}{2\\mu_0} \\quad \\left[\\text{N/m}^2\\right] \\quad | \\quad F_{\\text{lift}} = P_{\\text{mag}} \\times A</div>
         <p style="margin-bottom: 0;">
-          Where \(\mu_0 = 4\pi \times 10^{-7}\text{ T}\cdot\text{m/A}\) is the vacuum permeability. A standard 1.4 Tesla neodymium magnet produces <strong>779.6 kPa</strong> of magnetic pressure (~7.7 atmospheres of mechanical lift).
+          Where \(\\mu_0 = 4\\pi \\times 10^{-7}\\text{ T}\\cdot\\text{m/A}\) is the vacuum permeability. A standard 1.4 Tesla neodymium magnet produces <strong>779.6 kPa</strong> of magnetic pressure (~7.7 atmospheres of mechanical lift).
         </p>
       </div>
 
@@ -539,7 +545,7 @@
       <section>
         <h2>1. Earnshaw's Theorem & The 4 Levitation Mechanisms</h2>
         <p>
-          Earnshaw's Theorem (1842) mathematically proves that static permanent magnets cannot maintain stable 3D equilibrium because \(\nabla^2 \Phi_M = 0\). Engineers and physicists bypass this constraint using four distinct physics principles:
+          Earnshaw's Theorem (1842) mathematically proves that static permanent magnets cannot maintain stable 3D equilibrium because \(\\nabla^2 \\Phi_M = 0\). Engineers and physicists bypass this constraint using four distinct physics principles:
         </p>
 
         <!-- Interactive Comparison Table with Filtering Tabs -->
@@ -564,7 +570,7 @@
           <tbody>
             <tr class="row-type diamagnetic">
               <td><strong>Diamagnetic Levitation</strong></td>
-              <td>Negative susceptibility (\(\chi < 0\)) repels magnetic field lines</td>
+              <td>Negative susceptibility (\(\\chi < 0\)) repels magnetic field lines</td>
               <td>Passive, unconditionally stable in field gradients</td>
               <td>Zero (uses permanent magnets)</td>
               <td>Pyrolytic graphite toys, live frog levitation</td>
@@ -586,7 +592,7 @@
             <tr class="row-type eds">
               <td><strong>Electrodynamic (EDS)</strong></td>
               <td>Lenz's law eddy current repulsion over conducting coils</td>
-              <td>Self-stabilizing at velocity (\(v > v_{\text{lift-off}}\))</td>
+              <td>Self-stabilizing at velocity (\(v > v_{\\text{lift-off}}\))</td>
               <td>Kinetic motion of vehicle</td>
               <td>Japan L0 Series SCMaglev (603 km/h record)</td>
             </tr>
@@ -600,7 +606,7 @@
         <ul>
           <li><strong>High-Speed Maglev Rail:</strong> The Japanese SCMaglev uses superconducting niobium-titanium coils to levitate 10 cm above tracks, reaching <strong>603 km/h (375 mph)</strong> without wheel friction.</li>
           <li><strong>Turbomolecular Cleanroom Bearings:</strong> Active magnetic bearings suspend high-speed turbine rotors at 90,000 RPM inside semiconductor cleanrooms, eliminating oil lubricants and particulate contamination.</li>
-          <li><strong>Biological Microgravity Simulation:</strong> Intense magnetic field gradients (\(B \cdot dB/dz \ge 1400\text{ T}^2/\text{m}\)) levitate cell cultures and plant seedlings, simulating lunar and Martian gravity on Earth.</li>
+          <li><strong>Biological Microgravity Simulation:</strong> Intense magnetic field gradients (\(B \\cdot dB/dz \\ge 1400\\text{ T}^2/\\text{m}\)) levitate cell cultures and plant seedlings, simulating lunar and Martian gravity on Earth.</li>
         </ul>
       </section>
 
@@ -611,7 +617,7 @@
           Magnetic levitation principles scale down directly to nanoscale bio-metrology and semiconductor fabrication:
         </p>
         <ul>
-          <li><strong>Magnetic Tweezers (\(10^{-9}	ext{ N} 	o 10^{-12}	ext{ N}\)):</strong> Superparamagnetic micro-beads attached to single DNA molecules allow biophysicists to apply calibrated pico-Newton and nano-Newton forces to measure DNA unzipping and enzyme helicase kinetics.</li>
+          <li><strong>Magnetic Tweezers (\(10^{-9}\text{ N} \to 10^{-12}\text{ N}\)):</strong> Superparamagnetic micro-beads attached to single DNA molecules allow biophysicists to apply calibrated pico-Newton and nano-Newton forces to measure DNA unzipping and enzyme helicase kinetics.</li>
           <li><strong>Contactless Semiconductor Wafer Transport:</strong> Extreme ultraviolet (EUV) lithography machines transport 300mm silicon wafers via magnetic levitation to prevent sub-nanometer surface particle contamination.</li>
           <li><strong>AFM Cantilever Calibration:</strong> Diamagnetic levitation provides ultra-sensitive reference balances for calibrating Atomic Force Microscopy force constants.</li>
         </ul>
@@ -719,3 +725,9 @@
 
 </body>
 </html>
+"""
+
+with open(os.path.join(PUBLIC_DIR, "physics", "magnetic-levitation.html"), "w", encoding="utf-8") as f:
+    f.write(PAGE_HTML)
+
+print("Generated magnetic-levitation full page successfully!")
