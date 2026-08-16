@@ -1,4 +1,10 @@
-<!DOCTYPE html>
+# scripts/generate_metrology_page.py
+import os
+
+PUBLIC_DIR = r"C:\Users\marya\.gemini\antigravity\scratch\antigravity-site\public"
+os.makedirs(os.path.join(PUBLIC_DIR, "physics"), exist_ok=True)
+
+PAGE_HTML = """<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -528,7 +534,7 @@
       <h1>Evidence-Based Metrology: Eliminating Errors in Nano-Newton Measurements</h1>
 
       <p>
-        Over the past century, dozens of independent papers have claimed anomalous propellantless thrust, gravitational shielding, or weight reduction. Yet, <strong>not a single claim has survived independent replication</strong>. When measuring micro-Newton (\(\mu\text{N}\)) and nano-Newton (\(\text{nN}\)) forces, environmental systematic errors easily mimic genuine physics signals.
+        Over the past century, dozens of independent papers have claimed anomalous propellantless thrust, gravitational shielding, or weight reduction. Yet, <strong>not a single claim has survived independent replication</strong>. When measuring micro-Newton (\(\\mu\\text{N}\)) and nano-Newton (\(\\text{nN}\)) forces, environmental systematic errors easily mimic genuine physics signals.
       </p>
 
       <div class="panel panel-highlight">
@@ -602,7 +608,7 @@
             </tr>
             <tr>
               <td><strong>Lorentz Interaction</strong></td>
-              <td>DC supply cables interact with Earth's B-field (\(\mathbf{F} = I\mathbf{L}	imes\mathbf{B}\))</td>
+              <td>DC supply cables interact with Earth's B-field (\(\mathbf{F} = I\mathbf{L}\times\mathbf{B}\))</td>
               <td>1 µN to 100 µN false force</td>
               <td>Twisted-pair coaxial cabling + dual Mu-metal shielding</td>
             </tr>
@@ -616,7 +622,7 @@
               <td><strong>Knudsen Radiometric</strong></td>
               <td>Thermal gradients across surfaces in medium vacuum drive gas collisions</td>
               <td>0.1 µN to 5 µN force</td>
-              <td>Operate in ultra-high vacuum (\(P < 10^{-6}	ext{ Torr}\))</td>
+              <td>Operate in ultra-high vacuum (\(P < 10^{-6}\text{ Torr}\))</td>
             </tr>
             <tr>
               <td><strong>Vibration Rectification</strong></td>
@@ -642,16 +648,16 @@
         <details class="check-box" open>
           <summary>✅ Step 1: Vacuum & Aerodynamic Isolation</summary>
           <ul>
-            <li>Chamber evacuated below \(10^{-5}	ext{ Torr}\) (preferably \(< 10^{-6}	ext{ Torr}\)) using oil-free turbomolecular pumps.</li>
+            <li>Chamber evacuated below \(10^{-5}\text{ Torr}\) (preferably \(< 10^{-6}\text{ Torr}\)) using oil-free turbomolecular pumps.</li>
             <li>Verify absence of convective thermal air plumes via differential barometric sensors.</li>
-            <li>Perform pressure-sweep tests (\(10^{-2}\) to \(10^{-6}	ext{ Torr}\)) to verify force does not scale with residual gas density.</li>
+            <li>Perform pressure-sweep tests (\(10^{-2}\) to \(10^{-6}\text{ Torr}\)) to verify force does not scale with residual gas density.</li>
           </ul>
         </details>
 
         <details class="check-box">
           <summary>✅ Step 2: Electromagnetic Shielding & Cabling</summary>
           <ul>
-            <li>Enclose torsion balance within double-layer Mu-metal shields (\(B_{	ext{internal}} < 10	ext{ nT}\)).</li>
+            <li>Enclose torsion balance within double-layer Mu-metal shields (\(B_{\text{internal}} < 10\text{ nT}\)).</li>
             <li>Route all power through bifilar non-inductive twisted pairs or coaxial liquid metal contacts (GaInSn).</li>
             <li>Run zero-power magnetic field gradient checks using 3-axis fluxgate magnetometers.</li>
           </ul>
@@ -662,14 +668,14 @@
           <ul>
             <li>Replace active device with an identical non-inductive resistor dissipating the exact same wattage (Thermal Dummy Run).</li>
             <li>Rotate test article 180° on the balance arm. True thrust must flip sign; thermal/electromagnetic artifacts remain invariant.</li>
-            <li>Monitor multi-point thermocouple arrays with \(< 0.05^\circ	ext{C}\) precision across all balance pivot arms.</li>
+            <li>Monitor multi-point thermocouple arrays with \(< 0.05^\circ\text{C}\) precision across all balance pivot arms.</li>
           </ul>
         </details>
 
         <details class="check-box">
           <summary>✅ Step 4: Calibration & Statistical Blind Runs</summary>
           <ul>
-            <li>Perform electrostatic comb drive calibration generating known \(0.1	ext{ µN}\), \(1.0	ext{ µN}\), and \(10.0	ext{ µN}\) reference pulses.</li>
+            <li>Perform electrostatic comb drive calibration generating known \(0.1\text{ µN}\), \(1.0\text{ µN}\), and \(10.0\text{ µN}\) reference pulses.</li>
             <li>Run double-blind randomized trigger sequences with automated data acquisition.</li>
             <li>Ensure signal-to-noise ratio exceeds \(5\sigma\) over at least 50 independent consecutive runs.</li>
           </ul>
@@ -805,3 +811,9 @@ CONCLUSION:             NULL RESULT (Signal consistent with thermal expansion ar
 
 </body>
 </html>
+"""
+
+with open(os.path.join(PUBLIC_DIR, "physics", "metrology-checklist.html"), "w", encoding="utf-8") as f:
+    f.write(PAGE_HTML)
+
+print("Generated metrology-checklist full page successfully!")
