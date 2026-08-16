@@ -1,4 +1,10 @@
-<!DOCTYPE html>
+# scripts/generate_shielding_page.py
+import os
+
+PUBLIC_DIR = r"C:\Users\marya\.gemini\antigravity\scratch\antigravity-site\public"
+os.makedirs(os.path.join(PUBLIC_DIR, "physics"), exist_ok=True)
+
+SHIELDING_HTML = """<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -592,7 +598,7 @@
         <ol>
           <li><strong>Air Current Artifacts:</strong> The rotating disk created thermal convection currents in the ambient air, generating aerodynamic buoyant lift on test samples. When tested in vacuum, the apparent weight loss vanished.</li>
           <li><strong>Electromagnetic Coupling:</strong> High-frequency magnetic fields used to levitate and rotate the disk induced eddy currents and electrostatic charges on sensitive balance arms.</li>
-          <li><strong>NASA Marshall Replications:</strong> NASA's Breakthrough Propulsion Physics Project built a dedicated test rig with a 0.28-meter YBCO disk and detected no gravitational shielding within instrument noise levels ($\Delta g / g < 10^{-8}$).</li>
+          <li><strong>NASA Marshall Replications:</strong> NASA's Breakthrough Propulsion Physics Project built a dedicated test rig with a 0.28-meter YBCO disk and detected no gravitational shielding within instrument noise levels ($\\Delta g / g < 10^{-8}$).</li>
         </ol>
       </section>
 
@@ -645,7 +651,7 @@
           In gravitation:
         </p>
         <ul>
-          <li>There is only one type of gravitational charge: <strong>positive mass-energy</strong> ($T_{\mu\nu} \ge 0$).</li>
+          <li>There is only one type of gravitational charge: <strong>positive mass-energy</strong> ($T_{\\mu\\nu} \\ge 0$).</li>
           <li>Adding matter between two objects always increases the total gravitational field, never decreases it.</li>
           <li>Birkhoff's theorem in General Relativity proves that spherical mass distributions exert gravitational influence determined solely by total enclosed mass-energy.</li>
         </ul>
@@ -752,3 +758,9 @@
 
 </body>
 </html>
+"""
+
+with open(os.path.join(PUBLIC_DIR, "physics", "gravitational-shielding.html"), "w", encoding="utf-8") as f:
+    f.write(SHIELDING_HTML)
+
+print("Generated gravitational-shielding full page successfully!")
