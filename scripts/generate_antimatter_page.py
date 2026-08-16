@@ -1,4 +1,10 @@
-<!DOCTYPE html>
+# scripts/generate_antimatter_page.py
+import os
+
+PUBLIC_DIR = r"C:\Users\marya\.gemini\antigravity\scratch\antigravity-site\public"
+os.makedirs(os.path.join(PUBLIC_DIR, "physics"), exist_ok=True)
+
+ANTIMATTER_HTML = """<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -580,11 +586,11 @@
       <div class="panel panel-highlight">
         <h3 style="margin-top: 0;">Landmark CERN Finding (Nature, September 2023)</h3>
         <p>
-          The ALPHA-g collaboration at CERN's Antiproton Decelerator published the first direct free-fall measurement of neutral antihydrogen atoms (\(\bar{\text{H}}\)):
+          The ALPHA-g collaboration at CERN's Antiproton Decelerator published the first direct free-fall measurement of neutral antihydrogen atoms (\(\\bar{\\text{H}}\)):
         </p>
-        <div class="formula-box">g_{\bar{\text{H}}} = (0.75 \pm 0.13_{\text{stat}} \pm 0.16_{\text{syst}}) \times g</div>
+        <div class="formula-box">g_{\\bar{\\text{H}}} = (0.75 \\pm 0.13_{\\text{stat}} \\pm 0.16_{\\text{syst}}) \\times g</div>
         <p>
-          The measurement ruled out repulsive upward gravity (\(g = -1g\)) with overwhelming statistical significance (\(> 5\sigma\)). <strong>Antimatter falls downwards</strong>, confirming the Weak Equivalence Principle.
+          The measurement ruled out repulsive upward gravity (\(g = -1g\)) with overwhelming statistical significance (\(> 5\\sigma\)). <strong>Antimatter falls downwards</strong>, confirming the Weak Equivalence Principle.
         </p>
       </div>
 
@@ -608,7 +614,7 @@
             </select>
           </div>
           <div class="calc-input-group">
-            <label for="gAccInput">Gravity \(g\) (\(	ext{m/s}^2\)):</label>
+            <label for="gAccInput">Gravity \(g\) (\(\text{m/s}^2\)):</label>
             <input type="number" id="gAccInput" class="calc-input" value="9.80665" step="0.001" oninput="calculateForce()" />
           </div>
         </div>
@@ -630,16 +636,16 @@
         <p>
           The <strong>Weak Equivalence Principle (WEP)</strong> asserts that the trajectory of a freely falling test body depends only on its initial position and velocity, not on its internal composition:
         </p>
-        <div class="formula-box">m_i \cdot a = m_g \cdot g \implies a = \left(\frac{m_g}{m_i}\right) g = g</div>
+        <div class="formula-box">m_i \\cdot a = m_g \\cdot g \\implies a = \\left(\\frac{m_g}{m_i}\\right) g = g</div>
         <p>
-          For matter, the Eötvös parameter \(\eta = 2 \frac{|a_1 - a_2|}{a_1 + a_2}\) has been confirmed to \(\eta < 10^{-15}\) by the satellite-based MICROSCOPE mission. The CERN ALPHA-g, AEgIS, and GBAR experiments test whether \(\eta = 0\) remains exact when comparing matter to antimatter.
+          For matter, the Eötvös parameter \(\\eta = 2 \\frac{|a_1 - a_2|}{a_1 + a_2}\) has been confirmed to \(\\eta < 10^{-15}\) by the satellite-based MICROSCOPE mission. The CERN ALPHA-g, AEgIS, and GBAR experiments test whether \(\\eta = 0\) remains exact when comparing matter to antimatter.
         </p>
       </section>
 
       <section>
         <h2>2. Theoretical Implications for General Relativity</h2>
         <p>
-          In Einstein's General Relativity, gravity is the metric curvature of spacetime caused by the Stress-Energy Tensor (\(T_{\mu\nu}\)).
+          In Einstein's General Relativity, gravity is the metric curvature of spacetime caused by the Stress-Energy Tensor (\(T_{\\mu\\nu}\)).
         </p>
         <ul>
           <li><strong>Geodesic Motion:</strong> All test bodies with positive mass follow geodesics across curved spacetime, regardless of electric charge or lepton/baryon flavor.</li>
@@ -795,3 +801,9 @@
 
 </body>
 </html>
+"""
+
+with open(os.path.join(PUBLIC_DIR, "physics", "antimatter-gravity.html"), "w", encoding="utf-8") as f:
+    f.write(ANTIMATTER_HTML)
+
+print("Generated antimatter-gravity full page successfully!")
