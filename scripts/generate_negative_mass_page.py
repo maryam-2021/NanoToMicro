@@ -1,4 +1,10 @@
-<!DOCTYPE html>
+# scripts/generate_negative_mass_page.py
+import os
+
+PUBLIC_DIR = r"C:\Users\marya\.gemini\antigravity\scratch\antigravity-site\public"
+os.makedirs(os.path.join(PUBLIC_DIR, "physics"), exist_ok=True)
+
+PAGE_HTML = """<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -560,7 +566,7 @@
       <h1>Understanding Negative Mass and Exotic Matter Physics</h1>
 
       <p>
-        Negative mass is a theoretical concept in which mass responds to gravitational and inertial forces oppositely to ordinary matter. While mathematically allowed as a valid source term in Einstein's field equations (\(G_{\mu\nu} = \frac{8\pi G}{c^4} T_{\mu\nu}\)), negative mass has never been discovered in nature and poses profound relativistic paradoxes.
+        Negative mass is a theoretical concept in which mass responds to gravitational and inertial forces oppositely to ordinary matter. While mathematically allowed as a valid source term in Einstein's field equations (\(G_{\\mu\\nu} = \\frac{8\\pi G}{c^4} T_{\\mu\\nu}\)), negative mass has never been discovered in nature and poses profound relativistic paradoxes.
       </p>
 
       <div class="panel panel-highlight">
@@ -588,7 +594,7 @@
           <li>When placed adjacent at distance \(r\), \(+M\) repels \(-M\) while \(-M\) attracts \(+M\).</li>
           <li>Both masses accelerate continuously along their connecting axis, reaching arbitrary velocities without any external fuel source.</li>
         </ul>
-        <div class="formula-box">P_{\text{total}} = (+M)v + (-M)v = 0 \quad | \quad E_{\text{kinetic}} = \frac{1}{2}(+M)v^2 + \frac{1}{2}(-M)v^2 = 0</div>
+        <div class="formula-box">P_{\\text{total}} = (+M)v + (-M)v = 0 \\quad | \\quad E_{\\text{kinetic}} = \\frac{1}{2}(+M)v^2 + \\frac{1}{2}(-M)v^2 = 0</div>
         <p>
           Because total momentum and total energy remain zero at every point in time, the runaway motion paradox violates neither conservation of momentum nor conservation of energy, yet creates catastrophic vacuum instability.
         </p>
@@ -639,8 +645,7 @@
             <line x1="280" y1="20" x2="420" y2="20" stroke="#fbbf24" stroke-width="2" marker-end="url(#arrow)"/>
             <text x="350" y="15" fill="#fbbf24" font-size="11" font-weight="bold" text-anchor="middle" font-family="sans-serif">Apparent Velocity (v > c) ➔</text>
           </svg>
-          <p class="diagram-caption">Figure 1: Alcubierre metric geometry. The central bubble remains in locally flat, inertial spacetime with zero proper acceleration, while an exotic matter ring (\(T_{\mu
-u} < 0\)) distorts surrounding spacetime.</p>
+          <p class="diagram-caption">Figure 1: Alcubierre metric geometry. The central bubble remains in locally flat, inertial spacetime with zero proper acceleration, while an exotic matter ring (\(T_{\mu\nu} < 0\)) distorts surrounding spacetime.</p>
         </div>
       </section>
 
@@ -664,7 +669,7 @@ u} < 0\)) distorts surrounding spacetime.</p>
           <div>
             <span style="font-size: 12px; color: #d8b4fe; text-transform: uppercase; font-weight: 700;">Negative Energy Equivalent:</span>
             <span id="resMass" class="calc-result-val">~0.12 Jupiter Masses</span>
-            <span style="font-size: 11px; color: #94a3b8;">(\(-2.3 	imes 10^{26}	ext{ kg}\))</span>
+            <span style="font-size: 11px; color: #94a3b8;">(\(-2.3 \times 10^{26}\text{ kg}\))</span>
           </div>
           <div>
             <span style="font-size: 12px; color: #d8b4fe; text-transform: uppercase; font-weight: 700;">Transit to Alpha Centauri (4.37 ly):</span>
@@ -678,7 +683,7 @@ u} < 0\)) distorts surrounding spacetime.</p>
       <section>
         <h2>3. Null Energy Conditions (NEC) Breakdown</h2>
         <p>
-          General Relativity allows any arbitrary metric, but physical realism is governed by Energy Conditions on the Stress-Energy Tensor (\(T_{\mu\nu}\)):
+          General Relativity allows any arbitrary metric, but physical realism is governed by Energy Conditions on the Stress-Energy Tensor (\(T_{\\mu\\nu}\)):
         </p>
 
         <table>
@@ -692,29 +697,29 @@ u} < 0\)) distorts surrounding spacetime.</p>
           <tbody>
             <tr>
               <td><strong>Null (NEC)</strong></td>
-              <td>\(T_{\mu\nu} k^\mu k^\nu \ge 0\) for any null vector \(k^\mu\)</td>
+              <td>\(T_{\\mu\\nu} k^\\mu k^\\nu \\ge 0\) for any null vector \(k^\\mu\)</td>
               <td>Gravity is always attractive for light rays</td>
             </tr>
             <tr>
               <td><strong>Weak (WEC)</strong></td>
-              <td>\(T_{\mu\nu} u^\mu u^\nu \ge 0\) and NEC</td>
-              <td>Local energy density is positive for all observers (\(\rho \ge 0\))</td>
+              <td>\(T_{\\mu\\nu} u^\\mu u^\\nu \\ge 0\) and NEC</td>
+              <td>Local energy density is positive for all observers (\(\\rho \\ge 0\))</td>
             </tr>
             <tr>
               <td><strong>Strong (SEC)</strong></td>
-              <td>\((T_{\mu\nu} - \frac{1}{2}T g_{\mu\nu})u^\mu u^\nu \ge 0\)</td>
+              <td>\((T_{\\mu\\nu} - \\frac{1}{2}T g_{\\mu\\nu})u^\\mu u^\\nu \\ge 0\)</td>
               <td>Matter curves spacetime attractively (violated by Dark Energy)</td>
             </tr>
             <tr>
               <td><strong>Dominant (DEC)</strong></td>
-              <td>\(T^{\mu\nu} u_\mu\) is non-spacelike</td>
+              <td>\(T^{\\mu\\nu} u_\\mu\) is non-spacelike</td>
               <td>Energy and momentum cannot travel faster than light</td>
             </tr>
           </tbody>
         </table>
 
         <p>
-          Both traversable Morris-Thorne wormholes and Alcubierre warp drives strictly require <strong>NEC violations</strong> (\(T_{\mu\nu} k^\mu k^\nu < 0\)). While quantum phenomena like the Casimir effect produce localized negative energy densities, Quantum Inequalities (Ford & Roman) strictly limit their magnitude and spatial extent.
+          Both traversable Morris-Thorne wormholes and Alcubierre warp drives strictly require <strong>NEC violations</strong> (\(T_{\\mu\\nu} k^\\mu k^\\nu < 0\)). While quantum phenomena like the Casimir effect produce localized negative energy densities, Quantum Inequalities (Ford & Roman) strictly limit their magnitude and spatial extent.
         </p>
       </section>
 
@@ -842,3 +847,9 @@ u} < 0\)) distorts surrounding spacetime.</p>
 
 </body>
 </html>
+"""
+
+with open(os.path.join(PUBLIC_DIR, "physics", "negative-mass.html"), "w", encoding="utf-8") as f:
+    f.write(PAGE_HTML)
+
+print("Generated negative-mass full page successfully!")
