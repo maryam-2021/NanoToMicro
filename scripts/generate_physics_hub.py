@@ -1,4 +1,10 @@
-<!DOCTYPE html>
+# scripts/generate_physics_hub.py
+import os
+
+PUBLIC_DIR = r"C:\Users\marya\.gemini\antigravity\scratch\antigravity-site\public"
+os.makedirs(os.path.join(PUBLIC_DIR, "physics"), exist_ok=True)
+
+PAGE_HTML = """<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -554,7 +560,7 @@
       <div class="banner-content">
         <h3>Bridging Fundamental Physics with Nano-to-Micro Metrology</h3>
         <p>
-          Testing theoretical gravity anomalies, Casimir vacuum forces, and Equivalence Principle violations requires sub-micro-Newton (\(\mu\text{N}\)) balances and nanometer-scale (\(\text{nm}\)) interferometry. NanoToMicro provides the exact conversion and calibration foundations necessary to distinguish authentic physical discoveries from environmental thermal and acoustic artifacts.
+          Testing theoretical gravity anomalies, Casimir vacuum forces, and Equivalence Principle violations requires sub-micro-Newton (\(\\mu\\text{N}\)) balances and nanometer-scale (\(\\text{nm}\)) interferometry. NanoToMicro provides the exact conversion and calibration foundations necessary to distinguish authentic physical discoveries from environmental thermal and acoustic artifacts.
         </p>
       </div>
     </div>
@@ -764,3 +770,9 @@
 
 </body>
 </html>
+"""
+
+with open(os.path.join(PUBLIC_DIR, "physics", "index.html"), "w", encoding="utf-8") as f:
+    f.write(PAGE_HTML)
+
+print("Generated Physics Hub landing page successfully!")
