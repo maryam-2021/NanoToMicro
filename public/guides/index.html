@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Scientific Metrology & SI Guides | NanoToMicro</title>
+  <meta name="description" content="Comprehensive reference guides on the 24 SI metric prefixes, unit conversions, precision metrology standards, and physical constants." />
+  <link rel="canonical" href="https://nanotomicro.com/guides/" />
+  <meta property="og:title" content="Scientific Metrology & SI Guides | NanoToMicro" />
+  <meta property="og:description" content="Comprehensive reference guides on the 24 SI metric prefixes, unit conversions, precision metrology standards, and physical constants." />
+  <meta property="og:url" content="https://nanotomicro.com/guides/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://nanotomicro.com/og-image.png" />
+  <meta property="og:image:alt" content="Scientific Metrology and SI Guides Hub" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="robots" content="index, follow" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://nanotomicro.com/"},
+          {"@type": "ListItem", "position": 2, "name": "Guides", "item": "https://nanotomicro.com/guides/"}
+        ]
+      },
+      {
+        "@type": "CollectionPage",
+        "headline": "Scientific Metrology & SI Guides",
+        "description": "Comprehensive reference guides on the 24 SI metric prefixes, unit conversions, precision metrology standards, and physical constants.",
+        "url": "https://nanotomicro.com/guides/"
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    :root {
+      --bg-primary: #0b0f19;
+      --bg-secondary: #131c2e;
+      --bg-card: rgba(19, 28, 46, 0.7);
+      --border-color: rgba(245, 158, 11, 0.2);
+      --border-subtle: rgba(255, 255, 255, 0.08);
+      --text-primary: #f8fafc;
+      --text-secondary: #cbd5e1;
+      --text-muted: #94a3b8;
+      --accent-amber: #f59e0b;
+      --accent-amber-light: #fbbf24;
+      --accent-cyan: #38bdf8;
+      --font-sans: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background-color: var(--bg-primary); color: var(--text-primary); font-family: var(--font-sans); line-height: 1.6; }
+    
+    header { background: rgba(11, 15, 25, 0.95); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border-subtle); padding: 14px 24px; position: sticky; top: 0; z-index: 100; }
+    header nav { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap; }
+    header .logo { font-size: 20px; font-weight: 800; color: var(--accent-amber-light); text-decoration: none; display: flex; align-items: center; gap: 8px; }
+    header ul { display: flex; gap: 20px; list-style: none; align-items: center; margin: 0; padding: 0; }
+    header ul li a { color: var(--text-secondary); text-decoration: none; font-size: 14px; font-weight: 600; transition: color 0.2s; }
+    header ul li a:hover { color: var(--accent-amber-light); }
+    .header-search { background: #090d16; border: 1px solid var(--border-subtle); border-radius: 8px; padding: 8px 14px; color: #fff; font-size: 13px; outline: none; width: 200px; }
+    .header-search:focus { border-color: var(--accent-cyan); }
+
+    .hub-layout { max-width: 1200px; margin: 40px auto 80px; padding: 0 24px; }
+    .breadcrumb { padding: 10px 0; margin: 0 0 20px 0; list-style: none; display: flex; flex-wrap: wrap; align-items: center; }
+    .breadcrumb-item { display: inline; font-size: 13px; }
+    .breadcrumb-item + .breadcrumb-item::before { content: "›"; padding: 0 8px; color: #94a3b8; }
+    .breadcrumb-item a { color: #38bdf8; text-decoration: none; font-weight: 500; }
+    .breadcrumb-item a:hover { text-decoration: underline; color: #fbbf24; }
+    .breadcrumb-item.active { color: #94a3b8; font-weight: 500; }
+
+    h1 { font-size: 34px; font-weight: 900; margin-bottom: 16px; color: #fff; }
+    p.lead { font-size: 17px; color: var(--text-secondary); max-width: 800px; margin-bottom: 36px; }
+
+    .guides-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 24px; margin-bottom: 40px; }
+    .guide-card { background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: 14px; padding: 24px; text-decoration: none; color: var(--text-primary); transition: all 0.2s; display: flex; flex-direction: column; justify-content: space-between; }
+    .guide-card:hover { border-color: var(--accent-amber); transform: translateY(-3px); }
+    .guide-card h3 { color: var(--accent-amber-light); font-size: 18px; margin-bottom: 8px; }
+    .guide-card p { color: var(--text-secondary); font-size: 14px; margin-bottom: 16px; flex-grow: 1; }
+
+    footer { border-top: 1px solid var(--border-subtle); background: #080c14; padding: 48px 24px 24px; color: var(--text-muted); font-size: 14px; margin-top: 60px; }
+    .footer-grid { max-width: 1200px; margin: 0 auto 36px; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 32px; text-align: left; }
+    .footer-grid h4 { color: #ffffff; font-size: 15px; font-weight: 700; margin-bottom: 14px; }
+    .footer-grid a { display: block; color: var(--text-secondary); text-decoration: none; font-size: 13px; margin-bottom: 8px; transition: color 0.2s; }
+    .footer-grid a:hover { color: var(--accent-amber-light); }
+    footer p.copyright { text-align: center; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 24px; font-size: 13px; }
+  
+    /* Standard Header & Footer Chrome Styling */
+    header { background: rgba(11, 15, 25, 0.95); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border-subtle, rgba(255,255,255,0.08)); padding: 14px 24px; position: sticky; top: 0; z-index: 100; }
+    header nav { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap; }
+    header .logo { font-size: 20px; font-weight: 800; color: var(--accent-amber-light, #fbbf24); text-decoration: none; display: flex; align-items: center; gap: 8px; }
+    header ul { display: flex; gap: 20px; list-style: none; align-items: center; margin: 0; padding: 0; }
+    header ul li a { color: var(--text-secondary, #cbd5e1); text-decoration: none; font-size: 14px; font-weight: 600; transition: color 0.2s; }
+    header ul li a:hover { color: var(--accent-amber-light, #fbbf24); }
+    .header-search { background: #090d16; border: 1px solid var(--border-subtle, rgba(255,255,255,0.1)); border-radius: 8px; padding: 8px 14px; color: #fff; font-size: 13px; outline: none; width: 180px; }
+    .header-search:focus { border-color: var(--accent-cyan, #38bdf8); }
+
+    footer { border-top: 1px solid var(--border-subtle, rgba(255,255,255,0.08)); background: #080c14; padding: 48px 24px 24px; color: var(--text-muted, #94a3b8); font-size: 14px; margin-top: 60px; }
+    .footer-grid { max-width: 1200px; margin: 0 auto 36px; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 32px; text-align: left; }
+    .footer-grid h4 { color: #ffffff; font-size: 15px; font-weight: 700; margin-bottom: 14px; }
+    .footer-grid a { display: block; color: var(--text-secondary, #cbd5e1); text-decoration: none; font-size: 13px; margin-bottom: 8px; transition: color 0.2s; }
+    .footer-grid a:hover { color: var(--accent-amber-light, #fbbf24); }
+    footer p.copyright { text-align: center; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 24px; font-size: 13px; margin: 0; }
+
+  </style>
+</head>
+<body>
+
+  <!-- Standard Header -->
+    <!-- Site Header -->
+  <header>
+    <nav>
+      <a href="/" class="logo">⚡ NanoToMicro</a>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/converters/">Converters</a></li>
+        <li><a href="/physics/">Physics Hub</a></li>
+        <li><a href="/guides/">Guides</a></li>
+      </ul>
+      <input type="text" class="header-search" placeholder="Search..." onkeydown="if(event.key==='Enter') window.location.href='/physics/?q='+encodeURIComponent(this.value)" />
+    </nav>
+  </header>
+
+  <div class="hub-layout">
+    <nav aria-label="Breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Guides</li>
+      </ol>
+    </nav>
+
+    <h1>Scientific Metrology & SI Guides</h1>
+    <p class="lead">Explore reference articles on the International System of Units (SI), prefix scaling ladders, and experimental metrology protocols.</p>
+
+    <div class="guides-grid">
+      <a href="/guides/si-prefixes-guide.html" class="guide-card">
+        <div>
+          <h3>24 SI Metric Prefixes Guide</h3>
+          <p>Complete BIPM reference table from Quetta (10³⁰) down to Quecto (10⁻³⁰) with powers of ten and conversion formulas.</p>
+        </div>
+        <span style="color: var(--accent-cyan); font-weight: 700; font-size: 13px;">Read Guide →</span>
+      </a>
+
+      <a href="/physics/metrology-checklist.html" class="guide-card">
+        <div>
+          <h3>Precision Metrology & Force Measurement</h3>
+          <p>Laboratory checklist for eliminating thermal expansion, Lorentz forces, and acoustic noise in sub-micro-Newton experiments.</p>
+        </div>
+        <span style="color: var(--accent-cyan); font-weight: 700; font-size: 13px;">Read Guide →</span>
+      </a>
+
+      <a href="/conversion-charts/" class="guide-card">
+        <div>
+          <h3>Pre-Calculated SI Conversion Charts</h3>
+          <p>High-resolution lookup tables for length, mass, time, capacitance, concentration, and force scales.</p>
+        </div>
+        <span style="color: var(--accent-cyan); font-weight: 700; font-size: 13px;">View Charts →</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- Standard Footer -->
+    <!-- Site Footer -->
+  <footer>
+    <div class="footer-grid">
+      <div>
+        <h4>Converters</h4>
+        <a href="/converters/length.html">Length</a>
+        <a href="/converters/mass.html">Mass</a>
+        <a href="/converters/volume.html">Volume</a>
+      </div>
+      <div>
+        <h4>Physics</h4>
+        <a href="/physics/antigravity-definition.html">Antigravity</a>
+        <a href="/physics/magnetic-levitation.html">Magnetic Levitation</a>
+      </div>
+      <div>
+        <h4>Resources</h4>
+        <a href="/guides/si-prefixes-guide.html">SI Prefixes</a>
+        <a href="/blog/">Blog</a>
+      </div>
+    </div>
+    <p class="copyright">© 2026 NanoToMicro.com - All Rights Reserved</p>
+  </footer>
+
+</body>
+</html>
