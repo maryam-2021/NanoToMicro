@@ -108,13 +108,54 @@ COMPLETE_DESIGN_SYSTEM = """
       padding-bottom: var(--space-3xl, 96px);
     }
 
+    /* 12-Column Responsive Grid Architecture */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 24px;
+    }
+
+    .col-12 { grid-column: span 12; }
+    .col-8  { grid-column: span 8; }
+    .col-6  { grid-column: span 6; }
+    .col-4  { grid-column: span 4; }
+    .col-3  { grid-column: span 3; }
+
+    /* Tablet Breakpoint: 768px - 1024px */
+    @media (min-width: 768px) and (max-width: 1024px) {
+      .grid {
+        grid-template-columns: repeat(6, 1fr);
+        gap: 20px;
+      }
+      .col-8 { grid-column: span 6; }
+      .col-6 { grid-column: span 6; }
+      .col-4 { grid-column: span 3; }
+      .col-3 { grid-column: span 3; }
+    }
+
+    /* Mobile Breakpoint: < 768px (Single Column) */
+    @media (max-width: 767px) {
+      .grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+      .col-12, .col-8, .col-6, .col-4, .col-3 {
+        grid-column: span 1 / -1;
+      }
+      :root {
+        --font-size-h1: 2.25rem;
+        --font-size-h2: 1.75rem;
+        --font-size-h3: 1.25rem;
+        --font-size-body: 1.0rem;
+        --space-3xl: 64px;
+        --space-2xl: 48px;
+        --space-xl: 32px;
+      }
+    }
+
     section, .content-section {
       margin-top: var(--space-xl, 48px);
       margin-bottom: var(--space-xl, 48px);
-    }
-
-    .grid-2, .grid-3, .grid-4 {
-      gap: var(--space-lg, 32px);
     }
 
     h1 {
@@ -192,21 +233,9 @@ COMPLETE_DESIGN_SYSTEM = """
     code, pre, .formula-box, .math, kbd, samp {
       font-family: var(--font-mono);
     }
-
-    @media (max-width: 768px) {
-      :root {
-        --font-size-h1: 2.25rem;
-        --font-size-h2: 1.75rem;
-        --font-size-h3: 1.25rem;
-        --font-size-body: 1.0rem;
-        --space-3xl: 64px;
-        --space-2xl: 48px;
-        --space-xl: 32px;
-      }
-    }
 """
 
-print("Applying full spacing scale architecture (xs 4px to 3xl 96px)...")
+print("Applying 12-column responsive grid architecture...")
 
 count = 0
 for root, dirs, files in os.walk(PUBLIC_DIR):
@@ -225,4 +254,4 @@ for root, dirs, files in os.walk(PUBLIC_DIR):
                 fp.write(content)
             count += 1
 
-print(f"Applied spacing scale system across {count} public pages!")
+print(f"Applied 12-column grid system across {count} public pages!")
