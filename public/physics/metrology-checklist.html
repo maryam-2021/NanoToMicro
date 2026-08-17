@@ -119,6 +119,13 @@
       --font-body: 'Inter', 'Segoe UI', Roboto, sans-serif;
       --font-mono: 'JetBrains Mono', 'Courier New', monospace;
 
+      /* Font Weights */
+      --fw-light: 300;               /* Rare */
+      --fw-regular: 400;             /* Body copy */
+      --fw-medium: 500;              /* Subheadings & navigation */
+      --fw-semibold: 600;            /* Strong emphasis & card titles */
+      --fw-bold: 700;                /* Headings H1-H4 */
+
       /* Precise Typographic Scale & Line Heights */
       --font-size-h1: 3.0rem;        /* 48px */
       --line-height-h1: 1.2;
@@ -134,6 +141,90 @@
       --line-height-small: 1.5;
       --font-size-tiny: 0.75rem;     /* 12px */
       --line-height-tiny: 1.4;
+    }
+
+    body {
+      font-family: var(--font-body);
+      font-size: var(--font-size-body);
+      line-height: var(--line-height-body);
+      font-weight: var(--fw-regular);
+      color: var(--text-gray);
+      background-color: var(--bg-white, #ffffff);
+    }
+
+    h1 {
+      font-family: var(--font-heading);
+      font-size: var(--font-size-h1);
+      line-height: var(--line-height-h1);
+      font-weight: var(--fw-bold);
+      color: var(--text-dark);
+      letter-spacing: -0.02em;
+    }
+
+    h2 {
+      font-family: var(--font-heading);
+      font-size: var(--font-size-h2);
+      line-height: var(--line-height-h2);
+      font-weight: var(--fw-bold);
+      color: var(--text-dark);
+      letter-spacing: -0.015em;
+    }
+
+    h3 {
+      font-family: var(--font-heading);
+      font-size: var(--font-size-h3);
+      line-height: var(--line-height-h3);
+      font-weight: var(--fw-bold);
+      color: var(--text-dark);
+    }
+
+    h4 {
+      font-family: var(--font-heading);
+      font-size: var(--font-size-h4);
+      line-height: var(--line-height-h4);
+      font-weight: var(--fw-bold);
+      color: var(--text-dark);
+    }
+
+    .subheading, .subtitle, .section-subtitle, .lead {
+      font-weight: var(--fw-medium);
+      color: var(--text-muted);
+    }
+
+    strong, b, .strong, .emphasis, .gold-link, .nav-links a {
+      font-weight: var(--fw-semibold);
+    }
+
+    p, li, article {
+      font-size: var(--font-size-body);
+      line-height: var(--line-height-body);
+      font-weight: var(--fw-regular);
+      color: var(--text-gray);
+    }
+
+    small, .small, .meta, .caption, figcaption {
+      font-size: var(--font-size-small);
+      line-height: var(--line-height-small);
+      font-weight: var(--fw-regular);
+    }
+
+    .tiny, .badge, .tag, .cat-tag {
+      font-size: var(--font-size-tiny);
+      line-height: var(--line-height-tiny);
+      font-weight: var(--fw-semibold);
+    }
+
+    code, pre, .formula-box, .math, kbd, samp {
+      font-family: var(--font-mono);
+    }
+
+    @media (max-width: 768px) {
+      :root {
+        --font-size-h1: 2.25rem;
+        --font-size-h2: 1.75rem;
+        --font-size-h3: 1.25rem;
+        --font-size-body: 1.0rem;
+      }
     }
 
     body {

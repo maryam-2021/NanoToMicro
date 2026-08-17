@@ -34,6 +34,13 @@ COMPLETE_DESIGN_SYSTEM = """
       --font-body: 'Inter', 'Segoe UI', Roboto, sans-serif;
       --font-mono: 'JetBrains Mono', 'Courier New', monospace;
 
+      /* Font Weights */
+      --fw-light: 300;               /* Rare */
+      --fw-regular: 400;             /* Body copy */
+      --fw-medium: 500;              /* Subheadings & navigation */
+      --fw-semibold: 600;            /* Strong emphasis & card titles */
+      --fw-bold: 700;                /* Headings H1-H4 */
+
       /* Precise Typographic Scale & Line Heights */
       --font-size-h1: 3.0rem;        /* 48px */
       --line-height-h1: 1.2;
@@ -55,6 +62,7 @@ COMPLETE_DESIGN_SYSTEM = """
       font-family: var(--font-body);
       font-size: var(--font-size-body);
       line-height: var(--line-height-body);
+      font-weight: var(--fw-regular);
       color: var(--text-gray);
       background-color: var(--bg-white, #ffffff);
     }
@@ -63,8 +71,8 @@ COMPLETE_DESIGN_SYSTEM = """
       font-family: var(--font-heading);
       font-size: var(--font-size-h1);
       line-height: var(--line-height-h1);
+      font-weight: var(--fw-bold);
       color: var(--text-dark);
-      font-weight: 800;
       letter-spacing: -0.02em;
     }
 
@@ -72,8 +80,8 @@ COMPLETE_DESIGN_SYSTEM = """
       font-family: var(--font-heading);
       font-size: var(--font-size-h2);
       line-height: var(--line-height-h2);
+      font-weight: var(--fw-bold);
       color: var(--text-dark);
-      font-weight: 700;
       letter-spacing: -0.015em;
     }
 
@@ -81,32 +89,44 @@ COMPLETE_DESIGN_SYSTEM = """
       font-family: var(--font-heading);
       font-size: var(--font-size-h3);
       line-height: var(--line-height-h3);
+      font-weight: var(--fw-bold);
       color: var(--text-dark);
-      font-weight: 600;
     }
 
     h4 {
       font-family: var(--font-heading);
       font-size: var(--font-size-h4);
       line-height: var(--line-height-h4);
+      font-weight: var(--fw-bold);
       color: var(--text-dark);
-      font-weight: 600;
+    }
+
+    .subheading, .subtitle, .section-subtitle, .lead {
+      font-weight: var(--fw-medium);
+      color: var(--text-muted);
+    }
+
+    strong, b, .strong, .emphasis, .gold-link, .nav-links a {
+      font-weight: var(--fw-semibold);
     }
 
     p, li, article {
       font-size: var(--font-size-body);
       line-height: var(--line-height-body);
+      font-weight: var(--fw-regular);
       color: var(--text-gray);
     }
 
     small, .small, .meta, .caption, figcaption {
       font-size: var(--font-size-small);
       line-height: var(--line-height-small);
+      font-weight: var(--fw-regular);
     }
 
     .tiny, .badge, .tag, .cat-tag {
       font-size: var(--font-size-tiny);
       line-height: var(--line-height-tiny);
+      font-weight: var(--fw-semibold);
     }
 
     code, pre, .formula-box, .math, kbd, samp {
@@ -123,7 +143,7 @@ COMPLETE_DESIGN_SYSTEM = """
     }
 """
 
-print("Applying full typographic scale and line-height architecture...")
+print("Applying full font-weight hierarchy...")
 
 count = 0
 for root, dirs, files in os.walk(PUBLIC_DIR):
@@ -133,7 +153,6 @@ for root, dirs, files in os.walk(PUBLIC_DIR):
             with open(filepath, "r", encoding="utf-8") as fp:
                 content = fp.read()
 
-            # Ensure theme variables and typography are declared
             if ':root' in content:
                 content = re.sub(r':root\s*\{[^}]*\}', COMPLETE_DESIGN_SYSTEM.strip(), content, count=1)
             else:
@@ -143,4 +162,4 @@ for root, dirs, files in os.walk(PUBLIC_DIR):
                 fp.write(content)
             count += 1
 
-print(f"Applied typography scale across {count} public pages!")
+print(f"Applied font-weight hierarchy across {count} public pages!")
