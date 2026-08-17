@@ -333,6 +333,18 @@ if (faqs && faqs.length > 0) {
   </head>
 
   <body>
+    <div class="progress-bar" id="readingProgress" style="height: 3px; background: linear-gradient(90deg, #4fc3f7, #1a1a2e); position: fixed; top: 0; left: 0; width: 0%; z-index: 1000;"></div>
+
+    <script>
+      window.addEventListener('scroll', function() {
+        const scrollTop = window.scrollY;
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+        const bar = document.getElementById('readingProgress');
+        if (bar) bar.style.width = progress + '%';
+      });
+    </script>
+
     <header>
       <div class="nav-inner">
         <a href={localePath(lang, '/')} class="brand-logo">
