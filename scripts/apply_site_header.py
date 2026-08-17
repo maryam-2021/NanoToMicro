@@ -64,13 +64,13 @@ HEADER_HTML = """<header class="site-header">
 HEADER_CSS = """
     /* Header Architecture */
     .site-header {
-      background: var(--primary-dark, #1a1a2e);
-      color: #ffffff;
-      padding: 12px 20px;
       position: sticky;
       top: 0;
       z-index: 1000;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid #e8ecf1;
+      box-shadow: 0 2px 12px rgba(26, 26, 46, 0.06);
     }
     .header-container {
       max-width: var(--max-width-main, 1280px);
@@ -79,6 +79,7 @@ HEADER_CSS = """
       justify-content: space-between;
       align-items: center;
       gap: 20px;
+      padding: 10px 20px;
     }
     .logo-area {
       display: flex;
@@ -90,19 +91,20 @@ HEADER_CSS = """
       align-items: center;
       gap: 10px;
       text-decoration: none !important;
-      color: #ffffff !important;
+      color: #1a1a2e !important;
     }
     .logo-text {
       font-size: 1.35rem;
       font-weight: 700;
+      color: #1a1a2e;
       letter-spacing: -0.02em;
     }
     .logo-text span {
-      color: var(--primary-teal, #4fc3f7);
+      color: #4fc3f7;
     }
     .logo-tagline {
       font-size: 0.72rem;
-      color: #94a3b8;
+      color: #717182;
       font-weight: 500;
     }
     .main-nav {
@@ -114,21 +116,38 @@ HEADER_CSS = """
       list-style: none;
       margin: 0;
       padding: 0;
-      gap: 24px;
+      gap: 8px;
       align-items: center;
     }
     .nav-link {
-      color: #e2e8f0 !important;
-      text-decoration: none !important;
+      position: relative;
+      padding: 8px 16px;
+      color: #4a4a5a !important;
       font-weight: 500;
+      text-decoration: none !important;
       font-size: 0.95rem;
-      transition: color 0.15s ease;
+      transition: color 0.2s;
       display: flex;
       align-items: center;
       gap: 4px;
     }
-    .nav-link:hover, .nav-link.active {
-      color: var(--primary-teal, #4fc3f7) !important;
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 16px;
+      right: 16px;
+      height: 2px;
+      background: #4fc3f7;
+      transform: scaleX(0);
+      transition: transform 0.3s ease;
+    }
+    .nav-link:hover::after,
+    .nav-link.active::after {
+      transform: scaleX(1);
+    }
+    .nav-link:hover {
+      color: #1a1a2e !important;
     }
     .nav-dropdown {
       position: relative;
@@ -138,14 +157,14 @@ HEADER_CSS = """
       position: absolute;
       top: 100%;
       left: 0;
-      background: var(--primary-dark, #1a1a2e);
-      border: 1px solid rgba(255,255,255,0.1);
+      background: #ffffff;
+      border: 1px solid #e8ecf1;
       border-radius: 8px;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+      box-shadow: 0 8px 24px rgba(26, 26, 46, 0.08);
       list-style: none;
       padding: 8px 0;
       margin: 8px 0 0 0;
-      min-width: 180px;
+      min-width: 190px;
       z-index: 100;
     }
     .nav-dropdown:hover .dropdown-menu {
@@ -154,14 +173,14 @@ HEADER_CSS = """
     .dropdown-menu li a {
       display: block;
       padding: 8px 16px;
-      color: #cbd5e1 !important;
+      color: #4a4a5a !important;
       text-decoration: none !important;
       font-size: 0.88rem;
       transition: background 0.15s ease, color 0.15s ease;
     }
     .dropdown-menu li a:hover {
-      background: var(--hover-dark, #2d2d4e);
-      color: var(--primary-teal, #4fc3f7) !important;
+      background: #f8f9fc;
+      color: #1a1a2e !important;
     }
     .header-actions {
       display: flex;
@@ -169,10 +188,10 @@ HEADER_CSS = """
       gap: 12px;
     }
     .search-toggle, .theme-toggle {
-      background: transparent;
-      border: 1px solid rgba(255,255,255,0.2);
+      background: #ffffff;
+      border: 1px solid #e8ecf1;
       border-radius: 6px;
-      color: #cbd5e1;
+      color: #4a4a5a;
       padding: 6px 10px;
       cursor: pointer;
       display: flex;
@@ -181,8 +200,8 @@ HEADER_CSS = """
       transition: all 0.15s ease;
     }
     .search-toggle:hover, .theme-toggle:hover {
-      border-color: var(--primary-teal, #4fc3f7);
-      color: var(--primary-teal, #4fc3f7);
+      border-color: #4fc3f7;
+      color: #1a1a2e;
     }
     .mobile-menu-toggle {
       display: none;
@@ -197,7 +216,7 @@ HEADER_CSS = """
       display: block;
       width: 22px;
       height: 2px;
-      background: #ffffff;
+      background: #1a1a2e;
       border-radius: 2px;
     }
 
@@ -210,18 +229,21 @@ HEADER_CSS = """
         top: 100%;
         left: 0;
         right: 0;
-        background: var(--primary-dark, #1a1a2e);
-        border-top: 1px solid rgba(255,255,255,0.1);
+        background: #ffffff;
+        border-top: 1px solid #e8ecf1;
+        box-shadow: 0 4px 12px rgba(26, 26, 46, 0.08);
         padding: 16px 20px;
       }
       .main-nav.is-open { display: block; }
-      .nav-list { flex-direction: column; align-items: flex-start; gap: 14px; }
+      .nav-list { flex-direction: column; align-items: flex-start; gap: 8px; }
+      .nav-link { width: 100%; padding: 8px 0; }
+      .nav-link::after { left: 0; right: 0; }
       .dropdown-menu { position: static; box-shadow: none; border: none; padding-left: 12px; }
       .nav-dropdown:hover .dropdown-menu { display: block; }
     }
 """
 
-print("Injecting site-header markup and responsive styles across public HTML files...")
+print("Applying translucent light sticky header & animated nav link underlines...")
 
 count = 0
 for root, dirs, files in os.walk(PUBLIC_DIR):
@@ -231,8 +253,10 @@ for root, dirs, files in os.walk(PUBLIC_DIR):
             with open(filepath, "r", encoding="utf-8") as fp:
                 content = fp.read()
 
-            # Add CSS before </style>
-            if '</style>' in content and '.site-header' not in content:
+            # Replace CSS block for header
+            if '/* Header Architecture */' in content:
+                content = re.sub(r'/\* Header Architecture \*/[\s\S]*?(?=\n\s*(?:/\*|</style>))', HEADER_CSS.strip(), content, count=1)
+            elif '</style>' in content:
                 content = content.replace('</style>', f'{HEADER_CSS}\n</style>')
 
             # Replace old nav or header
@@ -248,4 +272,4 @@ for root, dirs, files in os.walk(PUBLIC_DIR):
                 fp.write(content)
             count += 1
 
-print(f"Standardized site-header applied across {count} public pages!")
+print(f"Header styles updated across {count} public pages!")
