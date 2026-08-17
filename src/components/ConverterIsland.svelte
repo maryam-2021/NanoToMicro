@@ -391,15 +391,61 @@
   }
 
   @media (max-width: 640px) {
+    .calculator-card {
+      padding: 16px 12px;
+      border-radius: 14px;
+    }
     .calc-inputs-row {
       flex-direction: column;
+      gap: 8px;
+    }
+    .input-box {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 10px 12px;
+    }
+    .calc-input {
+      font-size: 20px;
+      min-width: 0;
     }
     .swap-btn {
       align-self: center;
+      width: 36px;
+      height: 36px;
+      font-size: 18px;
+      margin: 2px 0;
     }
     .presets-row {
       flex-direction: column;
-      align-items: flex-start;
+      align-items: stretch;
+      gap: 10px;
+    }
+    .preset-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      width: 100%;
+    }
+    .preset-btn {
+      flex: 1 1 calc(33.33% - 6px);
+      text-align: center;
+      padding: 6px 4px;
+      font-size: 11px;
+    }
+    .chart-link {
+      text-align: center;
+      display: block;
+      padding: 6px 0;
+    }
+    .formula-banner {
+      font-size: 11px;
+      padding: 6px 8px;
+      word-break: break-all;
+    }
+    .features-row {
+      gap: 8px 12px;
+      font-size: 11px;
+      justify-content: center;
     }
   }
 </style>
