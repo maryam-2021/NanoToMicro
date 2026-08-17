@@ -751,6 +751,20 @@ const description = 'The definitive reference for all nano ↔ micro conversions
         }
       });
     });
+
+    // Scroll animation observer
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+
+      document.querySelectorAll('.animate-on-scroll').forEach((el) => observer.observe(el));
+    }
   </script>
 
   <!-- Section 8: Authoritative References Panel -->
@@ -1597,8 +1611,56 @@ const description = 'The definitive reference for all nano ↔ micro conversions
     .category-cards-grid { grid-template-columns: repeat(2, 1fr); }
   }
 
-  /* Desktop: > 1024px */
-  @media (min-width: 1024px) {
-    /* Full layout */
+  /* Fade-in on scroll */
+  .animate-on-scroll {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .animate-on-scroll.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Hover lift for cards */
+  .hover-lift {
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+
+  .hover-lift:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(26, 26, 46, 0.12);
+  }
+
+  /* Pulsing badge */
+  .pulse-dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    background: #2ecc71;
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.8); }
+    100% { opacity: 1; transform: scale(1); }
+  }
+
+  /* Gradient text shimmer */
+  .shimmer-text {
+    background: linear-gradient(135deg, #4fc3f7, #1a1a2e, #4fc3f7);
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shimmer 3s ease-in-out infinite;
+  }
+
+  @keyframes shimmer {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
   }
 </style>
