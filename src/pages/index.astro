@@ -1578,22 +1578,27 @@ const description = 'The definitive reference for all nano ↔ micro conversions
     box-shadow: 0 4px 16px rgba(79, 195, 247, 0.35);
   }
 
-  /* Responsive */
-  @media (max-width: 1024px) {
-    .category-cards-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
+  /* Mobile: < 768px */
+  @media (max-width: 767px) {
+    .hero-title { font-size: 2rem; }
+    .converter-card { grid-template-columns: 1fr; padding: 24px; }
+    .card-grid { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+    .nav-list { display: none; } /* hamburger menu */
+    .formula-grid { grid-template-columns: 1fr; }
+    .category-cards-grid { grid-template-columns: 1fr; }
+    .sticky-nav-wrapper { top: 54px; }
   }
 
-  @media (max-width: 768px) {
-    .formula-grid {
-      grid-template-columns: 1fr;
-    }
-    .category-cards-grid {
-      grid-template-columns: 1fr;
-    }
-    .sticky-nav-wrapper {
-      top: 54px;
-    }
+  /* Tablet: 768px - 1024px */
+  @media (min-width: 768px) and (max-width: 1023px) {
+    .card-grid { grid-template-columns: repeat(2, 1fr); }
+    .footer-grid { grid-template-columns: repeat(2, 1fr); }
+    .category-cards-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  /* Desktop: > 1024px */
+  @media (min-width: 1024px) {
+    /* Full layout */
   }
 </style>
