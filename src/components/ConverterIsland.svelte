@@ -119,6 +119,7 @@
       <div class="box-label">{inputLabel.replace('{symbol}', fromSymbol)}</div>
       <div class="input-control-wrap" dir="ltr">
         <input
+          id="nano-input"
           type="text"
           inputmode="decimal"
           value={fromValue}
@@ -175,7 +176,7 @@
   </div>
 
   <!-- Formula Banner (Always LTR) -->
-  <div class="formula-banner" dir="ltr">
+  <div class="formula-banner formula" dir="ltr">
     <code>Formula: {fromValue || '0'} {fromSymbol} {factor < 1 ? `÷ ${(1/factor).toLocaleString('en')}` : `× ${factor.toLocaleString('en')}`} = {toValue || '0'} {toSymbol}</code>
   </div>
 
