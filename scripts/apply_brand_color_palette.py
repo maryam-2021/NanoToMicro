@@ -29,6 +29,11 @@ COMPLETE_DESIGN_SYSTEM = """
       --card-shadow: 0 4px 12px rgba(26, 26, 46, 0.08);
       --card-shadow-hover: 0 8px 24px rgba(26, 26, 46, 0.12);
       
+      /* Layout Container Dimensions */
+      --max-width-main: 1280px;      /* Main content */
+      --max-width-narrow: 860px;     /* Article content */
+      --max-width-full: 100vw;       /* Hero sections */
+
       /* Typography Fonts */
       --font-heading: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
       --font-body: 'Inter', 'Segoe UI', Roboto, sans-serif;
@@ -65,6 +70,28 @@ COMPLETE_DESIGN_SYSTEM = """
       font-weight: var(--fw-regular);
       color: var(--text-gray);
       background-color: var(--bg-white, #ffffff);
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Container Architecture */
+    .container, .main-container, .wrapper, .main-nav, header, footer {
+      max-width: var(--max-width-main);
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    main, article, .article-content, .narrow-container, .guide-content {
+      max-width: var(--max-width-narrow);
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .hero-full, .full-bleed {
+      width: var(--max-width-full);
+      max-width: 100vw;
+      margin-left: calc(50% - 50vw);
+      margin-right: calc(50% - 50vw);
     }
 
     h1 {
@@ -110,7 +137,7 @@ COMPLETE_DESIGN_SYSTEM = """
       font-weight: var(--fw-semibold);
     }
 
-    p, li, article {
+    p, li {
       font-size: var(--font-size-body);
       line-height: var(--line-height-body);
       font-weight: var(--fw-regular);
@@ -143,7 +170,7 @@ COMPLETE_DESIGN_SYSTEM = """
     }
 """
 
-print("Applying full font-weight hierarchy...")
+print("Applying container layout rules (1280px main, 860px article, 100vw full)...")
 
 count = 0
 for root, dirs, files in os.walk(PUBLIC_DIR):
@@ -162,4 +189,4 @@ for root, dirs, files in os.walk(PUBLIC_DIR):
                 fp.write(content)
             count += 1
 
-print(f"Applied font-weight hierarchy across {count} public pages!")
+print(f"Applied layout dimensions across {count} public pages!")
