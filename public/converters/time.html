@@ -35,6 +35,93 @@
       --font-heading: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
       --font-body: 'Inter', 'Segoe UI', Roboto, sans-serif;
       --font-mono: 'JetBrains Mono', 'Courier New', monospace;
+
+      /* Precise Typographic Scale & Line Heights */
+      --font-size-h1: 3.0rem;        /* 48px */
+      --line-height-h1: 1.2;
+      --font-size-h2: 2.25rem;       /* 36px */
+      --line-height-h2: 1.3;
+      --font-size-h3: 1.5rem;        /* 24px */
+      --line-height-h3: 1.4;
+      --font-size-h4: 1.25rem;       /* 20px */
+      --line-height-h4: 1.5;
+      --font-size-body: 1.125rem;    /* 18px */
+      --line-height-body: 1.7;
+      --font-size-small: 0.875rem;   /* 14px */
+      --line-height-small: 1.5;
+      --font-size-tiny: 0.75rem;     /* 12px */
+      --line-height-tiny: 1.4;
+    }
+
+    body {
+      font-family: var(--font-body);
+      font-size: var(--font-size-body);
+      line-height: var(--line-height-body);
+      color: var(--text-gray);
+      background-color: var(--bg-white, #ffffff);
+    }
+
+    h1 {
+      font-family: var(--font-heading);
+      font-size: var(--font-size-h1);
+      line-height: var(--line-height-h1);
+      color: var(--text-dark);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    h2 {
+      font-family: var(--font-heading);
+      font-size: var(--font-size-h2);
+      line-height: var(--line-height-h2);
+      color: var(--text-dark);
+      font-weight: 700;
+      letter-spacing: -0.015em;
+    }
+
+    h3 {
+      font-family: var(--font-heading);
+      font-size: var(--font-size-h3);
+      line-height: var(--line-height-h3);
+      color: var(--text-dark);
+      font-weight: 600;
+    }
+
+    h4 {
+      font-family: var(--font-heading);
+      font-size: var(--font-size-h4);
+      line-height: var(--line-height-h4);
+      color: var(--text-dark);
+      font-weight: 600;
+    }
+
+    p, li, article {
+      font-size: var(--font-size-body);
+      line-height: var(--line-height-body);
+      color: var(--text-gray);
+    }
+
+    small, .small, .meta, .caption, figcaption {
+      font-size: var(--font-size-small);
+      line-height: var(--line-height-small);
+    }
+
+    .tiny, .badge, .tag, .cat-tag {
+      font-size: var(--font-size-tiny);
+      line-height: var(--line-height-tiny);
+    }
+
+    code, pre, .formula-box, .math, kbd, samp {
+      font-family: var(--font-mono);
+    }
+
+    @media (max-width: 768px) {
+      :root {
+        --font-size-h1: 2.25rem;
+        --font-size-h2: 1.75rem;
+        --font-size-h3: 1.25rem;
+        --font-size-body: 1.0rem;
+      }
     }
 
     body {
