@@ -82,11 +82,24 @@
     toValue = '';
   }
 
-  function copyResult() {
+  function copyResult(event) {
     if (!toValue) return;
-    navigator.clipboard.writeText(`${toValue} ${toSymbol}`);
+    const textToCopy = `${toValue} ${toSymbol}`;
+    navigator.clipboard.writeText(textToCopy);
     copied = true;
-    setTimeout(() => (copied = false), 2000);
+
+    // Show feedback on target button if triggered via DOM event
+    const btn = event?.currentTarget;
+    if (btn) {
+      const origText = btn.textContent;
+      btn.textContent = '✓ Copied!';
+      setTimeout(() => {
+        btn.textContent = origText;
+        copied = false;
+      }, 2000);
+    } else {
+      setTimeout(() => (copied = false), 2000);
+    }
   }
 
   function swapUnits() {
@@ -131,6 +144,7 @@
       <div class="box-label">{outputLabel.replace('{symbol}', toSymbol)}</div>
       <div class="input-control-wrap" dir="ltr">
         <input
+          id="micro-output"
           type="text"
           inputmode="decimal"
           value={toValue}
