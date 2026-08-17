@@ -3,11 +3,10 @@ import os
 import re
 
 PUBLIC_DIR = r"C:\Users\marya\.gemini\antigravity\scratch\antigravity-site\public"
-BASE_ASTRO = r"C:\Users\marya\.gemini\antigravity\scratch\antigravity-site\src\layouts\Base.astro"
 
-COMPLETE_COLOR_TOKENS = """
+COMPLETE_DESIGN_SYSTEM = """
     :root {
-      /* Primary Brand Colors */
+      /* Primary Brand Palette */
       --primary-dark: #1a1a2e;       /* Navigation background */
       --primary-teal: #4fc3f7;       /* Accents, links, buttons */
       --primary-teal-hover: #039be5; /* Active/focus state */
@@ -30,11 +29,29 @@ COMPLETE_COLOR_TOKENS = """
       --card-shadow: 0 4px 12px rgba(26, 26, 46, 0.08);
       --card-shadow-hover: 0 8px 24px rgba(26, 26, 46, 0.12);
       
-      --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      /* Typography Fonts */
+      --font-heading: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-body: 'Inter', 'Segoe UI', Roboto, sans-serif;
+      --font-mono: 'JetBrains Mono', 'Courier New', monospace;
+    }
+
+    body {
+      font-family: var(--font-body);
+      color: var(--text-gray);
+      background-color: var(--bg-white, #ffffff);
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      font-family: var(--font-heading);
+      color: var(--text-dark);
+    }
+
+    code, pre, .formula-box, .math, kbd, samp {
+      font-family: var(--font-mono);
     }
 """
 
-print("Applying full brand color palette with status & shadow tokens...")
+print("Applying full design system & typography stack...")
 
 count = 0
 for root, dirs, files in os.walk(PUBLIC_DIR):
@@ -44,14 +61,14 @@ for root, dirs, files in os.walk(PUBLIC_DIR):
             with open(filepath, "r", encoding="utf-8") as fp:
                 content = fp.read()
 
-            # Ensure theme variables are declared
+            # Ensure theme variables and typography are declared
             if ':root' in content:
-                content = re.sub(r':root\s*\{[^}]*\}', COMPLETE_COLOR_TOKENS.strip(), content, count=1)
+                content = re.sub(r':root\s*\{[^}]*\}', COMPLETE_DESIGN_SYSTEM.strip(), content, count=1)
             else:
-                content = content.replace('<style>', f'<style>\n{COMPLETE_COLOR_TOKENS}')
+                content = content.replace('<style>', f'<style>\n{COMPLETE_DESIGN_SYSTEM}')
 
             with open(filepath, "w", encoding="utf-8") as fp:
                 fp.write(content)
             count += 1
 
-print(f"Applied full brand token system across {count} public pages!")
+print(f"Applied typography & design tokens across {count} public pages!")
