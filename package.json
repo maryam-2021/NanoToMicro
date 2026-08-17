@@ -7,7 +7,7 @@
   },
   "scripts": {
     "dev": "astro dev",
-    "build": "node --max-old-space-size=4096 ./node_modules/astro/bin/astro.mjs build && node scripts/generate-tiered-sitemaps.mjs",
+    "build": "astro build && node scripts/generate-tiered-sitemaps.mjs",
     "i18n:check": "node scripts/i18n-check.mjs",
     "i18n:qa": "node scripts/i18n-qa-pass.mjs",
     "audit": "node scripts/launch-audit.mjs",
