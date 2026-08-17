@@ -34,6 +34,15 @@ COMPLETE_DESIGN_SYSTEM = """
       --max-width-narrow: 860px;     /* Article content */
       --max-width-full: 100vw;       /* Hero sections */
 
+      /* Spacing Scale System */
+      --space-xs: 4px;               /* Tiny gaps */
+      --space-sm: 8px;               /* Small gaps */
+      --space-md: 16px;              /* Medium gaps */
+      --space-lg: 32px;              /* Section gaps */
+      --space-xl: 48px;              /* Major sections */
+      --space-2xl: 64px;             /* Page sections */
+      --space-3xl: 96px;             /* Hero spacing */
+
       /* Typography Fonts */
       --font-heading: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
       --font-body: 'Inter', 'Segoe UI', Roboto, sans-serif;
@@ -79,12 +88,15 @@ COMPLETE_DESIGN_SYSTEM = """
       max-width: var(--max-width-main);
       margin-left: auto;
       margin-right: auto;
+      padding-left: var(--space-md, 16px);
+      padding-right: var(--space-md, 16px);
     }
 
     main, article, .article-content, .narrow-container, .guide-content {
       max-width: var(--max-width-narrow);
       margin-left: auto;
       margin-right: auto;
+      margin-bottom: var(--space-2xl, 64px);
     }
 
     .hero-full, .full-bleed {
@@ -92,6 +104,17 @@ COMPLETE_DESIGN_SYSTEM = """
       max-width: 100vw;
       margin-left: calc(50% - 50vw);
       margin-right: calc(50% - 50vw);
+      padding-top: var(--space-3xl, 96px);
+      padding-bottom: var(--space-3xl, 96px);
+    }
+
+    section, .content-section {
+      margin-top: var(--space-xl, 48px);
+      margin-bottom: var(--space-xl, 48px);
+    }
+
+    .grid-2, .grid-3, .grid-4 {
+      gap: var(--space-lg, 32px);
     }
 
     h1 {
@@ -101,6 +124,7 @@ COMPLETE_DESIGN_SYSTEM = """
       font-weight: var(--fw-bold);
       color: var(--text-dark);
       letter-spacing: -0.02em;
+      margin-bottom: var(--space-md, 16px);
     }
 
     h2 {
@@ -110,6 +134,8 @@ COMPLETE_DESIGN_SYSTEM = """
       font-weight: var(--fw-bold);
       color: var(--text-dark);
       letter-spacing: -0.015em;
+      margin-top: var(--space-xl, 48px);
+      margin-bottom: var(--space-md, 16px);
     }
 
     h3 {
@@ -118,6 +144,8 @@ COMPLETE_DESIGN_SYSTEM = """
       line-height: var(--line-height-h3);
       font-weight: var(--fw-bold);
       color: var(--text-dark);
+      margin-top: var(--space-lg, 32px);
+      margin-bottom: var(--space-sm, 8px);
     }
 
     h4 {
@@ -126,11 +154,14 @@ COMPLETE_DESIGN_SYSTEM = """
       line-height: var(--line-height-h4);
       font-weight: var(--fw-bold);
       color: var(--text-dark);
+      margin-top: var(--space-md, 16px);
+      margin-bottom: var(--space-sm, 8px);
     }
 
     .subheading, .subtitle, .section-subtitle, .lead {
       font-weight: var(--fw-medium);
       color: var(--text-muted);
+      margin-bottom: var(--space-lg, 32px);
     }
 
     strong, b, .strong, .emphasis, .gold-link, .nav-links a {
@@ -142,6 +173,7 @@ COMPLETE_DESIGN_SYSTEM = """
       line-height: var(--line-height-body);
       font-weight: var(--fw-regular);
       color: var(--text-gray);
+      margin-bottom: var(--space-md, 16px);
     }
 
     small, .small, .meta, .caption, figcaption {
@@ -154,6 +186,7 @@ COMPLETE_DESIGN_SYSTEM = """
       font-size: var(--font-size-tiny);
       line-height: var(--line-height-tiny);
       font-weight: var(--fw-semibold);
+      padding: var(--space-xs, 4px) var(--space-sm, 8px);
     }
 
     code, pre, .formula-box, .math, kbd, samp {
@@ -166,11 +199,14 @@ COMPLETE_DESIGN_SYSTEM = """
         --font-size-h2: 1.75rem;
         --font-size-h3: 1.25rem;
         --font-size-body: 1.0rem;
+        --space-3xl: 64px;
+        --space-2xl: 48px;
+        --space-xl: 32px;
       }
     }
 """
 
-print("Applying container layout rules (1280px main, 860px article, 100vw full)...")
+print("Applying full spacing scale architecture (xs 4px to 3xl 96px)...")
 
 count = 0
 for root, dirs, files in os.walk(PUBLIC_DIR):
@@ -189,4 +225,4 @@ for root, dirs, files in os.walk(PUBLIC_DIR):
                 fp.write(content)
             count += 1
 
-print(f"Applied layout dimensions across {count} public pages!")
+print(f"Applied spacing scale system across {count} public pages!")
