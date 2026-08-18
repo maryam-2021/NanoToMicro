@@ -140,9 +140,8 @@ PAGES = [
             ("10,000 nF", "10 µF", "Tantalum power rail reservoir")
         ],
         "apps": [
-            ("🔌 Power Decoupling Networks", "Microcontroller power pins use 100 nF (0.1 µF) ceramic capacitors in parallel with 10 µF bulk capacitors to suppress high-frequency noise.", "A standard 100 nF decoupling cap = 0.1 µF (Capacitor Code 104).", "#4fc3f7"),
-            ("🎛️ Active Analog Filters", "Sallen-Key and Butterworth low-pass filter poles are calculated using nanofarad-range capacitors with precise tolerances.", "A 220 nF filter cap = 0.22 µF.", "#2ecc71"),
-            ("⚡ DC-DC Power Regulators", "Buck and boost switching converters require microfarad-range output ripple filters assembled from multi-layer ceramic capacitors (MLCCs).", "A 4,700 nF output buffer = 4.7 µF.", "#e74c3c")
+            ("🔌 Circuit Design", "Decoupling capacitors in digital circuits are often specified in nanofarads (nF) and microfarads (µF). Converting helps select the right components.", "A 100 nF capacitor = 0.1 µF.", "#4fc3f7"),
+            ("📡 RF Engineering", "RF circuits use capacitors in nanofarads for tuning. Converting to microfarads helps when using standard value component charts.", "470 nF = 0.47 µF.", "#2ecc71")
         ],
         "faqs": [
             ("How do you convert nF to µF?", "To convert nanofarads (nF) to microfarads (µF), divide the capacitance by 1,000. Formula: <code>µF = nF ÷ 1,000</code>. For example: 100 nF ÷ 1,000 = 0.1 µF."),
