@@ -211,6 +211,105 @@ const description = 'The definitive reference for all nano ↔ micro conversions
     </div>
   </section>
 
+  <!-- Interactive SI Ladder -->
+  <section class="si-ladder-section" style="margin: 40px 0;">
+    <h2 style="text-align: center; font-size: clamp(1.6rem, 3.5vw, 2.2rem); font-weight: 800; margin-bottom: 8px; color: #1a1a2e;">📊 Where Nano and Micro Sit on the SI Ladder</h2>
+    <p style="text-align: center; margin-bottom: 24px; color: #64748b; font-size: 1.05rem;">The SI prefix scale spans 27 orders of magnitude, with 1,000x ratio steps linking modern nanotechnology to astrophysics.</p>
+    
+    <div class="hover-lift" style="background: #f8f9fa; padding: 30px; border-radius: 16px; margin: 20px 0; border: 1px solid #e2e8f0; box-shadow: 0 8px 24px rgba(26, 26, 46, 0.06);">
+        
+        <div style="display: flex; flex-direction: column; gap: 8px; max-width: 600px; margin: 0 auto;">
+            
+            <!-- Tera -->
+            <div style="display: flex; align-items: center; gap: 15px;">
+                <span style="width: 80px; font-weight: bold; color: #4a4a5a;">Tera</span>
+                <div style="flex: 1; height: 30px; background: #e8ecf1; border-radius: 4px; position: relative;">
+                    <span style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); font-size: 0.8rem; font-weight: 700; color: #64748b;">10¹²</span>
+                </div>
+            </div>
+            
+            <!-- Giga -->
+            <div style="display: flex; align-items: center; gap: 15px;">
+                <span style="width: 80px; font-weight: bold; color: #4a4a5a;">Giga</span>
+                <div style="flex: 1; height: 30px; background: #e8ecf1; border-radius: 4px; position: relative;">
+                    <span style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); font-size: 0.8rem; font-weight: 700; color: #64748b;">10⁹</span>
+                </div>
+            </div>
+            
+            <!-- Mega -->
+            <div style="display: flex; align-items: center; gap: 15px;">
+                <span style="width: 80px; font-weight: bold; color: #4a4a5a;">Mega</span>
+                <div style="flex: 1; height: 30px; background: #e8ecf1; border-radius: 4px; position: relative;">
+                    <span style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); font-size: 0.8rem; font-weight: 700; color: #64748b;">10⁶</span>
+                </div>
+            </div>
+            
+            <!-- Kilo -->
+            <div style="display: flex; align-items: center; gap: 15px;">
+                <span style="width: 80px; font-weight: bold; color: #4a4a5a;">Kilo</span>
+                <div style="flex: 1; height: 30px; background: #e8ecf1; border-radius: 4px; position: relative;">
+                    <span style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); font-size: 0.8rem; font-weight: 700; color: #64748b;">10³</span>
+                </div>
+            </div>
+            
+            <!-- Base -->
+            <div style="display: flex; align-items: center; gap: 15px;">
+                <span style="width: 80px; font-weight: bold; color: #1a1a2e;">Base</span>
+                <div style="flex: 1; height: 30px; background: #1a1a2e; border-radius: 4px; position: relative;">
+                    <span style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); color: white; font-weight: 700; font-size: 0.8rem;">10⁰</span>
+                </div>
+            </div>
+            
+            <!-- Milli -->
+            <div style="display: flex; align-items: center; gap: 15px;">
+                <span style="width: 80px; font-weight: bold; color: #4a4a5a;">Milli</span>
+                <div style="flex: 1; height: 30px; background: #e8ecf1; border-radius: 4px; position: relative;">
+                    <span style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); font-size: 0.8rem; font-weight: 700; color: #64748b;">10⁻³</span>
+                </div>
+            </div>
+            
+            <!-- MICRO (Highlighted) -->
+            <div style="display: flex; align-items: center; gap: 15px; background: rgba(79, 195, 247, 0.12); padding: 6px 12px; border-radius: 8px; border-left: 4px solid #4fc3f7;">
+                <span style="width: 80px; font-weight: 800; color: #0284c7;">Micro</span>
+                <div style="flex: 1; height: 40px; background: #4fc3f7; border-radius: 4px; position: relative; box-shadow: 0 0 20px rgba(79, 195, 247, 0.35);">
+                    <span style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); color: white; font-weight: 800; font-size: 1rem;">10⁻⁶</span>
+                </div>
+                <span style="font-size: 0.8rem; font-weight: 700; color: #0284c7; white-space: nowrap;">⬅ YOU ARE HERE</span>
+            </div>
+            
+            <!-- NANO (Highlighted) -->
+            <div style="display: flex; align-items: center; gap: 15px; background: rgba(231, 76, 60, 0.12); padding: 6px 12px; border-radius: 8px; border-left: 4px solid #e74c3c;">
+                <span style="width: 80px; font-weight: 800; color: #dc2626;">Nano</span>
+                <div style="flex: 1; height: 40px; background: #e74c3c; border-radius: 4px; position: relative; box-shadow: 0 0 20px rgba(231, 76, 60, 0.35);">
+                    <span style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); color: white; font-weight: 800; font-size: 1rem;">10⁻⁹</span>
+                </div>
+                <span style="font-size: 0.8rem; font-weight: 700; color: #dc2626; white-space: nowrap;">⬅ YOU ARE HERE</span>
+            </div>
+            
+            <!-- Pico -->
+            <div style="display: flex; align-items: center; gap: 15px;">
+                <span style="width: 80px; font-weight: bold; color: #4a4a5a;">Pico</span>
+                <div style="flex: 1; height: 30px; background: #e8ecf1; border-radius: 4px; position: relative;">
+                    <span style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); font-size: 0.8rem; font-weight: 700; color: #64748b;">10⁻¹²</span>
+                </div>
+            </div>
+            
+            <!-- Femto -->
+            <div style="display: flex; align-items: center; gap: 15px;">
+                <span style="width: 80px; font-weight: bold; color: #4a4a5a;">Femto</span>
+                <div style="flex: 1; height: 30px; background: #e8ecf1; border-radius: 4px; position: relative;">
+                    <span style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); font-size: 0.8rem; font-weight: 700; color: #64748b;">10⁻¹⁵</span>
+                </div>
+            </div>
+            
+        </div>
+        
+        <div style="text-align: center; margin-top: 20px; padding: 15px; background: #1a1a2e; border-radius: 8px; color: white; font-weight: 600; font-size: 0.95rem;">
+            ⬆ The 1,000x step between Nano and Micro is consistent across the entire SI system ⬆
+        </div>
+    </div>
+  </section>
+
     <!-- Authority Internal Hub Navigation Callouts -->
     <div class="hub-callouts-banner" style="background: rgba(19, 28, 46, 0.8); border: 1px solid rgba(245, 158, 11, 0.25); border-radius: 14px; padding: 20px 24px; margin: 28px 0; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 16px;">
       <div style="font-size: 14px; color: #cbd5e1;">
