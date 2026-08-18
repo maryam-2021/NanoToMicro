@@ -135,7 +135,7 @@
         }
         h3 {
             font-size: 1.25rem;
-            margin: 24px 0 10px;
+            margin: 0 0 8px;
             color: #1a1a2e;
             font-weight: 700;
         }
@@ -230,31 +230,23 @@
         }
         .formula-box span { color: #4fc3f7; font-weight: 800; }
         
-        /* Applications Grid */
-        .applications-grid {
+        /* Applications Section & Grid */
+        .applications-section {
+            margin: 36px 0;
+        }
+        .application-grid, .applications-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 20px;
-            margin: 24px 0;
+            margin: 20px 0;
         }
         .app-card {
-            background: #ffffff;
-            padding: 22px;
-            border-radius: 12px;
-            border: 1px solid #e8ecf1;
-            border-left: 4px solid #4fc3f7;
-            box-shadow: 0 4px 12px rgba(26, 26, 46, 0.04);
             transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 12px rgba(26, 26, 46, 0.04);
         }
         .app-card:hover {
             transform: translateY(-3px);
             box-shadow: 0 8px 20px rgba(26, 26, 46, 0.08);
-        }
-        .app-card h4 {
-            margin-bottom: 10px;
-            color: #1a1a2e;
-            font-size: 1.1rem;
-            font-weight: 700;
         }
         
         /* Table */
@@ -480,25 +472,26 @@
     <p>To convert nanoliters to microliters, simply <strong>divide by 1,000</strong>. This is because 1 microliters = 1,000 nanoliters (10⁻⁶ vs 10⁻⁹ base units in the International System of Units).</p>
     
     <!-- ===== REAL-WORLD APPLICATIONS ===== -->
-    <h2>🔬 Real-World Applications (Chemists)</h2>
-    <div class="applications-grid">
-        <div class="app-card">
-            <h4>🤖 Robotic High-Throughput Screening</h4>
-            <p>Echo acoustic liquid handlers transfer 2.5 nL to 25 nL compound aliquots into 1536-well plates with zero physical contact.</p>
+    <section class="applications-section">
+        <h2>🔬 Real-World Applications</h2>
+        <div class="application-grid">
+        <div class="app-card" style="background: #f0f7ff; padding: 20px; border-radius: 8px; border-left: 4px solid #4fc3f7;">
+            <h3>🤖 Acoustic Liquid Handling</h3>
+            <p>Echo acoustic liquid handlers transfer 2.5 nL to 250 nL compound aliquots into 1536-well microplates with zero tip contact.</p>
+            <p style="margin-top: 10px;"><strong>Example:</strong> A 250 nL acoustic droplet transfer = 0.25 µL.</p>
         </div>
-        <div class="app-card">
-            <h4>💧 Microfluidic 'Lab-on-a-Chip'</h4>
-            <p>Micro-channels with cross-sections of $50 	imes 50	ext{ µm}$ manipulate discrete fluid droplets measured in nanoliters.</p>
+        <div class="app-card" style="background: #f0f7ff; padding: 20px; border-radius: 8px; border-left: 4px solid #2ecc71;">
+            <h3>💧 Microfluidic 'Lab-on-a-Chip'</h3>
+            <p>Micro-channels manipulate discrete fluid droplets measured in nanoliters for single-cell assays.</p>
+            <p style="margin-top: 10px;"><strong>Example:</strong> A 750 nL segmented droplet reactor volume = 0.75 µL.</p>
         </div>
-        <div class="app-card">
-            <h4>💎 Protein Crystallography</h4>
-            <p>Vapor diffusion hanging drops combine 100 nL protein solution with 100 nL precipitant to grow diffraction-quality crystals.</p>
+        <div class="app-card" style="background: #f0f7ff; padding: 20px; border-radius: 8px; border-left: 4px solid #e74c3c;">
+            <h3>💎 Protein Crystallography</h3>
+            <p>Vapor diffusion hanging drops combine 100 nL protein solution with 100 nL precipitant to grow diffraction crystals.</p>
+            <p style="margin-top: 10px;"><strong>Example:</strong> A 100 nL crystallization droplet = 0.1 µL.</p>
         </div>
-        <div class="app-card">
-            <h4>🧬 Single-Cell RNA Sequencing</h4>
-            <p>Microfluidic droplet encapsulation traps single cells in nanoliter emulsion volumes with barcoded beads.</p>
         </div>
-    </div>
+    </section>
     
     <!-- ===== WHY IT MATTERS ===== -->
     <h2>Why Convert nL to µL?</h2>

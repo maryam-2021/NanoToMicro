@@ -29,10 +29,9 @@ PAGES = [
             ("70,000 nm", "70 µm", "Human hair cross-section width")
         ],
         "apps": [
-            ("🧬 Molecular Biology", "DNA helix width is 2.5 nm (0.0025 µm). Protein molecules range from 5–50 nm. High-resolution cryo-EM imaging relies on exact nanometer-to-micron conversions."),
-            ("💻 Semiconductor Engineering", "Modern transistor nodes operate at 3–5 nm (0.003–0.005 µm). Photolithography stepper lasers align nanoscale features onto micrometer-scale dies."),
-            ("🔌 Electronics & Optics", "Visible optical spectra span 380–750 nm (0.38–0.75 µm). Precision diffraction gratings and optical wavebands require exact conversions."),
-            ("🔬 Nanotechnology & Materials", "Carbon nanotubes (1–2 nm diameter) and graphene coatings are integrated into microelectromechanical systems (MEMS).")
+            ("🧬 Molecular Biology", "DNA helix width is <strong>2.5 nm</strong> (0.0025 µm). Protein molecules range from 5-50 nm. When working with gene fragments, converting ng to µg is essential for experiments.", "A DNA fragment of 2,500 nm is 2.5 µm long.", "#4fc3f7"),
+            ("💻 Semiconductor Engineering", "Current transistor gate lengths are <strong>5 nm</strong> (0.005 µm). Chip manufacturers measure features in nanometers, while photolithography uses micrometers.", "A 7 nm processor has gates = 0.007 µm.", "#2ecc71"),
+            ("🔌 Electronics & Capacitors", "Capacitance values: 100 nF = 0.1 µF. Converting between nanofarads and microfarads is crucial for circuit design and component selection.", "A 470 nF capacitor = 0.47 µF.", "#e74c3c")
         ],
         "faqs": [
             ("How do you convert nm to µm?", "To convert nanometers (nm) to micrometers (µm), divide the value by 1,000 (or multiply by 0.001). Formula: <code>µm = nm ÷ 1,000</code>. For example: 2,500 nm ÷ 1,000 = 2.5 µm."),
@@ -68,10 +67,9 @@ PAGES = [
             ("50,000 ng", "50 µg", "Mass spectrometry sample peak")
         ],
         "apps": [
-            ("🧪 PCR & DNA Extraction", "Quantifying nucleic acids on NanoDrop spectrophotometers requires converting ng/µL concentrations to total microgram yields."),
-            ("💊 Pharmacology & Dosing", "Potent active pharmaceutical ingredients (APIs), hormones, and peptides are dosed in micrograms from nanogram serum concentrations."),
-            ("🧬 Gel Electrophoresis", "Western blot and SDS-PAGE sample loading buffers require precise microgram protein loads prepared from nanogram cell lysate stocks."),
-            ("🔬 Mass Spectrometry", "Targeted proteomics and metabolomics quantify analyte concentrations down to sub-nanogram sensitivity levels.")
+            ("🧪 PCR & DNA Extraction", "Quantifying nucleic acids on NanoDrop spectrophotometers requires converting ng/µL concentrations to total microgram yields.", "A 5,000 ng amplicon yield = 5 µg total DNA.", "#4fc3f7"),
+            ("💊 Pharmacology & Dosing", "Potent active pharmaceutical ingredients (APIs), hormones, and peptides are dosed in micrograms from nanogram serum concentrations.", "A 250 ng/mL serum concentration in a 1 mL vial = 0.25 µg.", "#2ecc71"),
+            ("🧬 Western Blot Loading", "Western blot and SDS-PAGE sample loading buffers require precise microgram protein loads prepared from nanogram cell lysate stocks.", "A 1,500 ng cell lysate load = 1.5 µg total protein.", "#e74c3c")
         ],
         "faqs": [
             ("How do you convert ng to µg?", "To convert nanograms (ng) to micrograms (µg), divide the mass value by 1,000. Formula: <code>µg = ng ÷ 1,000</code>. For example: 5,000 ng ÷ 1,000 = 5 µg."),
@@ -103,13 +101,12 @@ PAGES = [
             ("1,000 ns", "1 µs", "1 microsecond benchmark"),
             ("5,000 ns", "5 µs", "Fiber optic propagation across 1 km"),
             ("10,000 ns", "10 µs", "NVMe SSD random read latency"),
-            ("100,000 ns", "100 µs", "High-frequency trading trading roundtrip")
+            ("100,000 ns", "100 µs", "High-frequency trading roundtrip")
         ],
         "apps": [
-            ("⚡ Computer Architecture", "Modern 4 GHz processor cores execute clock cycles in 0.25 ns. Memory controllers budget DRAM timings in nanoseconds and bus transactions in microseconds."),
-            ("📡 Photonics & LiDAR", "Laser pulses in LiDAR rangefinders measure photon time-of-flight in nanoseconds to generate millimeter-precise 3D point clouds."),
-            ("🌐 High-Frequency Trading", "Ultra-low-latency network switches execute order matching in hundreds of nanoseconds, reporting analytics in microseconds."),
-            ("⚛️ Quantum Physics & NMR", "Nuclear magnetic resonance relaxation times ($T_1$, $T_2$) and quantum bit coherence windows are measured in microseconds and nanoseconds.")
+            ("⚡ Computer Architecture & Memory", "Modern 4 GHz processor cores execute clock cycles in 0.25 ns. Memory controllers budget DRAM timings in nanoseconds and bus transactions in microseconds.", "A 250 ns instruction pipeline burst = 0.25 µs.", "#4fc3f7"),
+            ("📡 Photonics & LiDAR Rangefinding", "Laser pulses in LiDAR rangefinders measure photon time-of-flight in nanoseconds to generate millimeter-precise 3D point clouds.", "A 1,000 ns laser echo corresponds to a 1 µs roundtrip.", "#2ecc71"),
+            ("🌐 High-Frequency Trading Networks", "Ultra-low-latency network switches execute order matching in hundreds of nanoseconds, reporting analytics in microseconds.", "A 500 ns gateway switch duration = 0.5 µs latency.", "#e74c3c")
         ],
         "faqs": [
             ("How do you convert ns to µs?", "To convert nanoseconds (ns) to microseconds (µs), divide the time value by 1,000. Formula: <code>µs = ns ÷ 1,000</code>. For example: 1,000 ns ÷ 1,000 = 1 µs."),
@@ -144,10 +141,9 @@ PAGES = [
             ("10,000 nF", "10 µF", "Tantalum power rail reservoir")
         ],
         "apps": [
-            ("🔌 Power Decoupling Networks", "Microcontroller power pins use 100 nF (0.1 µF) ceramic capacitors in parallel with 10 µF bulk capacitors to suppress high-frequency noise."),
-            ("🎛️ Active Analog Filters", "Sallen-Key and Butterworth low-pass filter poles are calculated using nanofarad-range capacitors with precise tolerances."),
-            ("📻 RF & Wireless Tuning", "LC resonant tank circuits in transceivers use nanofarad and picofarad values to tune carrier frequencies."),
-            ("⚡ DC-DC Power Converters", "Buck and boost switching converters require microfarad-range output ripple filters assembled from multi-layer ceramic capacitors (MLCCs).")
+            ("🔌 Power Decoupling Networks", "Microcontroller power pins use 100 nF (0.1 µF) ceramic capacitors in parallel with 10 µF bulk capacitors to suppress high-frequency noise.", "A standard 100 nF decoupling cap = 0.1 µF (Capacitor Code 104).", "#4fc3f7"),
+            ("🎛️ Active Analog Filters", "Sallen-Key and Butterworth low-pass filter poles are calculated using nanofarad-range capacitors with precise tolerances.", "A 220 nF filter cap = 0.22 µF.", "#2ecc71"),
+            ("⚡ DC-DC Power Regulators", "Buck and boost switching converters require microfarad-range output ripple filters assembled from multi-layer ceramic capacitors (MLCCs).", "A 4,700 nF output buffer = 4.7 µF.", "#e74c3c")
         ],
         "faqs": [
             ("How do you convert nF to µF?", "To convert nanofarads (nF) to microfarads (µF), divide the capacitance by 1,000. Formula: <code>µF = nF ÷ 1,000</code>. For example: 100 nF ÷ 1,000 = 0.1 µF."),
@@ -182,10 +178,9 @@ PAGES = [
             ("100,000 nA", "100 µA", "Active sensor acquisition burst")
         ],
         "apps": [
-            ("🔋 IoT & Wearable Battery Life", "Estimating 10-year coin cell longevity requires summing 50 nA deep-sleep currents with 5 µA periodic sensor polls."),
-            ("🔬 Electrochemical Biosensors", "Glucose meters and potentiostats measure redox current reactions in the 10–500 nA range."),
-            ("💻 Sub-threshold CMOS Circuitry", "Ultra-low-voltage microcontrollers operate near transistor threshold voltages, utilizing sub-microampere operating currents."),
-            ("☀️ Solar Energy Harvesting", "Indoor photovoltaic transducers generate tens of nanoamps under low ambient lux, charging storage supercapacitors.")
+            ("🔋 IoT & Wearable Battery Life", "Estimating 10-year coin cell longevity requires summing 500 nA deep-sleep currents with periodic active sensor bursts.", "A 500 nA deep-sleep mode draws 0.5 µA from the battery.", "#4fc3f7"),
+            ("🔬 Electrochemical Biosensors", "Glucose meters and potentiostats measure redox current reactions in the 10–500 nA range.", "A 1,200 nA enzymatic current response = 1.2 µA.", "#2ecc71"),
+            ("💻 Sub-threshold CMOS Circuitry", "Ultra-low-voltage microcontrollers operate near transistor threshold voltages, utilizing sub-microampere operating currents.", "A 50 nA static gate leakage current = 0.05 µA.", "#e74c3c")
         ],
         "faqs": [
             ("How do you convert nA to µA?", "To convert nanoamperes (nA) to microamperes (µA), divide the electric current by 1,000. Formula: <code>µA = nA ÷ 1,000</code>. For example: 1,500 nA ÷ 1,000 = 1.5 µA."),
@@ -220,15 +215,14 @@ PAGES = [
             ("1,000,000 nV", "1,000 µV", "1 millivolt standard sensor signal")
         ],
         "apps": [
-            ("🧠 Neuroscience & Electrophysiology", "EEG scalp electrodes detect cortical brainwave signals between 10 µV and 100 µV, with baseline noise rejection calibrated in nanovolts."),
-            ("🌡️ Thermoelectric Metrology", "Seebeck effect sensors and precision Kelvin bridges measure temperature-induced voltages in sub-microvolt increments."),
-            ("⚛️ Superconductivity & SQUIDs", "Superconducting Quantum Interference Devices (SQUIDs) measure magnetic flux changes producing nanovolt electrical responses."),
-            ("🧪 High-Precision Voltammetry", "National metrology institutes (NIST, BIPM) calibrate primary voltage standards against Josephson junction arrays in the nanovolt domain.")
+            ("🧠 Neuroscience & Electrophysiology", "EEG scalp electrodes detect cortical brainwave signals between 10 µV and 100 µV, with baseline noise rejection calibrated in nanovolts.", "A 10,000 nV EEG alpha wave peak = 10 µV amplitude.", "#4fc3f7"),
+            ("🌡️ Thermoelectric Metrology", "Seebeck effect sensors and precision Kelvin bridges measure temperature-induced voltages in sub-microvolt increments.", "A 250 nV thermocouple drift signal = 0.25 µV.", "#2ecc71"),
+            ("⚛️ Superconductivity & SQUIDs", "Superconducting Quantum Interference Devices (SQUIDs) measure magnetic flux changes producing nanovolt electrical responses.", "A 1,000 nV magnetic flux response = 1 µV.", "#e74c3c")
         ],
         "faqs": [
             ("How do you convert nV to µV?", "To convert nanovolts (nV) to microvolts (µV), divide the voltage by 1,000. Formula: <code>µV = nV ÷ 1,000</code>. For example: 250 nV ÷ 1,000 = 0.25 µV."),
             ("How many nanovolts are in 1 microvolt?", "There are exactly 1,000 nanovolts in 1 microvolt (1 µV = 1,000 nV = 10⁻⁶ Volts)."),
-            ("What is the Johnson noise limit?", "Thermal agitation of electrons in a resistor creates noise voltage $V_n = \sqrt{4 k_B T R \Delta f}$, typically producing nanovolt-level spectral noise density.")
+            ("What is the Johnson noise limit?", "Thermal agitation of electrons in a resistor creates noise voltage, typically producing nanovolt-level spectral noise density.")
         ]
     },
     {
@@ -258,10 +252,9 @@ PAGES = [
             ("50,000 nL", "50 µL", "Standard 96-well microplate working volume")
         ],
         "apps": [
-            ("🤖 Robotic High-Throughput Screening", "Echo acoustic liquid handlers transfer 2.5 nL to 25 nL compound aliquots into 1536-well plates with zero physical contact."),
-            ("💧 Microfluidic 'Lab-on-a-Chip'", "Micro-channels with cross-sections of $50 \times 50\text{ µm}$ manipulate discrete fluid droplets measured in nanoliters."),
-            ("💎 Protein Crystallography", "Vapor diffusion hanging drops combine 100 nL protein solution with 100 nL precipitant to grow diffraction-quality crystals."),
-            ("🧬 Single-Cell RNA Sequencing", "Microfluidic droplet encapsulation traps single cells in nanoliter emulsion volumes with barcoded beads.")
+            ("🤖 Acoustic Liquid Handling", "Echo acoustic liquid handlers transfer 2.5 nL to 250 nL compound aliquots into 1536-well microplates with zero tip contact.", "A 250 nL acoustic droplet transfer = 0.25 µL.", "#4fc3f7"),
+            ("💧 Microfluidic 'Lab-on-a-Chip'", "Micro-channels manipulate discrete fluid droplets measured in nanoliters for single-cell assays.", "A 750 nL segmented droplet reactor volume = 0.75 µL.", "#2ecc71"),
+            ("💎 Protein Crystallography", "Vapor diffusion hanging drops combine 100 nL protein solution with 100 nL precipitant to grow diffraction crystals.", "A 100 nL crystallization droplet = 0.1 µL.", "#e74c3c")
         ],
         "faqs": [
             ("How do you convert nL to µL?", "To convert nanoliters (nL) to microliters (µL), divide the volume by 1,000. Formula: <code>µL = nL ÷ 1,000</code>. For example: 750 nL ÷ 1,000 = 0.75 µL."),
@@ -286,7 +279,7 @@ PAGES = [
         "default_res": "2",
         "category": "Charge",
         "table_rows": [
-            ("1 nC", "0.001 µC", "Electrostatic charge from rubbing a glass rod ($6.24 \times 10^9$ electrons)"),
+            ("1 nC", "0.001 µC", "Electrostatic charge from rubbing a glass rod (6.24 × 10⁹ electrons)"),
             ("10 nC", "0.01 µC", "ESD human body model spark threshold"),
             ("100 nC", "0.1 µC", "Triboelectric charging on conveyor belt packaging"),
             ("500 nC", "0.5 µC", "Ionization chamber radiation exposure measurement"),
@@ -296,15 +289,14 @@ PAGES = [
             ("100,000 nC", "100 µC", "Laser wakefield electron bunch total charge")
         ],
         "apps": [
-            ("⚡ Electrostatic Discharge (ESD) Protection", "Semiconductor fabs enforce strict ESD controls where 5 nC discharges can permanently rupture gate oxide dielectric layers."),
-            ("☢️ Radiation Dosimetry & Ionization", "Ionization chambers measure absorbed ionizing radiation doses by integrating pico- and nanocoulomb charges collected across electrode plates."),
-            ("⚛️ Particle Accelerator Beams", "Synchrotrons and linear accelerators quantify relativistic electron bunch packet charges in nanocoulombs per pulse."),
-            ("🖨️ Xerography & Laser Printing", "Toner particles are charged to specific nanocoulomb-per-gram levels to transfer cleanly onto photoconductor drums.")
+            ("⚡ Electrostatic Discharge (ESD) Testing", "Semiconductor fabs enforce strict ESD controls where 2,000 nC discharges can permanently rupture gate oxide dielectric layers.", "A 2,000 nC static discharge spark = 2 µC.", "#4fc3f7"),
+            ("☢️ Radiation Dosimetry & Ionization", "Ionization chambers measure absorbed ionizing radiation doses by integrating charge collected across electrode plates.", "A 500 nC collected detector charge = 0.5 µC.", "#2ecc71"),
+            ("⚛️ Particle Accelerator Beams", "Synchrotrons and linear accelerators quantify relativistic electron bunch packet charges in nanocoulombs per pulse.", "A 10,000 nC bunch packet = 10 µC total charge.", "#e74c3c")
         ],
         "faqs": [
             ("How do you convert nC to µC?", "To convert nanocoulombs (nC) to microcoulombs (µC), divide the charge value by 1,000. Formula: <code>µC = nC ÷ 1,000</code>. For example: 2,000 nC ÷ 1,000 = 2 µC."),
-            ("How many electrons equal 1 nanocoulomb?", "Since the elementary charge $e \approx 1.602 \times 10^{-19}\text{ C}$, $1\text{ nC} = 10^{-9}\text{ C} \approx 6.24 \times 10^9\text{ electrons}$ (about 6.24 billion electrons)."),
-            ("What is the ratio between nC and µC?", "1 microcoulomb ($\mu\text{C}$) is exactly 1,000 times larger than 1 nanocoulomb (nC).")
+            ("How many electrons equal 1 nanocoulomb?", "Since the elementary charge is approximately 1.602 × 10⁻¹⁹ C, 1 nC equals approximately 6.24 billion electrons (6.24 × 10⁹ e)."),
+            ("What is the ratio between nC and µC?", "1 microcoulomb (µC) is exactly 1,000 times larger than 1 nanocoulomb (nC).")
         ]
     }
 ]
@@ -312,16 +304,22 @@ PAGES = [
 OUTPUT_DIR = r"C:\Users\marya\.gemini\antigravity\scratch\antigravity-site\public\converters"
 
 def build_html(p):
-    # build table rows
     rows_html = "\n".join([f"                <tr><td>{r[0]}</td><td>{r[1]}</td><td>{r[2]}</td></tr>" for r in p["table_rows"]])
     
-    # build apps html
-    apps_html = "\n".join([f"""        <div class="app-card">
-            <h4>{app[0]}</h4>
-            <p>{app[1]}</p>
-        </div>""" for app in p["apps"]])
+    apps_items = []
+    for app in p["apps"]:
+        title = app[0]
+        desc = app[1]
+        example = app[2] if len(app) > 2 else ""
+        border_color = app[3] if len(app) > 3 else "#4fc3f7"
+        ex_html = f'<p style="margin-top: 10px;"><strong>Example:</strong> {example}</p>' if example else ""
+        apps_items.append(f"""        <div class="app-card" style="background: #f0f7ff; padding: 20px; border-radius: 8px; border-left: 4px solid {border_color};">
+            <h3>{title}</h3>
+            <p>{desc}</p>
+            {ex_html}
+        </div>""")
+    apps_html = "\n".join(apps_items)
     
-    # build faqs html
     faqs_html = ""
     for idx, (q, a) in enumerate(p["faqs"]):
         is_first = (idx == 0)
@@ -338,7 +336,6 @@ def build_html(p):
         </div>
     </div>\n"""
 
-    # build related links html
     all_links = [
         ("nanometers-to-micrometers.html", "Nanometers to Micrometers (nm to µm)"),
         ("nanograms-to-micrograms.html", "Nanograms to Micrograms (ng to µg)"),
@@ -489,7 +486,7 @@ def build_html(p):
         }}
         h3 {{
             font-size: 1.25rem;
-            margin: 24px 0 10px;
+            margin: 0 0 8px;
             color: #1a1a2e;
             font-weight: 700;
         }}
@@ -584,31 +581,23 @@ def build_html(p):
         }}
         .formula-box span {{ color: #4fc3f7; font-weight: 800; }}
         
-        /* Applications Grid */
-        .applications-grid {{
+        /* Applications Section & Grid */
+        .applications-section {{
+            margin: 36px 0;
+        }}
+        .application-grid, .applications-grid {{
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 20px;
-            margin: 24px 0;
+            margin: 20px 0;
         }}
         .app-card {{
-            background: #ffffff;
-            padding: 22px;
-            border-radius: 12px;
-            border: 1px solid #e8ecf1;
-            border-left: 4px solid #4fc3f7;
-            box-shadow: 0 4px 12px rgba(26, 26, 46, 0.04);
             transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 12px rgba(26, 26, 46, 0.04);
         }}
         .app-card:hover {{
             transform: translateY(-3px);
             box-shadow: 0 8px 20px rgba(26, 26, 46, 0.08);
-        }}
-        .app-card h4 {{
-            margin-bottom: 10px;
-            color: #1a1a2e;
-            font-size: 1.1rem;
-            font-weight: 700;
         }}
         
         /* Table */
@@ -827,10 +816,12 @@ def build_html(p):
     <p>To convert {p['from_unit'].lower()} to {p['to_unit'].lower()}, simply <strong>divide by 1,000</strong>. This is because 1 {p['to_unit'].lower()} = 1,000 {p['from_unit'].lower()} (10⁻⁶ vs 10⁻⁹ base units in the International System of Units).</p>
     
     <!-- ===== REAL-WORLD APPLICATIONS ===== -->
-    <h2>🔬 Real-World Applications ({p['target_audience']})</h2>
-    <div class="applications-grid">
+    <section class="applications-section">
+        <h2>🔬 Real-World Applications</h2>
+        <div class="application-grid">
 {apps_html}
-    </div>
+        </div>
+    </section>
     
     <!-- ===== WHY IT MATTERS ===== -->
     <h2>Why Convert {p['from_symbol']} to {p['to_symbol']}?</h2>
@@ -986,4 +977,4 @@ for page_info in PAGES:
         f.write(content)
     print(f"Generated {page_info['filename']} ({page_info['primary_keyword']} / {page_info['target_audience']})")
 
-print("\nSuccessfully generated all 8 Unit-Specific converter pages.")
+print("\nSuccessfully updated all 8 Unit-Specific converter pages with Real-World Applications.")

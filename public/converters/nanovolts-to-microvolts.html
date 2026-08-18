@@ -135,7 +135,7 @@
         }
         h3 {
             font-size: 1.25rem;
-            margin: 24px 0 10px;
+            margin: 0 0 8px;
             color: #1a1a2e;
             font-weight: 700;
         }
@@ -230,31 +230,23 @@
         }
         .formula-box span { color: #4fc3f7; font-weight: 800; }
         
-        /* Applications Grid */
-        .applications-grid {
+        /* Applications Section & Grid */
+        .applications-section {
+            margin: 36px 0;
+        }
+        .application-grid, .applications-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 20px;
-            margin: 24px 0;
+            margin: 20px 0;
         }
         .app-card {
-            background: #ffffff;
-            padding: 22px;
-            border-radius: 12px;
-            border: 1px solid #e8ecf1;
-            border-left: 4px solid #4fc3f7;
-            box-shadow: 0 4px 12px rgba(26, 26, 46, 0.04);
             transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 12px rgba(26, 26, 46, 0.04);
         }
         .app-card:hover {
             transform: translateY(-3px);
             box-shadow: 0 8px 20px rgba(26, 26, 46, 0.08);
-        }
-        .app-card h4 {
-            margin-bottom: 10px;
-            color: #1a1a2e;
-            font-size: 1.1rem;
-            font-weight: 700;
         }
         
         /* Table */
@@ -480,25 +472,26 @@
     <p>To convert nanovolts to microvolts, simply <strong>divide by 1,000</strong>. This is because 1 microvolts = 1,000 nanovolts (10⁻⁶ vs 10⁻⁹ base units in the International System of Units).</p>
     
     <!-- ===== REAL-WORLD APPLICATIONS ===== -->
-    <h2>🔬 Real-World Applications (Physicists)</h2>
-    <div class="applications-grid">
-        <div class="app-card">
-            <h4>🧠 Neuroscience & Electrophysiology</h4>
+    <section class="applications-section">
+        <h2>🔬 Real-World Applications</h2>
+        <div class="application-grid">
+        <div class="app-card" style="background: #f0f7ff; padding: 20px; border-radius: 8px; border-left: 4px solid #4fc3f7;">
+            <h3>🧠 Neuroscience & Electrophysiology</h3>
             <p>EEG scalp electrodes detect cortical brainwave signals between 10 µV and 100 µV, with baseline noise rejection calibrated in nanovolts.</p>
+            <p style="margin-top: 10px;"><strong>Example:</strong> A 10,000 nV EEG alpha wave peak = 10 µV amplitude.</p>
         </div>
-        <div class="app-card">
-            <h4>🌡️ Thermoelectric Metrology</h4>
+        <div class="app-card" style="background: #f0f7ff; padding: 20px; border-radius: 8px; border-left: 4px solid #2ecc71;">
+            <h3>🌡️ Thermoelectric Metrology</h3>
             <p>Seebeck effect sensors and precision Kelvin bridges measure temperature-induced voltages in sub-microvolt increments.</p>
+            <p style="margin-top: 10px;"><strong>Example:</strong> A 250 nV thermocouple drift signal = 0.25 µV.</p>
         </div>
-        <div class="app-card">
-            <h4>⚛️ Superconductivity & SQUIDs</h4>
+        <div class="app-card" style="background: #f0f7ff; padding: 20px; border-radius: 8px; border-left: 4px solid #e74c3c;">
+            <h3>⚛️ Superconductivity & SQUIDs</h3>
             <p>Superconducting Quantum Interference Devices (SQUIDs) measure magnetic flux changes producing nanovolt electrical responses.</p>
+            <p style="margin-top: 10px;"><strong>Example:</strong> A 1,000 nV magnetic flux response = 1 µV.</p>
         </div>
-        <div class="app-card">
-            <h4>🧪 High-Precision Voltammetry</h4>
-            <p>National metrology institutes (NIST, BIPM) calibrate primary voltage standards against Josephson junction arrays in the nanovolt domain.</p>
         </div>
-    </div>
+    </section>
     
     <!-- ===== WHY IT MATTERS ===== -->
     <h2>Why Convert nV to µV?</h2>
@@ -536,7 +529,7 @@
             <span class="faq-icon">+</span>
         </button>
         <div class="faq-answer">
-            <p>Thermal agitation of electrons in a resistor creates noise voltage $V_n = \sqrt{4 k_B T R \Delta f}$, typically producing nanovolt-level spectral noise density.</p>
+            <p>Thermal agitation of electrons in a resistor creates noise voltage, typically producing nanovolt-level spectral noise density.</p>
         </div>
     </div>
 

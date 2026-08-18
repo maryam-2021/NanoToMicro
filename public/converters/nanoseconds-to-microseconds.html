@@ -135,7 +135,7 @@
         }
         h3 {
             font-size: 1.25rem;
-            margin: 24px 0 10px;
+            margin: 0 0 8px;
             color: #1a1a2e;
             font-weight: 700;
         }
@@ -230,31 +230,23 @@
         }
         .formula-box span { color: #4fc3f7; font-weight: 800; }
         
-        /* Applications Grid */
-        .applications-grid {
+        /* Applications Section & Grid */
+        .applications-section {
+            margin: 36px 0;
+        }
+        .application-grid, .applications-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 20px;
-            margin: 24px 0;
+            margin: 20px 0;
         }
         .app-card {
-            background: #ffffff;
-            padding: 22px;
-            border-radius: 12px;
-            border: 1px solid #e8ecf1;
-            border-left: 4px solid #4fc3f7;
-            box-shadow: 0 4px 12px rgba(26, 26, 46, 0.04);
             transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 12px rgba(26, 26, 46, 0.04);
         }
         .app-card:hover {
             transform: translateY(-3px);
             box-shadow: 0 8px 20px rgba(26, 26, 46, 0.08);
-        }
-        .app-card h4 {
-            margin-bottom: 10px;
-            color: #1a1a2e;
-            font-size: 1.1rem;
-            font-weight: 700;
         }
         
         /* Table */
@@ -467,7 +459,7 @@
                 <tr><td>1,000 ns</td><td>1 µs</td><td>1 microsecond benchmark</td></tr>
                 <tr><td>5,000 ns</td><td>5 µs</td><td>Fiber optic propagation across 1 km</td></tr>
                 <tr><td>10,000 ns</td><td>10 µs</td><td>NVMe SSD random read latency</td></tr>
-                <tr><td>100,000 ns</td><td>100 µs</td><td>High-frequency trading trading roundtrip</td></tr>
+                <tr><td>100,000 ns</td><td>100 µs</td><td>High-frequency trading roundtrip</td></tr>
             </tbody>
         </table>
     </div>
@@ -480,25 +472,26 @@
     <p>To convert nanoseconds to microseconds, simply <strong>divide by 1,000</strong>. This is because 1 microseconds = 1,000 nanoseconds (10⁻⁶ vs 10⁻⁹ base units in the International System of Units).</p>
     
     <!-- ===== REAL-WORLD APPLICATIONS ===== -->
-    <h2>🔬 Real-World Applications (Physicists, Engineers)</h2>
-    <div class="applications-grid">
-        <div class="app-card">
-            <h4>⚡ Computer Architecture</h4>
+    <section class="applications-section">
+        <h2>🔬 Real-World Applications</h2>
+        <div class="application-grid">
+        <div class="app-card" style="background: #f0f7ff; padding: 20px; border-radius: 8px; border-left: 4px solid #4fc3f7;">
+            <h3>⚡ Computer Architecture & Memory</h3>
             <p>Modern 4 GHz processor cores execute clock cycles in 0.25 ns. Memory controllers budget DRAM timings in nanoseconds and bus transactions in microseconds.</p>
+            <p style="margin-top: 10px;"><strong>Example:</strong> A 250 ns instruction pipeline burst = 0.25 µs.</p>
         </div>
-        <div class="app-card">
-            <h4>📡 Photonics & LiDAR</h4>
+        <div class="app-card" style="background: #f0f7ff; padding: 20px; border-radius: 8px; border-left: 4px solid #2ecc71;">
+            <h3>📡 Photonics & LiDAR Rangefinding</h3>
             <p>Laser pulses in LiDAR rangefinders measure photon time-of-flight in nanoseconds to generate millimeter-precise 3D point clouds.</p>
+            <p style="margin-top: 10px;"><strong>Example:</strong> A 1,000 ns laser echo corresponds to a 1 µs roundtrip.</p>
         </div>
-        <div class="app-card">
-            <h4>🌐 High-Frequency Trading</h4>
+        <div class="app-card" style="background: #f0f7ff; padding: 20px; border-radius: 8px; border-left: 4px solid #e74c3c;">
+            <h3>🌐 High-Frequency Trading Networks</h3>
             <p>Ultra-low-latency network switches execute order matching in hundreds of nanoseconds, reporting analytics in microseconds.</p>
+            <p style="margin-top: 10px;"><strong>Example:</strong> A 500 ns gateway switch duration = 0.5 µs latency.</p>
         </div>
-        <div class="app-card">
-            <h4>⚛️ Quantum Physics & NMR</h4>
-            <p>Nuclear magnetic resonance relaxation times ($T_1$, $T_2$) and quantum bit coherence windows are measured in microseconds and nanoseconds.</p>
         </div>
-    </div>
+    </section>
     
     <!-- ===== WHY IT MATTERS ===== -->
     <h2>Why Convert ns to µs?</h2>

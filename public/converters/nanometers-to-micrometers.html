@@ -135,7 +135,7 @@
         }
         h3 {
             font-size: 1.25rem;
-            margin: 24px 0 10px;
+            margin: 0 0 8px;
             color: #1a1a2e;
             font-weight: 700;
         }
@@ -230,31 +230,23 @@
         }
         .formula-box span { color: #4fc3f7; font-weight: 800; }
         
-        /* Applications Grid */
-        .applications-grid {
+        /* Applications Section & Grid */
+        .applications-section {
+            margin: 36px 0;
+        }
+        .application-grid, .applications-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 20px;
-            margin: 24px 0;
+            margin: 20px 0;
         }
         .app-card {
-            background: #ffffff;
-            padding: 22px;
-            border-radius: 12px;
-            border: 1px solid #e8ecf1;
-            border-left: 4px solid #4fc3f7;
-            box-shadow: 0 4px 12px rgba(26, 26, 46, 0.04);
             transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 12px rgba(26, 26, 46, 0.04);
         }
         .app-card:hover {
             transform: translateY(-3px);
             box-shadow: 0 8px 20px rgba(26, 26, 46, 0.08);
-        }
-        .app-card h4 {
-            margin-bottom: 10px;
-            color: #1a1a2e;
-            font-size: 1.1rem;
-            font-weight: 700;
         }
         
         /* Table */
@@ -480,25 +472,26 @@
     <p>To convert nanometers to micrometers, simply <strong>divide by 1,000</strong>. This is because 1 micrometers = 1,000 nanometers (10⁻⁶ vs 10⁻⁹ base units in the International System of Units).</p>
     
     <!-- ===== REAL-WORLD APPLICATIONS ===== -->
-    <h2>🔬 Real-World Applications (Engineers, Biologists)</h2>
-    <div class="applications-grid">
-        <div class="app-card">
-            <h4>🧬 Molecular Biology</h4>
-            <p>DNA helix width is 2.5 nm (0.0025 µm). Protein molecules range from 5–50 nm. High-resolution cryo-EM imaging relies on exact nanometer-to-micron conversions.</p>
+    <section class="applications-section">
+        <h2>🔬 Real-World Applications</h2>
+        <div class="application-grid">
+        <div class="app-card" style="background: #f0f7ff; padding: 20px; border-radius: 8px; border-left: 4px solid #4fc3f7;">
+            <h3>🧬 Molecular Biology</h3>
+            <p>DNA helix width is <strong>2.5 nm</strong> (0.0025 µm). Protein molecules range from 5-50 nm. When working with gene fragments, converting ng to µg is essential for experiments.</p>
+            <p style="margin-top: 10px;"><strong>Example:</strong> A DNA fragment of 2,500 nm is 2.5 µm long.</p>
         </div>
-        <div class="app-card">
-            <h4>💻 Semiconductor Engineering</h4>
-            <p>Modern transistor nodes operate at 3–5 nm (0.003–0.005 µm). Photolithography stepper lasers align nanoscale features onto micrometer-scale dies.</p>
+        <div class="app-card" style="background: #f0f7ff; padding: 20px; border-radius: 8px; border-left: 4px solid #2ecc71;">
+            <h3>💻 Semiconductor Engineering</h3>
+            <p>Current transistor gate lengths are <strong>5 nm</strong> (0.005 µm). Chip manufacturers measure features in nanometers, while photolithography uses micrometers.</p>
+            <p style="margin-top: 10px;"><strong>Example:</strong> A 7 nm processor has gates = 0.007 µm.</p>
         </div>
-        <div class="app-card">
-            <h4>🔌 Electronics & Optics</h4>
-            <p>Visible optical spectra span 380–750 nm (0.38–0.75 µm). Precision diffraction gratings and optical wavebands require exact conversions.</p>
+        <div class="app-card" style="background: #f0f7ff; padding: 20px; border-radius: 8px; border-left: 4px solid #e74c3c;">
+            <h3>🔌 Electronics & Capacitors</h3>
+            <p>Capacitance values: 100 nF = 0.1 µF. Converting between nanofarads and microfarads is crucial for circuit design and component selection.</p>
+            <p style="margin-top: 10px;"><strong>Example:</strong> A 470 nF capacitor = 0.47 µF.</p>
         </div>
-        <div class="app-card">
-            <h4>🔬 Nanotechnology & Materials</h4>
-            <p>Carbon nanotubes (1–2 nm diameter) and graphene coatings are integrated into microelectromechanical systems (MEMS).</p>
         </div>
-    </div>
+    </section>
     
     <!-- ===== WHY IT MATTERS ===== -->
     <h2>Why Convert nm to µm?</h2>
