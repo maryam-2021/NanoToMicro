@@ -51,8 +51,10 @@
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             line-height: 1.6;
-            color: #1a1a2e;
-            background: #ffffff;
+            color: #cbd5e1;
+            background: #070b12;
+            background-image: radial-gradient(circle at 50% 0%, #152033 0%, #070b12 100%);
+            background-attachment: fixed;
             max-width: 1280px;
             margin: 0 auto;
             padding: 20px;
@@ -61,7 +63,7 @@
         /* Sticky Progress Bar */
         .progress-bar {
             height: 3px;
-            background: linear-gradient(90deg, #4fc3f7, #1a1a2e);
+            background: linear-gradient(90deg, #38bdf8, #fbbf24);
             position: fixed;
             top: 0;
             left: 0;
@@ -71,7 +73,9 @@
         
         /* Navigation */
         .nav {
-            background: #1a1a2e;
+            background: rgba(15, 22, 35, 0.95);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(79, 195, 247, 0.2);
             padding: 15px 24px;
             border-radius: 12px;
             margin-bottom: 24px;
@@ -79,10 +83,10 @@
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
-            box-shadow: 0 4px 16px rgba(26, 26, 46, 0.15);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
         }
         .logo {
-            color: white;
+            color: #ffffff;
             font-size: 22px;
             font-weight: 800;
             text-decoration: none;
@@ -90,7 +94,7 @@
             align-items: center;
             gap: 6px;
         }
-        .logo span { color: #4fc3f7; }
+        .logo span { color: #38bdf8; }
         .nav-links { display: flex; gap: 20px; flex-wrap: wrap; align-items: center; }
         .nav-links a {
             color: #cbd5e1;
@@ -99,56 +103,56 @@
             font-size: 0.95rem;
             transition: color 0.2s;
         }
-        .nav-links a:hover { color: #4fc3f7; }
+        .nav-links a:hover { color: #38bdf8; }
         
         /* Breadcrumbs */
         .breadcrumb {
             padding: 10px 0;
             margin-bottom: 20px;
             list-style: none;
-            border-bottom: 1px solid #e8ecf1;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             display: flex;
             flex-wrap: wrap;
             gap: 6px;
             font-size: 0.9rem;
         }
         .breadcrumb-item { display: inline-flex; align-items: center; }
-        .breadcrumb-item + .breadcrumb-item::before { content: "›"; padding: 0 8px; color: #94a3b8; }
-        .breadcrumb-item a { color: #0284c7; text-decoration: none; font-weight: 500; }
+        .breadcrumb-item + .breadcrumb-item::before { content: "›"; padding: 0 8px; color: #64748b; }
+        .breadcrumb-item a { color: #38bdf8; text-decoration: none; font-weight: 500; }
         .breadcrumb-item a:hover { text-decoration: underline; }
-        .breadcrumb-item.active { color: #64748b; font-weight: 600; }
+        .breadcrumb-item.active { color: #94a3b8; font-weight: 600; }
         
         /* Main Headings */
         h1 {
             font-size: clamp(1.85rem, 4vw, 2.5rem);
             margin-bottom: 12px;
-            color: #1a1a2e;
+            color: #ffffff;
             font-weight: 800;
             letter-spacing: -0.02em;
         }
         h2 {
             font-size: clamp(1.4rem, 3vw, 1.8rem);
             margin: 40px 0 16px;
-            color: #1a1a2e;
+            color: #ffffff;
             font-weight: 800;
             letter-spacing: -0.01em;
         }
         h3 {
             font-size: 1.25rem;
             margin: 0 0 8px;
-            color: #1a1a2e;
+            color: #ffffff;
             font-weight: 700;
         }
-        p { margin-bottom: 16px; line-height: 1.7; color: #4a4a5a; }
+        p { margin-bottom: 16px; line-height: 1.7; color: #cbd5e1; }
         
         /* Converter Card */
         .converter-card {
-            background: linear-gradient(135deg, #f8f9fc 0%, #edf2f7 100%);
+            background: #0f1623;
             padding: 30px;
             border-radius: 16px;
             margin: 24px 0;
-            border: 1px solid #e2e8f0;
-            box-shadow: 0 8px 24px rgba(26, 26, 46, 0.06);
+            border: 1px solid rgba(79, 195, 247, 0.25);
+            box-shadow: 0 16px 40px -10px rgba(0, 0, 0, 0.6);
         }
         .converter-grid {
             display: grid;
@@ -160,7 +164,7 @@
             display: block;
             font-weight: 700;
             margin-bottom: 8px;
-            color: #1a1a2e;
+            color: #f8fafc;
             font-size: 0.95rem;
         }
         .input-group input {
@@ -169,22 +173,27 @@
             font-size: 1.25rem;
             font-family: ui-monospace, monospace;
             font-weight: 700;
-            color: #1a1a2e;
-            background: #ffffff;
-            border: 2px solid #cbd5e1;
+            color: #ffffff;
+            background: #152033;
+            border: 2px solid rgba(79, 195, 247, 0.3);
             border-radius: 10px;
             transition: border-color 0.2s, box-shadow 0.2s;
         }
         .input-group input:focus {
-            border-color: #4fc3f7;
-            box-shadow: 0 0 0 3px rgba(79, 195, 247, 0.25);
+            border-color: #38bdf8;
+            box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.25);
             outline: none;
+        }
+        #microOutput {
+            background: #090e17 !important;
+            border-color: rgba(79, 195, 247, 0.35) !important;
+            color: #38bdf8 !important;
         }
         .swap-btn {
             padding: 12px 18px;
-            background: #ffffff;
-            color: #1a1a2e;
-            border: 2px solid #cbd5e1;
+            background: #152033;
+            color: #38bdf8;
+            border: 2px solid rgba(79, 195, 247, 0.35);
             border-radius: 10px;
             cursor: pointer;
             font-weight: 700;
@@ -195,9 +204,9 @@
             gap: 6px;
         }
         .swap-btn:hover {
-            background: #4fc3f7;
-            color: #1a1a2e;
-            border-color: #4fc3f7;
+            background: #38bdf8;
+            color: #070b12;
+            border-color: #38bdf8;
             transform: scale(1.04);
         }
         
@@ -207,19 +216,20 @@
         }
         .formula-display {
             font-family: ui-monospace, monospace;
-            background: #1a1a2e;
-            color: #4fc3f7;
+            background: #0b111e;
+            color: #38bdf8;
             padding: 10px 20px;
             border-radius: 8px;
             display: inline-block;
             font-weight: 700;
             font-size: 1.05rem;
+            border: 1px solid rgba(79, 195, 247, 0.25);
         }
         
         /* Formula Box */
         .formula-box {
-            background: #1a1a2e;
-            color: white;
+            background: #0b111e;
+            color: #ffffff;
             padding: 20px;
             border-radius: 12px;
             margin: 20px 0;
@@ -228,7 +238,7 @@
             font-family: ui-monospace, monospace;
             border: 1px solid rgba(79, 195, 247, 0.3);
         }
-        .formula-box span { color: #4fc3f7; font-weight: 800; }
+        .formula-box span { color: #38bdf8; font-weight: 800; }
         
         /* Applications Section & Grid */
         .applications-section {
@@ -241,12 +251,16 @@
             margin: 20px 0;
         }
         .app-card {
+            background: #0f1623;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            padding: 20px;
             transition: transform 0.2s, box-shadow 0.2s;
-            box-shadow: 0 4px 12px rgba(26, 26, 46, 0.04);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
         }
         .app-card:hover {
             transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(26, 26, 46, 0.08);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
         }
         
         /* Table */
@@ -254,7 +268,8 @@
             overflow-x: auto;
             margin: 20px 0;
             border-radius: 12px;
-            border: 1px solid #e8ecf1;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: #0f1623;
         }
         table {
             width: 100%;
@@ -264,79 +279,83 @@
         th, td {
             padding: 12px 16px;
             text-align: left;
-            border-bottom: 1px solid #e8ecf1;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
         }
         th {
-            background: #1a1a2e;
-            color: white;
+            background: #152033;
+            color: #38bdf8;
             font-weight: 700;
+            border-bottom: 1px solid rgba(79, 195, 247, 0.3);
         }
-        tr:nth-child(even) { background: #f8f9fa; }
+        tr:nth-child(even) { background: rgba(255, 255, 255, 0.02); }
+        tr:hover { background: rgba(56, 189, 248, 0.04); }
         
         /* FAQ Accordion */
         .faq-item {
-            border: 1px solid #e8ecf1;
+            border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 10px;
             margin: 12px 0;
             overflow: hidden;
-            background: #ffffff;
+            background: #0f1623;
         }
         .faq-question {
             width: 100%;
             padding: 16px 20px;
-            background: #f8f9fc;
+            background: #0f1623;
             border: none;
             text-align: left;
             font-size: 1.05rem;
             font-weight: 700;
-            color: #1a1a2e;
+            color: #ffffff;
             cursor: pointer;
             display: flex;
             justify-content: space-between;
             align-items: center;
             transition: background 0.2s;
         }
-        .faq-question:hover { background: #edf2f7; }
+        .faq-question:hover { background: #152033; }
         .faq-icon {
             font-size: 1.4rem;
-            color: #4fc3f7;
+            color: #38bdf8;
             transition: transform 0.3s;
         }
         .faq-answer {
             padding: 18px 20px;
             display: none;
-            color: #4a4a5a;
+            background: #0b111e;
+            color: #cbd5e1;
             line-height: 1.7;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
         }
         .faq-answer.active { display: block; }
         
         /* Related Links */
         .related-links {
-            background: #f0f9ff;
-            border: 1px solid #bae6fd;
+            background: #0f1623;
+            border: 1px solid rgba(79, 195, 247, 0.25);
             padding: 24px;
             border-radius: 12px;
             margin: 36px 0;
         }
         .related-links h3 {
             margin-top: 0;
-            color: #0369a1;
+            color: #38bdf8;
         }
         .related-links ul { list-style: none; padding-left: 0; }
         .related-links li { margin: 10px 0; }
         .related-links a {
-            color: #0284c7;
+            color: #38bdf8;
             text-decoration: none;
             font-weight: 600;
         }
-        .related-links a:hover { text-decoration: underline; }
+        .related-links a:hover { text-decoration: underline; color: #fbbf24; }
         
         /* Footer */
         .site-footer {
             margin-top: 60px;
             padding: 48px 0 24px;
-            border-top: 1px solid #e8ecf1;
-            color: #64748b;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #94a3b8;
         }
         .footer-grid {
             display: grid;
@@ -347,14 +366,14 @@
         .footer-logo {
             font-size: 1.25rem;
             font-weight: 800;
-            color: #1a1a2e;
+            color: #ffffff;
             text-decoration: none;
             display: inline-block;
             margin-bottom: 12px;
         }
-        .footer-logo span { color: #4fc3f7; }
+        .footer-logo span { color: #38bdf8; }
         .footer-col h4 {
-            color: #1a1a2e;
+            color: #ffffff;
             font-size: 0.95rem;
             margin-bottom: 12px;
             font-weight: 700;
@@ -362,14 +381,14 @@
         .footer-col ul { list-style: none; }
         .footer-col li { margin-bottom: 8px; }
         .footer-col a {
-            color: #64748b;
+            color: #94a3b8;
             text-decoration: none;
             font-size: 0.9rem;
             transition: color 0.2s;
         }
-        .footer-col a:hover { color: #0284c7; }
+        .footer-col a:hover { color: #38bdf8; }
         .footer-bottom {
-            border-top: 1px solid #e8ecf1;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
             padding-top: 20px;
             display: flex;
             justify-content: space-between;
@@ -378,8 +397,8 @@
             gap: 12px;
             font-size: 0.88rem;
         }
-        .footer-bottom a { color: #64748b; text-decoration: none; }
-        .footer-bottom a:hover { color: #0284c7; }
+        .footer-bottom a { color: #94a3b8; text-decoration: none; }
+        .footer-bottom a:hover { color: #38bdf8; }
         
         /* Mobile Breakpoints */
         @media (max-width: 768px) {
@@ -389,15 +408,13 @@
             .converter-grid { grid-template-columns: 1fr; gap: 14px; }
             .swap-btn { width: 100%; justify-content: center; }
             .footer-grid { grid-template-columns: 1fr; gap: 24px; }
-            .footer-bottom { flex-direction: column; align-items: flex-start; }
         }
     </style>
 </head>
 <body>
 
-<div class="progress-bar" id="readingProgress"></div>
+<div class="progress-bar" id="progressBar"></div>
 
-<!-- ===== NAVIGATION ===== -->
 <nav class="nav">
     <a href="/" class="logo">Nano<span>To</span>Micro</a>
     <div class="nav-links">
@@ -408,7 +425,6 @@
     </div>
 </nav>
 
-<!-- ===== BREADCRUMB ===== -->
 <nav aria-label="Breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="/">Home</a></li>
@@ -417,39 +433,36 @@
     </ol>
 </nav>
 
-<!-- ===== MAIN CONTENT ===== -->
 <main>
     <h1>Convert Nanometers (nm) to Micrometers (µm)</h1>
-    <p style="font-size: 1.1rem; color: #4a4a5a;">Exact conversion tool for semiconductor, biology, and research applications. 1 nm = 0.001 µm (exact SI ratio).</p>
+    <p style="font-size: 1.1rem; color: #94a3b8;">Exact conversion tool for semiconductor, biology, and research applications. 1 nm = 0.001 µm (exact SI ratio).</p>
     
-    <!-- ===== CONVERTER ===== -->
     <div class="converter-card">
         <div class="converter-grid">
             <div class="input-group">
                 <label for="nanoInput">Nanometers (nm)</label>
-                <input type="number" id="nanoInput" value="2500" step="any" placeholder="0">
+                <input type="number" id="nanoInput" value="2500" step="any">
             </div>
             <div>
-                <button type="button" class="swap-btn" onclick="swapValues()">⇄ Swap</button>
+                <button class="swap-btn" onclick="swapValues()">⇄ Swap</button>
             </div>
             <div class="input-group">
                 <label for="microOutput">Micrometers (µm)</label>
-                <input type="text" id="microOutput" value="2.5" readonly style="background: #ffffff; cursor: default;">
+                <input type="text" id="microOutput" value="2.5" readonly>
             </div>
         </div>
         <div class="formula-display-wrap">
-            <span class="formula-display" id="formulaBanner">
+            <span class="formula-display" id="liveFormula">
                 2500 nm ÷ 1,000 = 2.5 µm
             </span>
         </div>
     </div>
     
-    <!-- ===== QUICK REFERENCE TABLE ===== -->
     <h2>Quick Conversion Table: nm to µm</h2>
     <div class="table-wrap">
         <table>
             <thead>
-                <tr><th>Nanometers (nm)</th><th>Micrometers (µm)</th><th>Real-World Example</th></tr>
+                <tr><th>Nanometers (nm)</th><th>Micrometers (µm)</th><th>Real-World Benchmark</th></tr>
             </thead>
             <tbody>
                 <tr><td>1 nm</td><td>0.001 µm</td><td>DNA helix diameter</td></tr>
@@ -464,47 +477,34 @@
         </table>
     </div>
     
-    <!-- ===== THE FORMULA ===== -->
     <h2>The Formula: nm to µm</h2>
     <div class="formula-box">
-        <span>µm = nm ÷ 1,000</span>
+        <span id="formulaBoxText">µm = nm ÷ 1,000</span>
     </div>
-    <p>To convert nanometers to micrometers, simply <strong>divide by 1,000</strong>. This is because 1 micrometers = 1,000 nanometers (10⁻⁶ vs 10⁻⁹ base units in the International System of Units).</p>
+    <p>To convert from nanometers (nm) to micrometers (µm), divide the numerical value by <strong>1,000</strong> (or multiply by 0.001). This standard 10⁻³ scale ratio applies across all SI metric units.</p>
     
-    <!-- ===== REAL-WORLD APPLICATIONS ===== -->
     <section class="applications-section">
         <h2>🔬 Real-World Applications</h2>
         <div class="application-grid">
-        <div class="app-card" style="background: #f0f7ff; padding: 20px; border-radius: 8px; border-left: 4px solid #4fc3f7;">
-            <h3>🧬 Molecular Biology</h3>
-            <p>DNA helix width is <strong>2.5 nm</strong> (0.0025 µm). Protein molecules range from 5-50 nm. When working with gene fragments, converting ng to µg is essential for experiments.</p>
-            <p style="margin-top: 10px;"><strong>Example:</strong> A DNA fragment of 2,500 nm is 2.5 µm long.</p>
+        <div class="app-card" style="border-left: 4px solid #38bdf8;">
+            <h4 style="color: #ffffff; font-size: 1.15rem; margin-bottom: 8px;">🧬 Molecular Biology</h4>
+            <p style="color: #cbd5e1; margin-bottom: 0;">DNA helix width is <strong>2.5 nm</strong> (0.0025 µm). Protein molecules range from 5-50 nm. When working with gene fragments, converting ng to µg is essential for experiments.</p>
+            <p style="margin-top: 10px; color: #94a3b8;"><strong style="color: #ffffff;">Example:</strong> A DNA fragment of 2,500 nm is 2.5 µm long.</p>
         </div>
-        <div class="app-card" style="background: #f0f7ff; padding: 20px; border-radius: 8px; border-left: 4px solid #2ecc71;">
-            <h3>💻 Semiconductor Engineering</h3>
-            <p>Current transistor gate lengths are <strong>5 nm</strong> (0.005 µm). Chip manufacturers measure features in nanometers, while photolithography uses micrometers.</p>
-            <p style="margin-top: 10px;"><strong>Example:</strong> A 7 nm processor has gates = 0.007 µm.</p>
+        <div class="app-card" style="border-left: 4px solid #22c55e;">
+            <h4 style="color: #ffffff; font-size: 1.15rem; margin-bottom: 8px;">💻 Semiconductor Engineering</h4>
+            <p style="color: #cbd5e1; margin-bottom: 0;">Current transistor gate lengths are <strong>5 nm</strong> (0.005 µm). Chip manufacturers measure features in nanometers, while photolithography uses micrometers.</p>
+            <p style="margin-top: 10px; color: #94a3b8;"><strong style="color: #ffffff;">Example:</strong> A 7 nm processor has gates = 0.007 µm.</p>
         </div>
-        <div class="app-card" style="background: #f0f7ff; padding: 20px; border-radius: 8px; border-left: 4px solid #e74c3c;">
-            <h3>🔌 Electronics & Capacitors</h3>
-            <p>Capacitance values: 100 nF = 0.1 µF. Converting between nanofarads and microfarads is crucial for circuit design and component selection.</p>
-            <p style="margin-top: 10px;"><strong>Example:</strong> A 470 nF capacitor = 0.47 µF.</p>
+        <div class="app-card" style="border-left: 4px solid #ef4444;">
+            <h4 style="color: #ffffff; font-size: 1.15rem; margin-bottom: 8px;">🔌 Electronics & Capacitors</h4>
+            <p style="color: #cbd5e1; margin-bottom: 0;">Capacitance values: 100 nF = 0.1 µF. Converting between nanofarads and microfarads is crucial for circuit design and component selection.</p>
+            <p style="margin-top: 10px; color: #94a3b8;"><strong style="color: #ffffff;">Example:</strong> A 470 nF capacitor = 0.47 µF.</p>
         </div>
         </div>
     </section>
     
-    <!-- ===== WHY IT MATTERS ===== -->
-    <h2>Why Convert nm to µm?</h2>
-    <p>Understanding the exact 1,000x step ratio is essential across specialized disciplines:</p>
-    <ul style="margin-left: 24px; margin-bottom: 18px; line-height: 1.7; color: #4a4a5a;">
-        <li><strong>Precision Metrology:</strong> Eliminates floating-point conversion drift when switching between scientific instruments and reports.</li>
-        <li><strong>Interdisciplinary Collaboration:</strong> Enables clear specifications between hardware designers, molecular scientists, and physicists.</li>
-        <li><strong>Standard Metric Calibration:</strong> Adheres directly to NIST and BIPM SI brochure definitions.</li>
-    </ul>
-    
-    <!-- ===== FAQ SECTION (People Also Ask) ===== -->
     <h2>Frequently Asked Questions</h2>
-    
     <div class="faq-item">
         <button type="button" class="faq-question" onclick="toggleFAQ(this)" aria-expanded="true">
             <span>How do you convert nm to µm?</span>
@@ -543,9 +543,8 @@
     </div>
 
     
-    <!-- ===== RELATED LINKS ===== -->
     <div class="related-links">
-        <h3>📚 Explore More Converters</h3>
+        <h3>📚 Explore More Converters & Precision Guides</h3>
         <ul>
             <li>➡️ <a href="/converters/nanograms-to-micrograms.html">Nanograms to Micrograms (ng to µg)</a></li>
             <li>➡️ <a href="/converters/nanoseconds-to-microseconds.html">Nanoseconds to Microseconds (ns to µs)</a></li>
@@ -554,126 +553,121 @@
             <li>➡️ <a href="/physics/">Physics Research Hub</a></li>
         </ul>
     </div>
-    
 </main>
 
-<!-- ===== FOOTER ===== -->
 <footer class="site-footer">
     <div class="footer-grid">
         <div>
             <a href="/" class="footer-logo">Nano<span>To</span>Micro</a>
-            <p style="font-size: 0.9rem; line-height: 1.6;">The definitive reference for all nano ↔ micro conversions. Precision metric calculations and evidence-based physics education.</p>
+            <p style="color: #94a3b8; font-size: 0.9rem; margin-top: 8px;">Precision SI metric prefix conversion calculators and physics metrology guides for engineers, scientists, and researchers worldwide.</p>
         </div>
         <div class="footer-col">
             <h4>Converters</h4>
             <ul>
-                <li><a href="/converters/nanometers-to-micrometers.html">Length (nm → µm)</a></li>
-                <li><a href="/converters/nanograms-to-micrograms.html">Mass (ng → µg)</a></li>
-                <li><a href="/converters/nanoseconds-to-microseconds.html">Time (ns → µs)</a></li>
-                <li><a href="/converters/nanofarads-to-microfarads.html">Capacitance (nF → µF)</a></li>
+                <li><a href="/converters/nanometers-to-micrometers.html">nm to µm</a></li>
+                <li><a href="/converters/nanograms-to-micrograms.html">ng to µg</a></li>
+                <li><a href="/converters/nanoseconds-to-microseconds.html">ns to µs</a></li>
+                <li><a href="/converters/nanofarads-to-microfarads.html">nF to µF</a></li>
             </ul>
         </div>
         <div class="footer-col">
             <h4>Physics Hub</h4>
             <ul>
-                <li><a href="/physics/antigravity-definition.html">What Is Antigravity?</a></li>
-                <li><a href="/physics/antimatter-gravity.html">Antimatter Gravity</a></li>
-                <li><a href="/physics/gravitational-shielding.html">Gravitational Shielding</a></li>
-                <li><a href="/physics/negative-mass.html">Negative Mass</a></li>
+                <li><a href="/physics/">Physics Research</a></li>
+                <li><a href="/guides/">All Guides</a></li>
+                <li><a href="/converters/">All Converters</a></li>
             </ul>
         </div>
         <div class="footer-col">
-            <h4>Resources</h4>
+            <h4>Quick Links</h4>
             <ul>
-                <li><a href="/about.html">About Us</a></li>
-                <li><a href="/contact.html">Contact</a></li>
-                <li><a href="/privacy.html">Privacy Policy</a></li>
-                <li><a href="/terms.html">Terms of Service</a></li>
+                <li><a href="/">Home</a></li>
+                <li><a href="/physics/#faq">FAQ</a></li>
             </ul>
         </div>
     </div>
     <div class="footer-bottom">
         <p>© 2026 NanoToMicro.com — Precision Metric Conversions & Physics Education</p>
-        <div style="display: flex; gap: 16px;">
-            <a href="/privacy.html">Privacy</a>
-            <a href="/terms.html">Terms</a>
-            <a href="/cookies.html">Cookies</a>
-        </div>
+        <p><a href="/">Privacy & Terms</a></p>
     </div>
 </footer>
 
-<!-- ===== JAVASCRIPT ===== -->
 <script>
-    // Scroll progress bar
-    window.addEventListener('scroll', function() {
-        const scrollTop = window.scrollY;
-        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-        const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
-        document.getElementById('readingProgress').style.width = progress + '%';
-    });
-
-    // Live Converter Logic
     let isNanoToMicro = true;
-    const fromUnitName = "Nanometers";
-    const toUnitName = "Micrometers";
     const fromSymbol = "nm";
     const toSymbol = "µm";
+    const fromUnit = "Nanometers";
+    const toUnit = "Micrometers";
     
-    function recalculate() {
-        const nanoInput = document.getElementById('nanoInput');
-        const microOutput = document.getElementById('microOutput');
-        const banner = document.getElementById('formulaBanner');
-        
-        const val = parseFloat(nanoInput.value) || 0;
+    const nanoInput = document.getElementById('nanoInput');
+    const microOutput = document.getElementById('microOutput');
+    const liveFormula = document.getElementById('liveFormula');
+    const formulaBoxText = document.getElementById('formulaBoxText');
+    
+    function calculate() {
+        const val = parseFloat(nanoInput.value);
+        if (isNaN(val)) {
+            microOutput.value = "";
+            liveFormula.textContent = "Please enter a valid number";
+            return;
+        }
         if (isNanoToMicro) {
-            const micro = val / 1000;
-            microOutput.value = micro.toString();
-            banner.textContent = `${val.toLocaleString()} ${fromSymbol} ÷ 1,000 = ${micro.toLocaleString()} ${toSymbol}`;
+            const res = val / 1000;
+            microOutput.value = (Math.round(res * 100000000) / 100000000).toString();
+            liveFormula.textContent = `${val.toLocaleString()} ${fromSymbol} ÷ 1,000 = ${microOutput.value} ${toSymbol}`;
         } else {
-            const nano = val * 1000;
-            microOutput.value = nano.toString();
-            banner.textContent = `${val.toLocaleString()} ${toSymbol} × 1,000 = ${nano.toLocaleString()} ${fromSymbol}`;
+            const res = val * 1000;
+            microOutput.value = (Math.round(res * 100000000) / 100000000).toString();
+            liveFormula.textContent = `${val.toLocaleString()} ${toSymbol} × 1,000 = ${microOutput.value} ${fromSymbol}`;
         }
     }
     
-    document.getElementById('nanoInput').addEventListener('input', recalculate);
+    nanoInput.addEventListener('input', calculate);
     
     function swapValues() {
         isNanoToMicro = !isNanoToMicro;
-        const labelFrom = document.querySelector('label[for="nanoInput"]');
-        const labelTo = document.querySelector('label[for="microOutput"]');
-        const nanoInput = document.getElementById('nanoInput');
-        const microOutput = document.getElementById('microOutput');
+        const currentInput = nanoInput.value;
+        const currentOutput = microOutput.value;
+        
+        const labelLeft = document.querySelector('.input-group:first-child label');
+        const labelRight = document.querySelector('.input-group:last-child label');
         
         if (isNanoToMicro) {
-            labelFrom.textContent = `${fromUnitName} (${fromSymbol})`;
-            labelTo.textContent = `${toUnitName} (${toSymbol})`;
+            labelLeft.textContent = `${fromUnit} (${fromSymbol})`;
+            labelRight.textContent = `${toUnit} (${toSymbol})`;
+            formulaBoxText.textContent = `${toSymbol} = ${fromSymbol} ÷ 1,000`;
         } else {
-            labelFrom.textContent = `${toUnitName} (${toSymbol})`;
-            labelTo.textContent = `${fromUnitName} (${fromSymbol})`;
+            labelLeft.textContent = `${toUnit} (${toSymbol})`;
+            labelRight.textContent = `${fromUnit} (${fromSymbol})`;
+            formulaBoxText.textContent = `${fromSymbol} = ${toSymbol} × 1,000`;
         }
         
-        const currentVal = microOutput.value;
-        nanoInput.value = currentVal;
-        recalculate();
+        nanoInput.value = currentOutput || "1";
+        calculate();
     }
     
-    // FAQ Toggle
     function toggleFAQ(button) {
         const answer = button.nextElementSibling;
         const icon = button.querySelector('.faq-icon');
-        const isOpen = answer.classList.contains('active');
+        const isExpanded = button.getAttribute('aria-expanded') === 'true';
         
-        if (isOpen) {
-            answer.classList.remove('active');
+        if (isExpanded) {
             button.setAttribute('aria-expanded', 'false');
+            answer.classList.remove('active');
             icon.textContent = '+';
         } else {
-            answer.classList.add('active');
             button.setAttribute('aria-expanded', 'true');
+            answer.classList.add('active');
             icon.textContent = '−';
         }
     }
+    
+    window.addEventListener('scroll', () => {
+        const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+        const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const scrolled = (winScroll / height) * 100;
+        document.getElementById('progressBar').style.width = scrolled + '%';
+    });
 </script>
 
 </body>
