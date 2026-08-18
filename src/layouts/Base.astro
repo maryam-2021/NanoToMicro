@@ -218,6 +218,72 @@ if (faqs && faqs.length > 0) {
         text-decoration: none;
       }
 
+      /* Navigation Dropdown */
+      .nav-dropdown {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+      }
+
+      .dropdown-toggle {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        color: var(--muted);
+        background: transparent;
+        border: none;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        padding: 6px 0;
+        font-family: inherit;
+      }
+
+      .dropdown-toggle:hover {
+        color: #38bdf8;
+      }
+
+      .dropdown-menu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        min-width: 270px;
+        background: #0f1623;
+        border: 1px solid rgba(79, 195, 247, 0.3);
+        border-radius: 12px;
+        box-shadow: 0 16px 36px rgba(0, 0, 0, 0.7);
+        padding: 8px 0;
+        z-index: 250;
+      }
+
+      .nav-dropdown:hover .dropdown-menu,
+      .nav-dropdown:focus-within .dropdown-menu {
+        display: block;
+      }
+
+      .dropdown-menu a {
+        display: block;
+        padding: 8px 16px;
+        color: #cbd5e1 !important;
+        font-size: 13px;
+        font-weight: 500;
+        text-decoration: none !important;
+        transition: all 0.15s ease;
+      }
+
+      .dropdown-menu a:hover {
+        background: rgba(56, 189, 248, 0.12);
+        color: #38bdf8 !important;
+        padding-left: 20px;
+      }
+
+      .dropdown-divider {
+        height: 1px;
+        background: rgba(255, 255, 255, 0.08);
+        margin: 6px 0;
+      }
+
       .nav-badge {
         background: rgba(245, 158, 11, 0.15);
         color: #fbbf24 !important;
@@ -408,10 +474,26 @@ if (faqs && faqs.length > 0) {
 
         <div class="nav-right-wrap">
           <nav class="nav-links" aria-label="Main navigation">
-            <a href={localePath(lang, '/convert/nano-to-micro/')}>{t('nav.converters', undefined, lang)}</a>
+            <div class="nav-dropdown">
+              <button class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">
+                Converters <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
+              </button>
+              <div class="dropdown-menu">
+                <a href="/converters/"><strong>All Converters Hub</strong></a>
+                <div class="dropdown-divider"></div>
+                <a href="/converters/nanometers-to-micrometers.html">Nanometers to Micrometers (nm → µm)</a>
+                <a href="/converters/nanograms-to-micrograms.html">Nanograms to Micrograms (ng → µg)</a>
+                <a href="/converters/nanoseconds-to-microseconds.html">Nanoseconds to Microseconds (ns → µs)</a>
+                <a href="/converters/nanofarads-to-microfarads.html">Nanofarads to Microfarads (nF → µF)</a>
+                <a href="/converters/nanoamperes-to-microamperes.html">Nanoamperes to Microamperes (nA → µA)</a>
+                <a href="/converters/nanovolts-to-microvolts.html">Nanovolts to Microvolts (nV → µV)</a>
+                <a href="/converters/nanoliters-to-microliters.html">Nanoliters to Microliters (nL → µL)</a>
+                <a href="/converters/nanocoulombs-to-microcoulombs.html">Nanocoulombs to Microcoulombs (nC → µC)</a>
+              </div>
+            </div>
             <a href={localePath(lang, '/si-prefix-converter/')}>{t('nav.siPrefixes', undefined, lang)}</a>
             <a href={localePath(lang, '/conversion-charts/')}>{t('nav.charts', undefined, lang)}</a>
-            <a href={localePath(lang, '/antigravity/')} class="nav-badge">{t('nav.antigravityHub', undefined, lang)}</a>
+            <a href="/physics/" class="nav-badge">Physics Hub</a>
           </nav>
           <LanguageSwitcher currentLocale={lang} currentPath={pathname} />
           <button class="mobile-menu-toggle" aria-label="Toggle menu" onclick="document.querySelector('.nav-links').classList.toggle('is-open')">
