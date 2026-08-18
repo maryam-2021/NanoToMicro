@@ -104,9 +104,8 @@ PAGES = [
             ("100,000 ns", "100 µs", "High-frequency trading roundtrip")
         ],
         "apps": [
-            ("⚡ Computer Architecture & Memory", "Modern 4 GHz processor cores execute clock cycles in 0.25 ns. Memory controllers budget DRAM timings in nanoseconds and bus transactions in microseconds.", "A 250 ns instruction pipeline burst = 0.25 µs.", "#4fc3f7"),
-            ("📡 Photonics & LiDAR Rangefinding", "Laser pulses in LiDAR rangefinders measure photon time-of-flight in nanoseconds to generate millimeter-precise 3D point clouds.", "A 1,000 ns laser echo corresponds to a 1 µs roundtrip.", "#2ecc71"),
-            ("🌐 High-Frequency Trading Networks", "Ultra-low-latency network switches execute order matching in hundreds of nanoseconds, reporting analytics in microseconds.", "A 500 ns gateway switch duration = 0.5 µs latency.", "#e74c3c")
+            ("⚡ Electronics & Microcontrollers", "Microcontrollers operate in nanoseconds (clock cycles) while timing peripherals often use microseconds (interrupt timers).", "A 100 MHz processor = 10 ns cycle = 0.01 µs.", "#4fc3f7"),
+            ("🔭 Physics & Optics", "Laser pulse durations are often in nanoseconds (ns) and microseconds (µs). Converting helps in setting up experiments and understanding signal timing.", "A 50 ns laser pulse = 0.05 µs.", "#2ecc71")
         ],
         "faqs": [
             ("How do you convert ns to µs?", "To convert nanoseconds (ns) to microseconds (µs), divide the time value by 1,000. Formula: <code>µs = ns ÷ 1,000</code>. For example: 1,000 ns ÷ 1,000 = 1 µs."),
