@@ -67,9 +67,9 @@ PAGES = [
             ("50,000 ng", "50 µg", "Mass spectrometry sample peak")
         ],
         "apps": [
-            ("🧪 PCR & DNA Extraction", "Quantifying nucleic acids on NanoDrop spectrophotometers requires converting ng/µL concentrations to total microgram yields.", "A 5,000 ng amplicon yield = 5 µg total DNA.", "#4fc3f7"),
-            ("💊 Pharmacology & Dosing", "Potent active pharmaceutical ingredients (APIs), hormones, and peptides are dosed in micrograms from nanogram serum concentrations.", "A 250 ng/mL serum concentration in a 1 mL vial = 0.25 µg.", "#2ecc71"),
-            ("🧬 Western Blot Loading", "Western blot and SDS-PAGE sample loading buffers require precise microgram protein loads prepared from nanogram cell lysate stocks.", "A 1,500 ng cell lysate load = 1.5 µg total protein.", "#e74c3c")
+            ("🧬 DNA/RNA Quantification", "In molecular biology, DNA and RNA samples are often measured in nanograms (ng) and micrograms (µg). Converting between these is essential for preparing samples for sequencing or PCR.", "500 ng DNA = 0.5 µg DNA.", "#4fc3f7"),
+            ("💊 Pharmacology", "Drug dosages in research are often specified in ng/g or µg/g. Converting helps researchers prepare accurate concentrations for animal studies.", "A dose of 2,000 ng/kg = 2 µg/kg.", "#2ecc71"),
+            ("🧪 Analytical Chemistry", "Trace element analysis often measures in ng/mL or µg/mL. Converting ensures proper reporting and compliance with regulatory standards.", "50 ng/mL = 0.05 µg/mL.", "#e74c3c")
         ],
         "faqs": [
             ("How do you convert ng to µg?", "To convert nanograms (ng) to micrograms (µg), divide the mass value by 1,000. Formula: <code>µg = ng ÷ 1,000</code>. For example: 5,000 ng ÷ 1,000 = 5 µg."),
