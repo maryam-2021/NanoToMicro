@@ -5,31 +5,35 @@ import ConverterIsland from '../components/ConverterIsland.svelte';
 const homeFaqs = [
   {
     q: 'How do you convert nano to micro?',
-    a: 'To convert from nano to micro, divide the value by 1,000 (or multiply by 0.001). For example: 2,500 nanometers ÷ 1,000 = 2.5 micrometers.'
+    a: 'To convert from nano (n) to micro (µ), divide the value by 1,000 (or multiply by 0.001). For example: 2,500 nanometers ÷ 1,000 = 2.5 micrometers. Formula: micro = nano ÷ 1,000.'
   },
   {
-    q: 'How do you convert micro to nano?',
-    a: 'To convert from micro to nano, multiply the value by 1,000. For example: 0.75 micrograms × 1,000 = 750 nanograms.'
+    q: 'How many nano is 1 micro?',
+    a: '1 micro (µ) contains exactly 1,000 nano (n). This is because micro = 10⁻⁶ and nano = 10⁻⁹, making the ratio 10⁻⁶ / 10⁻⁹ = 10³ = 1,000.'
   },
   {
-    q: 'What is the difference between a nanometer and a micrometer?',
-    a: 'A nanometer (nm) is 10⁻⁹ meters (one billionth of a meter), while a micrometer (µm, or micron) is 10⁻⁶ meters (one millionth of a meter). One micrometer contains exactly 1,000 nanometers.'
+    q: 'How do you convert nm to µm?',
+    a: 'To convert nanometers (nm) to micrometers (µm), divide by 1,000. Formula: µm = nm ÷ 1,000. For example: 5,000 nm ÷ 1,000 = 5 µm. Use our free online nm to µm converter for instant results.'
   },
   {
-    q: 'Why is 1 micro equal to 1,000 nano?',
-    a: 'In the International System of Units (SI), metric prefixes follow powers of ten in steps of 10³. Micro is 10⁻⁶ and nano is 10⁻⁹. The mathematical ratio between 10⁻⁶ and 10⁻⁹ is 10³ = 1,000.'
+    q: 'How do I convert nanograms to micrograms?',
+    a: 'To convert nanograms (ng) to micrograms (µg), divide by 1,000. Formula: µg = ng ÷ 1,000. For example: 750 ng ÷ 1,000 = 0.75 µg. This is essential for molecular biology and pharmacology research.'
   },
   {
     q: 'Which is bigger: nano or micro?',
-    a: 'Micro is 1,000 times larger than nano. An object measuring 1 micrometer is 1,000 times larger than an object measuring 1 nanometer.'
+    a: 'Micro is 1,000 times larger than nano. An object measuring 1 micrometer (µm) is 1,000 times larger than an object measuring 1 nanometer (nm). For example: 1 µm = 1,000 nm.'
+  },
+  {
+    q: 'What is the difference between a nanometer and a micrometer?',
+    a: 'A nanometer (nm) is one-billionth of a meter (10⁻⁹ m), while a micrometer (µm) is one-millionth of a meter (10⁻⁶ m). A micrometer is 1,000 times larger than a nanometer. This difference is crucial in semiconductor manufacturing and biology.'
   },
   {
     q: 'Where are nano and micro units used in real life?',
-    a: 'Nanometers (nm) measure semiconductor transistors, DNA helix widths (2.5 nm), and light wavelengths. Micrometers (µm) measure biological cells (10–30 µm), human hair diameter (70 µm), and optical fibers.'
+    a: 'Nanometers (nm) measure semiconductor transistors (5 nm), DNA helix width (2.5 nm), and light wavelengths (380-750 nm). Micrometers (µm) measure biological cells (10-30 µm), human hair diameter (70 µm), and optical fibers (10-100 µm).'
   },
   {
     q: 'How does nano-to-micro metrology apply to antigravity research?',
-    a: 'Precision testing of hypothetical gravitational anomalies, Casimir cavity forces, and propellantless thrust requires micro-Newton (µN) and nano-Newton (nN) laser interferometry and torsion balances to rule out thermal expansion and air currents.'
+    a: 'Precision testing of hypothetical gravitational anomalies requires micro-Newton (µN) and nano-Newton (nN) laser interferometry and torsion balances to rule out thermal expansion and air currents. Our physics hub explores these connections.'
   }
 ];
 
