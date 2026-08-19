@@ -292,6 +292,46 @@ PAGES = [
             ("How many nanocoulombs are in 1 microcoulomb?", "1 microcoulomb (µC) contains exactly 1,000 nanocoulombs (nC). This is because micro = 10⁻⁶ and nano = 10⁻⁹, making the ratio 10⁻⁶/10⁻⁹ = 10³ = 1,000."),
             ("What is the difference between a nanocoulomb and a microcoulomb?", "A nanocoulomb (nC) is one-billionth of a coulomb (10⁻⁹ C), while a microcoulomb (µC) is one-millionth of a coulomb (10⁻⁶ C). A microcoulomb is 1,000 times larger than a nanocoulomb.")
         ]
+    },
+    {
+        "filename": "micro-to-nano.html",
+        "title": "Convert Micro to Nano — Instant µ to n Conversion | NanoToMicro",
+        "description": "Convert micro to nano instantly with our exact calculator. 1 µ = 1,000 n — always exact. Free online tool for length, mass, time, and more.",
+        "headline": "Convert Micro (µ) to Nano (n)",
+        "subheading": "Instant calculation tool for scaling from microscale (10⁻⁶) to nanoscale (10⁻⁹). 1 µ = 1,000 n (exact SI ratio).",
+        "primary_keyword": "micro to nano",
+        "secondary_keywords": "convert micro to nano, micro to nano converter, u to n",
+        "target_audience": "Engineers, Scientists, Students",
+        "from_unit": "Micro",
+        "from_symbol": "µ",
+        "to_unit": "Nano",
+        "to_symbol": "n",
+        "default_val": "2.5",
+        "default_res": "2500",
+        "direction": "micro_to_nano",
+        "formula_op": "× 1,000",
+        "formula_desc": "To convert from micro (µ) to nano (n), multiply the numerical value by <strong>1,000</strong>. This standard 10³ scale ratio applies across all SI metric units.",
+        "category": "Universal",
+        "table_rows": [
+            ("0.001 µ", "1 n", "DNA helix diameter (0.0025 µm = 2.5 nm)"),
+            ("0.01 µ", "10 n", "Small viral capsid size"),
+            ("0.1 µ", "100 n", "Large virus / nanoparticle boundary"),
+            ("0.5 µ", "500 n", "Visible green light wavelength"),
+            ("1 µ", "1,000 n", "Single bacterium length"),
+            ("2.5 µ", "2,500 n", "Cellular organelle size"),
+            ("10 µ", "10,000 n", "Human red blood cell width"),
+            ("70 µ", "70,000 n", "Human hair cross section width")
+        ],
+        "apps": [
+            ("🔬 Nanotechnology & Metrology", "Translating micron-scale blueprints into atomic-scale nanofabrication masks. When stepping down from microfluidic channels to nanopores, multiplying by 1,000 is required.", "2.5 µm channel feature = 2,500 nm electron-beam spot.", "#38bdf8"),
+            ("🧬 Molecular Biology", "Cellular dimensions are specified in micrometers (µm) while proteins and nucleic acids are measured in nanometers (nm).", "1.5 µm bacterium = 1,500 nm length.", "#22c55e"),
+            ("💻 Semiconductor Fabrication", "Photolithography stepper reticles designed in micrometers project down to nanometer-scale gate features.", "0.05 µm gate design = 50 nm physical gate.", "#ef4444")
+        ],
+        "faqs": [
+            ("How do you convert micro to nano?", "To convert from micro (µ) to nano (n), multiply the value by 1,000. Formula: <code>nano = micro × 1,000</code>. For example: 2.5 µm × 1,000 = 2,500 nm."),
+            ("How many nano are in 1 micro?", "There are exactly 1,000 nano in 1 micro. This is because micro represents 10⁻⁶ and nano represents 10⁻⁹, making the ratio 10⁻⁶ / 10⁻⁹ = 1,000."),
+            ("What is the formula for converting micro to nano?", "The formula is: <code>nano = micro × 1,000</code>. If converting in reverse (nano to micro), divide by 1,000.")
+        ]
     }
 ]
 
@@ -338,10 +378,17 @@ def build_html(p):
         ("nanoamperes-to-microamperes.html", "Nanoamperes to Microamperes (nA to µA)"),
         ("nanovolts-to-microvolts.html", "Nanovolts to Microvolts (nV to µV)"),
         ("nanoliters-to-microliters.html", "Nanoliters to Microliters (nL to µL)"),
-        ("nanocoulombs-to-microcoulombs.html", "Nanocoulombs to Microcoulombs (nC to µC)")
+        ("nanocoulombs-to-microcoulombs.html", "Nanocoulombs to Microcoulombs (nC to µC)"),
+        ("micro-to-nano.html", "Micro to Nano (µ to n)")
     ]
     related_items = [f'            <li>➡️ <a href="/converters/{l[0]}">{l[1]}</a></li>' for l in all_links if l[0] != p["filename"]]
     related_html = "\n".join(related_items[:4]) + '\n            <li>➡️ <a href="/physics/">Physics Research Hub</a></li>'
+    
+    formula_op = p.get("formula_op", "÷ 1,000")
+    formula_box_init = f"{p['to_symbol']} = {p['from_symbol']} {formula_op}"
+    formula_desc_text = p.get("formula_desc", f"To convert from {p['from_unit'].lower()} ({p['from_symbol']}) to {p['to_unit'].lower()} ({p['to_symbol']}), divide the numerical value by <strong>1,000</strong> (or multiply by 0.001). This standard 10⁻³ scale ratio applies across all SI metric units.")
+    init_direction = "false" if p.get("direction") == "micro_to_nano" else "true"
+    init_formula_display = f"{p['default_val']} {p['from_symbol']} {formula_op} = {p['default_res']} {p['to_symbol']}"
 
     html = f"""<!DOCTYPE html>
 <html lang="en">
@@ -852,7 +899,7 @@ def build_html(p):
         </div>
         <div class="formula-display-wrap">
             <span class="formula-display" id="liveFormula">
-                {p['default_val']} {p['from_symbol']} ÷ 1,000 = {p['default_res']} {p['to_symbol']}
+                {init_formula_display}
             </span>
         </div>
     </div>
@@ -871,9 +918,9 @@ def build_html(p):
     
     <h2>The Formula: {p['from_symbol']} to {p['to_symbol']}</h2>
     <div class="formula-box">
-        <span id="formulaBoxText">{p['to_symbol']} = {p['from_symbol']} ÷ 1,000</span>
+        <span id="formulaBoxText">{formula_box_init}</span>
     </div>
-    <p>To convert from {p['from_unit'].lower()} ({p['from_symbol']}) to {p['to_unit'].lower()} ({p['to_symbol']}), divide the numerical value by <strong>1,000</strong> (or multiply by 0.001). This standard 10⁻³ scale ratio applies across all SI metric units.</p>
+    <p>{formula_desc_text}</p>
     
     <section class="applications-section">
         <h2>🔬 Real-World Applications</h2>
@@ -906,6 +953,7 @@ def build_html(p):
                 <li><a href="/converters/nanograms-to-micrograms.html">ng to µg</a></li>
                 <li><a href="/converters/nanoseconds-to-microseconds.html">ns to µs</a></li>
                 <li><a href="/converters/nanofarads-to-microfarads.html">nF to µF</a></li>
+                <li><a href="/converters/micro-to-nano.html">µ to n</a></li>
             </ul>
         </div>
         <div class="footer-col">
@@ -931,11 +979,12 @@ def build_html(p):
 </footer>
 
 <script>
-    let isNanoToMicro = true;
+    let isNanoToMicro = {init_direction};
     const fromSymbol = "{p['from_symbol']}";
     const toSymbol = "{p['to_symbol']}";
     const fromUnit = "{p['from_unit']}";
     const toUnit = "{p['to_unit']}";
+    const isMicroToNano = {"true" if p.get("direction") == "micro_to_nano" else "false"};
     
     const nanoInput = document.getElementById('nanoInput');
     const microOutput = document.getElementById('microOutput');
@@ -949,14 +998,26 @@ def build_html(p):
             liveFormula.textContent = "Please enter a valid number";
             return;
         }}
-        if (isNanoToMicro) {{
-            const res = val / 1000;
-            microOutput.value = (Math.round(res * 100000000) / 100000000).toString();
-            liveFormula.textContent = `${{val.toLocaleString()}} ${{fromSymbol}} ÷ 1,000 = ${{microOutput.value}} ${{toSymbol}}`;
+        if (!isMicroToNano) {{
+            if (isNanoToMicro) {{
+                const res = val / 1000;
+                microOutput.value = (Math.round(res * 100000000) / 100000000).toString();
+                liveFormula.textContent = `${{val.toLocaleString()}} ${{fromSymbol}} ÷ 1,000 = ${{microOutput.value}} ${{toSymbol}}`;
+            }} else {{
+                const res = val * 1000;
+                microOutput.value = (Math.round(res * 100000000) / 100000000).toString();
+                liveFormula.textContent = `${{val.toLocaleString()}} ${{toSymbol}} × 1,000 = ${{microOutput.value}} ${{fromSymbol}}`;
+            }}
         }} else {{
-            const res = val * 1000;
-            microOutput.value = (Math.round(res * 100000000) / 100000000).toString();
-            liveFormula.textContent = `${{val.toLocaleString()}} ${{toSymbol}} × 1,000 = ${{microOutput.value}} ${{fromSymbol}}`;
+            if (!isNanoToMicro) {{
+                const res = val * 1000;
+                microOutput.value = (Math.round(res * 100000000) / 100000000).toString();
+                liveFormula.textContent = `${{val.toLocaleString()}} ${{fromSymbol}} × 1,000 = ${{microOutput.value}} ${{toSymbol}}`;
+            }} else {{
+                const res = val / 1000;
+                microOutput.value = (Math.round(res * 100000000) / 100000000).toString();
+                liveFormula.textContent = `${{val.toLocaleString()}} ${{toSymbol}} ÷ 1,000 = ${{microOutput.value}} ${{fromSymbol}}`;
+            }}
         }}
     }}
     
@@ -970,14 +1031,26 @@ def build_html(p):
         const labelLeft = document.querySelector('.input-group:first-child label');
         const labelRight = document.querySelector('.input-group:last-child label');
         
-        if (isNanoToMicro) {{
-            labelLeft.textContent = `${{fromUnit}} (${{fromSymbol}})`;
-            labelRight.textContent = `${{toUnit}} (${{toSymbol}})`;
-            formulaBoxText.textContent = `${{toSymbol}} = ${{fromSymbol}} ÷ 1,000`;
+        if (!isMicroToNano) {{
+            if (isNanoToMicro) {{
+                labelLeft.textContent = `${{fromUnit}} (${{fromSymbol}})`;
+                labelRight.textContent = `${{toUnit}} (${{toSymbol}})`;
+                formulaBoxText.textContent = `${{toSymbol}} = ${{fromSymbol}} ÷ 1,000`;
+            }} else {{
+                labelLeft.textContent = `${{toUnit}} (${{toSymbol}})`;
+                labelRight.textContent = `${{fromUnit}} (${{fromSymbol}})`;
+                formulaBoxText.textContent = `${{fromSymbol}} = ${{toSymbol}} × 1,000`;
+            }}
         }} else {{
-            labelLeft.textContent = `${{toUnit}} (${{toSymbol}})`;
-            labelRight.textContent = `${{fromUnit}} (${{fromSymbol}})`;
-            formulaBoxText.textContent = `${{fromSymbol}} = ${{toSymbol}} × 1,000`;
+            if (!isNanoToMicro) {{
+                labelLeft.textContent = `${{fromUnit}} (${{fromSymbol}})`;
+                labelRight.textContent = `${{toUnit}} (${{toSymbol}})`;
+                formulaBoxText.textContent = `${{toSymbol}} = ${{fromSymbol}} × 1,000`;
+            }} else {{
+                labelLeft.textContent = `${{toUnit}} (${{toSymbol}})`;
+                labelRight.textContent = `${{fromUnit}} (${{fromSymbol}})`;
+                formulaBoxText.textContent = `${{fromSymbol}} = ${{toSymbol}} ÷ 1,000`;
+            }}
         }}
         
         nanoInput.value = currentOutput || "1";
