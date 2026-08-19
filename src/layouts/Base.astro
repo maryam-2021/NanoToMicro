@@ -28,6 +28,28 @@ const resolvedCanonical = canonical
   ? `${baseUrl}${canonicalPath.startsWith('/') ? canonicalPath : `/${canonicalPath}`}`
   : `${baseUrl}${getLocalizedPath(pathname, lang)}`;
 
+// Breadcrumb generation for all pages
+const isHome = pathname === '/' || pathname === `/${lang}/` || pathname === `/${lang}`;
+const cleanSegments = pathname.replace(new RegExp(`^/${lang}(/|$)`), '/').split('/').filter(Boolean);
+
+const breadcrumbs = !isHome ? [
+  { name: 'Home', url: localePath(lang, '/') },
+  ...cleanSegments.map((segment, idx) => {
+    const isLast = idx === cleanSegments.length - 1;
+    let url = '/' + cleanSegments.slice(0, idx + 1).join('/') + '/';
+    let name = segment.replace(/-/g, ' ');
+    name = name.charAt(0).toUpperCase() + name.slice(1);
+    if (segment === 'convert') {
+      name = 'Converters';
+      url = '/converters/';
+    }
+    if (segment === 'converters') name = 'Converters';
+    if (segment === 'guides') name = 'Guides';
+    if (segment === 'physics') name = 'Physics Hub';
+    return { name, url, isLast };
+  })
+] : [];
+
 // Build Hreflang Alternates (one per locale + x-default)
 const hreflangAlternates = LOCALES.map((loc) => ({
   hreflang: loc.hreflang,
@@ -504,6 +526,26 @@ if (faqs && faqs.length > 0) {
     </header>
 
     <main>
+      {breadcrumbs.length > 0 && (
+        <nav aria-label="Breadcrumb" class="breadcrumb-nav">
+          <ol class="breadcrumb" style="display: flex; list-style: none; padding: 0; margin: 0 0 20px 0; font-size: 0.9rem; flex-wrap: wrap; gap: 5px; align-items: center;">
+            {breadcrumbs.map((crumb, idx) => (
+              <>
+                {idx > 0 && <li class="breadcrumb-item" style="color: #94a3b8; user-select: none;">›</li>}
+                <li class={`breadcrumb-item ${crumb.isLast ? 'active' : ''}`} style={crumb.isLast ? 'color: #cbd5e1; font-weight: 500;' : ''} {...(crumb.isLast ? { 'aria-current': 'page' } : {})}>
+                  {crumb.isLast ? (
+                    crumb.name
+                  ) : (
+                    <a href={crumb.url} style="color: #38bdf8; text-decoration: none;">
+                      {crumb.name}
+                    </a>
+                  )}
+                </li>
+              </>
+            ))}
+          </ol>
+        </nav>
+      )}
       <slot />
     </main>
 
