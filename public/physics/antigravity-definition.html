@@ -1011,6 +1011,33 @@
     }
 
   </style>
+    <!-- ===== BREADCRUMB SCHEMA MARKUP ===== -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://nanotomicro.com/"
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Physics Hub",
+                "item": "https://nanotomicro.com/physics/"
+            },
+            {
+                "@type": "ListItem",
+                "position": 3,
+                "name": "What Is Antigravity? A Scientific Definition",
+                "item": "https://nanotomicro.com/physics/antigravity-definition.html"
+            }
+        ]
+    }
+    </script>
 </head>
 <body>
   <div class="progress-bar" id="readingProgress" style="height: 3px; background: linear-gradient(90deg, #4fc3f7, #1a1a2e); position: fixed; top: 0; left: 0; width: 0%; z-index: 1000;"></div>
@@ -1084,13 +1111,14 @@ window.addEventListener('scroll', function() {
 </header>
 
 <!-- ========== BREADCRUMB ========== -->
-<nav aria-label="Breadcrumb">
-  <ol class="breadcrumb" style="display: flex; list-style: none; padding: 0; margin: 0 0 20px 0; font-size: 0.9rem;">
-    <li class="breadcrumb-item"><a href="/" style="color: #0366d6; text-decoration: none;">Home</a></li>
-    <li class="breadcrumb-item" style="margin: 0 8px;">›</li>
-    <li class="breadcrumb-item"><a href="/physics/" style="color: #0366d6; text-decoration: none;">Physics Research Hub</a></li>
-    <li class="breadcrumb-item" style="margin: 0 8px;">›</li>
-    <li class="breadcrumb-item active" aria-current="page" style="color: #666;">What Is Antigravity?</li>
+<!-- ===== BREADCRUMB NAVIGATION ===== -->
+<nav aria-label="Breadcrumb" class="breadcrumb-nav">
+  <ol class="breadcrumb" style="display: flex; list-style: none; padding: 0; margin: 0 0 20px 0; font-size: 0.9rem; flex-wrap: wrap; gap: 5px; align-items: center;">
+    <li class="breadcrumb-item"><a href="/" style="color: #38bdf8; text-decoration: none;">Home</a></li>
+    <li class="breadcrumb-item" style="color: #94a3b8; user-select: none;">›</li>
+    <li class="breadcrumb-item"><a href="/physics/" style="color: #38bdf8; text-decoration: none;">Physics Hub</a></li>
+    <li class="breadcrumb-item" style="color: #94a3b8; user-select: none;">›</li>
+    <li class="breadcrumb-item active" aria-current="page" style="color: #cbd5e1; font-weight: 500;">What Is Antigravity? A Scientific Definition</li>
   </ol>
 </nav>
 

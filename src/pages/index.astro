@@ -52,6 +52,19 @@ const webAppSchema = {
   description: 'The definitive reference for all nano ↔ micro conversions, SI metric calculators, and evidence-based physics research.'
 };
 
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    {
+      '@type': 'ListItem',
+      position: 1,
+      name: 'Home',
+      item: 'https://nanotomicro.com/'
+    }
+  ]
+};
+
 const title = 'Nano to Micro Converter: Instant n ↔ µ Metric Conversions | NanoToMicro';
 const description = 'The definitive reference for all nano ↔ micro conversions. Instant calculations, exact formulas, tables, and evidence-based antigravity physics explainers.';
 ---
@@ -60,7 +73,7 @@ const description = 'The definitive reference for all nano ↔ micro conversions
   title={title}
   description={description}
   canonicalPath="/"
-  jsonLd={[webAppSchema]}
+  jsonLd={[webAppSchema, breadcrumbSchema]}
   faqs={homeFaqs}
 >
   <!-- Slim Sticky Jump Navigation Bar -->

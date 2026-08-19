@@ -1571,12 +1571,13 @@ window.addEventListener('scroll', function() {
   <div class="hub-layout">
     
     <!-- Top Breadcrumb Navigation: Home > Converters -->
-    <nav aria-label="Breadcrumb">
-  <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="/">Home</a></li>
-    <li class="breadcrumb-item active" aria-current="page">Converters Hub</li>
-  </ol>
-</nav>
+    <nav aria-label="Breadcrumb" class="breadcrumb-nav">
+      <ol class="breadcrumb" style="display: flex; list-style: none; padding: 0; margin: 0 0 20px 0; font-size: 0.9rem; flex-wrap: wrap; gap: 5px; align-items: center;">
+        <li class="breadcrumb-item"><a href="/" style="color: #38bdf8; text-decoration: none;">Home</a></li>
+        <li class="breadcrumb-item" style="color: #94a3b8; user-select: none;">›</li>
+        <li class="breadcrumb-item active" aria-current="page" style="color: #cbd5e1; font-weight: 500;">Converters</li>
+      </ol>
+    </nav>
 
     <div class="pill">International System of Units (SI) Metrology</div>
     <h1>Nano to Micro Converters for Every Unit Type</h1>

@@ -391,6 +391,34 @@ def build_html(p):
     }}
     </script>
     
+    <!-- ===== BREADCRUMB SCHEMA MARKUP ===== -->
+    <script type="application/ld+json">
+    {{
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {{
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://nanotomicro.com/"
+            }},
+            {{
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Converters",
+                "item": "https://nanotomicro.com/converters/"
+            }},
+            {{
+                "@type": "ListItem",
+                "position": 3,
+                "name": "{p['from_unit']} to {p['to_unit']}",
+                "item": "https://nanotomicro.com/converters/{p['filename']}"
+            }}
+        ]
+    }}
+    </script>
+    
     <style>
         * {{ margin: 0; padding: 0; box-sizing: border-box; }}
         body {{
