@@ -3,9 +3,9 @@ import type { Dictionary } from './en';
 
 export const es: Dictionary = {
   meta: {
-    siteName: 'Nano to Micro',
-    homeTitle: 'Convertidor de Nano a Micro: Conversiones Métricas Instantáneas n ↔ µ | NanoToMicro',
-    homeDescription: 'La referencia definitiva para todas las conversiones nano ↔ micro. Cálculos instantáneos, fórmulas exactas, tablas y física de antigravedad revisada.',
+    siteName: 'NanoToMicro',
+    homeTitle: 'Convertir Nano a Micro — Calculadora Exacta n a µ | NanoToMicro',
+    homeDescription: 'Convierta nano a micro instantáneamente con nuestra calculadora exacta. 1 n = 0.001 µ — siempre exacto. Herramienta gratuita para longitud, masa, tiempo y más.',
     ogAlt: 'Continuo de Escala Nano a Micro: Transistor nm a Célula Biológica µm',
   },
   nav: {
