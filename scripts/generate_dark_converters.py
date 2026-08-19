@@ -332,6 +332,46 @@ PAGES = [
             ("How many nano are in 1 micro?", "There are exactly 1,000 nano in 1 micro. This is because micro represents 10⁻⁶ and nano represents 10⁻⁹, making the ratio 10⁻⁶ / 10⁻⁹ = 1,000."),
             ("What is the formula for converting micro to nano?", "The formula is: <code>nano = micro × 1,000</code>. If converting in reverse (nano to micro), divide by 1,000.")
         ]
+    },
+    {
+        "filename": "nano-to-milli.html",
+        "title": "Convert Nano to Milli — Instant n to m Conversion | NanoToMicro",
+        "description": "Convert nano to milli instantly with our exact calculator. 1 n = 0.000001 m — always exact. Free online tool for length, mass, volume, and more.",
+        "headline": "Convert Nano (n) to Milli (m)",
+        "subheading": "Precision SI metric conversion tool from nanoscale (10⁻⁹) to milliscale (10⁻³). 1 n = 0.000001 m (exact 1,000,000x ratio).",
+        "primary_keyword": "nano to milli",
+        "secondary_keywords": "convert nano to milli, nano to milli converter, nm to mm, n to m",
+        "target_audience": "Engineers, Chemists, Metrologists",
+        "from_unit": "Nano",
+        "from_symbol": "n",
+        "to_unit": "Milli",
+        "to_symbol": "m",
+        "default_val": "1000000",
+        "default_res": "1",
+        "factor": 1000000,
+        "formula_op": "÷ 1,000,000",
+        "formula_desc": "To convert from nano (n) to milli (m), divide the numerical value by <strong>1,000,000</strong> (or multiply by 0.000001). This exact 10⁻⁶ ratio bridges atomic scales directly to macroscopic millimeter dimensions.",
+        "category": "Universal",
+        "table_rows": [
+            ("1 n", "0.000001 m", "Single atom width (0.1 nm = 0.0000001 mm)"),
+            ("1,000 n", "0.001 m", "1 µm = 0.001 mm (Bacterial cell length)"),
+            ("10,000 n", "0.01 m", "Cell nucleus diameter (0.01 mm)"),
+            ("100,000 n", "0.1 m", "Fine human hair diameter (0.1 mm)"),
+            ("500,000 n", "0.5 m", "Mechanical pencil lead tip width (0.5 mm)"),
+            ("1,000,000 n", "1 m", "1 millimeter exact benchmark (1,000,000 nm = 1 mm)"),
+            ("5,000,000 n", "5 m", "Small sesame seed width (5 mm)"),
+            ("10,000,000 n", "10 m", "1 centimeter (10 mm = 10,000,000 nm)")
+        ],
+        "apps": [
+            ("🔬 Precision Manufacturing & Machining", "Translating semiconductor e-beam lithography features (nm) into CNC macro tooling and precision tolerances (mm).", "1,000,000 nm precision tolerance = 1.0 mm.", "#38bdf8"),
+            ("🧪 Analytical Chemistry & Pharmacology", "Converting nanograms (ng) or nanoliters (nL) directly to milligrams (mg) or milliliters (mL) for standard drug dosage formulations.", "5,000,000 ng pharmaceutical active API = 5.0 mg.", "#22c55e"),
+            ("📡 Optical Engineering & Lasers", "Converting laser cavity beam diameters and optical fiber core dimensions from nanometers to millimeters.", "250,000 nm fiber cladding = 0.25 mm.", "#ef4444")
+        ],
+        "faqs": [
+            ("How do you convert nano to milli?", "To convert from nano (n) to milli (m), divide the value by 1,000,000 (or multiply by 0.000001). Formula: <code>milli = nano ÷ 1,000,000</code>. For example: 1,000,000 nm ÷ 1,000,000 = 1 mm."),
+            ("How many nano are in 1 milli?", "There are exactly 1,000,000 nano in 1 milli. Because milli is 10⁻³ and nano is 10⁻⁹, the ratio is 10⁻³ / 10⁻⁹ = 10⁶ = 1,000,000."),
+            ("How many nanometers are in a millimeter?", "1 millimeter (mm) contains exactly 1,000,000 nanometers (nm). For example: a 0.5 mm pencil lead is 500,000 nm wide.")
+        ]
     }
 ]
 
@@ -379,14 +419,17 @@ def build_html(p):
         ("nanovolts-to-microvolts.html", "Nanovolts to Microvolts (nV to µV)"),
         ("nanoliters-to-microliters.html", "Nanoliters to Microliters (nL to µL)"),
         ("nanocoulombs-to-microcoulombs.html", "Nanocoulombs to Microcoulombs (nC to µC)"),
-        ("micro-to-nano.html", "Micro to Nano (µ to n)")
+        ("micro-to-nano.html", "Micro to Nano (µ to n)"),
+        ("nano-to-milli.html", "Nano to Milli (n to m)")
     ]
     related_items = [f'            <li>➡️ <a href="/converters/{l[0]}">{l[1]}</a></li>' for l in all_links if l[0] != p["filename"]]
     related_html = "\n".join(related_items[:4]) + '\n            <li>➡️ <a href="/physics/">Physics Research Hub</a></li>'
     
-    formula_op = p.get("formula_op", "÷ 1,000")
+    factor = p.get("factor", 1000)
+    factor_str = f"{factor:,}"
+    formula_op = p.get("formula_op", f"÷ {factor_str}")
     formula_box_init = f"{p['to_symbol']} = {p['from_symbol']} {formula_op}"
-    formula_desc_text = p.get("formula_desc", f"To convert from {p['from_unit'].lower()} ({p['from_symbol']}) to {p['to_unit'].lower()} ({p['to_symbol']}), divide the numerical value by <strong>1,000</strong> (or multiply by 0.001). This standard 10⁻³ scale ratio applies across all SI metric units.")
+    formula_desc_text = p.get("formula_desc", f"To convert from {p['from_unit'].lower()} ({p['from_symbol']}) to {p['to_unit'].lower()} ({p['to_symbol']}), divide the numerical value by <strong>{factor_str}</strong>. This standard scale ratio applies across all SI metric units.")
     init_direction = "false" if p.get("direction") == "micro_to_nano" else "true"
     init_formula_display = f"{p['default_val']} {p['from_symbol']} {formula_op} = {p['default_res']} {p['to_symbol']}"
 
@@ -984,6 +1027,8 @@ def build_html(p):
     const toSymbol = "{p['to_symbol']}";
     const fromUnit = "{p['from_unit']}";
     const toUnit = "{p['to_unit']}";
+    const factor = {factor};
+    const factorStr = "{factor_str}";
     const isMicroToNano = {"true" if p.get("direction") == "micro_to_nano" else "false"};
     
     const nanoInput = document.getElementById('nanoInput');
@@ -1000,23 +1045,23 @@ def build_html(p):
         }}
         if (!isMicroToNano) {{
             if (isNanoToMicro) {{
-                const res = val / 1000;
+                const res = val / factor;
                 microOutput.value = (Math.round(res * 100000000) / 100000000).toString();
-                liveFormula.textContent = `${{val.toLocaleString()}} ${{fromSymbol}} ÷ 1,000 = ${{microOutput.value}} ${{toSymbol}}`;
+                liveFormula.textContent = `${{val.toLocaleString()}} ${{fromSymbol}} ÷ ${{factorStr}} = ${{microOutput.value}} ${{toSymbol}}`;
             }} else {{
-                const res = val * 1000;
+                const res = val * factor;
                 microOutput.value = (Math.round(res * 100000000) / 100000000).toString();
-                liveFormula.textContent = `${{val.toLocaleString()}} ${{toSymbol}} × 1,000 = ${{microOutput.value}} ${{fromSymbol}}`;
+                liveFormula.textContent = `${{val.toLocaleString()}} ${{toSymbol}} × ${{factorStr}} = ${{microOutput.value}} ${{fromSymbol}}`;
             }}
         }} else {{
             if (!isNanoToMicro) {{
-                const res = val * 1000;
+                const res = val * factor;
                 microOutput.value = (Math.round(res * 100000000) / 100000000).toString();
-                liveFormula.textContent = `${{val.toLocaleString()}} ${{fromSymbol}} × 1,000 = ${{microOutput.value}} ${{toSymbol}}`;
+                liveFormula.textContent = `${{val.toLocaleString()}} ${{fromSymbol}} × ${{factorStr}} = ${{microOutput.value}} ${{toSymbol}}`;
             }} else {{
-                const res = val / 1000;
+                const res = val / factor;
                 microOutput.value = (Math.round(res * 100000000) / 100000000).toString();
-                liveFormula.textContent = `${{val.toLocaleString()}} ${{toSymbol}} ÷ 1,000 = ${{microOutput.value}} ${{fromSymbol}}`;
+                liveFormula.textContent = `${{val.toLocaleString()}} ${{toSymbol}} ÷ ${{factorStr}} = ${{microOutput.value}} ${{fromSymbol}}`;
             }}
         }}
     }}
@@ -1035,21 +1080,21 @@ def build_html(p):
             if (isNanoToMicro) {{
                 labelLeft.textContent = `${{fromUnit}} (${{fromSymbol}})`;
                 labelRight.textContent = `${{toUnit}} (${{toSymbol}})`;
-                formulaBoxText.textContent = `${{toSymbol}} = ${{fromSymbol}} ÷ 1,000`;
+                formulaBoxText.textContent = `${{toSymbol}} = ${{fromSymbol}} ÷ ${{factorStr}}`;
             }} else {{
                 labelLeft.textContent = `${{toUnit}} (${{toSymbol}})`;
                 labelRight.textContent = `${{fromUnit}} (${{fromSymbol}})`;
-                formulaBoxText.textContent = `${{fromSymbol}} = ${{toSymbol}} × 1,000`;
+                formulaBoxText.textContent = `${{fromSymbol}} = ${{toSymbol}} × ${{factorStr}}`;
             }}
         }} else {{
             if (!isNanoToMicro) {{
                 labelLeft.textContent = `${{fromUnit}} (${{fromSymbol}})`;
                 labelRight.textContent = `${{toUnit}} (${{toSymbol}})`;
-                formulaBoxText.textContent = `${{toSymbol}} = ${{fromSymbol}} × 1,000`;
+                formulaBoxText.textContent = `${{toSymbol}} = ${{fromSymbol}} × ${{factorStr}}`;
             }} else {{
                 labelLeft.textContent = `${{toUnit}} (${{toSymbol}})`;
                 labelRight.textContent = `${{fromUnit}} (${{fromSymbol}})`;
-                formulaBoxText.textContent = `${{fromSymbol}} = ${{toSymbol}} ÷ 1,000`;
+                formulaBoxText.textContent = `${{fromSymbol}} = ${{toSymbol}} ÷ ${{factorStr}}`;
             }}
         }}
         

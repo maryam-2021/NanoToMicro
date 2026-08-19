@@ -535,7 +535,7 @@
     <div class="formula-box">
         <span id="formulaBoxText">µg = ng ÷ 1,000</span>
     </div>
-    <p>To convert from nanograms (ng) to micrograms (µg), divide the numerical value by <strong>1,000</strong> (or multiply by 0.001). This standard 10⁻³ scale ratio applies across all SI metric units.</p>
+    <p>To convert from nanograms (ng) to micrograms (µg), divide the numerical value by <strong>1,000</strong>. This standard scale ratio applies across all SI metric units.</p>
     
     <section class="applications-section">
         <h2>🔬 Real-World Applications</h2>
@@ -653,6 +653,8 @@
     const toSymbol = "µg";
     const fromUnit = "Nanograms";
     const toUnit = "Micrograms";
+    const factor = 1000;
+    const factorStr = "1,000";
     const isMicroToNano = false;
     
     const nanoInput = document.getElementById('nanoInput');
@@ -669,23 +671,23 @@
         }
         if (!isMicroToNano) {
             if (isNanoToMicro) {
-                const res = val / 1000;
+                const res = val / factor;
                 microOutput.value = (Math.round(res * 100000000) / 100000000).toString();
-                liveFormula.textContent = `${val.toLocaleString()} ${fromSymbol} ÷ 1,000 = ${microOutput.value} ${toSymbol}`;
+                liveFormula.textContent = `${val.toLocaleString()} ${fromSymbol} ÷ ${factorStr} = ${microOutput.value} ${toSymbol}`;
             } else {
-                const res = val * 1000;
+                const res = val * factor;
                 microOutput.value = (Math.round(res * 100000000) / 100000000).toString();
-                liveFormula.textContent = `${val.toLocaleString()} ${toSymbol} × 1,000 = ${microOutput.value} ${fromSymbol}`;
+                liveFormula.textContent = `${val.toLocaleString()} ${toSymbol} × ${factorStr} = ${microOutput.value} ${fromSymbol}`;
             }
         } else {
             if (!isNanoToMicro) {
-                const res = val * 1000;
+                const res = val * factor;
                 microOutput.value = (Math.round(res * 100000000) / 100000000).toString();
-                liveFormula.textContent = `${val.toLocaleString()} ${fromSymbol} × 1,000 = ${microOutput.value} ${toSymbol}`;
+                liveFormula.textContent = `${val.toLocaleString()} ${fromSymbol} × ${factorStr} = ${microOutput.value} ${toSymbol}`;
             } else {
-                const res = val / 1000;
+                const res = val / factor;
                 microOutput.value = (Math.round(res * 100000000) / 100000000).toString();
-                liveFormula.textContent = `${val.toLocaleString()} ${toSymbol} ÷ 1,000 = ${microOutput.value} ${fromSymbol}`;
+                liveFormula.textContent = `${val.toLocaleString()} ${toSymbol} ÷ ${factorStr} = ${microOutput.value} ${fromSymbol}`;
             }
         }
     }
@@ -704,21 +706,21 @@
             if (isNanoToMicro) {
                 labelLeft.textContent = `${fromUnit} (${fromSymbol})`;
                 labelRight.textContent = `${toUnit} (${toSymbol})`;
-                formulaBoxText.textContent = `${toSymbol} = ${fromSymbol} ÷ 1,000`;
+                formulaBoxText.textContent = `${toSymbol} = ${fromSymbol} ÷ ${factorStr}`;
             } else {
                 labelLeft.textContent = `${toUnit} (${toSymbol})`;
                 labelRight.textContent = `${fromUnit} (${fromSymbol})`;
-                formulaBoxText.textContent = `${fromSymbol} = ${toSymbol} × 1,000`;
+                formulaBoxText.textContent = `${fromSymbol} = ${toSymbol} × ${factorStr}`;
             }
         } else {
             if (!isNanoToMicro) {
                 labelLeft.textContent = `${fromUnit} (${fromSymbol})`;
                 labelRight.textContent = `${toUnit} (${toSymbol})`;
-                formulaBoxText.textContent = `${toSymbol} = ${fromSymbol} × 1,000`;
+                formulaBoxText.textContent = `${toSymbol} = ${fromSymbol} × ${factorStr}`;
             } else {
                 labelLeft.textContent = `${toUnit} (${toSymbol})`;
                 labelRight.textContent = `${fromUnit} (${fromSymbol})`;
-                formulaBoxText.textContent = `${fromSymbol} = ${toSymbol} ÷ 1,000`;
+                formulaBoxText.textContent = `${fromSymbol} = ${toSymbol} ÷ ${factorStr}`;
             }
         }
         
